@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard.component';
 import { AppRoutingModule } from '../app-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -10,7 +11,7 @@ import { AppRoutingModule } from '../app-routing.module';
     DashboardComponent
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     AppRoutingModule
   ],
   exports: [

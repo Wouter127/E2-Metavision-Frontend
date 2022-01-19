@@ -17,20 +17,15 @@ import { WeerstationListComponent } from './weerstation/weerstation-list/weersta
 import { WeerstationToevoegenComponent } from './weerstation/weerstation-toevoegen/weerstation-toevoegen.component';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { OrganisatieToevoegenComponent } from './organisatie/organisatie-toevoegen/organisatie-toevoegen.component';
+import { WeerstationModule } from './weerstation/weerstation.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { NavigationComponent } from './navigation/navigation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent,
-    UsersListComponent,
-    UsersFormComponent,
-    WeerstationActiverenComponent,
-    WeerstationAlarmSchakelwaardesFormComponent,
-    OrganisatieListComponent,
-    WeerstationListComponent,
-    WeerstationToevoegenComponent,
-    OrganisatieToevoegenComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +33,8 @@ import { OrganisatieToevoegenComponent } from './organisatie/organisatie-toevoeg
     SharedModule,
     NavigationModule,
     OrganisatieModule,
-    DashboardModule
+    DashboardModule,
+    WeerstationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

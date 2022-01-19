@@ -21,9 +21,9 @@
 <div>
     <a routerLink="/weerstationtoevoegen" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="bg-gray-500">Weerstation toevoegen [ADMIN]</a><br>
     <a routerLink="/organisatietoevoegen" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="bg-gray-500">organisatie registreren [ADMIN]</a><br>
-    <a routerLink="/weerstations" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="bg-gray-500">Alle weerstations [ADMIN]</a><br>
-    <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="bg-gray-500">Alle organisaties [ADMIN]</a><br>
-    <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="bg-gray-500">Weerstation activeren [ORG ADMIN EN ADMIN]</a>
+    <a routerLink="/alleweerstations" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="bg-gray-500">Alle weerstations [ADMIN]</a><br>
+    <a routerLink="/organisaties" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="bg-gray-500">Alle organisaties [ADMIN]</a><br>
+    <a routerLink="/weerstationactiveren" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="bg-gray-500">Weerstation activeren [ORG ADMIN EN ADMIN]</a>
 </div>
 
 <div class="card">
@@ -32,8 +32,12 @@
     </p>
     <hr>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, in?</p>
-    <button class="bg-gray-500">instellingen [ORG ADMIN EN ADMIN]</button>
-    <button class="bg-gray-500">Gebruikers [ORG ADMIN EN ADMIN]</button>
+    <p>    
+        <a routerLink="/organisatieinstellingen" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="bg-gray-500">Instellingen [ORG ADMIN EN ADMIN]</a>
+    </p>
+    <p>    
+        <a routerLink="/userslist" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="bg-gray-500">Gebruikers [ORG ADMIN EN ADMIN]</a>
+    </p>
 </div>
 <br>
 <div class="card">
@@ -42,5 +46,7 @@
     </p>
     <hr>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, in?</p>
-    <button class="bg-gray-500">mijn weerstations [ORG ADMIN EN ADMIN]</button>
+    <p>    
+        <a routerLink="/mijnweerstations" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="bg-gray-500">Mijn weerstations [ORG ADMIN EN ADMIN]</a>
+    </p>
 </div>
