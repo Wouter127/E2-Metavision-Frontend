@@ -1,0 +1,29 @@
+nav ul {
+    display: flex;
+    list-style-type: none;
+    padding: 0px;
+}
+
+nav li {
+    flex: 1 1 auto;
+    display: flex;
+}
+
+nav a {
+    flex: 1 1 auto;
+    text-decoration: none;
+    text-align: center;
+    padding: 20px;
+    background-color: lightgrey;
+    color: black;
+}
+
+nav a.active {
+    background-color: lightsalmon;
+    color: black;
+}
+
+nav a:hover {
+    color: lightgrey;
+    background-color: grey;
+}

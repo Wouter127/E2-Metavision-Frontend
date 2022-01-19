@@ -1,0 +1,9 @@
+<p>laat een form zien om een nieuw weerstation toe te voegen in de database</p>
+<p>vraagt de tel nummer van het weerstation</p>
+<p>enkel voor ADMIN</p>
+<form action="">
+    <label for="phone">Telefoon nummer weerstation</label><br>
+    <input type="tel" name="phone" id="phone" placeholder="0123456789" class="bg-gray-200"><br>
+    <button class="bg-gray-500">Submit</button>
+</form>
+<a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Back</a>
