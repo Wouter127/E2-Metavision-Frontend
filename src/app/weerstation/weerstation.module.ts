@@ -5,13 +5,19 @@ import { WeerstationToevoegenComponent } from './weerstation-toevoegen/weerstati
 import { WeerstationListComponent } from './weerstation-list/weerstation-list.component';
 import { WeerstationActiverenComponent } from './weerstation-activeren/weerstation-activeren.component';
 import { WeerstationAlarmSchakelwaardesFormComponent } from './weerstation-alarm-schakelwaardes-form/weerstation-alarm-schakelwaardes-form.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    WeerstationToevoegenComponent,
+    WeerstationListComponent,
+    WeerstationActiverenComponent,
+    WeerstationAlarmSchakelwaardesFormComponent
+  ],
   imports: [
-    CommonModule,
+    SharedModule,
     AppRoutingModule
   ],
   exports: [
