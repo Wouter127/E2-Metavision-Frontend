@@ -1,0 +1,26 @@
+<p>laat een list zien van alle weerstations</p>
+
+<p>als ADMIN zie je alle weerstations van alle organisaties</p>
+<p>als ORG ADMIN zie je alle weerstations van jouw organisatie</p>
+<p>bewerken gaat naar weerstation-form component</p>
+<p>toevoegen gaat naar weerstation-activeren component</p>
+
+<div class="flex">
+    <div class="flex-1 m-auto h-24">
+      <img class="h-20 object-scale-down w-full" src="../../../assets/placeholder.png" alt="">
+    </div>
+    <div class="flex-1 m-auto ml-2">
+        <p class="font-bold">weerstation naam</p>
+    </div>
+    <div class="flex-1 m-auto text-xs underline text-center">
+        <p class="font-bold">Remove</p>
+    </div>
+    <div class="flex-1 m-auto text-center">
+        <p class="font-bold">edit</p>
+    </div>
+    <div class="flex-1 m-auto">
+
+    </div>
+</div>
+
+<a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Back</a>
