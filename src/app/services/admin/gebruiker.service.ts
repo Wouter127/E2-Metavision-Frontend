@@ -32,5 +32,6 @@ export class GebruikerService {
 
   deleteGebruiker(id: number): Observable<unknown> {
     return this.httpClient.delete<unknown>(`${environment.baseApiUrl}/admin/gebruikers/${id}`);
+    // return timer(3000, 3000).pipe(switchMap(() => this.httpClient.delete<unknown>(`${environment.baseApiUrl}/admin/gebruikers/${id}`)));
   }
 }

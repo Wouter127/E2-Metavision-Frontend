@@ -21,6 +21,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { GebruikersModule } from './gebruikers/gebruikers.module';
+import { HotToastModule } from '@ngneat/hot-toast';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { GebruikersModule } from './gebruikers/gebruikers.module';
     DashboardModule,
     WeerstationModule,
     HttpClientModule,
-    GebruikersModule
+    GebruikersModule,
+    HotToastModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

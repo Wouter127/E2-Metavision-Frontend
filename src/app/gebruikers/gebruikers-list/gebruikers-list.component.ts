@@ -1,5 +1,6 @@
 import { trigger } from '@angular/animations';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { HotToastService } from '@ngneat/hot-toast';
 import { Subscription } from 'rxjs';
 import { Gebruiker } from 'src/app/interfaces/Gebruiker';
 import { GebruikerService } from 'src/app/services/admin/gebruiker.service';
@@ -21,7 +22,13 @@ export class GebruikersListComponent implements OnInit {
   gebruiker!: Gebruiker;
   gebruiker$: Subscription = new Subscription();
 
-  constructor(private adminGebruikerService: GebruikerService) { }
+  constructor(private adminGebruikerService: GebruikerService, private toast: HotToastService) {
+    // Reverse the order of which the toasts are displayed
+    this.toast.defaultConfig = {
+      ...this.toast.defaultConfig,
+      reverseOrder: true
+    }
+   }
 
   ngOnInit(): void {
     this.getGebruikers();
@@ -37,7 +44,13 @@ export class GebruikersListComponent implements OnInit {
   }
 
   verwijderGebruiker(id: number): void {
-    this.adminGebruikerService.deleteGebruiker(id).subscribe(
+    this.adminGebruikerService.deleteGebruiker(id).pipe(
+      this.toast.observe({
+        loading: { content: 'Verwijderen...', position: 'bottom-right' },
+        success: { content: 'Gebruiker verwijderd!', position: 'bottom-right', dismissible: true },
+        error: { content: 'Er ging iets mis.', position: 'bottom-right', dismissible: true },
+      })
+    ).subscribe(
       result => {
         console.log(result);
       },
