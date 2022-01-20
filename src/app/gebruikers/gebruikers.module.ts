@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { GebruikersListComponent } from './gebruikers-list/gebruikers-list.component';
 import { GebruikersFormComponent } from './gebruikers-form/gebruikers-form.component';
 
-
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -11,7 +11,8 @@ import { GebruikersFormComponent } from './gebruikers-form/gebruikers-form.compo
     GebruikersFormComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ]
 })
 export class GebruikersModule { }

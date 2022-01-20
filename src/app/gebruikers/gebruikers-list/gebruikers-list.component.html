@@ -3,3 +3,108 @@
 <p>als ADMIN zie je alle users van alle organisaties</p>
 <p>als ORG ADMIN zie je alle users van jouw organisatie</p>
 <p>bewerken of toevoegen gaat naar users-form component</p>
+
+<app-gebruikers-form title="Wijzig gebruiker"></app-gebruikers-form>
+
+<div class="flex row justify-end">
+    <button
+        class="p-2 px-5 bg-transparent border-2 border-indigo-600 text-indigo-600 text-md font-bold rounded-lg transition-colors duration-700 transform hover:bg-indigo-600 hover:text-gray-100 mb-2">
+        Voeg organisatie beheerder toe
+    </button>
+</div>
+
+<div class="flex flex-col">
+    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+            <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Naam
+                            </th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Organisatie
+                            </th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Rol
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Acties
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="loading">
+                        <tr *ngFor="let n of [1, 2, 3]">
+                            <td class="px-6 py-4">
+                                <div class="w-6/12 bg-gray-300 h-4 rounded-full animate-pulse mb-1"></div>
+                                <div class="w-10/12 bg-gray-300 h-4 rounded-full animate-pulse"></div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="w-6/12 bg-gray-300 h-4 rounded-full animate-pulse mb-1"></div>
+                                <div class="w-6/12 bg-gray-300 h-4 rounded-full animate-pulse mb-1"></div>
+                                <div class="w-5/12 bg-gray-300 h-4 rounded-full animate-pulse mb-1"></div>
+                                <div class="w-4/12 bg-gray-300 h-4 rounded-full animate-pulse"></div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex row">
+                                    <div class="w-4/12 bg-gray-300 h-4 rounded-full animate-pulse mr-1"></div>
+                                    <div class="w-8/12 bg-gray-300 h-4 rounded-full animate-pulse"></div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex justify-around">
+                                    <div class="w-3/12 bg-gray-300 h-4 rounded-full animate-pulse mr-1"></div>
+                                    <div class="w-4/12 bg-gray-300 h-4 rounded-full animate-pulse"></div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody *ngIf="!loading" class="bg-white divide-y divide-gray-200">
+                        <tr *ngFor="let gebruiker of gebruikers">
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-medium text-gray-900">
+                                    {{ gebruiker.voornaam + ' ' + gebruiker.achternaam}}
+                                </div>
+                                <div class="text-sm text-gray-500">
+                                    {{ gebruiker.email}}
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">
+                                    {{ gebruiker.organisatie?.naam ?? 'leeg' }}
+                                </div>
+                                <div class="text-sm text-gray-500">
+                                    {{ gebruiker.organisatie ? gebruiker.organisatie.huisnummer + ' ' + gebruiker.organisatie.straat : ''}}
+                                </div>
+                                <div class="text-sm text-gray-500">
+                                    {{ gebruiker.organisatie ? gebruiker.organisatie.postcode + ' ' + gebruiker.organisatie.stad : ''}}
+                                </div>
+                                <div class="text-sm text-gray-500">
+                                    {{ gebruiker.organisatie ? gebruiker.organisatie.land : '' }}
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span *ngIf="gebruiker.isOrganisatieBeheerder" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                    Organisatie beheerder
+                                </span>
+                                <span *ngIf="gebruiker.isAdmin" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                    Admin
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                <div class="flex justify-around">
+                                    <a class="text-indigo-600 hover:text-indigo-900 cursor-pointer sm:mr-1" (click)="wijzigGebruiker(gebruiker.id)">Wijzig</a>
+                                    <a class="text-indigo-600 hover:text-indigo-900 cursor-pointer sm:ml-1" (click)="verwijderGebruiker(gebruiker.id)">Verwijder</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

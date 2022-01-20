@@ -1,3 +1,5 @@
+import { Organisatie } from "./Organisatie";
+
 export interface Gebruiker {
     id: number;
     organisatieId: number;
@@ -7,4 +9,6 @@ export interface Gebruiker {
     wachtwoord: string;
     isOrganisatieBeheerder: boolean;
     isAdmin: boolean;
+
+    organisatie?: Organisatie;
 }

@@ -20,6 +20,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavigationComponent } from './navigation/navigation.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { GebruikersModule } from './gebruikers/gebruikers.module';
 
 
 @NgModule({
@@ -36,8 +37,8 @@ import { HttpClientModule } from '@angular/common/http';
     OrganisatieModule,
     DashboardModule,
     WeerstationModule,
-    HttpClientModule
-
+    HttpClientModule,
+    GebruikersModule
   ],
   providers: [],
   bootstrap: [AppComponent]

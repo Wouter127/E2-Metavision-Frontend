@@ -4,6 +4,7 @@ export interface Organisatie {
     id: number;
     naam: string;
     land: string;
+    stad: string;
     postcode: string;
     straat: string;
     huisnummer: string;
