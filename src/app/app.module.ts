@@ -21,6 +21,9 @@ import { WeerstationModule } from './weerstation/weerstation.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavigationComponent } from './navigation/navigation.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +37,9 @@ import { NavigationComponent } from './navigation/navigation.component';
     NavigationModule,
     OrganisatieModule,
     DashboardModule,
-    WeerstationModule
+    WeerstationModule,
+    HttpClientModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
