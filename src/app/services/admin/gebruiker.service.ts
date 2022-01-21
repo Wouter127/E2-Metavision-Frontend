@@ -14,14 +14,20 @@ export class GebruikerService {
 
   getGebruikers(): Observable<Gebruiker[]> {
     // return this.httpClient.get<Gebruiker[]>(`${environment.baseApiUrl}/admin/gebruikers`);
-    return timer(1000, 3000).pipe(switchMap(() => this.httpClient.get<Gebruiker[]>(`${environment.baseApiUrl}/admin/gebruikers`)));
+    return timer(1000).pipe(switchMap(() => this.httpClient.get<Gebruiker[]>(`${environment.baseApiUrl}/admin/gebruikers`)));
   }
 
   getGebruikerById(id: number): Observable<Gebruiker> {
     // return this.httpClient.get<Gebruiker>(`${environment.baseApiUrl}/admin/gebruikers/${id}`);
-    return timer(3000, 3000).pipe(switchMap(() => this.httpClient.get<Gebruiker>(`${environment.baseApiUrl}/admin/gebruikers/${id}`)));
+    return timer(1000).pipe(switchMap(() => this.httpClient.get<Gebruiker>(`${environment.baseApiUrl}/admin/gebruikers/${id}`)));
   }
 
+  postGebruikerOrganisatieBeheerder(email: string): Observable<Gebruiker> {
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json; charset=utf-8');
+
+    return this.httpClient.post<Gebruiker>(`${environment.baseApiUrl}/admin/gebruikers`, { email }, { headers: headers });
+  }
 
   putGebruiker(id: number, gebruiker: Gebruiker): Observable<Gebruiker> {
     let headers = new HttpHeaders();
@@ -32,6 +38,6 @@ export class GebruikerService {
 
   deleteGebruiker(id: number): Observable<unknown> {
     return this.httpClient.delete<unknown>(`${environment.baseApiUrl}/admin/gebruikers/${id}`);
-    // return timer(3000, 3000).pipe(switchMap(() => this.httpClient.delete<unknown>(`${environment.baseApiUrl}/admin/gebruikers/${id}`)));
+    // return timer(3000).pipe(switchMap(() => this.httpClient.delete<unknown>(`${environment.baseApiUrl}/admin/gebruikers/${id}`)));
   }
 }

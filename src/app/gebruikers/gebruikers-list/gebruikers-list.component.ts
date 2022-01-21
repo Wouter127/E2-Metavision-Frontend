@@ -4,6 +4,7 @@ import { HotToastService } from '@ngneat/hot-toast';
 import { Subscription } from 'rxjs';
 import { Gebruiker } from 'src/app/interfaces/Gebruiker';
 import { GebruikerService } from 'src/app/services/admin/gebruiker.service';
+import { GebruikersFormOrganisatiebeheerderComponent } from '../gebruikers-form-organisatiebeheerder/gebruikers-form-organisatiebeheerder.component';
 import { GebruikersFormComponent } from '../gebruikers-form/gebruikers-form.component';
 
 @Component({
@@ -12,6 +13,7 @@ import { GebruikersFormComponent } from '../gebruikers-form/gebruikers-form.comp
   styleUrls: ['./gebruikers-list.component.scss']
 })
 export class GebruikersListComponent implements OnInit {
+  @ViewChild(GebruikersFormOrganisatiebeheerderComponent, { static: true }) gebruikersFormOrganisatiebeheerderComponent!: GebruikersFormOrganisatiebeheerderComponent;
   @ViewChild(GebruikersFormComponent, { static: true }) gebruikersFormComponent!: GebruikersFormComponent;
 
   loading: boolean = true;
@@ -39,11 +41,22 @@ export class GebruikersListComponent implements OnInit {
     this.gebruiker$.unsubscribe();
   }
 
+  toevoegenGebruiker(): void {
+    this.gebruikersFormOrganisatiebeheerderComponent.openModal();
+  }
+
+
   wijzigGebruiker(id: number): void {
     this.gebruikersFormComponent.openModal(id);
+
+    // When the gebruiker is edited successfully, refresh the list of gebruikers.
+    this.gebruikersFormComponent.output.subscribe(() => {
+      this.getGebruikers();
+    });
   }
 
   verwijderGebruiker(id: number): void {
+    // TODO: Ask for confirmation.
     this.adminGebruikerService.deleteGebruiker(id).pipe(
       this.toast.observe({
         loading: { content: 'Verwijderen...', position: 'bottom-right' },
@@ -52,10 +65,7 @@ export class GebruikersListComponent implements OnInit {
       })
     ).subscribe(
       result => {
-        console.log(result);
-      },
-      error => {
-        console.log('ERROR:', error);
+        this.getGebruikers();
       }
     );
   }
@@ -66,10 +76,10 @@ export class GebruikersListComponent implements OnInit {
     this.gebruikers$ = this.adminGebruikerService.getGebruikers().subscribe(
       result => {
         this.gebruikers = result;
-        this.loading = false; // TODO: bij error ook loading = false, is er geen always?
+        this.loading = false;
       },
       error => {
-        console.log('ERROR: ', error);
+        this.toast.error("Er ging iets mis.  De gebruiker kan niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false })
       }
     );
   }

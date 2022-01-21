@@ -43,6 +43,14 @@
                                 <label class="block font-medium text-gray-700">Organisatie</label>
                                 <div class="w-12/12 mt-1 bg-gray-300 h-8 rounded-md animate-pulse"></div>
                             </div>
+                            <div class="col-span-6 sm:col-span-3">
+                                <label class="block font-medium text-gray-700">Organisatie beheerder</label>
+                                <div class="w-4 mt-1 bg-gray-300 h-4 rounded-md animate-pulse"></div>
+                            </div>
+                            <div class="col-span-6 sm:col-span-3">
+                                <label class="block font-medium text-gray-700">Admin</label>
+                                <div class="w-4 mt-1 bg-gray-300 h-4 rounded-md animate-pulse"></div>
+                            </div>
                         </div>
                         <div class="px-4 py-3 bg-gray-50">
                             <div class="w-32 mx-auto mt-1 bg-gray-300 h-10 rounded-md animate-pulse"></div>
@@ -54,7 +62,7 @@
                         <div class="grid grid-cols-6 gap-6">
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="voornaam" class="block font-medium text-gray-700">Voornaam</label>
-                                <input type="text" name="voornaam" id="voornaam" [(ngModel)]="gebruiker.voornaam" (ngModelChange)="myFunction()" #voornaam="ngModel"
+                                <input type="text" name="voornaam" id="voornaam" [(ngModel)]="gebruiker.voornaam" #voornaam="ngModel"
                                     class="mt-1 p-2 focus:ring-indigo-500 border focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                             </div>
             
@@ -70,6 +78,7 @@
                             </div>
             
                             <div class="col-span-6 sm:col-span-3">
+                                <!-- TODO: Get organisaties and fill options -->
                                 <label for="country" class="block font-medium text-gray-700">Organisatie</label>
                                 <select id="country" name="country" autocomplete="country-name"
                                     class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -77,6 +86,15 @@
                                     <option>Toodo</option>
                                     <option>Tooodo</option>
                                 </select>
+                            </div>
+
+                            <div class="col-span-6 sm:col-span-3">
+                                <label class="block font-medium text-gray-700" for="isOrganisatieBeheerder">Organisatie beheerder</label>
+                                <input class="ml-1" type="checkbox" role="switch" id="isOrganisatieBeheerder" [checked]="gebruiker.isOrganisatieBeheerder" (change)="gebruiker.isOrganisatieBeheerder ? gebruiker.isOrganisatieBeheerder = 0 : gebruiker.isOrganisatieBeheerder = 1">
+                            </div>
+                            <div class="col-span-6 sm:col-span-3">
+                                <label class="block font-medium text-gray-700" for="admin">Admin</label>
+                                <input class="ml-1" type="checkbox" role="switch" id="admin" [checked]="gebruiker.isAdmin" (change)="gebruiker.isAdmin ? gebruiker.isAdmin = 0 : gebruiker.isAdmin = 1">
                             </div>
                         </div>
                     </div>
