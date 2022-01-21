@@ -30,6 +30,10 @@ getWeerstations(): Observable<Weerstation[]> {
     return this.httpClient.get<Weerstation[]>(environment.API_URI + "/admin/weerstations");
   }
 
+  getWeerstationsZonderOrganisaties(): Observable<Weerstation[]> {
+    return this.httpClient.get<Weerstation[]>(environment.API_URI + "/admin/weerstations?organisatieId=null");
+  }
+
   getWeerstationById(id: number): Observable<Weerstation> {
     return this.httpClient.get<Weerstation>(environment.API_URI + "/admin/weerstations/" + id);
   }
@@ -40,7 +44,6 @@ getWeerstations(): Observable<Weerstation[]> {
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
 
     return this.httpClient.post<Weerstation>(environment.API_URI + "/admin/weerstations", weerstation, {headers: headers});
-
   }
 
 

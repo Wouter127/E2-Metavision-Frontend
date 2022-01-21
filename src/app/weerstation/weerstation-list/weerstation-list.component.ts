@@ -15,7 +15,9 @@ import { Observable, Subscription } from 'rxjs';
 export class WeerstationListComponent implements OnInit, OnDestroy {
 
   organisaties: Organisatie[] = [];
+  weerstations: Weerstation[] = [];
   organisaties$: Subscription = new Subscription();
+  weerstations$: Subscription = new Subscription();
   deleteWeerstation$: Subscription = new Subscription();
   errorMessage: string = "";
   isAdmin = true;
@@ -25,6 +27,7 @@ export class WeerstationListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     if (this.isAdmin) {
       this.getAllOrganisatiesWithWeerstations();
+      this.getWeerstations();
     } else {
       this.getOrganisatieWithWeerstations();
     }
@@ -77,5 +80,10 @@ export class WeerstationListComponent implements OnInit, OnDestroy {
   edit(id: number) {
     //Navigate to form in edit mode
     this.router.navigate(['/weerstations/form'], {state: {id: id}});
+  }
+
+  getWeerstations() {
+    this.weerstations$ = this.weerstationService.getWeerstationsZonderOrganisaties().subscribe(result => this.weerstations = result)
+
   }
 }

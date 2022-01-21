@@ -22,6 +22,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavigationComponent } from './navigation/navigation.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { GebruikersModule } from './gebruikers/gebruikers.module';
+import { HotToastModule } from '@ngneat/hot-toast';
+import { DialogModule } from '@ngneat/dialog';
+
 import { FormsModule } from '@angular/forms';
 import { TooltipModule } from 'ng2-tooltip-directive';
 
@@ -41,9 +45,11 @@ import { TooltipModule } from 'ng2-tooltip-directive';
     DashboardModule,
     WeerstationModule,
     HttpClientModule,
-    FormsModule,
-    TooltipModule
-
+    TooltipModule,
+    GebruikersModule,
+    HotToastModule.forRoot(),
+    DialogModule.forRoot(),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
