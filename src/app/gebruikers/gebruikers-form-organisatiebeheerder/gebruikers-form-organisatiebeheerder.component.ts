@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { HotToastService } from '@ngneat/hot-toast';
 import { Subscription } from 'rxjs';
 import { GebruikerService } from 'src/app/services/admin/gebruiker.service';
@@ -10,6 +10,7 @@ import { GebruikerService } from 'src/app/services/admin/gebruiker.service';
 })
 export class GebruikersFormOrganisatiebeheerderComponent implements OnInit {
   @Input() title!: string;
+  @Output() output = new EventEmitter();
 
   showModal: boolean = false;
 
@@ -56,6 +57,8 @@ export class GebruikersFormOrganisatiebeheerderComponent implements OnInit {
       result => {
         this.email = '';
         this.closeModal();
+
+        this.output.next(); // Send event to parent component.
       }
     );
   }
