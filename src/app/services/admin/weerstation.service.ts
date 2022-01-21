@@ -15,7 +15,7 @@ export class WeerstationService {
   constructor(private httpClient: HttpClient) { }
 
 
-  editZichtbaarheid(id: number, weerstation: Weerstation) {
+  putWeerstation(id: number, weerstation: Weerstation) {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
 

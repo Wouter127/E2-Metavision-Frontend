@@ -46,7 +46,7 @@ export class WeerstationListComponent implements OnInit, OnDestroy {
       weerstation.isPubliekZichtbaar = 1
     }
   
-    this.weerstationService.editZichtbaarheid(weerstation.id, weerstation).subscribe((res: any) => {
+    this.weerstationService.putWeerstation(weerstation.id, weerstation).subscribe((res: any) => {
       this.ngOnInit();
     });
   }
@@ -72,5 +72,10 @@ export class WeerstationListComponent implements OnInit, OnDestroy {
 
   getAllOrganisatiesWithWeerstations() {
     this.organisaties$ = this.organisatieService.getAllOrganisatiesWithWeerstations().subscribe(result => this.organisaties = result)
+  }
+
+  edit(id: number) {
+    //Navigate to form in edit mode
+    this.router.navigate(['/weerstations/form'], {state: {id: id}});
   }
 }

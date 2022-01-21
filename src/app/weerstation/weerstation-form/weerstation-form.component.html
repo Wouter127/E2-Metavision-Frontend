@@ -1,1 +1,21 @@
-<p>weerstation-form works!</p>
+<div class="alert alert-danger" role="alert" *ngIf="isSubmitted && errorMessage">
+    {{errorMessage}}
+  </div>
+  <form (ngSubmit)="onSubmit()" #weerstationForm="ngForm">
+    <div class="form-group">
+      <label for="naam" class="block">Naam</label>
+      <input type="text" class="form-control" id="naam" name="naam" placeholder="Naam" [(ngModel)]="weerstation.naam"
+             #naam="ngModel" required>
+      <div [hidden]="naam.valid || naam.pristine" class="alert alert-danger">Naam is required</div>
+    </div>
+
+    <label *ngIf='(weerstation.isPubliekZichtbaar == 1)' class="toggle block" for="zichtbaarheid">
+        <input type="checkbox" (change)="changeZichtbaarheid(weerstation)" checked value="{{weerstation.isPubliekZichtbaar == 1 ? true : false}}" id="zichtbaarheid" />
+        {{weerstation.isPubliekZichtbaar == 1 ? "zichtbaar" : "niet zichtbaar"}}
+    </label>
+    <label *ngIf='(weerstation.isPubliekZichtbaar != 1)' class="toggle block" for="zichtbaarheid">
+        <input type="checkbox" (change)="changeZichtbaarheid(weerstation)" value="{{weerstation.isPubliekZichtbaar == 1 ? true : false}}" id="zichtbaarheid" />
+        {{weerstation.isPubliekZichtbaar == 1 ? "zichtbaar" : "niet zichtbaar"}}
+    </label>
+    <button type="submit" class="btn btn-primary" [disabled]="!weerstationForm.form.valid || isSubmitted">Save</button>
+  </form>

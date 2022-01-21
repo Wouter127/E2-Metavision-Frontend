@@ -9,6 +9,7 @@ import { OrganisatieToevoegenComponent } from './organisatie/organisatie-toevoeg
 import { RegisterComponent } from './register/register.component';
 import { WeerstationActiverenComponent } from './weerstation/weerstation-activeren/weerstation-activeren.component';
 import { WeerstationAlarmSchakelwaardesFormComponent } from './weerstation/weerstation-alarm-schakelwaardes-form/weerstation-alarm-schakelwaardes-form.component';
+import { WeerstationFormComponent } from './weerstation/weerstation-form/weerstation-form.component';
 import { WeerstationListComponent } from './weerstation/weerstation-list/weerstation-list.component';
 import { WeerstationToevoegenComponent } from './weerstation/weerstation-toevoegen/weerstation-toevoegen.component';
 // import { WeerstationComponent } from './weerstation/weerstation.component';
@@ -26,6 +27,8 @@ const routes: Routes = [
   { path: 'gebruikers', component: GebruikersListComponent},
   { path: 'mijnweerstations', component: WeerstationListComponent},
   { path: 'waardes', component: WeerstationAlarmSchakelwaardesFormComponent},
+  { path: 'weerstations/form', component: WeerstationFormComponent},
+
 ];
 
 @NgModule({
