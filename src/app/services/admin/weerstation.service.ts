@@ -14,6 +14,7 @@ export class WeerstationService {
 
   constructor(private httpClient: HttpClient) { }
 
+
   editZichtbaarheid(id: number, weerstation: Weerstation) {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
@@ -24,5 +25,23 @@ export class WeerstationService {
   deleteWeerstation(id: number): Observable<Weerstation> {
     return this.httpClient.delete<Weerstation>(environment.API_URI + "/admin/weerstations/" + id);
 }
+
+getWeerstations(): Observable<Weerstation[]> {
+    return this.httpClient.get<Weerstation[]>(environment.API_URI + "/admin/weerstations");
+  }
+
+  getWeerstationById(id: number): Observable<Weerstation> {
+    return this.httpClient.get<Weerstation>(environment.API_URI + "/admin/weerstations/" + id);
+  }
+
+
+  postWeerstation(weerstation: Weerstation): Observable<Weerstation> {
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json; charset=utf-8');
+
+    return this.httpClient.post<Weerstation>(environment.API_URI + "/admin/weerstations", weerstation, {headers: headers});
+
+  }
+
 
 }

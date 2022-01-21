@@ -1,10 +1,11 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
 import { Organisatie } from 'src/app/interfaces/Organisatie';
-import { Weerstation } from 'src/app/interfaces/Weerstation';
 import { OrganisatieService } from 'src/app/services/admin/organisatie.service';
+import { Router } from '@angular/router';
+import { Weerstation } from 'src/app/interfaces/Weerstation';
 import { WeerstationService } from 'src/app/services/admin/weerstation.service';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-weerstation-list',
@@ -12,16 +13,14 @@ import { WeerstationService } from 'src/app/services/admin/weerstation.service';
   styleUrls: ['./weerstation-list.component.scss']
 })
 export class WeerstationListComponent implements OnInit, OnDestroy {
-  // @Input() weerstation: any = {id: 0, organisatieId: 0, naam: "", isPubliekZichtbaar: false, gsmNummer: "", uniekeCode: "", created_at: new Date(), updated_at: new Date()};
 
   organisaties: Organisatie[] = [];
   organisaties$: Subscription = new Subscription();
   deleteWeerstation$: Subscription = new Subscription();
-errorMessage = ""
-  isAdmin = true
+  errorMessage: string = "";
+  isAdmin = true;
 
-  constructor(private weerstationService: WeerstationService, private organisatieService: OrganisatieService) { }
-
+  constructor(private weerstationService: WeerstationService, private organisatieService: OrganisatieService, private router: Router) { }
 
   ngOnInit(): void {
     if (this.isAdmin) {
@@ -29,7 +28,10 @@ errorMessage = ""
     } else {
       this.getOrganisatieWithWeerstations();
     }
-    
+  }
+
+  add() {
+    this.router.navigate(['/weerstationtoevoegen'], {state: {mode: 'add'}});
   }
 
   ngOnDestroy() {
@@ -46,7 +48,7 @@ errorMessage = ""
   
     this.weerstationService.editZichtbaarheid(weerstation.id, weerstation).subscribe((res: any) => {
       this.ngOnInit();
-    })
+    });
   }
 
   deleteWeerstation(id: number) {
@@ -58,6 +60,7 @@ errorMessage = ""
     //error
     this.errorMessage = error.message;
   });
+
 }
 
   getOrganisatieWithWeerstations() {
