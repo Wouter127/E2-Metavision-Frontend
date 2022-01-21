@@ -46,7 +46,7 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     GebruikersModule,
     HotToastModule.forRoot(),
-    DialogModule.forRoot()
+    DialogModule.forRoot(),
     FormsModule
   ],
   providers: [],
