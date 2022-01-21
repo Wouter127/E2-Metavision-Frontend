@@ -53,6 +53,16 @@
         </div>
     </div>
 </div>
+<div class="text-sm font-bold mb-1">
+  Nog niet geactiveerd
+</div>
+<div *ngFor="let weerstation of weerstations">
+      <p>{{weerstation.naam}}</p>
+      <p>{{weerstation.gsmNummer}}</p>
+      <p>{{weerstation.uniekeCode}}</p>
+      <hr>
+      <br>
+</div>
 
 <!-- <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
   {{errorMessage}}

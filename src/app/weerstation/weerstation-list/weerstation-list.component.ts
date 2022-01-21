@@ -15,7 +15,9 @@ import { Observable, Subscription } from 'rxjs';
 export class WeerstationListComponent implements OnInit, OnDestroy {
 
   organisaties: Organisatie[] = [];
+  weerstations: Weerstation[] = [];
   organisaties$: Subscription = new Subscription();
+  weerstations$: Subscription = new Subscription();
   deleteWeerstation$: Subscription = new Subscription();
   errorMessage: string = "";
   isAdmin = true;
@@ -25,6 +27,7 @@ export class WeerstationListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     if (this.isAdmin) {
       this.getAllOrganisatiesWithWeerstations();
+      this.getWeerstations();
     } else {
       this.getOrganisatieWithWeerstations();
     }
@@ -45,7 +48,7 @@ export class WeerstationListComponent implements OnInit, OnDestroy {
     } else {
       weerstation.isPubliekZichtbaar = 1
     }
-  
+
     this.weerstationService.editZichtbaarheid(weerstation.id, weerstation).subscribe((res: any) => {
       this.ngOnInit();
     });
@@ -72,5 +75,9 @@ export class WeerstationListComponent implements OnInit, OnDestroy {
 
   getAllOrganisatiesWithWeerstations() {
     this.organisaties$ = this.organisatieService.getAllOrganisatiesWithWeerstations().subscribe(result => this.organisaties = result)
+  }
+
+  getWeerstations() {
+    this.weerstations$ = this.weerstationService.getWeerstationsZonderOrganisaties().subscribe(result => this.weerstations = result)
   }
 }
