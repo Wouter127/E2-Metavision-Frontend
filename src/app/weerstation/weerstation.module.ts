@@ -8,6 +8,8 @@ import { WeerstationAlarmSchakelwaardesFormComponent } from './weerstation-alarm
 import { SharedModule } from '../shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
+import { TooltipModule } from 'ng2-tooltip-directive';
+import { WeerstationFormComponent } from './weerstation-form/weerstation-form.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,7 @@ import { FormsModule }   from '@angular/forms';
     WeerstationListComponent,
     WeerstationActiverenComponent,
     WeerstationAlarmSchakelwaardesFormComponent,
+    WeerstationFormComponent,
     // WeerstationComponent
   ],
   imports: [
@@ -23,13 +26,15 @@ import { FormsModule }   from '@angular/forms';
     CommonModule,
     BrowserModule,
     CommonModule,
-    FormsModule
+    FormsModule,
+    TooltipModule
   ],
   exports: [
     WeerstationToevoegenComponent,
     WeerstationListComponent,
     WeerstationActiverenComponent,
     WeerstationAlarmSchakelwaardesFormComponent,
+    WeerstationFormComponent
     // WeerstationComponent
   ]
 })

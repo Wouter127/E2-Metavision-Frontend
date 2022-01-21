@@ -27,6 +27,7 @@ import { HotToastModule } from '@ngneat/hot-toast';
 import { DialogModule } from '@ngneat/dialog';
 
 import { FormsModule } from '@angular/forms';
+import { TooltipModule } from 'ng2-tooltip-directive';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { FormsModule } from '@angular/forms';
     DashboardModule,
     WeerstationModule,
     HttpClientModule,
+    TooltipModule,
     GebruikersModule,
     HotToastModule.forRoot(),
     DialogModule.forRoot(),
