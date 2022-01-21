@@ -22,6 +22,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { HttpClientModule } from '@angular/common/http';
 import { GebruikersModule } from './gebruikers/gebruikers.module';
 import { HotToastModule } from '@ngneat/hot-toast';
+import { DialogModule } from '@ngneat/dialog';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { HotToastModule } from '@ngneat/hot-toast';
     HttpClientModule,
     GebruikersModule,
     HotToastModule.forRoot(),
+    DialogModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

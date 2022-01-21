@@ -1,5 +1,6 @@
 import { trigger } from '@angular/animations';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { DialogService } from '@ngneat/dialog';
 import { HotToastService } from '@ngneat/hot-toast';
 import { Subscription } from 'rxjs';
 import { Gebruiker } from 'src/app/interfaces/Gebruiker';
@@ -24,7 +25,7 @@ export class GebruikersListComponent implements OnInit {
   gebruiker!: Gebruiker;
   gebruiker$: Subscription = new Subscription();
 
-  constructor(private adminGebruikerService: GebruikerService, private toast: HotToastService) {
+  constructor(private adminGebruikerService: GebruikerService, private toast: HotToastService, private dialog: DialogService) {
     // Reverse the order of which the toasts are displayed
     this.toast.defaultConfig = {
       ...this.toast.defaultConfig,
@@ -56,18 +57,26 @@ export class GebruikersListComponent implements OnInit {
   }
 
   verwijderGebruiker(id: number): void {
-    // TODO: Ask for confirmation.
-    this.adminGebruikerService.deleteGebruiker(id).pipe(
-      this.toast.observe({
-        loading: { content: 'Verwijderen...', position: 'bottom-right' },
-        success: { content: 'Gebruiker verwijderd!', position: 'bottom-right', dismissible: true },
-        error: { content: 'Er ging iets mis.', position: 'bottom-right', dismissible: true },
+    this.dialog
+      .confirm({
+        title: 'Gebruiker verwijderen?',
+        body: 'Deze actie kan niet ongedaan gemaakt worden.'
       })
-    ).subscribe(
-      result => {
-        this.getGebruikers();
-      }
-    );
+      .afterClosed$.subscribe(confirmed => {
+        if (confirmed) {
+          this.adminGebruikerService.deleteGebruiker(id).pipe(
+            this.toast.observe({
+              loading: { content: 'Verwijderen...', position: 'bottom-right' },
+              success: { content: 'Gebruiker verwijderd!', position: 'bottom-right', dismissible: true },
+              error: { content: 'Er ging iets mis.', position: 'bottom-right', dismissible: true },
+            })
+          ).subscribe(
+            result => {
+              this.getGebruikers();
+            }
+          );
+        }
+      });
   }
 
   getGebruikers() {
