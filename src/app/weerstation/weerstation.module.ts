@@ -10,6 +10,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { WeerstationFormComponent } from './weerstation-form/weerstation-form.component';
+import { NgToggleModule } from 'ng-toggle-button';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { WeerstationFormComponent } from './weerstation-form/weerstation-form.co
     BrowserModule,
     CommonModule,
     FormsModule,
-    TooltipModule
+    TooltipModule,
+    NgToggleModule
   ],
   exports: [
     WeerstationToevoegenComponent,

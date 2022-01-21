@@ -19,6 +19,7 @@
     "@angular/platform-browser": "~12.2.0",
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
+    "ng-toggle-button": "^0.2.1",
     "ng2-tooltip-directive": "^2.10.3",
     "rxjs": "~6.6.0",
     "tailwindcss": "^1.9.6",
