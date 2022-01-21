@@ -1,9 +1,12 @@
-<p>laat een form zien om een nieuw weerstation toe te voegen in de database</p>
-<p>vraagt de tel nummer van het weerstation</p>
-<p>enkel voor ADMIN</p>
-<form action="">
-    <label for="phone">Telefoon nummer weerstation</label><br>
-    <input type="tel" name="phone" id="phone" placeholder="0123456789" class="bg-gray-200"><br>
-    <button class="bg-gray-500">Submit</button>
+<div class="alert alert-danger" role="alert" *ngIf="isSubmitted && errorMessage">
+  {{errorMessage}}
+</div>
+<form (ngSubmit)="onSubmit()" #weerstationForm="ngForm">
+  <div class="form-group">
+    <label for="gsmNummer">Name</label>
+    <input type="text" class="form-control" id="gsmNummer" name="gsmNummer" placeholder="Name" [(ngModel)]="weerstation.gsmNummer"
+           #gsmNummer="ngModel" required>
+    <div [hidden]="gsmNummer.valid || gsmNummer.pristine" class="alert alert-danger">Name is required</div>
+  </div>
+  <button type="submit" class="btn btn-primary">Add</button>
 </form>
-<a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Back</a>
