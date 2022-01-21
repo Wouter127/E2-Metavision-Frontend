@@ -6,6 +6,8 @@ import { WeerstationListComponent } from './weerstation-list/weerstation-list.co
 import { WeerstationActiverenComponent } from './weerstation-activeren/weerstation-activeren.component';
 import { WeerstationAlarmSchakelwaardesFormComponent } from './weerstation-alarm-schakelwaardes-form/weerstation-alarm-schakelwaardes-form.component';
 import { SharedModule } from '../shared/shared.module';
+import { BrowserModule } from '@angular/platform-browser';
+// import { WeerstationComponent } from './weerstation.component';
 
 
 
@@ -14,17 +16,20 @@ import { SharedModule } from '../shared/shared.module';
     WeerstationToevoegenComponent,
     WeerstationListComponent,
     WeerstationActiverenComponent,
-    WeerstationAlarmSchakelwaardesFormComponent
+    WeerstationAlarmSchakelwaardesFormComponent,
+    // WeerstationComponent
   ],
   imports: [
     SharedModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CommonModule
   ],
   exports: [
     WeerstationToevoegenComponent,
     WeerstationListComponent,
     WeerstationActiverenComponent,
-    WeerstationAlarmSchakelwaardesFormComponent
+    WeerstationAlarmSchakelwaardesFormComponent,
+    // WeerstationComponent
   ]
 })
 export class WeerstationModule { }
