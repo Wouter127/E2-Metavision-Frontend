@@ -4,9 +4,10 @@ import { Meting } from "./Meting";
 import { Organisatie } from "./Organisatie";
 export interface Weerstation {
   id: number;
+
   organisatieId?: number;
   naam?: string;
-  isPubliekZichtbaar?: boolean;
+  isPubliekZichtbaar?: number;
   gsmNummer: string;
   uniekeCode?: string;
   created_at?: Date;

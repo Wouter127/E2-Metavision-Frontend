@@ -8,8 +8,7 @@ import { OrganisatieModule } from './organisatie/organisatie.module';
 import { SharedModule } from './shared/shared.module';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { UsersListComponent } from './users/users-list/users-list.component';
-import { UsersFormComponent } from './users/users-form/users-form.component';
+
 import { WeerstationActiverenComponent } from './weerstation/weerstation-activeren/weerstation-activeren.component';
 import { WeerstationAlarmSchakelwaardesFormComponent } from './weerstation/weerstation-alarm-schakelwaardes-form/weerstation-alarm-schakelwaardes-form.component';
 import { OrganisatieListComponent } from './organisatie/organisatie-list/organisatie-list.component';

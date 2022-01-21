@@ -1,4 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Organisatie } from 'src/app/interfaces/Organisatie';
+import { OrganisatieService } from 'src/app/services/admin/organisatie.service';
 import { Router } from '@angular/router';
 import { Weerstation } from 'src/app/interfaces/Weerstation';
 import { WeerstationService } from 'src/app/services/admin/weerstation.service';
@@ -10,45 +13,64 @@ import { Observable, Subscription } from 'rxjs';
   styleUrls: ['./weerstation-list.component.scss']
 })
 export class WeerstationListComponent implements OnInit, OnDestroy {
-  weerstations: Weerstation[] = [];
-  weerstations$: Subscription = new Subscription();
+
+  organisaties: Organisatie[] = [];
+  organisaties$: Subscription = new Subscription();
   deleteWeerstation$: Subscription = new Subscription();
+  errorMessage: string = "";
+  isAdmin = true;
 
-  errorMessage: string = '';
-
-
-  constructor(private weerstationService: WeerstationService, private router: Router) {
-
-   }
+  constructor(private weerstationService: WeerstationService, private organisatieService: OrganisatieService, private router: Router) { }
 
   ngOnInit(): void {
-    this.getWeerstations()
-  }
-
-  ngOnDestroy(): void {
-    this.weerstations$.unsubscribe();
-    this.deleteWeerstation$.unsubscribe();
+    if (this.isAdmin) {
+      this.getAllOrganisatiesWithWeerstations();
+    } else {
+      this.getOrganisatieWithWeerstations();
+    }
   }
 
   add() {
     this.router.navigate(['/weerstationtoevoegen'], {state: {mode: 'add'}});
   }
 
-  delete(id: number) {
-      if (this.weerstationService)
-    this.deleteWeerstation$ = this.weerstationService.deleteWeerstation(id).subscribe(result => {
-      //all went well
-      this.getWeerstations();
-    }, error => {
-      //error
-      this.errorMessage = error.message;
+  ngOnDestroy() {
+    this.organisaties$.unsubscribe();
+    this.deleteWeerstation$.unsubscribe();
+  }
+
+  changeZichtbaarheid(weerstation: Weerstation) {
+    if (weerstation.isPubliekZichtbaar) {
+      weerstation.isPubliekZichtbaar = 0
+    } else {
+      weerstation.isPubliekZichtbaar = 1
+    }
+  
+    this.weerstationService.editZichtbaarheid(weerstation.id, weerstation).subscribe((res: any) => {
+      this.ngOnInit();
     });
   }
 
-  getWeerstations() {
-    this.weerstations$ = this.weerstationService.getWeerstations().subscribe(result => { this.weerstations = result
-                                                                                          console.log(this.weerstations)
+  deleteWeerstation(id: number) {
+    if (this.weerstationService)
+  this.deleteWeerstation$ = this.weerstationService.deleteWeerstation(id).subscribe(result => {
+    //all went well
+    this.ngOnInit();
+  }, error => {
+    //error
+    this.errorMessage = error.message;
+  });
+
+}
+
+  getOrganisatieWithWeerstations() {
+    var organisatieId = 1
+    this.organisaties$ = this.organisatieService.getOrganisatieWithWeerstations(organisatieId).subscribe(result => {
+      this.organisaties = result;
     });
   }
 
+  getAllOrganisatiesWithWeerstations() {
+    this.organisaties$ = this.organisatieService.getAllOrganisatiesWithWeerstations().subscribe(result => this.organisaties = result)
+  }
 }
