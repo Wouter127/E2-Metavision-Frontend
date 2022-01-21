@@ -7,7 +7,7 @@ import { WeerstationActiverenComponent } from './weerstation-activeren/weerstati
 import { WeerstationAlarmSchakelwaardesFormComponent } from './weerstation-alarm-schakelwaardes-form/weerstation-alarm-schakelwaardes-form.component';
 import { SharedModule } from '../shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule }   from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { WeerstationFormComponent } from './weerstation-form/weerstation-form.component';
 import { NgToggleModule } from 'ng-toggle-button';
@@ -29,7 +29,8 @@ import { NgToggleModule } from 'ng-toggle-button';
     CommonModule,
     FormsModule,
     TooltipModule,
-    NgToggleModule
+    NgToggleModule,
+    ReactiveFormsModule
   ],
   exports: [
     WeerstationToevoegenComponent,
