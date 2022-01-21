@@ -23,6 +23,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { TooltipModule } from 'ng2-tooltip-directive';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { FormsModule } from '@angular/forms';
     DashboardModule,
     WeerstationModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    TooltipModule
 
   ],
   providers: [],
