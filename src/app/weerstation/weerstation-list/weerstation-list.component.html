@@ -5,7 +5,42 @@
 <p>bewerken gaat naar weerstation-form component</p>
 <p>toevoegen gaat naar weerstation-activeren component</p>
 
-<div class="flex">
+<div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+  {{errorMessage}}
+</div>
+<button type="button" class="btn btn-success addBtn" (click)="add()"><i class="fas fa-plus"></i> Weerstation toevoegen</button>
+
+<table class="table" *ngIf="weerstations && weerstations.length > 0">
+  <thead>
+      <tr>
+          <th scope="col">#</th>
+          <th scope="col">naam</th>
+          <th scope="col">telefoon nummer</th>
+          <th scope="col">publiek</th>
+          <th scope="col">organisatie</th>
+          <th scope="col">Unieke code</th>
+
+          <th scope="col">Actions</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let weerstation of weerstations">
+          <th scope="row">{{weerstation.id}}</th>
+          <td>{{weerstation.naam}}</td>
+          <td>{{weerstation.gsmNummer}}</td>
+          <td>{{weerstation.isPubliekZichtbaar}}</td>
+          <td>{{weerstation.organisatieId}}</td>
+          <td>{{weerstation.uniekeCode}}</td>
+
+          <td>
+            <button type="button" class="btn btn-danger" (click)="delete(weerstation.id)"><i class="far fa-trash-alt"></i>Delete</button>
+          </td>
+      </tr>
+  </tbody>
+</table>
+
+
+<!-- <div class="flex">
     <div class="flex-1 m-auto h-24">
       <img class="h-20 object-scale-down w-full" src="../../../assets/placeholder.png" alt="">
     </div>
@@ -21,6 +56,6 @@
     <div class="flex-1 m-auto">
 
     </div>
-</div>
+</div> -->
 
 <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Back</a>
