@@ -2,7 +2,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { HotToastService } from '@ngneat/hot-toast';
 import { Subscription } from 'rxjs';
 import { Gebruiker } from 'src/app/interfaces/Gebruiker';
+import { Organisatie } from 'src/app/interfaces/Organisatie';
 import { GebruikerService } from 'src/app/services/admin/gebruiker.service';
+import { OrganisatieService } from 'src/app/services/admin/organisatie.service';
 
 @Component({
   selector: 'app-gebruikers-form',
@@ -16,12 +18,15 @@ export class GebruikersFormComponent implements OnInit {
   gebruiker: Gebruiker = { id: 0, organisatieId: 0, voornaam:'', achternaam: '', email: '', wachtwoord: '', isOrganisatieBeheerder: 0, isAdmin: 0 };
   gebruiker$: Subscription = new Subscription();
 
+  organisaties: Organisatie[] = [];
+  organisaties$: Subscription = new Subscription();
+
   loading: boolean = true;
   showModal: boolean = false;
 
   putGebruiker$: Subscription = new Subscription();
 
-  constructor(private adminGebruikerService: GebruikerService, private toast: HotToastService) {
+  constructor(private adminGebruikerService: GebruikerService, private adminOrganisatieService: OrganisatieService, private toast: HotToastService) {
     // Reverse the order of which the toasts are displayed
     this.toast.defaultConfig = {
       ...this.toast.defaultConfig,
@@ -30,6 +35,14 @@ export class GebruikersFormComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.organisaties$ = this.adminOrganisatieService.getOrganisaties().subscribe(
+      result => {
+        this.organisaties = result;
+      },
+      error => {
+        this.toast.error("Er ging iets mis.  De lijst van organisaties kan niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false })
+      }
+    );
   }
 
   ngOnDestroy(): void {
@@ -45,7 +58,7 @@ export class GebruikersFormComponent implements OnInit {
         this.loading = false;
       },
       error => {
-        this.toast.error("Er ging iets mis.  De gebruiker kan niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false })
+        this.toast.error("Er ging iets mis.  De gebruiker kan niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false });
       }
     );
 
@@ -61,8 +74,6 @@ export class GebruikersFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.gebruiker);
-    
     this.putGebruiker$ = this.adminGebruikerService.putGebruiker(this.gebruiker.id, this.gebruiker).pipe(
       this.toast.observe({
         loading: { content: 'Aanpassen...', position: 'bottom-right' },
