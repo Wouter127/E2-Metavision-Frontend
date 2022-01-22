@@ -68,8 +68,16 @@
             
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="achternaam" class="block font-medium text-gray-700">Achternaam</label>
-                                <input type="text" name="achternaam" id="achternaam" [(ngModel)]="gebruiker.achternaam" #achternaam="ngModel"
-                                    class="mt-1 p-2 focus:ring-indigo-500 border focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                <input type="text" name="achternaam" id="achternaam" [(ngModel)]="gebruiker.achternaam" #achternaam="ngModel" required minlength="2"
+                                    class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">
+                                <div *ngIf="achternaam.invalid && (achternaam.dirty || achternaam.touched)" class="text-xs text-red-500 font-medium">
+                                    <span *ngIf="achternaam.errors?.['required']">
+                                        Achternaam is veplicht.
+                                    </span>
+                                    <span *ngIf="achternaam.errors?.['minlength']">
+                                        Achternaam moet minstens 2 karakters bevatten.
+                                    </span>      
+                                </div>
                             </div>
             
                             <div class="col-span-6 sm:col-span-3">
@@ -78,13 +86,10 @@
                             </div>
             
                             <div class="col-span-6 sm:col-span-3">
-                                <!-- TODO: Get organisaties and fill -->
                                 <label for="country" class="block font-medium text-gray-700">Organisatie</label>
-                                <select id="country" name="country" autocomplete="country-name"
+                                <select id="country" name="organisatieId" [(ngModel)]="gebruiker.organisatieId"
                                     class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                    <option>Todo</option>
-                                    <option>Toodo</option>
-                                    <option>Tooodo</option>
+                                    <option *ngFor="let organisatie of organisaties" value="{{ organisatie.id }}">{{ organisatie.naam }}</option>
                                 </select>
                             </div>
 
