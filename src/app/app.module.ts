@@ -15,13 +15,15 @@ import { HotToastModule } from '@ngneat/hot-toast';
 import { DialogModule } from '@ngneat/dialog';
 import { FormsModule } from '@angular/forms';
 import { TooltipModule } from 'ng2-tooltip-directive';
+import { VervolledigOrganisatieBeheerderComponent } from './vervolledig-organisatie-beheerder/vervolledig-organisatie-beheerder.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    VervolledigOrganisatieBeheerderComponent
   ],
   imports: [
     BrowserModule,
