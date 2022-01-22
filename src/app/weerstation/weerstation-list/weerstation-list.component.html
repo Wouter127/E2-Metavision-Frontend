@@ -19,7 +19,6 @@
         </div>
         <div *ngFor="let weerstation of organisatie.weerstations" class="grid grid-cols-12 ml-5">
             <div class="col-span-5 text-xs">
-                <!-- (keyup.enter)="submitEnter(weerstation.id)" -->
                 <form (ngSubmit)="handleSubmit($event)">
                     <label (click)="changeNaam(weerstation.id, weerstation.naam)" *ngIf="(weerstation.id !== changeNaamId)"
                     for="{{weerstation.id}}">
@@ -27,7 +26,6 @@
                 </label>
                     <input class="border border-black w-11/12 rounded-sm" type="text" value="{{weerstation.naam}}" *ngIf="(weerstation.id === changeNaamId)" id="{{weerstation.id}}" (keyup)="handleKeyUp($event)" name="{{weerstation.id}}" [(ngModel)]="naam">
                 </form>
-                
             </div>
 
             <div class="col-span-3 text-xs">
