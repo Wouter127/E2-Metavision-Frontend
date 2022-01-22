@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Weerstation } from 'src/app/interfaces/Weerstation';
 import { WeerstationService } from 'src/app/services/admin/weerstation.service';
 import { Observable, Subscription } from 'rxjs';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-weerstation-list',
@@ -18,9 +19,17 @@ export class WeerstationListComponent implements OnInit, OnDestroy {
   weerstations: Weerstation[] = [];
   organisaties$: Subscription = new Subscription();
   weerstations$: Subscription = new Subscription();
+  weerstation$: Subscription = new Subscription();
   deleteWeerstation$: Subscription = new Subscription();
   errorMessage: string = "";
   isAdmin = true;
+  changeNaamId: number = 0;
+  naam = '';
+  weerstation: any = {naam: "", id: 0}
+
+  form = new FormGroup({
+    naam: new FormControl('')
+  });
 
   constructor(private weerstationService: WeerstationService, private organisatieService: OrganisatieService, private router: Router) { }
 
@@ -40,6 +49,8 @@ export class WeerstationListComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.organisaties$.unsubscribe();
     this.deleteWeerstation$.unsubscribe();
+    this.weerstations$.unsubscribe();
+    this.weerstation$.unsubscribe();
   }
 
   changeZichtbaarheid(weerstation: Weerstation) {
@@ -50,8 +61,40 @@ export class WeerstationListComponent implements OnInit, OnDestroy {
     }
   
     this.weerstationService.putWeerstation(weerstation.id, weerstation).subscribe((res: any) => {
+      console.log(res);
+      
+    });
+  }
+
+  // submitEnter(id: number) {
+  //   console.log(id);
+  //   console.log(this.form.value);
+        
+    
+  // }
+  
+
+  handleSubmit(e: any){
+    e.preventDefault();
+    this.weerstation$ = this.weerstationService.putWeerstation(this.changeNaamId, this.weerstation ).subscribe((res: any) => {
+      console.log(res);
+      this.changeNaamId = 0;
       this.ngOnInit();
     });
+
+  }
+
+  handleKeyUp(e: any){
+     if(e.keyCode === 13){
+        this.handleSubmit(e);
+     }
+     this.weerstation.naam = this.naam
+     console.log(this.naam);
+  }
+
+  changeNaam(id: number, naam: any) {
+    this.changeNaamId = id;
+    this.naam = naam;
   }
 
   deleteWeerstation(id: number) {
