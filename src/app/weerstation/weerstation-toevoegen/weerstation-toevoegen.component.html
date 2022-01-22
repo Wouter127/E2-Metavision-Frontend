@@ -5,7 +5,7 @@
   <div class="form-group">
     <label for="gsmNummer">Name</label>
     <input type="text" class="form-control" id="gsmNummer" name="gsmNummer" placeholder="Name" [(ngModel)]="weerstation.gsmNummer"
-           #gsmNummer="ngModel" required>
+           #gsmNummer="ngModel" required >
     <div [hidden]="gsmNummer.valid || gsmNummer.pristine" class="alert alert-danger">Name is required</div>
   </div>
   <button type="submit" class="btn btn-primary">Add</button>
