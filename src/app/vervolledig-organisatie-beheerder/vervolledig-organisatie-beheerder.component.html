@@ -1,8 +1,255 @@
-<p>Great things are going to happen here...</p>
+<h1 class="text-3xl font-medium">Vervolledig account</h1>
+<p>Welkom! Zodra u onderstaande informatie heeft ingevuld is uw account en organisatie klaar voor gebruik.</p>
 
-<ol>
-    <li>Validate if given userId matches given token</li>
-    <li>Show user completion form</li>
-    <li>Show organisation completion form</li>
-    <li>Set token null in db (conition user crud "no organisation" based on token existing)</li>
-</ol>
+<form *ngIf="loading" action="#">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div class="p-2">
+            <h2 class="text-2xl font-medium mb-2">Account</h2>
+            <div class="grid grid-cols-2 gap-6">
+                <div class="col-span-2 sm:col-span-1">
+                    <label class="block font-medium text-gray-700">Voornaam</label>
+                    <div class="w-12/12 mt-1 bg-gray-300 h-8 rounded-md animate-pulse"></div>
+                </div>
+            
+                <div class="col-span-2 sm:col-span-1">
+                    <label class="block font-medium text-gray-700">Achternaam</label>
+                    <div class="w-12/12 mt-1 bg-gray-300 h-8 rounded-md animate-pulse"></div>
+                </div>
+            
+                <div class="col-span-2">
+                    <label class="block font-medium text-gray-700">Wachtwoord</label>
+                    <div class="w-12/12 mt-1 bg-gray-300 h-8 rounded-md animate-pulse"></div>
+                </div>
+                <div class="col-span-2">
+                    <label class="block font-medium text-gray-700">Herhaal wachtwoord</label>
+                    <div class="w-12/12 mt-1 bg-gray-300 h-8 rounded-md animate-pulse"></div>
+                </div>
+            </div>
+        </div>
+        <div class="p-2">
+            <h2 class="text-2xl font-medium mb-2">Organisatie</h2>
+            <div class="grid grid-cols-6 gap-6">
+                <div class="col-span-full">
+                    <label class="block font-medium text-gray-700">Naam</label>
+                    <div class="w-12/12 mt-1 bg-gray-300 h-8 rounded-md animate-pulse"></div>
+                </div>
+            
+                <div class="col-span-full">
+                    <label class="block font-medium text-gray-700">Land</label>
+                    <div class="w-12/12 mt-1 bg-gray-300 h-8 rounded-md animate-pulse"></div>
+                </div>
+            
+                <div class="col-span-full sm:col-span-3">
+                    <label class="block font-medium text-gray-700">Stad</label>
+                    <div class="w-12/12 mt-1 bg-gray-300 h-8 rounded-md animate-pulse"></div>
+                </div>
+                <div class="col-span-full sm:col-span-3">
+                    <label class="block font-medium text-gray-700">Postcode</label>
+                    <div class="w-12/12 mt-1 bg-gray-300 h-8 rounded-md animate-pulse"></div>
+                </div>
+            
+                <div class="col-span-full sm:col-span-3">
+                    <label class="block font-medium text-gray-700">Postcode</label>
+                    <div class="w-12/12 mt-1 bg-gray-300 h-8 rounded-md animate-pulse"></div>
+                </div>
+                <div class="col-span-full sm:col-span-2">
+                    <label class="block font-medium text-gray-700">Huisnummer</label>
+                    <div class="w-12/12 mt-1 bg-gray-300 h-8 rounded-md animate-pulse"></div>
+                </div>
+                <div class="col-span-full sm:col-span-1">
+                    <label class="block font-medium text-gray-700">Extra</label>
+                    <div class="w-12/12 mt-1 bg-gray-300 h-8 rounded-md animate-pulse"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<form *ngIf="!loading" (ngSubmit)="onSubmit()" #vervolledigForm="ngForm">
+    <div *ngIf="gebruiker" class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div class="p-2">
+            <h2 class="text-2xl font-medium mb-2">Account</h2>
+            <div class="grid grid-cols-2 gap-6">
+                <div class="col-span-2 sm:col-span-1">
+                    <label for="voornaam" class="block font-medium text-gray-700">Voornaam</label>
+                    <input type="text" name="voornaam" id="voornaam" [(ngModel)]="gebruiker.voornaam" #voornaam="ngModel" 
+                        required minlength="2" maxlength="60"
+                        class="mt-1 p-2 focus:ring-indigo-500 border focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md invalid:border-red-500 invalid:ring-red-500">
+                    <div *ngIf="voornaam.invalid && (voornaam.dirty || voornaam.touched)" class="text-xs text-red-500 font-medium">
+                        <span *ngIf="voornaam.errors?.['required']">
+                            Voornaam is veplicht.
+                        </span>
+                        <span *ngIf="voornaam.errors?.['minlength']">
+                            Voornaam moet minstens 2 karakters bevatten.
+                        </span>
+                        <span *ngIf="voornaam.errors?.['maxlength']">
+                            Voornaam mag maximaal 60 karakters bevatten.
+                        </span>
+                    </div>
+                </div>
+            
+                <div class="col-span-2 sm:col-span-1">
+                    <label for="achternaam" class="block font-medium text-gray-700">Achternaam</label>
+                    <input type="text" name="achternaam" id="achternaam" [(ngModel)]="gebruiker.achternaam" #achternaam="ngModel"
+                        required minlength="2" maxlength="60"
+                        class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:ring-indigo-500 border focus:border-indigo-500 invalid:border-red-500 invalid:ring-red-500">
+                    <div *ngIf="achternaam.invalid && (achternaam.dirty || achternaam.touched)"
+                        class="text-xs text-red-500 font-medium">
+                        <span *ngIf="achternaam.errors?.['required']">
+                            Achternaam is veplicht.
+                        </span>
+                        <span *ngIf="achternaam.errors?.['minlength']">
+                            Achternaam moet minstens 2 karakters bevatten.
+                        </span>
+                        <span *ngIf="achternaam.errors?.['maxlength']">
+                            Achternaam mag maximaal 60 karakters bevatten.
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-span-2">
+                    <label for="wachtwoord" class="block font-medium text-gray-700">Wachtwoord</label>
+                    <input type="password" name="wachtwoord" id="wachtwoord" [(ngModel)]="gebruiker.wachtwoord" #wachtwoord="ngModel"
+                        required minlength="8"
+                        class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 invalid:border-red-500 invalid:ring-red-500">
+                    <div *ngIf="wachtwoord.invalid && (wachtwoord.dirty || wachtwoord.touched)"
+                        class="text-xs text-red-500 font-medium">
+                        <span *ngIf="wachtwoord.errors?.['required']">
+                            Wachtwoord is veplicht.
+                        </span>
+                        <span *ngIf="wachtwoord.errors?.['minlength']">
+                            Wachtwoord moet minstens 8 karakters bevatten.
+                        </span>
+                    </div>
+                </div>
+                <div class="col-span-2">
+                    <label for="wachtwoordConfig" class="block font-medium text-gray-700">Herhaal wachtwoord</label>
+                    <input type="password" name="wachtwoordConfig" id="wachtwoordConfig" [(ngModel)]="wachtwoordConfirmation" #wachtwoordConfig="ngModel"
+                        required minlength="8"
+                        class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 invalid:border-red-500 invalid:ring-red-500">
+                    <div *ngIf="wachtwoordConfig.invalid && (wachtwoordConfig.dirty || wachtwoordConfig.touched)"
+                        class="text-xs text-red-500 font-medium">
+                        <span *ngIf="wachtwoordConfig.errors?.['required']">
+                            Wachtwoord is veplicht.
+                        </span>
+                        <span *ngIf="wachtwoordConfig.errors?.['minlength']">
+                            Wachtwoord moet minstens 8 karakters bevatten.
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="organisatie" class="p-2">
+            <h2 class="text-2xl font-medium mb-2">Organisatie</h2>
+            <div class="grid grid-cols-6 gap-6">
+                <div class="col-span-full">
+                    <label for="naam" class="block font-medium text-gray-700">Naam</label>
+                    <input type="text" name="naam" id="naam" [(ngModel)]="organisatie.naam" #naam="ngModel" 
+                        required minlength="2" maxlength="60"
+                        class="mt-1 p-2 focus:ring-indigo-500 border focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md invalid:border-red-500 invalid:ring-red-500">
+                    <div *ngIf="naam.invalid && (naam.dirty || naam.touched)" class="text-xs text-red-500 font-medium">
+                        <span *ngIf="naam.errors?.['required']">
+                            Naam is veplicht.
+                        </span>
+                        <span *ngIf="naam.errors?.['minlength']">
+                            Naam moet minstens 2 karakters bevatten.
+                        </span>
+                        <span *ngIf="naam.errors?.['maxlength']">
+                            Naam mag maximaal 60 karakters bevatten.
+                        </span>
+                    </div>
+                </div>
+            
+                <div class="col-span-full">
+                    <label for="land" class="block font-medium text-gray-700">Land</label>
+                    <input type="text" name="land" id="land" [(ngModel)]="organisatie.land" #land="ngModel"
+                        required minlength="2" maxlength="60"
+                        class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 invalid:border-red-500 invalid:ring-red-500">
+                    <div *ngIf="land.invalid && (land.dirty || land.touched)"
+                        class="text-xs text-red-500 font-medium">
+                        <span *ngIf="land.errors?.['required']">
+                            Land is veplicht.
+                        </span>
+                        <span *ngIf="land.errors?.['minlength']">
+                            Land moet minstens 2 karakters bevatten.
+                        </span>
+                        <span *ngIf="land.errors?.['maxlength']">
+                            Land mag maximaal 60 karakters bevatten.
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-span-full sm:col-span-3">
+                    <label for="stad" class="block font-medium text-gray-700">Stad</label>
+                    <input type="text" name="stad" id="stad" [(ngModel)]="organisatie.stad" #stad="ngModel"
+                        required minlength="2" maxlength="60"
+                        class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 invalid:border-red-500 invalid:ring-red-500">
+                    <div *ngIf="stad.invalid && (stad.dirty || stad.touched)"
+                        class="text-xs text-red-500 font-medium">
+                        <span *ngIf="stad.errors?.['required']">
+                            Stad is veplicht.
+                        </span>
+                        <span *ngIf="stad.errors?.['minlength']">
+                            Stad moet minstens 2 karakters bevatten.
+                        </span>
+                        <span *ngIf="stad.errors?.['maxlength']">
+                            Stad mag maximaal 60 karakters bevatten.
+                        </span>
+                    </div>
+                </div>
+                <div class="col-span-full sm:col-span-3">
+                    <label for="postcode" class="block font-medium text-gray-700">Postcode</label>
+                    <input type="text" name="postcode" id="postcode" [(ngModel)]="organisatie.postcode" #postcode="ngModel" 
+                    required
+                        class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 invalid:border-red-500 invalid:ring-red-500">
+                    <div *ngIf="postcode.invalid && (postcode.dirty || postcode.touched)" class="text-xs text-red-500 font-medium">
+                        <span *ngIf="postcode.errors?.['required']">
+                            Postcode is veplicht.
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-span-full sm:col-span-3">
+                    <label for="straat" class="block font-medium text-gray-700">Straat</label>
+                    <input type="text" name="straat" id="straat" [(ngModel)]="organisatie.straat" #straat="ngModel" 
+                    required minlength="2" maxlength="100"
+                        class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 invalid:border-red-500 invalid:ring-red-500">
+                    <div *ngIf="straat.invalid && (straat.dirty || straat.touched)" class="text-xs text-red-500 font-medium">
+                        <span *ngIf="straat.errors?.['required']">
+                            Straat is veplicht.
+                        </span>
+                        <span *ngIf="straat.errors?.['maxlength']">
+                            Straat mag maximaal 100 karakters bevatten.
+                        </span>
+                    </div>
+                </div>
+                <div class="col-span-full sm:col-span-2">
+                    <label for="huisnummer" class="block font-medium text-gray-700">Huisnummer</label>
+                    <input type="number" name="huisnummer" id="huisnummer" [(ngModel)]="organisatie.huisnummer" #huisnummer="ngModel" 
+                    required min="1" max="9999"
+                        class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 invalid:border-red-500 invalid:ring-red-500">
+                    <div *ngIf="huisnummer.invalid && (huisnummer.dirty || huisnummer.touched)" class="text-xs text-red-500 font-medium">
+                        <span *ngIf="huisnummer.errors?.['required']">
+                            Huisnummer is veplicht.
+                        </span>
+                        <span *ngIf="huisnummer.errors?.['min'] || huisnummer.errors?.['max']">
+                            Huisnummer moet tussen de waarde 1 en 9999 liggen.
+                        </span>
+                    </div>
+                </div>
+                <div class="col-span-full sm:col-span-1">
+                    <!-- TODO: vraagteken met popup zetten -->
+                    <label for="extra" class="block font-medium text-gray-700">Extra</label>
+                    <input type="text" name="extra" id="extra" [(ngModel)]="organisatie.extra" #extra="ngModel"
+                        class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="px-4 py-3 text-center sm:px-6">
+        <button *ngIf="gebruiker && organisatie" type="submit" [disabled]="!vervolledigForm.form.valid"
+            class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:bg-gray-400 disabled:cursor-not-allowed">
+            Opslaan
+        </button>
+    </div>
+</form>
