@@ -9,6 +9,7 @@ export interface Gebruiker {
     wachtwoord: string;
     isOrganisatieBeheerder: number;
     isAdmin: number;
+    vervolledig_token: string;
 
     organisatie?: Organisatie;
 }

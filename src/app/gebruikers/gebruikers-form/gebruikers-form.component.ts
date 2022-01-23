@@ -15,7 +15,7 @@ export class GebruikersFormComponent implements OnInit {
   @Input() title!: string;
   @Output() output = new EventEmitter();
 
-  gebruiker: Gebruiker = { id: 0, organisatieId: 0, voornaam:'', achternaam: '', email: '', wachtwoord: '', isOrganisatieBeheerder: 0, isAdmin: 0 };
+  gebruiker: Gebruiker = { id: 0, organisatieId: 0, voornaam: '', achternaam: '', email: '', wachtwoord: '', isOrganisatieBeheerder: 0, isAdmin: 0, vervolledig_token: '' };
   gebruiker$: Subscription = new Subscription();
 
   organisaties: Organisatie[] = [];

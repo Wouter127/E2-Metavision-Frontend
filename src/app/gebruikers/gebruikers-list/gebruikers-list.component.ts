@@ -93,7 +93,7 @@ export class GebruikersListComponent implements OnInit {
         this.loading = false;
       },
       error => {
-        this.toast.error("Er ging iets mis.  De gebruiker kan niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false })
+        this.toast.error("Er ging iets mis.  De gebruiker kan niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false });
       }
     );
   }
