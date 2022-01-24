@@ -29,7 +29,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     AppRoutingModule,
     CommonModule,
     BrowserModule,
-    CommonModule,
+    
     FormsModule,
     TooltipModule,
     NgToggleModule,
