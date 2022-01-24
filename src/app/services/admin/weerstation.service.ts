@@ -14,6 +14,12 @@ export class WeerstationService {
 
   constructor(private httpClient: HttpClient) { }
 
+  genereerNieuweCode(id: number) {
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json; charset=utf-8');
+
+    return this.httpClient.put<Weerstation>(environment.API_URI + "/admin/weerstations/nieuwecode/" + id, {headers: headers});
+  }
 
   putWeerstation(id: number, weerstation: Weerstation) {
     let headers = new HttpHeaders();

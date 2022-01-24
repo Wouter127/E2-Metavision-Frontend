@@ -11,6 +11,7 @@ import { HotToastService } from '@ngneat/hot-toast';
 import { ClipboardService } from 'ngx-clipboard';
 import { DialogService } from '@ngneat/dialog';
 import { WeerstationToevoegenComponent } from '../weerstation-toevoegen/weerstation-toevoegen.component';
+import { WeerstationFormComponent } from '../weerstation-form/weerstation-form.component';
 
 @Component({
   selector: 'app-weerstation-list',
@@ -19,6 +20,7 @@ import { WeerstationToevoegenComponent } from '../weerstation-toevoegen/weerstat
 })
 export class WeerstationListComponent implements OnInit, OnDestroy {
   @ViewChild(WeerstationToevoegenComponent, { static: true }) weerstationToevoegenComponent!: WeerstationToevoegenComponent;
+  @ViewChild(WeerstationFormComponent, { static: true }) weerstationFormComponent!: WeerstationFormComponent;
 
   loading: boolean = true;
 
@@ -26,13 +28,9 @@ export class WeerstationListComponent implements OnInit, OnDestroy {
   organisaties$: Subscription = new Subscription();
   weerstationsZonderOrganisatie: Weerstation[] = [];
   weerstationsZonderOrganisatie$: Subscription = new Subscription();
-  weerstation$: Subscription = new Subscription();
   deleteWeerstation$: Subscription = new Subscription();
-  errorMessage: string = "";
+
   isAdmin = true;
-  changeNaamId: number = 0;
-  naam = '';
-  weerstation: any = {naam: "", id: 0}
 
   form = new FormGroup({
     naam: new FormControl('')
@@ -57,65 +55,17 @@ export class WeerstationListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.organisaties$.unsubscribe();
+    this.weerstationsZonderOrganisatie$.unsubscribe();
     this.deleteWeerstation$.unsubscribe();
-    // this.weerstations$.unsubscribe();
-    this.weerstation$.unsubscribe();
   }
 
-  changeZichtbaarheid(weerstation: Weerstation) {
-    if (weerstation.isPubliekZichtbaar) {
-      weerstation.isPubliekZichtbaar = 0
-    } else {
-      weerstation.isPubliekZichtbaar = 1
-    }
-  
-    this.weerstationService.putWeerstation(weerstation.id, weerstation).subscribe((res: any) => {
-      console.log(res);
-      
-    });
-  }
+  wijzigWeerstation(id: number): void {
+    this.weerstationFormComponent.openModal(id);
 
-  handleSubmit(e: any){
-    e.preventDefault();
-    this.weerstation$ = this.weerstationService.putWeerstation(this.changeNaamId, this.weerstation ).subscribe((res: any) => {
-      console.log(res);
-      this.changeNaamId = 0;
+    // When the weerstation is edited successfully, refresh the list of weerstations.
+    this.weerstationFormComponent.output.subscribe(() => {
       this.ngOnInit();
     });
-
-  }
-
-  handleKeyUp(e: any){
-     if(e.keyCode === 13){
-        this.handleSubmit(e);
-     }
-     this.weerstation.naam = this.naam
-     console.log(this.naam);
-  }
-
-  changeNaam(id: number, naam: any) {
-    this.changeNaamId = id;
-    this.naam = naam;
-  }
-
-  deleteWeerstation(id: number) {
-    if (this.weerstationService)
-      this.deleteWeerstation$ = this.weerstationService.deleteWeerstation(id).subscribe(result => {
-      //all went well
-      this.ngOnInit();
-    }, error => {
-      //error
-      this.errorMessage = error.message;
-    });
-  }
-
-
-  wijzigWeerstationZonderOrganisatie(id: number): void {
-
-  }
-
-  wijzigWeerstationOrganisatie(id: number): void {
-    
   }
 
   // PP
@@ -137,7 +87,7 @@ export class WeerstationListComponent implements OnInit, OnDestroy {
       })
       .afterClosed$.subscribe(confirmed => {
         if (confirmed) {
-          this.weerstationService.deleteWeerstation(id).pipe(
+          this.deleteWeerstation$ = this.weerstationService.deleteWeerstation(id).pipe(
             this.toast.observe({
               loading: { content: 'Verwijderen...', position: 'bottom-right' },
               success: { content: 'Weerstation verwijderd!', position: 'bottom-right', dismissible: true },
