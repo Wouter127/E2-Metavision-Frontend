@@ -15,7 +15,7 @@ import { HotToastModule } from '@ngneat/hot-toast';
 import { DialogModule } from '@ngneat/dialog';
 import { FormsModule } from '@angular/forms';
 import { TooltipModule } from 'ng2-tooltip-directive';
-import { VervolledigOrganisatieBeheerderComponent } from './vervolledig-organisatie-beheerder/vervolledig-organisatie-beheerder.component';
+import { AlarmwaardeModule } from './alarmwaarde/alarmwaarde.module';
 
 
 @NgModule({
@@ -23,7 +23,6 @@ import { VervolledigOrganisatieBeheerderComponent } from './vervolledig-organisa
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    VervolledigOrganisatieBeheerderComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +37,8 @@ import { VervolledigOrganisatieBeheerderComponent } from './vervolledig-organisa
     GebruikersModule,
     HotToastModule.forRoot(),
     DialogModule.forRoot(),
-    FormsModule
+    FormsModule,
+    AlarmwaardeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

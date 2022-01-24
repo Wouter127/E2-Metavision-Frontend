@@ -1,0 +1,92 @@
+<div *ngIf="showModal"
+    class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex mx-4">
+    <div class="relative my-6 mx-auto max-w-6xl w-11/12 sm:w-10/12">
+        <!--content-->
+        <div
+            class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+            <!--header-->
+            <div class="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
+                <h3 class="text-3xl font-semibold">
+                    {{ title }}
+                </h3>
+                <button
+                    class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+                    (click)="closeModal()">
+                    <span
+                        class="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
+                        ×
+                    </span>
+                </button>
+            </div>
+            <!--body-->
+            <div class="relative p-6 flex-auto">
+                <!-- If loading, show skeleton -->
+                <form *ngIf="loading" action="#">
+                    <div class="bg-white">
+                        <div class="grid grid-cols-6 gap-6">
+                            <div class="col-span-6 sm:col-span-3">
+                                <label class="block font-medium text-gray-700">Sensor</label>
+                                <div class="w-12/12 mt-1 bg-gray-300 h-8 rounded-md animate-pulse"></div>
+                            </div>
+                
+                            <div class="col-span-6 sm:col-span-3">
+                                <label class="block font-medium text-gray-700">Operator</label>
+                                <div class="w-12/12 mt-1 bg-gray-300 h-8 rounded-md animate-pulse"></div>
+                            </div>
+                
+                            <div class="col-span-6 sm:col-span-3">
+                                <label class="block font-medium text-gray-700">Waarde</label>
+                                <div class="w-6/12 bg-gray-300 h-4 rounded-full animate-pulse"></div>
+                            </div>
+                
+                            
+                        </div>
+                        <div class="px-4 py-3 bg-gray-50">
+                            <div class="w-32 mx-auto mt-1 bg-gray-300 h-10 rounded-md animate-pulse"></div>
+                        </div>
+                    </div>
+                </form>
+                <form *ngIf="!loading" (ngSubmit)="onSubmit()" #alarmWaardeForm="ngForm">
+                    <div class="bg-white">
+                        <div class="grid grid-cols-6 gap-6">
+                            <div class="col-span-6 sm:col-span-3">
+                                <!-- TODO: Get organisaties and fill -->
+                                <label for="sensor" class="block font-medium text-gray-700">Sensor</label>
+                                <select id="sensor" name="sensor"
+                                    class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                    <option>Todo</option>
+                                    <option>Toodo</option>
+                                    <option>Tooodo</option>
+                                </select>
+                            </div>
+
+                            <div class="col-span-6 sm:col-span-3">
+                                <!-- TODO: Get organisaties and fill -->
+                                <label for="operator" class="block font-medium text-gray-700">Operator</label>
+                                <select id="operator" name="operator"
+                                    class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                    <option>Todo</option>
+                                    <option>Toodo</option>
+                                    <option>Tooodo</option>
+                                </select>
+                            </div>
+            
+                            <div class="col-span-6 sm:col-span-3">
+                                <label for="waarde" class="block font-medium text-gray-700">Waarde</label>
+                                <input type="text" name="waarde" id="waarde" [(ngModel)]="alarmwaarde.waarde" #waarde="ngModel"
+                                    class="mt-1 p-2 focus:ring-indigo-500 border focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-4 py-3 bg-gray-50 text-center sm:px-6">
+                        <button type="submit"
+                            class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            Opslaan
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="showModal" class="opacity-25 fixed inset-0 z-40 bg-black"></div>

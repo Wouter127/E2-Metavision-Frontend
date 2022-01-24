@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  API_URI: "http://wijn-laravel.northeurope.cloudapp.azure.com/api"
 };
