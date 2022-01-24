@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { DialogService } from '@ngneat/dialog';
+import { HotToastService } from '@ngneat/hot-toast';
+import { Subscription } from 'rxjs';
+import { AlarmWaardeService } from 'src/app/services/organisatiebeheerder/alarm-waarde.service';
+import { WeerstationService } from 'src/app/services/organisatiebeheerder/weerstation.service';
 
 @Component({
   selector: 'app-weerstation-alarm-schakelwaardes-form',
@@ -7,9 +13,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WeerstationAlarmSchakelwaardesFormComponent implements OnInit {
 
-  constructor() { }
-
   ngOnInit(): void {
+      
   }
-
 }

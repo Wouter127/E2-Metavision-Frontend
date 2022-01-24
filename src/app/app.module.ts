@@ -15,13 +15,14 @@ import { HotToastModule } from '@ngneat/hot-toast';
 import { DialogModule } from '@ngneat/dialog';
 import { FormsModule } from '@angular/forms';
 import { TooltipModule } from 'ng2-tooltip-directive';
+import { AlarmwaardeModule } from './alarmwaarde/alarmwaarde.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +37,8 @@ import { TooltipModule } from 'ng2-tooltip-directive';
     GebruikersModule,
     HotToastModule.forRoot(),
     DialogModule.forRoot(),
-    FormsModule
+    FormsModule,
+    AlarmwaardeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

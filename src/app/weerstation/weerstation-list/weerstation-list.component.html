@@ -44,7 +44,7 @@
                     {{weerstation.isPubliekZichtbaar == 1 ? "zichtbaar" : "niet zichtbaar"}}
                 </div>
             </div>
-            <div class="col-span-1 m-auto cursor-pointer" routerLink="/waardes" routerLinkActive="active"
+            <div class="col-span-1 m-auto cursor-pointer" routerLink="/waardes/{{weerstation.id}}" routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: true }"
                 tooltip="<p class='text-xs'>edit alarm- en schakelwaardes</p>"
                 [options]="{placement: 'top', hideDelay: 20}">

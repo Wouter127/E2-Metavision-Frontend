@@ -26,7 +26,7 @@ import { NgToggleModule } from 'ng-toggle-button';
     AppRoutingModule,
     CommonModule,
     BrowserModule,
-    CommonModule,
+    
     FormsModule,
     TooltipModule,
     NgToggleModule,
