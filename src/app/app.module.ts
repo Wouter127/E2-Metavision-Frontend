@@ -16,7 +16,7 @@ import { DialogModule } from '@ngneat/dialog';
 import { FormsModule } from '@angular/forms';
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { VervolledigOrganisatieBeheerderComponent } from './vervolledig-organisatie-beheerder/vervolledig-organisatie-beheerder.component';
-
+import { ClipboardModule } from 'ngx-clipboard';
 
 @NgModule({
   declarations: [
@@ -38,7 +38,8 @@ import { VervolledigOrganisatieBeheerderComponent } from './vervolledig-organisa
     GebruikersModule,
     HotToastModule.forRoot(),
     DialogModule.forRoot(),
-    FormsModule
+    FormsModule,
+    ClipboardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

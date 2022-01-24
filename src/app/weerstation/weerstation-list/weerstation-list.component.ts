@@ -8,6 +8,7 @@ import { WeerstationService } from 'src/app/services/admin/weerstation.service';
 import { Observable, Subscription } from 'rxjs';
 import { FormControl, FormGroup } from '@angular/forms';
 import { HotToastService } from '@ngneat/hot-toast';
+import { ClipboardService } from 'ngx-clipboard';
 
 @Component({
   selector: 'app-weerstation-list',
@@ -33,7 +34,7 @@ export class WeerstationListComponent implements OnInit, OnDestroy {
     naam: new FormControl('')
   });
 
-  constructor(private weerstationService: WeerstationService, private organisatieService: OrganisatieService, private router: Router, private toast: HotToastService) { 
+  constructor(private weerstationService: WeerstationService, private organisatieService: OrganisatieService, private router: Router, private toast: HotToastService, private clipboardApi: ClipboardService) { 
     // Reverse the order of which the toasts are displayed
     this.toast.defaultConfig = {
       ...this.toast.defaultConfig,
@@ -137,6 +138,19 @@ export class WeerstationListComponent implements OnInit, OnDestroy {
   }
 
   getWeerstationsZonderOrganisatie() {
-    this.weerstationsZonderOrganisatie$ = this.weerstationService.getWeerstationsZonderOrganisaties().subscribe(result => this.weerstationsZonderOrganisatie = result)
+    this.weerstationsZonderOrganisatie$ = this.weerstationService.getWeerstationsZonderOrganisaties().subscribe(
+      result => {
+        this.weerstationsZonderOrganisatie = result;
+        console.log(result);
+        
+      }
+    )
+  }
+
+  copyCode(code: string | undefined) {
+    if (code) {
+      this.clipboardApi.copyFromContent(code);
+      this.toast.success("Code gekopiëerd", { position: 'bottom-right', dismissible: true });
+    }
   }
 }

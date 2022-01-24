@@ -147,7 +147,7 @@
                                 {{ weerstation.naam }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm">
-                                <span class="bg-black hover:bg-gray-200 cursor-pointer" tooltip="<p class='text-xs'>Klik om te kopiëren</p>" [options]="{placement: 'top', hideDelay: 20}">{{ weerstation.uniekeCode }}</span>
+                                <span class="bg-black hover:bg-gray-200 cursor-pointer" tooltip="<p class='text-xs'>Klik om te kopiëren</p>" [options]="{placement: 'top', hideDelay: 20}" (click)="copyCode(weerstation.uniekeCode)">{{ weerstation.uniekeCode }}</span>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                 <div class="flex justify-around">
