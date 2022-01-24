@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Organisatie } from 'src/app/interfaces/Organisatie';
 import { OrganisatieService } from 'src/app/services/admin/organisatie.service';
@@ -10,6 +10,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { HotToastService } from '@ngneat/hot-toast';
 import { ClipboardService } from 'ngx-clipboard';
 import { DialogService } from '@ngneat/dialog';
+import { WeerstationToevoegenComponent } from '../weerstation-toevoegen/weerstation-toevoegen.component';
 
 @Component({
   selector: 'app-weerstation-list',
@@ -17,6 +18,8 @@ import { DialogService } from '@ngneat/dialog';
   styleUrls: ['./weerstation-list.component.scss']
 })
 export class WeerstationListComponent implements OnInit, OnDestroy {
+  @ViewChild(WeerstationToevoegenComponent, { static: true }) weerstationToevoegenComponent!: WeerstationToevoegenComponent;
+
   loading: boolean = true;
 
   organisaties: Organisatie[] = [];
@@ -50,10 +53,6 @@ export class WeerstationListComponent implements OnInit, OnDestroy {
     } else {
       this.getOrganisatieWithWeerstations();
     }
-  }
-
-  add() {
-    this.router.navigate(['/weerstationtoevoegen'], {state: {mode: 'add'}});
   }
 
   ngOnDestroy() {
@@ -117,6 +116,16 @@ export class WeerstationListComponent implements OnInit, OnDestroy {
 
   wijzigWeerstationOrganisatie(id: number): void {
     
+  }
+
+  // PP
+  toevoegenWeerstation(): void {
+    this.weerstationToevoegenComponent.openModal();
+
+    // When the weerstatopm is added successfully, refresh the list of weerstations.
+    this.weerstationToevoegenComponent.output.subscribe(() => {
+      this.ngOnInit();
+    }); 
   }
 
   // PP
