@@ -13,6 +13,7 @@ import { WeerstationActiverenComponent } from './weerstation/weerstation-activer
 import { WeerstationFormComponent } from './weerstation/weerstation-form/weerstation-form.component';
 import { WeerstationListComponent } from './weerstation/weerstation-list/weerstation-list.component';
 import { WeerstationToevoegenComponent } from './weerstation/weerstation-toevoegen/weerstation-toevoegen.component';
+import { WeerstationDashboardComponent } from './weerstation/weerstation-dashboard/weerstation-dashboard.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'mijnweerstations', component: WeerstationListComponent},
   { path: 'waardes/:id', component: AlarmwaardesListComponent},
   { path: 'weerstations/form', component: WeerstationFormComponent},
+  { path: 'weerstation/:id/dashboard', component: WeerstationDashboardComponent},
 
 ];
 
