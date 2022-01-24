@@ -99,6 +99,8 @@ export class WeerstationFormComponent implements OnInit {
     ).subscribe(
       result => {
         this.weerstation = result;
+
+        this.output.next(); // Send event to parent component.
       }
     );
   }
