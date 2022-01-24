@@ -24,14 +24,21 @@ export class WeerstationService {
 
   deleteWeerstation(id: number): Observable<Weerstation> {
     return this.httpClient.delete<Weerstation>(environment.API_URI + "/admin/weerstations/" + id);
-}
-
-getWeerstations(): Observable<Weerstation[]> {
-    return this.httpClient.get<Weerstation[]>(environment.API_URI + "/admin/weerstations");
   }
 
-  getWeerstationsZonderOrganisaties(): Observable<Weerstation[]> {
-    return this.httpClient.get<Weerstation[]>(environment.API_URI + "/admin/weerstations?organisatieId=null");
+  getWeerstations(organisatieId?: string): Observable<Weerstation[]> {
+    let parameters: string = '';
+    let parameterCount = 0;
+    if (organisatieId) {
+      if (parameterCount === 0) {
+        parameters += '?organisatieId='+organisatieId;
+      }
+      else {
+        parameters += '&organisatieId=' + organisatieId;
+      }
+    }
+
+    return this.httpClient.get<Weerstation[]>(environment.API_URI + "/admin/weerstations" + parameters);
   }
 
   getWeerstationById(id: number): Observable<Weerstation> {
