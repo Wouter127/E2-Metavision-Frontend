@@ -13,9 +13,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { GebruikersModule } from './gebruikers/gebruikers.module';
 import { HotToastModule } from '@ngneat/hot-toast';
 import { DialogModule } from '@ngneat/dialog';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { VervolledigOrganisatieBeheerderComponent } from './vervolledig-organisatie-beheerder/vervolledig-organisatie-beheerder.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 
 @NgModule({
@@ -38,7 +39,9 @@ import { VervolledigOrganisatieBeheerderComponent } from './vervolledig-organisa
     GebruikersModule,
     HotToastModule.forRoot(),
     DialogModule.forRoot(),
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    NgApexchartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
