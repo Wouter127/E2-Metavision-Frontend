@@ -12,6 +12,10 @@ export class OrganisatieService {
 
   constructor(private httpClient: HttpClient) {}
 
+  getOrganisaties(): Observable<Organisatie[]> {
+    return this.httpClient.get<Organisatie[]>(`${environment.API_URI}/admin/organisaties`);
+  }
+
   getOrganisatieWithWeerstations(organisatieId: number): Observable<Organisatie[]> {
     
     return this.httpClient.get<Organisatie[]>(environment.API_URI + "/organisatiebeheerder/organisaties/weerstations/" + organisatieId);

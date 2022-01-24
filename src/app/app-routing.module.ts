@@ -8,6 +8,7 @@ import { OrganisatieInstellingenComponent } from './organisatie/organisatie-inst
 import { OrganisatieListComponent } from './organisatie/organisatie-list/organisatie-list.component';
 import { OrganisatieToevoegenComponent } from './organisatie/organisatie-toevoegen/organisatie-toevoegen.component';
 import { RegisterComponent } from './register/register.component';
+import { VervolledigOrganisatieBeheerderComponent } from './vervolledig-organisatie-beheerder/vervolledig-organisatie-beheerder.component';
 import { WeerstationActiverenComponent } from './weerstation/weerstation-activeren/weerstation-activeren.component';
 import { WeerstationFormComponent } from './weerstation/weerstation-form/weerstation-form.component';
 import { WeerstationListComponent } from './weerstation/weerstation-list/weerstation-list.component';
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'weerstationactiveren', component: WeerstationActiverenComponent},
   { path: 'organisatieinstellingen', component: OrganisatieInstellingenComponent},
   { path: 'gebruikers', component: GebruikersListComponent},
+  { path: 'vervolledig', component: VervolledigOrganisatieBeheerderComponent},
   { path: 'mijnweerstations', component: WeerstationListComponent},
   { path: 'waardes/:id', component: AlarmwaardesListComponent},
   { path: 'weerstations/form', component: WeerstationFormComponent},
