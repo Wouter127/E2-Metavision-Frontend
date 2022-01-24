@@ -7,6 +7,7 @@ import { Weerstation } from 'src/app/interfaces/Weerstation';
 import { WeerstationService } from 'src/app/services/admin/weerstation.service';
 import { Observable, Subscription } from 'rxjs';
 import { FormControl, FormGroup } from '@angular/forms';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'app-weerstation-list',
@@ -14,11 +15,12 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./weerstation-list.component.scss']
 })
 export class WeerstationListComponent implements OnInit, OnDestroy {
+  loading: boolean = true;
 
   organisaties: Organisatie[] = [];
-  weerstations: Weerstation[] = [];
   organisaties$: Subscription = new Subscription();
-  weerstations$: Subscription = new Subscription();
+  weerstationsZonderOrganisatie: Weerstation[] = [];
+  weerstationsZonderOrganisatie$: Subscription = new Subscription();
   weerstation$: Subscription = new Subscription();
   deleteWeerstation$: Subscription = new Subscription();
   errorMessage: string = "";
@@ -31,12 +33,18 @@ export class WeerstationListComponent implements OnInit, OnDestroy {
     naam: new FormControl('')
   });
 
-  constructor(private weerstationService: WeerstationService, private organisatieService: OrganisatieService, private router: Router) { }
+  constructor(private weerstationService: WeerstationService, private organisatieService: OrganisatieService, private router: Router, private toast: HotToastService) { 
+    // Reverse the order of which the toasts are displayed
+    this.toast.defaultConfig = {
+      ...this.toast.defaultConfig,
+      reverseOrder: true
+    }
+  }
 
   ngOnInit(): void {
     if (this.isAdmin) {
-      this.getAllOrganisatiesWithWeerstations();
-      this.getWeerstations();
+      this.getOrganisaties();
+      this.getWeerstationsZonderOrganisatie();
     } else {
       this.getOrganisatieWithWeerstations();
     }
@@ -49,7 +57,7 @@ export class WeerstationListComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.organisaties$.unsubscribe();
     this.deleteWeerstation$.unsubscribe();
-    this.weerstations$.unsubscribe();
+    // this.weerstations$.unsubscribe();
     this.weerstation$.unsubscribe();
   }
 
@@ -65,14 +73,6 @@ export class WeerstationListComponent implements OnInit, OnDestroy {
       
     });
   }
-
-  // submitEnter(id: number) {
-  //   console.log(id);
-  //   console.log(this.form.value);
-        
-    
-  // }
-  
 
   handleSubmit(e: any){
     e.preventDefault();
@@ -99,15 +99,14 @@ export class WeerstationListComponent implements OnInit, OnDestroy {
 
   deleteWeerstation(id: number) {
     if (this.weerstationService)
-  this.deleteWeerstation$ = this.weerstationService.deleteWeerstation(id).subscribe(result => {
-    //all went well
-    this.ngOnInit();
-  }, error => {
-    //error
-    this.errorMessage = error.message;
-  });
-
-}
+      this.deleteWeerstation$ = this.weerstationService.deleteWeerstation(id).subscribe(result => {
+      //all went well
+      this.ngOnInit();
+    }, error => {
+      //error
+      this.errorMessage = error.message;
+    });
+  }
 
   getOrganisatieWithWeerstations() {
     var organisatieId = 1
@@ -116,8 +115,20 @@ export class WeerstationListComponent implements OnInit, OnDestroy {
     });
   }
 
+  getOrganisaties() {
+    this.organisaties$ = this.organisatieService.getOrganisaties().subscribe(
+      result => {
+          this.organisaties = result;
+          this.loading = false;
+      },
+      error => {
+
+      }
+    );
+  }
+
   getAllOrganisatiesWithWeerstations() {
-    this.organisaties$ = this.organisatieService.getAllOrganisatiesWithWeerstations().subscribe(result => this.organisaties = result)
+    this.organisaties$ = this.organisatieService.getAllOrganisatiesWithWeerstations().subscribe(result => this.organisaties = result);
   }
 
   edit(id: number) {
@@ -125,8 +136,7 @@ export class WeerstationListComponent implements OnInit, OnDestroy {
     this.router.navigate(['/weerstations/form'], {state: {id: id}});
   }
 
-  getWeerstations() {
-    this.weerstations$ = this.weerstationService.getWeerstationsZonderOrganisaties().subscribe(result => this.weerstations = result)
-
+  getWeerstationsZonderOrganisatie() {
+    this.weerstationsZonderOrganisatie$ = this.weerstationService.getWeerstationsZonderOrganisaties().subscribe(result => this.weerstationsZonderOrganisatie = result)
   }
 }
