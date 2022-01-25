@@ -38,9 +38,11 @@ export class WeerstationService {
     if (organisatieId) {
       if (parameterCount === 0) {
         parameters += '?organisatieId='+organisatieId;
+        parameterCount++;
       }
       else {
         parameters += '&organisatieId=' + organisatieId;
+        parameterCount++;
       }
     }
 
