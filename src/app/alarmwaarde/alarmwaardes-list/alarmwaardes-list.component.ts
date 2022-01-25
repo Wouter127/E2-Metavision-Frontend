@@ -7,6 +7,7 @@ import { WeerstationService } from 'src/app/services/organisatiebeheerder/weerst
 import { AlarmWaardeService } from 'src/app/services/organisatiebeheerder/alarm-waarde.service';
 import { AlarmwaardesFormComponent } from '../alarmwaardes-form/alarmwaardes-form.component';
 import { AlarmWaarde } from 'src/app/interfaces/Alarm-waarde';
+import { SchakelWaardeService } from 'src/app/services/organisatiebeheerder/schakel-waarde.service';
 
 @Component({
   selector: 'app-alarmwaardes-list',
@@ -28,7 +29,8 @@ export class AlarmwaardesListComponent implements OnInit {
     private route: ActivatedRoute,
     private toast: HotToastService,
     private dialog: DialogService,
-    private alarmWaardeService: AlarmWaardeService) {
+    private alarmWaardeService: AlarmWaardeService, 
+    private schakelWaardeService: SchakelWaardeService) {
 
     // Reverse the order of which the toasts are displayed
     this.toast.defaultConfig = {
@@ -50,7 +52,6 @@ export class AlarmwaardesListComponent implements OnInit {
     this.weerstation$ = this.weerstationService.getWaardesByWeerstationId(id).subscribe(
       result => {
         this.weerstation = result;
-        console.log(this.weerstation);
         this.loading = false;
       },
       error => {
@@ -60,15 +61,19 @@ export class AlarmwaardesListComponent implements OnInit {
   }
 
   toevoegenAlarmwaarde() {
-    console.log("voeg toe");
+    this.alarmwaardesFormComponent.openAddAlarmWaardeModal();
+
+    // When the alarmwaarde is edited successfully, refresh the list of alarmwaardes.
+    this.alarmwaardesFormComponent.output.subscribe(() => {
+      const weerstationId = this.route.snapshot.paramMap.get('id')?.toString();
+      this.getWeerstation(weerstationId);
+    });
   }
 
   wijzigAlarmWaarde(id: any) {
-    console.log("wijzig: ", id);
+    this.alarmwaardesFormComponent.openEditAlarmWaardeModal(id);
 
-    this.alarmwaardesFormComponent.openModal(id);
-
-    // When the gebruiker is edited successfully, refresh the list of gebruikers.
+    // When the alarmwaarde is edited successfully, refresh the list of alarmwaardes.
     this.alarmwaardesFormComponent.output.subscribe(() => {
       const weerstationId = this.route.snapshot.paramMap.get('id')?.toString();
       this.getWeerstation(weerstationId);
@@ -86,6 +91,53 @@ export class AlarmwaardesListComponent implements OnInit {
           this.toast.observe({
             loading: { content: 'Verwijderen...', position: 'bottom-right' },
             success: { content: 'Alarmwaarde verwijderd!', position: 'bottom-right', dismissible: true },
+            error: { content: 'Er ging iets mis.', position: 'bottom-right', dismissible: true },
+          })
+        ).subscribe(
+          result => {
+            const weerstationId = this.route.snapshot.paramMap.get('id')?.toString();
+            this.getWeerstation(weerstationId);
+          }
+        );
+      }
+    });
+  }
+
+
+
+
+
+  toevoegenSchakelwaarde() {
+    this.alarmwaardesFormComponent.openAddSchakelWaardeModal();
+
+    // When the schakelwaarde is edited successfully, refresh the list of schakelwaardes.
+    this.alarmwaardesFormComponent.output.subscribe(() => {
+      const weerstationId = this.route.snapshot.paramMap.get('id')?.toString();
+      this.getWeerstation(weerstationId);
+    });
+  }
+
+  wijzigSchakelWaarde(id: any) {
+    this.alarmwaardesFormComponent.openEditSchakelWaardeModal(id);
+
+    // When the schakelwaarde is edited successfully, refresh the list of schakelwaardes.
+    this.alarmwaardesFormComponent.output.subscribe(() => {
+      const weerstationId = this.route.snapshot.paramMap.get('id')?.toString();
+      this.getWeerstation(weerstationId);
+    });
+  }
+
+  verwijderSchakelWaarde(id: any): void {
+    console.log("verwijder", id);
+    this.dialog.confirm({
+      title: 'schakelwaarde verwijderen?',
+      body: 'Deze actie kan niet ongedaan gemaakt worden.'
+    }).afterClosed$.subscribe(confirmed => {
+      if (confirmed) {
+        this.schakelWaardeService.deleteSchakelwaarde(id).pipe(
+          this.toast.observe({
+            loading: { content: 'Verwijderen...', position: 'bottom-right' },
+            success: { content: 'schakelwaarde verwijderd!', position: 'bottom-right', dismissible: true },
             error: { content: 'Er ging iets mis.', position: 'bottom-right', dismissible: true },
           })
         ).subscribe(

@@ -16,8 +16,8 @@ import { DialogModule } from '@ngneat/dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { VervolledigOrganisatieBeheerderComponent } from './vervolledig-organisatie-beheerder/vervolledig-organisatie-beheerder.component';
-import { NgApexchartsModule } from 'ng-apexcharts';
 import { AlarmwaardeModule } from './alarmwaarde/alarmwaarde.module';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 
 
@@ -42,9 +42,9 @@ import { AlarmwaardeModule } from './alarmwaarde/alarmwaarde.module';
     HotToastModule.forRoot(),
     DialogModule.forRoot(),
     FormsModule,
+    AlarmwaardeModule,
     ReactiveFormsModule,
-    NgApexchartsModule,
-    AlarmwaardeModule
+    NgApexchartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

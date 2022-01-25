@@ -15,6 +15,11 @@ import { GebruikersFormOrganisatiebeheerderComponent } from './gebruikers-form-o
   imports: [
     CommonModule,
     FormsModule
+  ],
+  exports: [
+    GebruikersFormComponent,
+    GebruikersListComponent,
+    GebruikersFormOrganisatiebeheerderComponent
   ]
 })
 export class GebruikersModule { }

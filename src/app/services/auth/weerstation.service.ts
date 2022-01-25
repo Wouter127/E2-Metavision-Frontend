@@ -12,6 +12,6 @@ export class WeerstationService {
   constructor(private httpClient:HttpClient) { }
   
   getWeerstationWithMetingen(weerstation_id:number):Observable<Weerstation> {
-      return this.httpClient.get<Weerstation>(`${environment.baseApiUrl}/auth/weerstations/${weerstation_id}/metingen`);
+      return this.httpClient.get<Weerstation>(`${environment.API_URI}/auth/weerstations/${weerstation_id}/metingen`);
   }
 }
