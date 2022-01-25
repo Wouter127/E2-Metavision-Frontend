@@ -13,10 +13,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { GebruikersModule } from './gebruikers/gebruikers.module';
 import { HotToastModule } from '@ngneat/hot-toast';
 import { DialogModule } from '@ngneat/dialog';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { VervolledigOrganisatieBeheerderComponent } from './vervolledig-organisatie-beheerder/vervolledig-organisatie-beheerder.component';
 import { ClipboardModule } from 'ngx-clipboard';
+import { AlarmwaardeModule } from './alarmwaarde/alarmwaarde.module';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,9 @@ import { ClipboardModule } from 'ngx-clipboard';
     DialogModule.forRoot(),
     FormsModule,
     ClipboardModule
+    AlarmwaardeModule,
+    ReactiveFormsModule,
+    NgApexchartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -11,6 +11,8 @@ import { FormControl, FormsModule, ReactiveFormsModule }   from '@angular/forms'
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { WeerstationFormComponent } from './weerstation-form/weerstation-form.component';
 import { NgToggleModule } from 'ng-toggle-button';
+import { WeerstationDashboardComponent } from './weerstation-dashboard/weerstation-dashboard.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,7 @@ import { NgToggleModule } from 'ng-toggle-button';
     WeerstationActiverenComponent,
     WeerstationAlarmSchakelwaardesFormComponent,
     WeerstationFormComponent,
+    WeerstationDashboardComponent,
     // WeerstationComponent
   ],
   imports: [
@@ -26,11 +29,12 @@ import { NgToggleModule } from 'ng-toggle-button';
     AppRoutingModule,
     CommonModule,
     BrowserModule,
-    CommonModule,
+    
     FormsModule,
     TooltipModule,
     NgToggleModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgApexchartsModule,
   ],
   exports: [
     WeerstationToevoegenComponent,
