@@ -9,7 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { WeerstationModule } from './weerstation/weerstation.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { GebruikersModule } from './gebruikers/gebruikers.module';
 import { HotToastModule } from '@ngneat/hot-toast';
 import { DialogModule } from '@ngneat/dialog';
@@ -19,6 +19,7 @@ import { VervolledigOrganisatieBeheerderComponent } from './vervolledig-organisa
 import { ClipboardModule } from 'ngx-clipboard';
 import { AlarmwaardeModule } from './alarmwaarde/alarmwaarde.module';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { TokenInterceptor } from './security/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,11 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     ReactiveFormsModule,
     NgApexchartsModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
