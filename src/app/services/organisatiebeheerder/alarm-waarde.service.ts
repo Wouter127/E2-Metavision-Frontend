@@ -11,24 +11,10 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class AlarmWaardeService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
-  deleteAlarmwaarde(id: number): Observable<unknown> {
-    return this.httpClient.delete<unknown>(`${environment.API_URI}/organisatiebeheerder/alarmwaardes/${id}`);
-  }
-  
   getAlarmwaardeById(id: number): Observable<AlarmWaarde> {
-    return timer(1000).pipe(switchMap(() => this.httpClient.get<AlarmWaarde>(`${environment.API_URI}/organisatiebeheerder/alarmwaardes/${id}`)));
-  }
-  
-  putAlarmwaarde(id: any, alarmwaarde: any): Observable<AlarmWaarde> {
-    let headers = new HttpHeaders();
-    headers = headers.set('Content-Type', 'application/json; charset=utf-8');
-
-    console.log(alarmwaarde);
-    
-
-    return this.httpClient.put<AlarmWaarde>(`${environment.API_URI}/organisatiebeheerder/alarmwaardes/${id}`, alarmwaarde, {headers: headers});
+    return this.httpClient.get<AlarmWaarde>(`${environment.API_URI}/organisatiebeheerder/alarmwaardes/${id}`);
   }
 
   postAlarmwaarde(alarmwaarde: any): Observable<AlarmWaarde> {
@@ -36,15 +22,23 @@ export class AlarmWaardeService {
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
 
     console.log("post alarmwaarde");
-    
 
-    return this.httpClient.post<AlarmWaarde>(`${environment.API_URI}/organisatiebeheerder/alarmwaardes`, alarmwaarde, {headers: headers});
+
+    return this.httpClient.post<AlarmWaarde>(`${environment.API_URI}/organisatiebeheerder/alarmwaardes`, alarmwaarde, { headers: headers });
   }
 
-  getSwitches(): Observable<SwithLogic> {
-    return this.httpClient.get<SwithLogic>(`${environment.API_URI}/organisatiebeheerder/switches`);
+  putAlarmwaarde(id: any, alarmwaarde: any): Observable<AlarmWaarde> {
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json; charset=utf-8');
+
+    console.log(alarmwaarde);
+
+
+    return this.httpClient.put<AlarmWaarde>(`${environment.API_URI}/organisatiebeheerder/alarmwaardes/${id}`, alarmwaarde, { headers: headers });
   }
-  getSensoren(): Observable<Sensor> {
-    return this.httpClient.get<Sensor>(`${environment.API_URI}/organisatiebeheerder/sensoren`);
+
+  deleteAlarmwaarde(id: number): Observable<unknown> {
+    return this.httpClient.delete<unknown>(`${environment.API_URI}/organisatiebeheerder/alarmwaardes/${id}`);
   }
+
 }
