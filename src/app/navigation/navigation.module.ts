@@ -12,7 +12,8 @@ import { SharedModule } from '../shared/shared.module';
   ],
   imports: [
     SharedModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CommonModule
   ],
   exports: [
     NavigationComponent
