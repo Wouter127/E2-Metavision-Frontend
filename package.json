@@ -22,6 +22,7 @@
     "@ngneat/dialog": "^1.7.1",
     "@ngneat/hot-toast": "^3.4.3",
     "@ngneat/overview": "^2.0.2",
+    "ngx-clipboard": "^15.0.1",
     "apexcharts": "^3.33.0",
     "ng-apexcharts": "^1.6.0",
     "ng-toggle-button": "^0.2.1",

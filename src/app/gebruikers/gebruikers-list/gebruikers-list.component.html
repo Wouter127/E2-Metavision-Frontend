@@ -84,7 +84,7 @@
                                     <div *ngIf="!gebruiker.vervolledig_token; else showNietVervolledigd">
                                         <span *ngIf="gebruiker.organisatie?.naam; else geenOrganisatie">{{ gebruiker.organisatie?.naam }}</span>
                                         <ng-template #geenOrganisatie>
-                                            <span>TODO: icon</span>
+                                            <span></span>
                                         </ng-template>
                                     </div>
                                     <ng-template #showNietVervolledigd>
