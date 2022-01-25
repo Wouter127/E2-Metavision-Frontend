@@ -13,10 +13,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { GebruikersModule } from './gebruikers/gebruikers.module';
 import { HotToastModule } from '@ngneat/hot-toast';
 import { DialogModule } from '@ngneat/dialog';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TooltipModule } from 'ng2-tooltip-directive';
-import { AlarmwaardeModule } from './alarmwaarde/alarmwaarde.module';
 import { VervolledigOrganisatieBeheerderComponent } from './vervolledig-organisatie-beheerder/vervolledig-organisatie-beheerder.component';
+import { AlarmwaardeModule } from './alarmwaarde/alarmwaarde.module';
+import { NgApexchartsModule } from 'ng-apexcharts';
+
 
 
 @NgModule({
@@ -41,6 +43,8 @@ import { VervolledigOrganisatieBeheerderComponent } from './vervolledig-organisa
     DialogModule.forRoot(),
     FormsModule,
     AlarmwaardeModule,
+    ReactiveFormsModule,
+    NgApexchartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
