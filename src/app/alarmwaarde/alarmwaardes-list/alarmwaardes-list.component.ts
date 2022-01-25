@@ -55,7 +55,7 @@ export class AlarmwaardesListComponent implements OnInit {
         
       },
       error => {
-        this.toast.error("Er ging iets mis.  De gebruiker kan niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false })
+        this.toast.error("Er ging iets mis.  De alarm- en schakelwaarden kunnen niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false })
       }
     );
   }

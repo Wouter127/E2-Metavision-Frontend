@@ -41,7 +41,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     HotToastModule.forRoot(),
     DialogModule.forRoot(),
     FormsModule,
-    ClipboardModule
+    ClipboardModule,
     AlarmwaardeModule,
     ReactiveFormsModule,
     NgApexchartsModule
