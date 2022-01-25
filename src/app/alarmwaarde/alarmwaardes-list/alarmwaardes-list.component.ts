@@ -22,8 +22,6 @@ export class AlarmwaardesListComponent implements OnInit {
   weerstation: any = {};
   weerstation$: Subscription = new Subscription();
 
-
-
   constructor(
     private weerstationService: WeerstationService,
     private route: ActivatedRoute,
@@ -41,7 +39,7 @@ export class AlarmwaardesListComponent implements OnInit {
 
   ngOnInit(): void {
     const weerstationId = this.route.snapshot.paramMap.get('id')?.toString();
-    this.getWeerstation(weerstationId);
+    this.getWeerstation(weerstationId);    
   }
 
   ngOnDestroy(): void {
@@ -53,6 +51,8 @@ export class AlarmwaardesListComponent implements OnInit {
       result => {
         this.weerstation = result;
         this.loading = false;
+        console.log(this.weerstation.schakel_waardes.length);
+        
       },
       error => {
         this.toast.error("Er ging iets mis.  De gebruiker kan niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false })
@@ -90,7 +90,7 @@ export class AlarmwaardesListComponent implements OnInit {
         this.alarmWaardeService.deleteAlarmwaarde(id).pipe(
           this.toast.observe({
             loading: { content: 'Verwijderen...', position: 'bottom-right' },
-            success: { content: 'Alarmwaarde verwijderd!', position: 'bottom-right', dismissible: true },
+            success: { content: 'Alarmwaarde verwijderd! <br> Deze wijzigingen worden binnen 15 minuten doorgevoerd.', position: 'bottom-right', dismissible: true },
             error: { content: 'Er ging iets mis.', position: 'bottom-right', dismissible: true },
           })
         ).subscribe(
@@ -102,10 +102,6 @@ export class AlarmwaardesListComponent implements OnInit {
       }
     });
   }
-
-
-
-
 
   toevoegenSchakelwaarde() {
     this.alarmwaardesFormComponent.openAddSchakelWaardeModal();
@@ -137,7 +133,7 @@ export class AlarmwaardesListComponent implements OnInit {
         this.schakelWaardeService.deleteSchakelwaarde(id).pipe(
           this.toast.observe({
             loading: { content: 'Verwijderen...', position: 'bottom-right' },
-            success: { content: 'schakelwaarde verwijderd!', position: 'bottom-right', dismissible: true },
+            success: { content: 'schakelwaarde verwijderd! <br> Deze wijzigingen worden binnen 15 minuten doorgevoerd.', position: 'bottom-right', dismissible: true },
             error: { content: 'Er ging iets mis.', position: 'bottom-right', dismissible: true },
           })
         ).subscribe(

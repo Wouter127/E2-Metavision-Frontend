@@ -1,5 +1,3 @@
-<p>ORG ADMIN en ADMIN</p>
-<p>laat een form zien om schakelwaardes en alarmwaardes van een weerstation aan te passen</p>
 <div class="text-3xl">
     {{weerstation.naam}}
 </div>
@@ -57,6 +55,13 @@
                         </tr>
                     </tbody>
                     <tbody *ngIf="!loading" class="bg-white divide-y divide-gray-200">
+                        <tr *ngIf="weerstation.alarm_waardes == 0">
+                            <td colspan="4" class="text-center px-6 py-4 whitespace-nowrap">
+                                <div class="text-md text-red-500 font-bold">
+                                    Dit weerstation bevat geen alarmwaardes
+                                </div>
+                            </td>
+                        </tr>
                         <tr *ngFor="let alarmWaarde of weerstation.alarm_waardes">
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <!-- <div class="text-sm font-medium text-gray-900">
@@ -110,7 +115,6 @@
         SchakelWaarde toevoegen
     </button>
 </div>
-
 <div class="flex flex-col">
     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -155,6 +159,13 @@
                         </tr>
                     </tbody>
                     <tbody *ngIf="!loading" class="bg-white divide-y divide-gray-200">
+                        <tr *ngIf="weerstation.schakel_waardes == 0">
+                            <td colspan="4" class="text-center px-6 py-4 whitespace-nowrap">
+                                <div class="text-md text-red-500 font-bold">
+                                    Dit weerstation bevat geen schakelwaardes
+                                </div>
+                            </td>
+                        </tr>
                         <tr *ngFor="let schakelWaarde of weerstation.schakel_waardes">
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <!-- <div class="text-sm font-medium text-gray-900">
