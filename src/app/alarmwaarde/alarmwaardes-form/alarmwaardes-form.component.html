@@ -10,10 +10,10 @@
                     {{ title }}
                 </h3>
                 <button
-                    class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+                    class="p-1 ml-auto bg-transparent border-0 text-black opacity-50 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
                     (click)="closeModal()">
                     <span
-                        class="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
+                        class="bg-transparent text-black opacity-50 h-6 w-6 text-2xl block outline-none focus:outline-none">
                         ×
                     </span>
                 </button>
@@ -46,34 +46,29 @@
                         </div>
                     </div>
                 </form>
-                <form *ngIf="!loading" (ngSubmit)="onSubmit()" #alarmWaardeForm="ngForm">
+                <form *ngIf="!loading && isEdit" (ngSubmit)="onSubmit()" #alarmWaardeForm="ngForm">
                     <div class="bg-white">
                         <div class="grid grid-cols-6 gap-6">
                             <div class="col-span-6 sm:col-span-3">
                                 <!-- TODO: Get organisaties and fill -->
                                 <label for="sensor" class="block font-medium text-gray-700">Sensor</label>
-                                <select id="sensor" name="sensor"
+                                <select id="sensor" name="sensor" [(ngModel)]="alarmwaarde.sensor.id" (change)="selectSensorChangeHandler($event)"
                                     class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                    <option>Todo</option>
-                                    <option>Toodo</option>
-                                    <option>Tooodo</option>
+                                    <option *ngFor="let sensor of sensoren" value="{{ sensor.id }}">{{ sensor.naam }}</option>
                                 </select>
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
-                                <!-- TODO: Get organisaties and fill -->
                                 <label for="operator" class="block font-medium text-gray-700">Operator</label>
-                                <select id="operator" name="operator"
+                                <select id="operator" name="operator" [(ngModel)]="alarmwaarde.switch_logic.id" (change)="selectSwitchChangeHandler($event)"
                                     class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                    <option>Todo</option>
-                                    <option>Toodo</option>
-                                    <option>Tooodo</option>
+                                    <option *ngFor="let switch of switches" value="{{ switch.id }}">{{ switch.type }}</option>
                                 </select>
                             </div>
             
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="waarde" class="block font-medium text-gray-700">Waarde</label>
-                                <input type="text" name="waarde" id="waarde" [(ngModel)]="alarmwaarde.waarde" #waarde="ngModel"
+                                <input type="number" name="waarde" id="waarde" [(ngModel)]="alarmwaarde.waarde" #waarde="ngModel"
                                     class="mt-1 p-2 focus:ring-indigo-500 border focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                             </div>
                         </div>
@@ -82,6 +77,44 @@
                         <button type="submit"
                             class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                             Opslaan
+                        </button>
+                    </div>
+                </form>
+
+
+                <form *ngIf="!loading && isAdd" (ngSubmit)="onSubmit()" #alarmWaardeForm="ngForm">
+                    <div class="bg-white">
+                        <div class="grid grid-cols-6 gap-6">
+                            <div class="col-span-6 sm:col-span-3">
+                                <!-- TODO: Get organisaties and fill -->
+                                <label for="sensor" class="block font-medium text-gray-700">Sensor</label>
+                                <select id="sensor" name="sensor" (change)="selectSensorChangeHandler($event)"
+                                    class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                    <option selected disabled value="">Selecteer sensor</option>
+                                    <option *ngFor="let sensor of sensoren" value="{{ sensor.id }}">{{ sensor.naam }}</option>
+                                </select>
+                            </div>
+
+                            <div class="col-span-6 sm:col-span-3">
+                                <label for="operator" class="block font-medium text-gray-700">Operator</label>
+                                <select id="operator" name="operator" (change)="selectSwitchChangeHandler($event)"
+                                    class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                    <option selected disabled value="">Selecteer operator</option>
+                                    <option *ngFor="let switch of switches" value="{{ switch.id }}">{{ switch.type }}</option>
+                                </select>
+                            </div>
+            
+                            <div class="col-span-6 sm:col-span-3">
+                                <label for="waarde" class="block font-medium text-gray-700">Waarde</label>
+                                <input type="number" name="waarde" id="waarde" (change)="waardeChangeHandler($event)" placeholder="Waarde"
+                                    class="mt-1 p-2 focus:ring-indigo-500 border focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-4 py-3 bg-gray-50 text-center sm:px-6">
+                        <button type="submit"
+                            class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            Toevoegen
                         </button>
                     </div>
                 </form>

@@ -60,15 +60,19 @@ export class AlarmwaardesListComponent implements OnInit {
   }
 
   toevoegenAlarmwaarde() {
-    console.log("voeg toe");
+    this.alarmwaardesFormComponent.openAddModal();
+
+    // When the alarmwaarde is edited successfully, refresh the list of alarmwaardes.
+    this.alarmwaardesFormComponent.output.subscribe(() => {
+      const weerstationId = this.route.snapshot.paramMap.get('id')?.toString();
+      this.getWeerstation(weerstationId);
+    });
   }
 
   wijzigAlarmWaarde(id: any) {
-    console.log("wijzig: ", id);
+    this.alarmwaardesFormComponent.openEditModal(id);
 
-    this.alarmwaardesFormComponent.openModal(id);
-
-    // When the gebruiker is edited successfully, refresh the list of gebruikers.
+    // When the alarmwaarde is edited successfully, refresh the list of alarmwaardes.
     this.alarmwaardesFormComponent.output.subscribe(() => {
       const weerstationId = this.route.snapshot.paramMap.get('id')?.toString();
       this.getWeerstation(weerstationId);

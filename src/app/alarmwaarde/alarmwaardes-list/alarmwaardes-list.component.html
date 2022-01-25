@@ -4,9 +4,7 @@
     {{weerstation.naam}}
 </div>
 
-<div *ngFor="let alarmWaarde of weerstation.alarm_waardes">
-    {{alarmWaarde.waarde}}
-</div>
+<app-alarmwaardes-form></app-alarmwaardes-form>
 
 <div class="flex row justify-end">
     <button (click)="toevoegenAlarmwaarde()"
