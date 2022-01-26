@@ -11,9 +11,9 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { HotToastService } from '@ngneat/hot-toast';
 import { ClipboardService } from 'ngx-clipboard';
 import { DialogService } from '@ngneat/dialog';
-import { WeerstationToevoegenComponent } from '../weerstation-toevoegen/weerstation-toevoegen.component';
 import { WeerstationFormComponent } from '../weerstation-form/weerstation-form.component';
 import { LocationService } from 'src/app/services/location.service';
+import { WeerstationToevoegenComponent } from 'src/app/admin/weerstations/weerstation-toevoegen/weerstation-toevoegen.component';
 
 @Component({
   selector: 'app-weerstation-list',
