@@ -14,7 +14,7 @@ export class GebruikerService {
   constructor(private httpClient: HttpClient) { }
 
   checkToken(user_id: number, vervolledig_token: string): Observable<Gebruiker> {
-    return timer(3000).pipe(switchMap(() => this.httpClient.get<Gebruiker>(`${environment.baseApiUrl}/vervolledig/${user_id}/${vervolledig_token}`)));
+    return timer(3000).pipe(switchMap(() => this.httpClient.get<Gebruiker>(`${environment.API_URI}/vervolledig/${user_id}/${vervolledig_token}`)));
   }
 
   vervolledigOrganisatieBeheerder(user_id: number, vervolledig_token: string, gebruiker: Gebruiker, organisatie: Organisatie, wachtwoord_confirmation: string): Observable<Gebruiker> {
@@ -24,6 +24,6 @@ export class GebruikerService {
     let gebruikerSend: any = gebruiker;
     gebruikerSend.wachtwoord_confirmation = wachtwoord_confirmation;
 
-    return this.httpClient.put<Gebruiker>(`${environment.baseApiUrl}/vervolledig/${user_id}/${vervolledig_token}`, { gebruiker, organisatie }, { headers: headers });
+    return this.httpClient.put<Gebruiker>(`${environment.API_URI}/vervolledig/${user_id}/${vervolledig_token}`, { gebruiker, organisatie }, { headers: headers });
   }
 }
