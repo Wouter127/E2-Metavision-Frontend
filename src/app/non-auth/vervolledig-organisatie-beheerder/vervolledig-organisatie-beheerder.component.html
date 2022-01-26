@@ -109,7 +109,7 @@
 
                 <div class="col-span-2">
                     <label for="wachtwoord" class="block font-medium text-gray-700">Wachtwoord</label>
-                    <input type="password" name="wachtwoord" id="wachtwoord" [(ngModel)]="gebruiker.wachtwoord" #wachtwoord="ngModel"
+                    <input type="password" name="wachtwoord" id="wachtwoord" [(ngModel)]="gebruiker.password" #wachtwoord="ngModel"
                         required minlength="8"
                         class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 invalid:border-red-500 invalid:ring-red-500">
                     <div *ngIf="wachtwoord.invalid && (wachtwoord.dirty || wachtwoord.touched)"

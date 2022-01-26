@@ -6,11 +6,13 @@ import {
     ApexXAxis,
     ApexYAxis,
     ApexTitleSubtitle,
+    ApexPlotOptions,
     ApexNoData,
     ApexStroke,
-    ApexFill
+    ApexFill,
+    ApexLegend
   } from "ng-apexcharts";
-  
+
 export interface ChartOptions {
     series: ApexAxisChartSeries;
     chart: ApexChart;
@@ -20,5 +22,27 @@ export interface ChartOptions {
     yaxis: ApexYAxis;
     stroke: ApexStroke;
     title: ApexTitleSubtitle;
-    noData: ApexNoData;
 };
+
+export interface preChartOptions {
+  series: ApexAxisChartSeries;
+  chart: ApexChart;
+  dataLabels: ApexDataLabels;
+  title: ApexTitleSubtitle;
+  noData: ApexNoData;
+  fill: ApexFill;
+  xaxis: ApexXAxis;
+  yaxis: ApexYAxis;
+};
+
+export interface ChartOptions2 {
+  series: ApexAxisChartSeries;
+  chart: ApexChart;
+  xaxis: ApexXAxis;
+  stroke: ApexStroke | undefined;
+  dataLabels: ApexDataLabels;
+  yaxis: ApexYAxis;
+  title: ApexTitleSubtitle;
+};
+
+

@@ -12,8 +12,8 @@ export interface Meting {
     irl: number;
     vil: number;
     lux: number;
-    lw1: number;
-    lw2: number;
+    lw1: boolean;
+    lw2: boolean;
     bav: number;
     bap: number;
     wd: number;

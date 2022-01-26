@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { Gebruiker } from '../interfaces/Gebruiker';
+import { AuthStateService } from '../security/auth-state.service';
 import { AuthService } from '../security/auth.service';
 
 @Component({
@@ -10,15 +10,27 @@ import { AuthService } from '../security/auth.service';
 })
 export class NavigationComponent implements OnInit {
 
-  gebruiker!: Gebruiker;
-  gebruiker$: Subscription = new Subscription;
+  isLoggedIn: boolean = false;
+  gebruiker!: Gebruiker | undefined;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private authStateService: AuthStateService) {}
 
   ngOnInit(): void {
-    this.gebruiker$ = this.authService.getGebruiker().subscribe(
-      result => {
-        this.gebruiker = result;
+    this.authStateService.gebruikerAuthState.subscribe(
+      value => {
+        this.isLoggedIn = value;
+
+        if (value) {
+          this.authService.getGebruiker().subscribe(
+            gebruiker => {
+              this.gebruiker = gebruiker;
+              console.log(gebruiker);
+            }
+          );
+        }
+        else {
+          this.gebruiker = undefined;
+        }
       }
     );
   }
@@ -26,5 +38,4 @@ export class NavigationComponent implements OnInit {
   onLogout(): void {
     this.authService.logout();
   }
-
 }

@@ -22,7 +22,7 @@ export class GebruikerService {
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
 
     let gebruikerSend: any = gebruiker;
-    gebruikerSend.wachtwoord_confirmation = wachtwoord_confirmation;
+    gebruikerSend.password_confirmation = wachtwoord_confirmation;
 
     return this.httpClient.put<Gebruiker>(`${environment.API_URI}/vervolledig/${user_id}/${vervolledig_token}`, { gebruiker, organisatie }, { headers: headers });
   }
