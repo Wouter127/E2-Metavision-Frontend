@@ -1,14 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ChartComponent } from 'ng-apexcharts';
 import { Subscription } from 'rxjs';
-
-import {
-  ChartComponent,
-} from "ng-apexcharts";
-import { Weerstation } from 'src/app/interfaces/Weerstation';
-import { ChartOptions, preChartOptions, ChartOptions2 } from './chart-options';
-import { WeerstationService } from 'src/app/services/weerstation.service';
 import { Meting } from 'src/app/interfaces/Meting';
+import { Weerstation } from 'src/app/interfaces/Weerstation';
+import { WeerstationService } from 'src/app/services/weerstation.service';
+import { ChartOptions, preChartOptions } from './chart-options';
 
 
 @Component({
@@ -17,11 +14,10 @@ import { Meting } from 'src/app/interfaces/Meting';
   styleUrls: ['./weerstation-dashboard.component.scss']
 })
 export class WeerstationDashboardComponent implements OnInit {
-  @ViewChild('chart', { static: false}) chart: ChartComponent = 
-      new ChartComponent();
+  @ViewChild('chart', { static: false }) chart: ChartComponent = new ChartComponent();
   public chartOptions!: ChartOptions;
   public prechartOptions!: preChartOptions;
-  public chartOptions2: any = {} 
+  public chartOptions2: any = {}
 
   //temperatuur
   tempArray: { y: number; x: Date }[] = [];
@@ -44,7 +40,7 @@ export class WeerstationDashboardComponent implements OnInit {
   begin: string | string = "2022-01-16";
   eind: string | string = "2022-01-16";
 
-  
+
   // public updateInfraroodlicht() {
   //   this.prechartOptions.series = [{
   //       data: [150, 111, 85, 22, 47, 66, 94, 121, 12]
@@ -81,15 +77,15 @@ export class WeerstationDashboardComponent implements OnInit {
 
   public updateVisueellicht() {
     this.prechartOptions.series = [{
-        data: [30, 55, 88, 99, 42, 10, 140, 100, 75]
+      data: [30, 55, 88, 99, 42, 10, 140, 100, 75]
     }],
-    this.prechartOptions.title = {
+      this.prechartOptions.title = {
         text: 'Visueel licht'
-    },
-    this.prechartOptions.chart = {
+      },
+      this.prechartOptions.chart = {
         type: 'area'
-    },
-    this.prechartOptions.fill = {
+      },
+      this.prechartOptions.fill = {
         type: "gradient",
         gradient: {
           shade: "dark",
@@ -100,12 +96,12 @@ export class WeerstationDashboardComponent implements OnInit {
           opacityTo: 1,
           stops: [0, 100, 100, 100]
         }
-    },
-    this.prechartOptions.xaxis = {
-      title: {
-        text: "Per meting"
-      }
-    };
+      },
+      this.prechartOptions.xaxis = {
+        title: {
+          text: "Per meting"
+        }
+      };
     this.prechartOptions.yaxis = {
       title: {
         text: "Visueel licht"
@@ -115,15 +111,15 @@ export class WeerstationDashboardComponent implements OnInit {
 
   public updateLuxwaardes() {
     this.prechartOptions.series = [{
-        data: [150, 111, 85, 22, 47, 66, 94, 121, 12]
+      data: [150, 111, 85, 22, 47, 66, 94, 121, 12]
     }],
-    this.prechartOptions.title = {
+      this.prechartOptions.title = {
         text: 'Lux waardes'
-    },
-    this.prechartOptions.chart = {
+      },
+      this.prechartOptions.chart = {
         type: 'area'
-    },
-    this.prechartOptions.fill = {
+      },
+      this.prechartOptions.fill = {
         type: "gradient",
         gradient: {
           shade: "dark",
@@ -134,35 +130,35 @@ export class WeerstationDashboardComponent implements OnInit {
           opacityTo: 1,
           stops: [0, 100, 100, 100]
         }
-    },
-    this.prechartOptions.xaxis = {
-      title: {
-        text: "Per meting"
-      }
-    };
+      },
+      this.prechartOptions.xaxis = {
+        title: {
+          text: "Per meting"
+        }
+      };
     this.prechartOptions.yaxis = {
       title: {
         text: "Infrarood licht"
       }
     }
   }
-    
-    
 
-  weerstation!:Weerstation;
-  weerstation$:Subscription = new Subscription();
-  routeParams$:Subscription = new Subscription();
 
-  constructor(private route: ActivatedRoute, private authWeerstationService: WeerstationService) { 
+
+  weerstation!: Weerstation;
+  weerstation$: Subscription = new Subscription();
+  routeParams$: Subscription = new Subscription();
+
+  constructor(private route: ActivatedRoute, private authWeerstationService: WeerstationService) {
 
     this.authWeerstationService
       .getDataBetweenDates(2, this.begin, this.eind)
       .subscribe((result: Weerstation) => {
-          console.log("Result:", result);
+        console.log("Result:", result);
 
-          //Array.from(result).forEach((meting: Metingen) => {
-          result.metings?.forEach((meting: Meting) => {
-          
+        //Array.from(result).forEach((meting: Metingen) => {
+        result.metings?.forEach((meting: Meting) => {
+
 
           //temperatuur
           let temperatuur1 = Math.round(meting.t1 * 100) / 100;
@@ -195,8 +191,8 @@ export class WeerstationDashboardComponent implements OnInit {
           let lw1Object = { x: date, y: lw1 };
           let lw2Object = { x: date, y: lw2 };
           //object batterij
-          let bavObject = { x:date, y: bav };
-          let bapObject = { x:date, y: bap };
+          let bavObject = { x: date, y: bav };
+          let bapObject = { x: date, y: bap };
 
           //array temperatuur
           this.tempArray.push(dataObject);
@@ -215,15 +211,15 @@ export class WeerstationDashboardComponent implements OnInit {
           this.bapArray.push(bapObject);
         })
       });
-  
+
     this.graphLoaded = true;
 
     this.routeParams$ = this.route.params.subscribe(
       params => {
-        this.weerstation$ = this.authWeerstationService.getWeerstationWithMetingen(params['id'],this.begin,this.eind).subscribe(
+        this.weerstation$ = this.authWeerstationService.getWeerstationWithMetingen(params['id'], this.begin, this.eind).subscribe(
           result => {
 
-            this.weerstation = result; 
+            this.weerstation = result;
 
             this.prechartOptions = {
               series: [],
@@ -292,14 +288,14 @@ export class WeerstationDashboardComponent implements OnInit {
               xaxis: {
                 type: 'category',
                 title: {
-                    text: 'Per datum/uur'
+                  text: 'Per datum/uur'
                 },
                 //categories: resultId
                 categories: this.eind
               },
               yaxis: {
                 title: {
-                    text: 'T1 sensorwaardes'
+                  text: 'T1 sensorwaardes'
                 }
               }
             };
@@ -308,7 +304,7 @@ export class WeerstationDashboardComponent implements OnInit {
               series: [
                 {
                   name: "Batterij percentage",
-                  data:  this.bapArray
+                  data: this.bapArray
                 }
               ],
               chart: {
@@ -324,7 +320,7 @@ export class WeerstationDashboardComponent implements OnInit {
               stroke: {
                 curve: "smooth"
               },
-        
+
               title: {
                 text: result.naam
               },
@@ -333,12 +329,12 @@ export class WeerstationDashboardComponent implements OnInit {
                 categories: this.eind,
                 title: {
                   text: 'Per datum/uur'
-              }
+                }
               },
               yaxis: {
                 title: {
                   text: 'Batterij percentage'
-              }
+                }
               }
             };
 
@@ -354,18 +350,18 @@ export class WeerstationDashboardComponent implements OnInit {
 
   }
 
-  
+
   public updateInfraroodlicht() {
     this.prechartOptions.series = [{
       data: this.IrlArray
     }],
-    this.prechartOptions.title = {
+      this.prechartOptions.title = {
         text: 'Infrarood licht'
-    },
-    this.prechartOptions.chart = {
+      },
+      this.prechartOptions.chart = {
         type: 'bar'
-    },
-    this.prechartOptions.fill = {
+      },
+      this.prechartOptions.fill = {
         type: "gradient",
         gradient: {
           shade: "dark",
@@ -376,17 +372,16 @@ export class WeerstationDashboardComponent implements OnInit {
           opacityTo: 1,
           stops: [0, 100, 100, 100]
         }
-    },
-    this.prechartOptions.xaxis = {
-      title: {
-        text: "Per meting"
-      }
-    };
+      },
+      this.prechartOptions.xaxis = {
+        title: {
+          text: "Per meting"
+        }
+      };
     this.prechartOptions.yaxis = {
       title: {
         text: "Infrarood licht"
       }
     }
   }
-
 }

@@ -2,7 +2,7 @@
     {{weerstation.naam}}
 </div>
 
-<app-alarmwaardes-form></app-alarmwaardes-form>
+<app-weerstations-alarm-schakelwaardes-form></app-weerstations-alarm-schakelwaardes-form>
 
 <div class="flex row justify-end">
     <button (click)="toevoegenAlarmwaarde()"
@@ -30,7 +30,8 @@
                                 class="w-1/4 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Waarde
                             </th>
-                            <th scope="col" class="w-1/4 px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <th scope="col"
+                                class="w-1/4 px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Acties
                             </th>
                         </tr>
@@ -94,8 +95,10 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                 <div class="flex justify-around">
-                                    <a class="text-indigo-600 hover:text-indigo-900 cursor-pointer sm:mr-1" (click)="wijzigAlarmWaarde(alarmWaarde.id)">Wijzig</a>
-                                    <a class="text-indigo-600 hover:text-indigo-900 cursor-pointer sm:ml-1" (click)="verwijderAlarmWaarde(alarmWaarde.id)">Verwijder</a>
+                                    <a class="text-indigo-600 hover:text-indigo-900 cursor-pointer sm:mr-1"
+                                        (click)="wijzigAlarmWaarde(alarmWaarde.id)">Wijzig</a>
+                                    <a class="text-indigo-600 hover:text-indigo-900 cursor-pointer sm:ml-1"
+                                        (click)="verwijderAlarmWaarde(alarmWaarde.id)">Verwijder</a>
                                 </div>
                             </td>
                         </tr>
@@ -134,7 +137,7 @@
                                 class="w-1/4 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Waarde
                             </th>
-                            <th scope="col" 
+                            <th scope="col"
                                 class="w-1/4 px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Acties
                             </th>
@@ -199,8 +202,10 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                 <div class="flex justify-around">
-                                    <a class="text-indigo-600 hover:text-indigo-900 cursor-pointer sm:mr-1" (click)="wijzigSchakelWaarde(schakelWaarde.id)">Wijzig</a>
-                                    <a class="text-indigo-600 hover:text-indigo-900 cursor-pointer sm:ml-1" (click)="verwijderSchakelWaarde(schakelWaarde.id)">Verwijder</a>
+                                    <a class="text-indigo-600 hover:text-indigo-900 cursor-pointer sm:mr-1"
+                                        (click)="wijzigSchakelWaarde(schakelWaarde.id)">Wijzig</a>
+                                    <a class="text-indigo-600 hover:text-indigo-900 cursor-pointer sm:ml-1"
+                                        (click)="verwijderSchakelWaarde(schakelWaarde.id)">Verwijder</a>
                                 </div>
                             </td>
                         </tr>

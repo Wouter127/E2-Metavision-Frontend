@@ -13,6 +13,8 @@ import { ClipboardModule } from 'ngx-clipboard';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { VervolledigOrganisatieBeheerderComponent } from './vervolledig-organisatie-beheerder/vervolledig-organisatie-beheerder.component';
 import { PubliekeWeerstationsListComponent } from './publieke-weerstations-list/publieke-weerstations-list.component';
+import { WeerstationDashboardComponent } from './weerstation-dashboard/weerstation-dashboard.component';
+import { HomeComponent } from './home/home.component';
 
 
 
@@ -21,7 +23,9 @@ import { PubliekeWeerstationsListComponent } from './publieke-weerstations-list/
     LoginComponent,
     ResetWachtwoordComponent,
     VervolledigOrganisatieBeheerderComponent,
-    PubliekeWeerstationsListComponent
+    PubliekeWeerstationsListComponent,
+    WeerstationDashboardComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

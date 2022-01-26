@@ -25,6 +25,9 @@ export class NavigationComponent implements OnInit {
             gebruiker => {
               this.gebruiker = gebruiker;
               console.log(gebruiker);
+            },
+            error => {
+              this.authService.logout();
             }
           );
         }

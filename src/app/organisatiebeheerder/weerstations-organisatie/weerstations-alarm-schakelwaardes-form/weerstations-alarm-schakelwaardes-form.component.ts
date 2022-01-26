@@ -1,18 +1,18 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
 import { Subscription } from 'rxjs';
-import { SchakelWaardeService } from 'src/app/services/schakel-waarde.service';
 import { AlarmWaardeService } from 'src/app/services/alarm-waarde.service';
+import { SchakelWaardeService } from 'src/app/services/schakel-waarde.service';
 import { SensorService } from 'src/app/services/sensor.service';
 import { SwitchLogicService } from 'src/app/services/switch-logic.service';
 
 @Component({
-  selector: 'app-alarmwaardes-form',
-  templateUrl: './alarmwaardes-form.component.html',
-  styleUrls: ['./alarmwaardes-form.component.scss']
+  selector: 'app-weerstations-alarm-schakelwaardes-form',
+  templateUrl: './weerstations-alarm-schakelwaardes-form.component.html',
+  styleUrls: ['./weerstations-alarm-schakelwaardes-form.component.scss']
 })
-export class AlarmwaardesFormComponent implements OnInit {
+export class WeerstationsAlarmSchakelwaardesFormComponent implements OnInit {
 
   @Output() output = new EventEmitter();
 
@@ -101,7 +101,7 @@ export class AlarmwaardesFormComponent implements OnInit {
   openAddSchakelWaardeModal() {
     this.isAdd = true;
     this.isSchakel = true;
-    this.title = "Schakelwaarde toevoegen" 
+    this.title = "Schakelwaarde toevoegen"
 
     this.getSensoren();
     this.switches$ = this.switchLogicService.getSwitches().subscribe(result => {
@@ -304,5 +304,4 @@ export class AlarmwaardesFormComponent implements OnInit {
         });
     }
   }
-
 }

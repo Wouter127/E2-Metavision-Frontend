@@ -11,7 +11,7 @@ import {
     ApexStroke,
     ApexFill,
     ApexLegend
-  } from "ng-apexcharts";
+} from "ng-apexcharts";
 
 export interface ChartOptions {
     series: ApexAxisChartSeries;
@@ -25,24 +25,24 @@ export interface ChartOptions {
 };
 
 export interface preChartOptions {
-  series: ApexAxisChartSeries;
-  chart: ApexChart;
-  dataLabels: ApexDataLabels;
-  title: ApexTitleSubtitle;
-  noData: ApexNoData;
-  fill: ApexFill;
-  xaxis: ApexXAxis;
-  yaxis: ApexYAxis;
+    series: ApexAxisChartSeries;
+    chart: ApexChart;
+    dataLabels: ApexDataLabels;
+    title: ApexTitleSubtitle;
+    noData: ApexNoData;
+    fill: ApexFill;
+    xaxis: ApexXAxis;
+    yaxis: ApexYAxis;
 };
 
 export interface ChartOptions2 {
-  series: ApexAxisChartSeries;
-  chart: ApexChart;
-  xaxis: ApexXAxis;
-  stroke: ApexStroke | undefined;
-  dataLabels: ApexDataLabels;
-  yaxis: ApexYAxis;
-  title: ApexTitleSubtitle;
+    series: ApexAxisChartSeries;
+    chart: ApexChart;
+    xaxis: ApexXAxis;
+    stroke: ApexStroke | undefined;
+    dataLabels: ApexDataLabels;
+    yaxis: ApexYAxis;
+    title: ApexTitleSubtitle;
 };
 
 

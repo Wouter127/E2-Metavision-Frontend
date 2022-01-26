@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { GebruikersOrganisatieListComponent } from './gebruikers-organisatie/gebruikers-organisatie-list/gebruikers-organisatie-list.component';
 import { GebruikersOrganisatieFormComponent } from './gebruikers-organisatie/gebruikers-organisatie-form/gebruikers-organisatie-form.component';
 import { GebruikersOrganisatieToevoegenComponent } from './gebruikers-organisatie/gebruikers-organisatie-toevoegen/gebruikers-organisatie-toevoegen.component';
@@ -8,6 +9,8 @@ import { WeerstationsOrganisatieFormComponent } from './weerstations-organisatie
 import { WeerstationsActiverenComponent } from './weerstations-organisatie/weerstations-activeren/weerstations-activeren.component';
 import { OrganisatieInfoComponent } from './organisatie/organisatie-info/organisatie-info.component';
 import { OrganisatieFormComponent } from './organisatie/organisatie-form/organisatie-form.component';
+import { WeerstationsAlarmSchakelwaardesListComponent } from './weerstations-organisatie/weerstations-alarm-schakelwaardes-list/weerstations-alarm-schakelwaardes-list.component';
+import { WeerstationsAlarmSchakelwaardesFormComponent } from './weerstations-organisatie/weerstations-alarm-schakelwaardes-form/weerstations-alarm-schakelwaardes-form.component';
 
 
 
@@ -20,10 +23,13 @@ import { OrganisatieFormComponent } from './organisatie/organisatie-form/organis
     WeerstationsOrganisatieFormComponent,
     WeerstationsActiverenComponent,
     OrganisatieInfoComponent,
-    OrganisatieFormComponent
+    OrganisatieFormComponent,
+    WeerstationsAlarmSchakelwaardesListComponent,
+    WeerstationsAlarmSchakelwaardesFormComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   exports: [
     GebruikersOrganisatieListComponent,

@@ -3,19 +3,18 @@ import { ActivatedRoute } from '@angular/router';
 import { DialogService } from '@ngneat/dialog';
 import { HotToastService } from '@ngneat/hot-toast';
 import { Subscription } from 'rxjs';
-import { AlarmWaarde } from 'src/app/interfaces/Alarm-waarde';
-import { SchakelWaardeService } from 'src/app/services/schakel-waarde.service';
-import { AlarmwaardesFormComponent } from '../alarmwaardes-form/alarmwaardes-form.component';
 import { AlarmWaardeService } from 'src/app/services/alarm-waarde.service';
+import { SchakelWaardeService } from 'src/app/services/schakel-waarde.service';
 import { WeerstationService } from 'src/app/services/weerstation.service';
+import { WeerstationsAlarmSchakelwaardesFormComponent } from '../weerstations-alarm-schakelwaardes-form/weerstations-alarm-schakelwaardes-form.component';
 
 @Component({
-  selector: 'app-alarmwaardes-list',
-  templateUrl: './alarmwaardes-list.component.html',
-  styleUrls: ['./alarmwaardes-list.component.scss']
+  selector: 'app-weerstations-alarm-schakelwaardes-list',
+  templateUrl: './weerstations-alarm-schakelwaardes-list.component.html',
+  styleUrls: ['./weerstations-alarm-schakelwaardes-list.component.scss']
 })
-export class AlarmwaardesListComponent implements OnInit {
-  @ViewChild(AlarmwaardesFormComponent, { static: true }) alarmwaardesFormComponent!: AlarmwaardesFormComponent;
+export class WeerstationsAlarmSchakelwaardesListComponent implements OnInit {
+  @ViewChild(WeerstationsAlarmSchakelwaardesFormComponent, { static: true }) alarmwaardesFormComponent!: WeerstationsAlarmSchakelwaardesFormComponent;
 
   loading: boolean = true;
 
@@ -27,7 +26,7 @@ export class AlarmwaardesListComponent implements OnInit {
     private route: ActivatedRoute,
     private toast: HotToastService,
     private dialog: DialogService,
-    private alarmWaardeService: AlarmWaardeService, 
+    private alarmWaardeService: AlarmWaardeService,
     private schakelWaardeService: SchakelWaardeService) {
 
     // Reverse the order of which the toasts are displayed
@@ -39,7 +38,7 @@ export class AlarmwaardesListComponent implements OnInit {
 
   ngOnInit(): void {
     const weerstationId = this.route.snapshot.paramMap.get('id')?.toString();
-    this.getWeerstation(weerstationId);    
+    this.getWeerstation(weerstationId);
   }
 
   ngOnDestroy(): void {
@@ -52,7 +51,7 @@ export class AlarmwaardesListComponent implements OnInit {
         this.weerstation = result;
         this.loading = false;
         console.log(this.weerstation.schakel_waardes.length);
-        
+
       },
       error => {
         this.toast.error("Er ging iets mis.  De alarm- en schakelwaarden kunnen niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false })
