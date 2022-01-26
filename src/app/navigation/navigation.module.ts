@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavigationComponent } from './navigation.component';
 import { AppRoutingModule } from '../app-routing.module';
-import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -11,7 +10,6 @@ import { SharedModule } from '../shared/shared.module';
     NavigationComponent
   ],
   imports: [
-    SharedModule,
     AppRoutingModule,
     CommonModule
   ],

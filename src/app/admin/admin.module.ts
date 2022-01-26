@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from '../app-routing.module';
-import { SharedModule } from '../shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TooltipModule } from 'ng2-tooltip-directive';
@@ -30,7 +29,6 @@ import { OrganisatieListComponent } from './organisaties/organisatie-list/organi
     OrganisatieListComponent
   ],
   imports: [
-    SharedModule,
     AppRoutingModule,
     CommonModule,
     BrowserModule,

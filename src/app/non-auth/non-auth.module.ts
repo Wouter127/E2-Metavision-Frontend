@@ -6,7 +6,6 @@ import { AppRoutingModule } from '../app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ResetWachtwoordComponent } from './reset-wachtwoord/reset-wachtwoord.component';
-import { SharedModule } from '../shared/shared.module';
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { HotToastModule } from '@ngneat/hot-toast';
 import { DialogModule } from '@ngneat/dialog';
@@ -32,7 +31,6 @@ import { PubliekeWeerstationsListComponent } from './publieke-weerstations-list/
     ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
-    SharedModule,
     HttpClientModule,
     TooltipModule,
     HotToastModule.forRoot(),

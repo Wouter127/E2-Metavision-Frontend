@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AlarmwaardesListComponent } from './alarmwaarde/alarmwaardes-list/alarmwaardes-list.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { GebruikersListComponent } from './admin/gebruikers/gebruikers-list/gebruikers-list.component';
 import { LoginComponent } from './non-auth/login/login.component';
@@ -12,9 +11,11 @@ import { VervolledigOrganisatieBeheerderComponent } from './non-auth/vervolledig
 import { WeerstationActiverenComponent } from './weerstation/weerstation-activeren/weerstation-activeren.component';
 import { WeerstationFormComponent } from './admin/weerstations/weerstation-form/weerstation-form.component';
 import { WeerstationToevoegenComponent } from './admin/weerstations/weerstation-toevoegen/weerstation-toevoegen.component';
-import { WeerstationDashboardComponent } from './weerstation/weerstation-dashboard/weerstation-dashboard.component';
+import { WeerstationDashboardComponent } from './shared/weerstation-dashboard/weerstation-dashboard.component';
 import { WeerstationListComponent } from './admin/weerstations/weerstation-list/weerstation-list.component';
 import { PubliekeWeerstationsListComponent } from './non-auth/publieke-weerstations-list/publieke-weerstations-list.component';
+import { AlarmwaardesListComponent } from './shared/alarmwaardes-list/alarmwaardes-list.component';
+import { WeerstationsOrganisatieListComponent } from './shared/weerstations-organisatie-list/weerstations-organisatie-list.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -32,7 +33,7 @@ const routes: Routes = [
   { path: 'waardes/:id', component: AlarmwaardesListComponent},
   { path: 'weerstations/form', component: WeerstationFormComponent},
   { path: 'weerstation/:id/dashboard', component: WeerstationDashboardComponent},
-  { path: 'woutertest', component: PubliekeWeerstationsListComponent},
+  { path: 'woutertest', component: WeerstationDashboardComponent},
 
 ];
 
