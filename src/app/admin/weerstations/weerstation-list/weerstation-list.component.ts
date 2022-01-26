@@ -1,11 +1,10 @@
 import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Organisatie } from 'src/app/interfaces/Organisatie';
-import { OrganisatieService } from 'src/app/services/admin/organisatie.service';
+import { OrganisatieService } from 'src/app/services/organisatie.service';
 import { Router } from '@angular/router';
 import { Weerstation } from 'src/app/interfaces/Weerstation';
-import { WeerstationService } from 'src/app/services/admin/weerstation.service';
-import { AuthWeerstationService } from 'src/app/services/auth/weerstation.service';
+import { WeerstationService } from 'src/app/services/weerstation.service';
 import { Observable, Subscription } from 'rxjs';
 import { FormControl, FormGroup } from '@angular/forms';
 import { HotToastService } from '@ngneat/hot-toast';
@@ -40,7 +39,7 @@ export class WeerstationListComponent implements OnInit, OnDestroy {
     naam: new FormControl('')
   });
 
-  constructor(private weerstationService: WeerstationService, private organisatieService: OrganisatieService, private authWeerstationService: AuthWeerstationService, private locationService: LocationService, private router: Router, private toast: HotToastService, private clipboardApi: ClipboardService, private dialog: DialogService) { 
+  constructor(private weerstationService: WeerstationService, private organisatieService: OrganisatieService, private authWeerstationService: WeerstationService, private locationService: LocationService, private router: Router, private toast: HotToastService, private clipboardApi: ClipboardService, private dialog: DialogService) { 
     // Reverse the order of which the toasts are displayed
     this.toast.defaultConfig = {
       ...this.toast.defaultConfig,

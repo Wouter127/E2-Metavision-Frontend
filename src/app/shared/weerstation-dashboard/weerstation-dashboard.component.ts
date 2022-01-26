@@ -17,7 +17,7 @@ import {
 } from "ng-apexcharts";
 import { Weerstation } from 'src/app/interfaces/Weerstation';
 import { ChartOptions } from './chart-options';
-import { AuthWeerstationService } from 'src/app/services/auth/weerstation.service';
+import { WeerstationService } from 'src/app/services/weerstation.service';
 
 
 @Component({
@@ -33,7 +33,7 @@ export class WeerstationDashboardComponent implements OnInit {
   weerstation$:Subscription = new Subscription();
   routeParams$:Subscription = new Subscription();
 
-  constructor(private route: ActivatedRoute, private authWeerstationService: AuthWeerstationService) { 
+  constructor(private route: ActivatedRoute, private authWeerstationService: WeerstationService) { 
     
     this.routeParams$ = this.route.params.subscribe(
       params => {

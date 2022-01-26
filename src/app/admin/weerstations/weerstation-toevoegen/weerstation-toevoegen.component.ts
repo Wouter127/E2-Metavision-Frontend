@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
 import { Subscription } from 'rxjs';
 import { Weerstation } from 'src/app/interfaces/Weerstation';
-import { WeerstationService } from 'src/app/services/admin/weerstation.service';
+import { WeerstationService } from 'src/app/services/weerstation.service';
 
 @Component({
   selector: 'app-weerstation-toevoegen',

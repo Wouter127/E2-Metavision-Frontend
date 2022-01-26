@@ -61,5 +61,19 @@ export class WeerstationService {
     return this.httpClient.post<Weerstation>(environment.API_URI + "/admin/weerstations", { gsmNummer }, {headers: headers});
   }
 
+  getLaatsteMeting(weerstation_id: number): Observable<any> {
+    return this.httpClient.get<any[]>(`${environment.API_URI}/auth/meting/${weerstation_id}/laatsteMeting`);
+  }
+  
+  getWeerstationWithMetingen(weerstation_id:number):Observable<Weerstation> {
+      return this.httpClient.get<Weerstation>(`${environment.API_URI}/auth/weerstations/${weerstation_id}/metingen`);
+  }
 
+  activeerWeerstation(uniekeCode: string): Observable<Weerstation> {
+    return this.httpClient.get<Weerstation>(environment.API_URI + "/organisatiebeheerder/weerstations/activeer/" + uniekeCode);
+  } 
+
+  getWaardesByWeerstationId(id: number): Observable<Weerstation> {
+    return this.httpClient.get<Weerstation>(environment.API_URI + "/organisatiebeheerder/weerstations/" + id);
+  }
 }

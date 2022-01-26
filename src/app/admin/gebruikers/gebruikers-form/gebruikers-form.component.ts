@@ -3,8 +3,8 @@ import { HotToastService } from '@ngneat/hot-toast';
 import { Subscription } from 'rxjs';
 import { Gebruiker } from 'src/app/interfaces/Gebruiker';
 import { Organisatie } from 'src/app/interfaces/Organisatie';
-import { GebruikerService } from 'src/app/services/admin/gebruiker.service';
-import { OrganisatieService } from 'src/app/services/admin/organisatie.service';
+import { OrganisatieService } from 'src/app/services/organisatie.service';
+import { GebruikerService } from 'src/app/services/gebruiker.service';
 
 @Component({
   selector: 'app-gebruikers-form',

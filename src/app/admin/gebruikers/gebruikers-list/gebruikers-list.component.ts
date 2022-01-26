@@ -4,7 +4,7 @@ import { DialogService } from '@ngneat/dialog';
 import { HotToastService } from '@ngneat/hot-toast';
 import { Subscription } from 'rxjs';
 import { Gebruiker } from 'src/app/interfaces/Gebruiker';
-import { GebruikerService } from 'src/app/services/admin/gebruiker.service';
+import { GebruikerService } from 'src/app/services/gebruiker.service';
 import { GebruikersFormOrganisatiebeheerderComponent } from '../gebruikers-form-organisatiebeheerder/gebruikers-form-organisatiebeheerder.component';
 import { GebruikersFormComponent } from '../gebruikers-form/gebruikers-form.component';
 

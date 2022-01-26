@@ -4,8 +4,8 @@ import { HotToastService } from '@ngneat/hot-toast';
 import { Subscription } from 'rxjs';
 import { Organisatie } from 'src/app/interfaces/Organisatie';
 import { Weerstation } from 'src/app/interfaces/Weerstation';
-import { OrganisatieService } from 'src/app/services/admin/organisatie.service';
-import { WeerstationService } from 'src/app/services/admin/weerstation.service';
+import { OrganisatieService } from 'src/app/services/organisatie.service';
+import { WeerstationService } from 'src/app/services/weerstation.service';
 
 @Component({
   selector: 'app-weerstation-form',

@@ -2,10 +2,10 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
 import { Subscription } from 'rxjs';
-import { AlarmWaardeService } from 'src/app/services/organisatiebeheerder/alarm-waarde.service';
-import { SchakelWaardeService } from 'src/app/services/organisatiebeheerder/schakel-waarde.service';
-import { SensorService } from 'src/app/services/organisatiebeheerder/sensor.service';
-import { SwitchLogicService } from 'src/app/services/organisatiebeheerder/switch-logic.service';
+import { SchakelWaardeService } from 'src/app/services/schakel-waarde.service';
+import { AlarmWaardeService } from 'src/app/services/alarm-waarde.service';
+import { SensorService } from 'src/app/services/sensor.service';
+import { SwitchLogicService } from 'src/app/services/switch-logic.service';
 
 @Component({
   selector: 'app-alarmwaardes-form',

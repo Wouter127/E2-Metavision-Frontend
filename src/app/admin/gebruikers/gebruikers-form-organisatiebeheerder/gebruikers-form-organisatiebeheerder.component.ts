@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { HotToastService } from '@ngneat/hot-toast';
 import { Subscription } from 'rxjs';
-import { GebruikerService } from 'src/app/services/admin/gebruiker.service';
+import { GebruikerService } from 'src/app/services/gebruiker.service';
 
 @Component({
   selector: 'app-gebruikers-form-organisatiebeheerder',

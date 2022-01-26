@@ -3,11 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 import { DialogService } from '@ngneat/dialog';
 import { HotToastService } from '@ngneat/hot-toast';
 import { Subscription } from 'rxjs';
-import { WeerstationService } from 'src/app/services/organisatiebeheerder/weerstation.service';
-import { AlarmWaardeService } from 'src/app/services/organisatiebeheerder/alarm-waarde.service';
 import { AlarmWaarde } from 'src/app/interfaces/Alarm-waarde';
-import { SchakelWaardeService } from 'src/app/services/organisatiebeheerder/schakel-waarde.service';
+import { SchakelWaardeService } from 'src/app/services/schakel-waarde.service';
 import { AlarmwaardesFormComponent } from '../alarmwaardes-form/alarmwaardes-form.component';
+import { AlarmWaardeService } from 'src/app/services/alarm-waarde.service';
+import { WeerstationService } from 'src/app/services/weerstation.service';
 
 @Component({
   selector: 'app-alarmwaardes-list',
