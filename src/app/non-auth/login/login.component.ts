@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HotToastService } from '@ngneat/hot-toast';
-import { AuthService } from '../security/auth.service';
+import { AuthService } from '../../security/auth.service';
 
 @Component({
   selector: 'app-login',

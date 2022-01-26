@@ -92,7 +92,7 @@
                     <label for="achternaam" class="block font-medium text-gray-700">Achternaam</label>
                     <input type="text" name="achternaam" id="achternaam" [(ngModel)]="gebruiker.achternaam" #achternaam="ngModel"
                         required minlength="2" maxlength="60"
-                        class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:ring-indigo-500 border focus:border-indigo-500 invalid:border-red-500 invalid:ring-red-500">
+                        class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border-gray-300 focus:ring-indigo-500 border focus:border-indigo-500 invalid:border-red-500 invalid:ring-red-500">
                     <div *ngIf="achternaam.invalid && (achternaam.dirty || achternaam.touched)"
                         class="text-xs text-red-500 font-medium">
                         <span *ngIf="achternaam.errors?.['required']">

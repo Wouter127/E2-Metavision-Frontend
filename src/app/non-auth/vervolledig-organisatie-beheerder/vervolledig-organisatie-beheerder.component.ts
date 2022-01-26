@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
 import { Subscription } from 'rxjs';
-import { Gebruiker } from '../interfaces/Gebruiker';
-import { Organisatie } from '../interfaces/Organisatie';
-import { GebruikerService } from '../services/gebruiker.service';
 import { Router } from '@angular/router';
+import { Organisatie } from '../../interfaces/Organisatie';
+import { Gebruiker } from '../../interfaces/Gebruiker';
+import { GebruikerService } from 'src/app/services/gebruiker.service';
 
 @Component({
   selector: 'app-vervolledig-organisatie-beheerder',
