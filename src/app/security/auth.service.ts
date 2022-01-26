@@ -3,15 +3,18 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
 import { Observable } from 'rxjs';
+import { shareReplay } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Gebruiker } from '../interfaces/Gebruiker';
+import { AuthStateService } from './auth-state.service';
+import { TokenService } from './token.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private httpClient: HttpClient, private toast: HotToastService, private router: Router) {
+  constructor(private tokenService: TokenService, private authStateService: AuthStateService, private httpClient: HttpClient, private toast: HotToastService, private router: Router) {
     // Reverse the order of which the toasts are displayed
     this.toast.defaultConfig = {
       ...this.toast.defaultConfig,
@@ -19,23 +22,15 @@ export class AuthService {
     }
   }
 
-  getToken(): string {
-    return localStorage.getItem('token') ?? '';
-  }
-
-  deleteToken(): void {
-    localStorage.removeItem('token');
-  }
-
   getGebruiker(): Observable<Gebruiker> {
     return this.httpClient.get<any>(`${environment.API_URI}/auth/account`);
   }
 
-  login(email: string, wachtwoord: string): Observable<any> {
+  login(email: string, password: string): Observable<any> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
 
-    return this.httpClient.post<any>(`${environment.API_URI}/login`, { email, wachtwoord }, { headers: headers });
+    return this.httpClient.post<any>(`${environment.API_URI}/login`, { email, password }, { headers: headers }).pipe(shareReplay(1));
   }
 
   logout(): void {
@@ -50,7 +45,8 @@ export class AuthService {
       })
     ).subscribe(
       result => {
-        this.deleteToken();
+        this.authStateService.setAuthState(false);
+        this.tokenService.removeToken();
         this.router.navigate(['login']);
       }
     );
