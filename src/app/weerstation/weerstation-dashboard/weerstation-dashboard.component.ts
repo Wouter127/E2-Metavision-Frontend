@@ -7,7 +7,7 @@ import {
 } from "ng-apexcharts";
 import { Weerstation } from 'src/app/interfaces/Weerstation';
 import { ChartOptions, preChartOptions, ChartOptions2 } from './chart-options';
-import { WeerstationService } from 'src/app/services/auth/weerstation.service';
+import { AuthWeerstationService } from 'src/app/services/auth/weerstation.service';
 import { Meting } from 'src/app/interfaces/Meting';
 
 
@@ -137,7 +137,7 @@ export class WeerstationDashboardComponent implements OnInit {
   weerstation$:Subscription = new Subscription();
   routeParams$:Subscription = new Subscription();
 
-  constructor(private route: ActivatedRoute, private authWeerstationService: WeerstationService) { 
+  constructor(private route: ActivatedRoute, private authWeerstationService: AuthWeerstationService) { 
     
     //temperatuur
     let tempArray: { y: number; x: Date }[] = [];

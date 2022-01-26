@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class WeerstationService {
+export class AuthWeerstationService {
 
   constructor(private httpClient:HttpClient) { }
 
