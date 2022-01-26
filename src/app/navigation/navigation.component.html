@@ -1,7 +1,8 @@
 <nav>
     <ul>
         <li><a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Dashboard</a></li>
-            <li *ngIf="!gebruiker"><a routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Login</a></li>
-            <li *ngIf="gebruiker"><a (click)="onLogout()">Logout</a></li>
+            <li *ngIf="!isLoggedIn"><a routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Login</a></li>
+            <li *ngIf="isLoggedIn"><a (click)="onLogout()">Logout</a></li>
+            <li *ngIf="gebruiker">{{ gebruiker.voornaam }}</li>
     </ul>
 </nav>

@@ -6,7 +6,7 @@ export interface Gebruiker {
     voornaam: string;
     achternaam: string;
     email: string;
-    wachtwoord: string;
+    password: string;
     isOrganisatieBeheerder: number;
     isAdmin: number;
     vervolledig_token: string;
