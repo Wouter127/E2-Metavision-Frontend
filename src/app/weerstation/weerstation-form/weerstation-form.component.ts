@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { HotToastService } from '@ngneat/hot-toast';
 import { Subscription } from 'rxjs';
+import { Organisatie } from 'src/app/interfaces/Organisatie';
 import { Weerstation } from 'src/app/interfaces/Weerstation';
+import { OrganisatieService } from 'src/app/services/admin/organisatie.service';
 import { WeerstationService } from 'src/app/services/admin/weerstation.service';
 
 @Component({
@@ -10,23 +13,61 @@ import { WeerstationService } from 'src/app/services/admin/weerstation.service';
   styleUrls: ['./weerstation-form.component.scss']
 })
 export class WeerstationFormComponent implements OnInit {
+  @Input() title!: string;
+  @Output() output = new EventEmitter();
 
   weerstation: any = {};
-  weerstationId: number = 0;
   weerstation$: Subscription = new Subscription();
+
+  organisaties: Organisatie[] = [];
+  organisaties$: Subscription = new Subscription();
+
+  loading: boolean = true;
+  showModal: boolean = false;
+
   putWeerstation$: Subscription = new Subscription();
-  errorMessage: string = '';
-  isSubmitted: boolean = false;
 
-  constructor(private router: Router, private weerstationService: WeerstationService) {
-    this.weerstationId = +this.router.getCurrentNavigation()?.extras.state?.id;
-
-    if (this.weerstationId != null && this.weerstationId > 0) {
-      this.weerstation$ = this.weerstationService.getWeerstationById(this.weerstationId).subscribe(result => this.weerstation = result);
+  constructor(private router: Router, private adminWeerstationService: WeerstationService, private adminOrganisatieService: OrganisatieService, private toast: HotToastService) {
+    // Reverse the order of which the toasts are displayed
+    this.toast.defaultConfig = {
+      ...this.toast.defaultConfig,
+      reverseOrder: true
     }
    }
 
   ngOnInit(): void {    
+    this.organisaties$ = this.adminOrganisatieService.getOrganisaties().subscribe(
+      result => {
+        this.organisaties = result;
+      },
+      error => {
+        this.toast.error("Er ging iets mis.  De lijst van organisaties kan niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false })
+      }
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.putWeerstation$.unsubscribe();
+  }
+
+  openModal(id: number) {
+    this.loading = true;
+    this.weerstation$ = this.adminWeerstationService.getWeerstationById(id).subscribe(
+      result => {
+        this.weerstation = result;
+
+        this.loading = false;
+      },
+      error => {
+        this.toast.error("Er ging iets mis.  De weerstation kan niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false });
+      }
+    );
+
+    this.showModal = true;
+  }
+
+  closeModal() {
+    this.showModal = false;
   }
 
   changeZichtbaarheid(weerstation: Weerstation) {
@@ -37,15 +78,58 @@ export class WeerstationFormComponent implements OnInit {
     }
   }
 
+  genereerCode() {
+    this.putWeerstation$ = this.adminWeerstationService.genereerNieuweCode(this.weerstation.id).pipe(
+      this.toast.observe({
+        loading: { content: 'Genereren...', position: 'bottom-right' },
+        success: { content: 'Nieuwe code gegenereerd!', position: 'bottom-right', dismissible: true },
+        error: {
+          content: (e) => {
+            let msg = '<ul>';
+            msg += `<li><b>Er ging iets mis!</b></li>`;
+            for (let key in e.error.errors) {
+              msg += `<li>${e.error.errors[key]}</li>`;
+            }
+            msg += '</ul>';
+
+            return msg;
+          }, position: 'bottom-right', dismissible: true, duration: 5000
+        },
+      })
+    ).subscribe(
+      result => {
+        this.weerstation = result;
+
+        this.output.next(); // Send event to parent component.
+      }
+    );
+  }
+
   onSubmit() {
-    this.isSubmitted = true;
-    this.putWeerstation$ = this.weerstationService.putWeerstation(this.weerstationId, this.weerstation).subscribe(result => {
-      //all went well
-      this.router.navigateByUrl("/mijnweerstations");
-    },
-    error => {
-      this.errorMessage = error.message;
-    });
+    this.putWeerstation$ = this.adminWeerstationService.putWeerstation(this.weerstation.id, this.weerstation).pipe(
+      this.toast.observe({
+        loading: { content: 'Aanpassen...', position: 'bottom-right' },
+        success: { content: 'Weerstation aangepast!', position: 'bottom-right', dismissible: true },
+        error: {
+          content: (e) => {
+            let msg = '<ul>';
+            msg += `<li><b>Er ging iets mis!</b></li>`;
+            for (let key in e.error.errors) {
+              msg += `<li>${e.error.errors[key]}</li>`;
+            }
+            msg += '</ul>';
+
+            return msg;
+          }, position: 'bottom-right', dismissible: true, duration: 5000
+        },
+      })
+    ).subscribe(
+      result => {
+        this.showModal = false;
+
+        this.output.next(); // Send event to parent component.
+      }
+    );
   }
 
 }

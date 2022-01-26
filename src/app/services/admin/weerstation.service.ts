@@ -14,6 +14,12 @@ export class WeerstationService {
 
   constructor(private httpClient: HttpClient) { }
 
+  genereerNieuweCode(id: number) {
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json; charset=utf-8');
+
+    return this.httpClient.put<Weerstation>(environment.API_URI + "/admin/weerstations/nieuwecode/" + id, {headers: headers});
+  }
 
   putWeerstation(id: number, weerstation: Weerstation) {
     let headers = new HttpHeaders();
@@ -24,14 +30,23 @@ export class WeerstationService {
 
   deleteWeerstation(id: number): Observable<Weerstation> {
     return this.httpClient.delete<Weerstation>(environment.API_URI + "/admin/weerstations/" + id);
-}
-
-getWeerstations(): Observable<Weerstation[]> {
-    return this.httpClient.get<Weerstation[]>(environment.API_URI + "/admin/weerstations");
   }
 
-  getWeerstationsZonderOrganisaties(): Observable<Weerstation[]> {
-    return this.httpClient.get<Weerstation[]>(environment.API_URI + "/admin/weerstations?organisatieId=null");
+  getWeerstations(organisatieId?: string): Observable<Weerstation[]> {
+    let parameters: string = '';
+    let parameterCount = 0;
+    if (organisatieId) {
+      if (parameterCount === 0) {
+        parameters += '?organisatieId='+organisatieId;
+        parameterCount++;
+      }
+      else {
+        parameters += '&organisatieId=' + organisatieId;
+        parameterCount++;
+      }
+    }
+
+    return this.httpClient.get<Weerstation[]>(environment.API_URI + "/admin/weerstations" + parameters);
   }
 
   getWeerstationById(id: number): Observable<Weerstation> {
@@ -39,11 +54,11 @@ getWeerstations(): Observable<Weerstation[]> {
   }
 
 
-  postWeerstation(weerstation: Weerstation): Observable<Weerstation> {
+  postWeerstation(gsmNummer: string): Observable<Weerstation> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
 
-    return this.httpClient.post<Weerstation>(environment.API_URI + "/admin/weerstations", weerstation, {headers: headers});
+    return this.httpClient.post<Weerstation>(environment.API_URI + "/admin/weerstations", { gsmNummer }, {headers: headers});
   }
 
 

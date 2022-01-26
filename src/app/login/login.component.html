@@ -1,9 +1,8 @@
-<form action="">
+<form (ngSubmit)="onSubmit()">
     <label for="email">email</label><br>
-    <input type="email" id="email" placeholder="john.doe@mail.be" class="bg-gray-200"><br>
+    <input type="email" id="email" name="email" class="bg-gray-200" [(ngModel)]="email"><br>
     <label for="pw">Wachtwoord</label><br>
-    <input type="password" id="pw" class="bg-gray-200"><br>
+    <input type="password" id="wachtwoord" name="wachtwoord" class="bg-gray-200" [(ngModel)]="wachtwoord"><br>
     <button type="submit" class="bg-gray-500">Login</button>
 </form>
-<a routerLink="/register" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">No account yet? Register</a>
     
