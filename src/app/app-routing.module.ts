@@ -17,6 +17,8 @@ import { GebruikersListComponent } from './admin/gebruikers/gebruikers-list/gebr
 import { WeerstationListComponent } from './admin/weerstations/weerstation-list/weerstation-list.component';
 import { OrganisatieListComponent } from './admin/organisaties/organisatie-list/organisatie-list.component';
 
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+
 const routes: Routes = [
   // Non-auth
   { path: '', component: HomeComponent },
@@ -38,6 +40,11 @@ const routes: Routes = [
   { path: 'admin/gebruikers', component: GebruikersListComponent },
   { path: 'admin/weerstations', component: WeerstationListComponent },
   { path: 'admin/organisaties', component: OrganisatieListComponent}, // TODO: crud maken
+
+
+  
+  // 404
+  { path: '**', pathMatch: 'full', component: PageNotFoundComponent } // TODO
 ];
 
 @NgModule({
