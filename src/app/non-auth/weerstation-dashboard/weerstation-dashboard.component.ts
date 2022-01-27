@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { Meting } from 'src/app/interfaces/Meting';
 import { Weerstation } from 'src/app/interfaces/Weerstation';
 import { WeerstationService } from 'src/app/services/weerstation.service';
-import { ChartOptions, preChartOptions } from './chart-options';
+import { preChartOptionsTemperatuur ,preChartOptionsLicht, preChartOptionsBatterij, preChartOptionsLuchtvochtigheid } from './chart-options';
 
 
 @Component({
@@ -13,11 +13,17 @@ import { ChartOptions, preChartOptions } from './chart-options';
   templateUrl: './weerstation-dashboard.component.html',
   styleUrls: ['./weerstation-dashboard.component.scss']
 })
+
 export class WeerstationDashboardComponent implements OnInit {
   @ViewChild('chart', { static: false }) chart: ChartComponent = new ChartComponent();
-  public chartOptions!: ChartOptions;
-  public prechartOptions!: preChartOptions;
-  public chartOptions2: any = {}
+  public prechartOptionsTemperatuur!: preChartOptionsTemperatuur;
+  public prechartOptionsLicht!: preChartOptionsLicht;
+  public prechartOptionsBatterij!: preChartOptionsBatterij;
+  public prechartOptionsLuchtvochtigheid!: preChartOptionsLuchtvochtigheid;
+  public chartOptionsT1: any = {}
+  public chartOptionsT2: any = {}
+  public chartOptionsLuchtvochtigheid: any = {}
+  public chartOptionsBatterijPercentage: any = {}
 
   //temperatuur
   tempArray: { y: number; x: Date }[] = [];
@@ -37,113 +43,8 @@ export class WeerstationDashboardComponent implements OnInit {
 
   graphLoaded: boolean = false;
 
-  begin: string | string = "2022-01-16";
-  eind: string | string = "2022-01-16";
-
-
-  // public updateInfraroodlicht() {
-  //   this.prechartOptions.series = [{
-  //       data: [150, 111, 85, 22, 47, 66, 94, 121, 12]
-  //   }],
-  //   this.prechartOptions.title = {
-  //       text: 'Infrarood licht'
-  //   },
-  //   this.prechartOptions.chart = {
-  //       type: 'bar'
-  //   },
-  //   this.prechartOptions.fill = {
-  //       type: "gradient",
-  //       gradient: {
-  //         shade: "dark",
-  //         gradientToColors: ["#F00"],
-  //         shadeIntensity: 1,
-  //         type: "horizontal",
-  //         opacityFrom: 1,
-  //         opacityTo: 1,
-  //         stops: [0, 100, 100, 100]
-  //       }
-  //   },
-  //   this.prechartOptions.xaxis = {
-  //     title: {
-  //       text: "Per meting"
-  //     }
-  //   };
-  //   this.prechartOptions.yaxis = {
-  //     title: {
-  //       text: "Infrarood licht"
-  //     }
-  //   }
-  // }
-
-  public updateVisueellicht() {
-    this.prechartOptions.series = [{
-      data: [30, 55, 88, 99, 42, 10, 140, 100, 75]
-    }],
-      this.prechartOptions.title = {
-        text: 'Visueel licht'
-      },
-      this.prechartOptions.chart = {
-        type: 'area'
-      },
-      this.prechartOptions.fill = {
-        type: "gradient",
-        gradient: {
-          shade: "dark",
-          gradientToColors: ["#354a40"],
-          shadeIntensity: 1,
-          type: "horizontal",
-          opacityFrom: 1,
-          opacityTo: 1,
-          stops: [0, 100, 100, 100]
-        }
-      },
-      this.prechartOptions.xaxis = {
-        title: {
-          text: "Per meting"
-        }
-      };
-    this.prechartOptions.yaxis = {
-      title: {
-        text: "Visueel licht"
-      }
-    }
-  }
-
-  public updateLuxwaardes() {
-    this.prechartOptions.series = [{
-      data: [150, 111, 85, 22, 47, 66, 94, 121, 12]
-    }],
-      this.prechartOptions.title = {
-        text: 'Lux waardes'
-      },
-      this.prechartOptions.chart = {
-        type: 'area'
-      },
-      this.prechartOptions.fill = {
-        type: "gradient",
-        gradient: {
-          shade: "dark",
-          gradientToColors: [""],
-          shadeIntensity: 1,
-          type: "horizontal",
-          opacityFrom: 1,
-          opacityTo: 1,
-          stops: [0, 100, 100, 100]
-        }
-      },
-      this.prechartOptions.xaxis = {
-        title: {
-          text: "Per meting"
-        }
-      };
-    this.prechartOptions.yaxis = {
-      title: {
-        text: "Infrarood licht"
-      }
-    }
-  }
-
-
+  begin: string | string = "2022-01-17";
+  eind: string | string = "2022-01-17";
 
   weerstation!: Weerstation;
   weerstation$: Subscription = new Subscription();
@@ -221,7 +122,7 @@ export class WeerstationDashboardComponent implements OnInit {
 
             this.weerstation = result;
 
-            this.prechartOptions = {
+            this.prechartOptionsTemperatuur = {
               series: [],
               chart: {
                 height: 350,
@@ -236,26 +137,116 @@ export class WeerstationDashboardComponent implements OnInit {
               noData: {
                 text: 'Selecteer een categorie om jouw grafiek te genereren'
               },
+              colors: ['#FFFFFF'],
               fill: {
                 type: "solid",
               },
               xaxis: {
                 title: {
-                  text: "Metingen"
+                  text: "Per datum/uur"
                 }
               },
               yaxis: {
                 title: {
-                  text: "Soort licht"
+                  text: "Metingen temperatuur"
                 }
               }
             };
 
-            this.chartOptions = {
+            this.prechartOptionsLicht = {
+              series: [],
+              chart: {
+                height: 350,
+                type: 'line'
+              },
+              dataLabels: {
+                enabled: false
+              },
+              title: {
+                text: 'Graph generator licht sensoren',
+              },
+              noData: {
+                text: 'Selecteer een categorie om jouw grafiek te genereren'
+              },
+              fill: {
+                type: "solid",
+              },
+              xaxis: {
+                title: {
+                  text: "Per datum/uur"
+                }
+              },
+              yaxis: {
+                title: {
+                  text: "Metingen licht"
+                }
+              }
+            };
+
+            this.prechartOptionsBatterij = {
+              series: [],
+              chart: {
+                height: 350,
+                type: 'line'
+              },
+              dataLabels: {
+                enabled: false
+              },
+              title: {
+                text: 'Graph generator batterij metingen',
+              },
+              noData: {
+                text: 'Selecteer een categorie om jouw grafiek te genereren'
+              },
+              fill: {
+                type: "solid",
+              },
+              xaxis: {
+                title: {
+                  text: "Per datum/uur"
+                }
+              },
+              yaxis: {
+                title: {
+                  text: "Batterij metingen"
+                }
+              }
+            };
+
+            this.prechartOptionsLuchtvochtigheid = {
+              series: [],
+              chart: {
+                height: 350,
+                type: 'line'
+              },
+              dataLabels: {
+                enabled: false
+              },
+              title: {
+                text: 'Graph generator vochtigheid sensoren',
+              },
+              noData: {
+                text: 'Selecteer een categorie om jouw grafiek te genereren'
+              },
+              fill: {
+                type: "solid",
+              },
+              xaxis: {
+                title: {
+                  text: "Per datum/uur"
+                }
+              },
+              yaxis: {
+                title: {
+                  text: "Metingen vochtigheid"
+                }
+              }
+            };
+
+            this.chartOptionsT1 = {
               series: [
                 {
-                  name: "T1",
-                  //data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+                  name: "T1 sensor (buitentemperatuur)",
                   data: this.tempArray
                 }
               ],
@@ -270,6 +261,7 @@ export class WeerstationDashboardComponent implements OnInit {
               dataLabels: {
                 enabled: false
               },
+              colors: ['#4CAF50'],
               fill: {
                 type: "gradient",
                 gradient: {
@@ -283,14 +275,13 @@ export class WeerstationDashboardComponent implements OnInit {
                 }
               },
               title: {
-                text: result.naam
+                text: "T1 sensor metingen (buiten)"
               },
               xaxis: {
-                type: 'category',
+                type: 'datetime',
                 title: {
                   text: 'Per datum/uur'
                 },
-                //categories: resultId
                 categories: this.eind
               },
               yaxis: {
@@ -300,15 +291,15 @@ export class WeerstationDashboardComponent implements OnInit {
               }
             };
 
-            this.chartOptions2 = {
+            this.chartOptionsT2 = {
               series: [
                 {
-                  name: "Batterij percentage",
-                  data: this.bapArray
+                  name: "T2 sensor (binnen de isolatie)",
+                  data: this.temp2Array
                 }
               ],
               chart: {
-                type: "area",
+                type: "line",
                 height: 350,
                 zoom: {
                   enabled: false
@@ -318,11 +309,25 @@ export class WeerstationDashboardComponent implements OnInit {
                 enabled: false
               },
               stroke: {
+                width: 7,
                 curve: "smooth"
+              },
+              colors: ['#4CAF50'],
+              fill: {
+                type: "gradient",
+                gradient: {
+                  shade: "dark",
+                  gradientToColors: ["#F86624"],
+                  shadeIntensity: 1,
+                  type: "horizontal",
+                  opacityFrom: 0.9,
+                  opacityTo: 1,
+                  stops: [0, 100, 100, 100]
+                }
               },
 
               title: {
-                text: result.naam
+                text: "T2 sensor metingen (binnen de isolatie)"
               },
               xaxis: {
                 type: "datetime",
@@ -338,7 +343,110 @@ export class WeerstationDashboardComponent implements OnInit {
               }
             };
 
+            
+            this.chartOptionsLuchtvochtigheid = {
+              series: [
+                {
+                  name: "RH waardes (luchtvochtigheid)",
+                  data: this.rhArray
+                }
+              ],
+              chart: {
+                type: "bar",
+                height: 350,
+                zoom: {
+                  enabled: false
+                }
+              },
+              dataLabels: {
+                enabled: false
+              },
+              stroke: {
+                width: 6
+              },
+              colors: ['#662E9B'],
+              fill: {
+                type: "gradient",
+                gradient: {
+                  shade: "dark",
+                  gradientToColors: ["#662E9B"],
+                  shadeIntensity: 1,
+                  type: "horizontal",
+                  opacityFrom: 0.9,
+                  opacityTo: 1,
+                  stops: [0, 100, 100, 100]
+                }
+              },
 
+              title: {
+                text: "RH waardes (luchtvochtigheid)"
+              },
+              xaxis: {
+                type: "datetime",
+                categories: this.eind,
+                title: {
+                  text: 'Per datum/uur'
+                }
+              },
+              yaxis: {
+                title: {
+                  text: 'RH waarde (luchtvochtigheid)'
+                }
+              }
+            };
+
+            
+            this.chartOptionsBatterijPercentage = {
+              series: [
+                {
+                  name: "Batterijpercentage",
+                  data: this.bapArray
+                }
+              ],
+              chart: {
+                type: "area",
+                height: 350,
+                zoom: {
+                  enabled: false
+                }
+              },
+              dataLabels: {
+                enabled: false
+              },
+              stroke: {
+                width: 7,
+                curve: "smooth"
+              },
+              colors: ['#13D8AA'],
+              fill: {
+                type: "gradient",
+                gradient: {
+                  shade: "dark",
+                  gradientToColors: ["#A300D6"],
+                  shadeIntensity: 1,
+                  type: "horizontal",
+                  opacityFrom: 0.9,
+                  opacityTo: 0.7,
+                  stops: [0, 90, 100]
+                }
+              },
+
+              title: {
+                text: "Batterijpercentage"
+              },
+              xaxis: {
+                type: "datetime",
+                categories: this.eind,
+                title: {
+                  text: 'Per datum/uur'
+                }
+              },
+              yaxis: {
+                title: {
+                  text: 'Batterijpercentage'
+                }
+              }
+            };
           }
         )
       }
@@ -350,18 +458,200 @@ export class WeerstationDashboardComponent implements OnInit {
 
   }
 
+  //genereren temperatuurgrafieken
 
-  public updateInfraroodlicht() {
-    this.prechartOptions.series = [{
-      data: this.IrlArray
+  public updateT1() {
+    this.prechartOptionsTemperatuur.series = [{
+      name: "T1 sensor",
+      data: this.tempArray
     }],
-      this.prechartOptions.title = {
-        text: 'Infrarood licht'
+      this.prechartOptionsTemperatuur.title = {
+        text: 'T1 sensor'
       },
-      this.prechartOptions.chart = {
+      this.prechartOptionsTemperatuur.chart = {
         type: 'bar'
       },
-      this.prechartOptions.fill = {
+      this.prechartOptionsTemperatuur.fill = {
+        type: "gradient",
+        colors: ["#FEB019"]
+      },
+      this.prechartOptionsTemperatuur.xaxis = {
+        type: "datetime",
+        title: {
+          text: "Per meting"
+        }
+      };
+    this.prechartOptionsTemperatuur.yaxis = {
+      title: {
+        text: "T1 sensor"
+      }
+    }
+  }
+  
+  public updateT2() {
+    this.prechartOptionsTemperatuur.series = [{
+      name: "T2 sensor",
+      data: this.temp2Array
+    }],
+      this.prechartOptionsTemperatuur.title = {
+        text: 'T2 sensor'
+      },
+      this.prechartOptionsTemperatuur.chart = {
+        type: 'bar'
+      },
+      this.prechartOptionsTemperatuur.fill = {
+        type: "gradient",
+        colors: ["#FEB019"]
+      },
+      this.prechartOptionsTemperatuur.xaxis = {
+        type: "datetime",
+        title: {
+          text: "Per datum/uur"
+        }
+      };
+    this.prechartOptionsTemperatuur.yaxis = {
+      title: {
+        text: "T2 sensor"
+      }
+    }
+  }
+
+  public updateT3() {
+    this.prechartOptionsTemperatuur.series = [{
+      name: "T3 sensor",
+      data: this.temp3Array
+    }],
+      this.prechartOptionsTemperatuur.title = {
+        text: 'T3 sensor'
+      },
+      this.prechartOptionsTemperatuur.chart = {
+        type: 'area'
+      },
+      this.prechartOptionsTemperatuur.fill = {
+        type: "gradient",
+        colors: ["#FEB019"]
+      },
+      this.prechartOptionsTemperatuur.xaxis = {
+        type: "datetime",
+        title: {
+          text: "Per datum/uur"
+        }
+      };
+    this.prechartOptionsTemperatuur.yaxis = {
+      title: {
+        text: "T3 sensor"
+      }
+    }
+  }
+
+  //genereren lichtgrafieken
+  public updateInfraroodlicht() {
+    this.prechartOptionsLicht.series = [{
+      name: "Infrarood licht",
+      data: this.IrlArray
+    }],
+      this.prechartOptionsLicht.title = {
+        text: 'Infrarood licht'
+      },
+      this.prechartOptionsLicht.chart = {
+        type: 'area'
+      },
+      this.prechartOptionsLicht.fill = {
+        type: "solid",
+        colors: ["#F00"],
+        opacity: 0.5
+      },
+      this.prechartOptionsLicht.xaxis = {
+        type: "datetime",
+        title: {
+          text: "Per meting"
+        }
+      };
+    this.prechartOptionsLicht.yaxis = {
+      title: {
+        text: "Infrarood licht"
+      }
+    }
+  }
+  
+  public updateVisueellicht() {
+    this.prechartOptionsLicht.series = [{
+      name: "Visueel licht",
+      data: this.VilArray
+    }],
+      this.prechartOptionsLicht.title = {
+        text: 'Visueel licht'
+      },
+      this.prechartOptionsLicht.chart = {
+        type: 'area'
+      },
+      this.prechartOptionsLicht.fill = {
+        type: "solid",
+        colors: ["#C5D86D"],
+        opacity: 0.7
+      },
+      this.prechartOptionsLicht.xaxis = {
+        type: "datetime",
+        title: {
+          text: "Per datum/uur"
+        }
+      };
+    this.prechartOptionsLicht.yaxis = {
+      title: {
+        text: "Visueel licht"
+      }
+    }
+  }
+
+  public updateLuxwaardes() {
+    this.prechartOptionsLicht.series = [{
+      name: "Lux waarde",
+      data: this.LuxArray
+    }],
+      this.prechartOptionsLicht.title = {
+        text: 'Lux waardes'
+      },
+      this.prechartOptionsLicht.chart = {
+        type: 'area'
+      },
+      this.prechartOptionsLicht.fill = {
+        type: "gradient",
+        gradient: {
+          shade: "dark",
+          gradientToColors: ["#4CAF50"],
+          shadeIntensity: 1,
+          type: "horizontal",
+          opacityFrom: 0.7,
+          opacityTo: 1,
+          stops: [0, 100, 100, 100]
+        }
+      },
+      this.prechartOptionsLicht.xaxis = {
+        type: "datetime",
+        title: {
+          text: "Per datum/uur"
+        }
+      };
+    this.prechartOptionsLicht.yaxis = {
+      title: {
+        text: "Lux waardes"
+      }
+    }
+  }
+
+  //genereren batterijgrafieken
+  public updateBatterijspanning() {
+    this.prechartOptionsBatterij.series = [{
+      name: "Batterijspanning",
+      data: this.bavArray
+    }],
+      this.prechartOptionsBatterij.title = {
+        text: 'Batterijspanning'
+      },
+      this.prechartOptionsBatterij.chart = {
+        type: 'bar'
+      },
+      this.prechartOptionsBatterij.fill = {
         type: "gradient",
         gradient: {
           shade: "dark",
@@ -373,15 +663,154 @@ export class WeerstationDashboardComponent implements OnInit {
           stops: [0, 100, 100, 100]
         }
       },
-      this.prechartOptions.xaxis = {
+      this.prechartOptionsBatterij.xaxis = {
+        type: "datetime",
+        title: {
+          text: "Per datum/uur"
+        }
+      };
+    this.prechartOptionsBatterij.yaxis = {
+      title: {
+        text: "Batterijspanning"
+      }
+    }
+  }
+
+  public updateBatterijpercentage() {
+    this.prechartOptionsBatterij.series = [{
+      name: "Batterij percentage",
+      data: this.bapArray
+    }],
+      this.prechartOptionsBatterij.title = {
+        text: 'Batterijpercentage'
+      },
+      this.prechartOptionsBatterij.chart = {
+        type: 'bar'
+      },
+      this.prechartOptionsBatterij.fill = {
+        type: "gradient",
+        gradient: {
+          shade: "dark",
+          gradientToColors: ["#F00"],
+          shadeIntensity: 1,
+          type: "horizontal",
+          opacityFrom: 1,
+          opacityTo: 1,
+          stops: [0, 100, 100, 100]
+        }
+      },
+      this.prechartOptionsBatterij.xaxis = {
+        type: "datetime",
+        title: {
+          text: "Per datum/uur"
+        }
+      };
+    this.prechartOptionsBatterij.yaxis = {
+      title: {
+        text: "Batterij percentage (%)"
+      }
+    }
+  }
+
+  //genereren luchtvochtigheidsgrafieken
+  public updateRh() {
+    this.prechartOptionsLuchtvochtigheid.series = [{
+      name: "RH waarde (luchtvochtigheid)",
+      data: this.rhArray
+    }],
+      this.prechartOptionsLuchtvochtigheid.title = {
+        text: 'Rh waardes (luchtvochtigheid)'
+      },
+      this.prechartOptionsLuchtvochtigheid.chart = {
+        type: 'bar'
+      },
+      this.prechartOptionsLuchtvochtigheid.fill = {
+        type: "solid",
+        colors: ["#4ECDC4"]
+      },
+      this.prechartOptionsLuchtvochtigheid.xaxis = {
+        type: "datetime",
         title: {
           text: "Per meting"
         }
       };
-    this.prechartOptions.yaxis = {
+    this.prechartOptionsLuchtvochtigheid.yaxis = {
       title: {
-        text: "Infrarood licht"
+        text: "Rh waardes (luchtvochtigheid)"
       }
     }
   }
+  
+  public updateLw1() {
+    this.prechartOptionsLuchtvochtigheid.series = [{
+      name: "LW1 sensor (bladnat)",
+      data: this.lw1Array
+    }],
+      this.prechartOptionsLuchtvochtigheid.title = {
+        text: 'LW1 bladnat sensor'
+      },
+      this.prechartOptionsLuchtvochtigheid.chart = {
+        type: 'bar'
+      },
+      this.prechartOptionsLuchtvochtigheid.fill = {
+        type: "gradient",
+        gradient: {
+          shade: "light",
+          gradientToColors: ["#4CAF50"],
+          shadeIntensity: 1,
+          type: "horizontal",
+          opacityFrom: 0.7,
+          opacityTo: 1,
+          stops: [0, 100, 100, 100]
+        }
+      },
+      this.prechartOptionsLuchtvochtigheid.xaxis = {
+        type: "datetime",
+        title: {
+          text: "Per datum/uur"
+        }
+      };
+    this.prechartOptionsLuchtvochtigheid.yaxis = {
+      title: {
+        text: "LW1 waarde (bladnat)"
+      }
+    }
+  }
+
+  public updateLw2() {
+    this.prechartOptionsLuchtvochtigheid.series = [{
+      name: "LW2 sensor (bladnat)",
+      data: this.lw2Array
+    }],
+      this.prechartOptionsLuchtvochtigheid.title = {
+        text: 'LW2 bladnat sensor'
+      },
+      this.prechartOptionsLuchtvochtigheid.chart = {
+        type: 'bar'
+      },
+      this.prechartOptionsLuchtvochtigheid.fill = {
+        type: "gradient",
+        gradient: {
+          shade: "dark",
+          gradientToColors: ["#4CAF50"],
+          shadeIntensity: 1,
+          type: "horizontal",
+          opacityFrom: 1,
+          opacityTo: 1,
+          stops: [0, 100, 100, 100]
+        }
+      },
+      this.prechartOptionsLuchtvochtigheid.xaxis = {
+        type: "datetime",
+        title: {
+          text: "Per datum/uur"
+        }
+      };
+    this.prechartOptionsLuchtvochtigheid.yaxis = {
+      title: {
+        text: "LW2 waarde (bladnat)"
+      }
+    }
+  }
+
 }
