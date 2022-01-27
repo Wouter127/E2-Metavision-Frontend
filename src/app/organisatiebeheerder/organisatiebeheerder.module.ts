@@ -13,8 +13,7 @@ import { WeerstationsAlarmSchakelwaardesListComponent } from './weerstations-org
 import { WeerstationsAlarmSchakelwaardesFormComponent } from './weerstations-organisatie/weerstations-alarm-schakelwaardes-form/weerstations-alarm-schakelwaardes-form.component';
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { NgToggleModule } from 'ng-toggle-button';
-
-
+import { OrganisatiebeheerderRoutingModule } from './organisatiebeheerder-routing.module';
 
 @NgModule({
   declarations: [
@@ -33,7 +32,8 @@ import { NgToggleModule } from 'ng-toggle-button';
     CommonModule,
     FormsModule,
     TooltipModule,
-    NgToggleModule
+    NgToggleModule,
+    OrganisatiebeheerderRoutingModule
   ],
   exports: [
     GebruikersOrganisatieListComponent,

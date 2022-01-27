@@ -8,9 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Modules
 import { NonAuthModule } from './non-auth/non-auth.module';
-import { AuthModule } from './auth/auth.module';
 import { OrganisatiebeheerderModule } from './organisatiebeheerder/organisatiebeheerder.module';
-import { AdminModule } from './admin/admin.module';
 
 import { NavigationModule } from './navigation/navigation.module';
 
@@ -37,9 +35,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     NonAuthModule,
-    AuthModule,
-    OrganisatiebeheerderModule,
-    AdminModule,
     NavigationModule,
     NgApexchartsModule,
     ClipboardModule,
