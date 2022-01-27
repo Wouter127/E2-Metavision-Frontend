@@ -18,22 +18,29 @@ import { WeerstationListComponent } from './admin/weerstations/weerstation-list/
 import { OrganisatieListComponent } from './admin/organisaties/organisatie-list/organisatie-list.component';
 
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
-import { AuthGuard } from './security/auth.guard';
+import { AuthAdminGuard } from './security/auth-admin.guard';
+import { PageUnauthorizedComponent } from './pages/page-unauthorized/page-unauthorized.component';
+import { AuthOrganisatiebeheerderGuard } from './security/auth-organisatiebeheerder.guard';
+import { AuthAuthGuard } from './security/auth-auth.guard';
+import { Role } from './interfaces/Role'
 
 const routes: Routes = [
   // Non-auth
   { path: '', loadChildren: () => import('./non-auth/non-auth.module').then(m => m.NonAuthModule) },
 
   // Auth
-  { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule), canActivate: [AuthGuard], canActivateChild: [AuthGuard] },
+  { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule), canActivate: [AuthAuthGuard], canActivateChild: [AuthAuthGuard]},
 
   // Organisatiebeheerder
-  { path: 'organisatiebeheerder', loadChildren: () => import('./organisatiebeheerder/organisatiebeheerder.module').then(m => m.OrganisatiebeheerderModule), canActivate: [AuthGuard], canActivateChild: [AuthGuard] },
+  { path: 'organisatiebeheerder', loadChildren: () => import('./organisatiebeheerder/organisatiebeheerder.module').then(m => m.OrganisatiebeheerderModule), canActivate: [AuthOrganisatiebeheerderGuard], canActivateChild: [AuthOrganisatiebeheerderGuard], data: { roles: [Role.Organisatiebeheerder] }},
 
   // Admin
-  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule), canActivate: [AuthGuard], canActivateChild: [AuthGuard]},
+  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule), canActivate: [AuthAdminGuard], canActivateChild: [AuthAdminGuard], data: {
+    allowedRoles: ['admin']
+  } },
 
-  // 404
+  // 404 
+  { path: '403', pathMatch: 'full', component: PageUnauthorizedComponent }, // TODO
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent } // TODO
 ];
 

@@ -14,6 +14,7 @@ import { TokenService } from './token.service';
 })
 export class AuthService {
 
+
   constructor(private tokenService: TokenService, private authStateService: AuthStateService, private httpClient: HttpClient, private toast: HotToastService, private router: Router) {
     // Reverse the order of which the toasts are displayed
     this.toast.defaultConfig = {
@@ -52,4 +53,6 @@ export class AuthService {
       }
     );
   }
+
+  
 }

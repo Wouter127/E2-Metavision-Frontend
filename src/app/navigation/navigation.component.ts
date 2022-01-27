@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Gebruiker } from '../interfaces/Gebruiker';
 import { AuthStateService } from '../security/auth-state.service';
 import { AuthService } from '../security/auth.service';
+import { TokenService } from '../security/token.service';
 
 @Component({
   selector: 'app-navigation',
@@ -13,7 +14,7 @@ export class NavigationComponent implements OnInit {
   isLoggedIn: boolean = false;
   gebruiker!: Gebruiker | undefined;
 
-  constructor(private authService: AuthService, private authStateService: AuthStateService) {}
+  constructor(private authService: AuthService, private authStateService: AuthStateService, private tokenService: TokenService) {}
 
   ngOnInit(): void {
     this.authStateService.gebruikerAuthState.subscribe(

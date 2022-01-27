@@ -35,7 +35,7 @@ export class WeerstationFormComponent implements OnInit {
     }
    }
 
-  ngOnInit(): void {    
+  ngOnInit(): void {
     this.organisaties$ = this.adminOrganisatieService.getOrganisaties().subscribe(
       result => {
         this.organisaties = result;

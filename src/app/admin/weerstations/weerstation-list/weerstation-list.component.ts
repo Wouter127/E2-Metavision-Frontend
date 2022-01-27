@@ -13,6 +13,8 @@ import { DialogService } from '@ngneat/dialog';
 import { WeerstationFormComponent } from '../weerstation-form/weerstation-form.component';
 import { LocationService } from 'src/app/services/location.service';
 import { WeerstationToevoegenComponent } from 'src/app/admin/weerstations/weerstation-toevoegen/weerstation-toevoegen.component';
+import { Gebruiker } from 'src/app/interfaces/Gebruiker';
+import { AuthService } from 'src/app/security/auth.service';
 
 @Component({
   selector: 'app-weerstation-list',
@@ -34,12 +36,13 @@ export class WeerstationListComponent implements OnInit, OnDestroy {
   getReverseGeocoding$: Subscription = new Subscription();
 
   isAdmin = true;
-
+  gebruiker!: Gebruiker | undefined;
+  
   form = new FormGroup({
     naam: new FormControl('')
   });
 
-  constructor(private weerstationService: WeerstationService, private organisatieService: OrganisatieService, private authWeerstationService: WeerstationService, private locationService: LocationService, private router: Router, private toast: HotToastService, private clipboardApi: ClipboardService, private dialog: DialogService) { 
+  constructor(private weerstationService: WeerstationService, private organisatieService: OrganisatieService, private authWeerstationService: WeerstationService, private locationService: LocationService, private router: Router, private toast: HotToastService, private clipboardApi: ClipboardService, private dialog: DialogService, private authService: AuthService) { 
     // Reverse the order of which the toasts are displayed
     this.toast.defaultConfig = {
       ...this.toast.defaultConfig,
@@ -48,13 +51,28 @@ export class WeerstationListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.authService.getGebruiker().subscribe(
+    gebruiker => {
+      this.gebruiker = gebruiker;
+      console.log(gebruiker);
+      if (gebruiker.isAdmin) {
+        this.getOrganisaties();
+        this.getWeerstationsZonderOrganisatie();
+      } else {
+        this.router.navigate(['403']);
+      }
+    });
+
     if (this.isAdmin) {
-      this.getOrganisaties();
-      this.getWeerstationsZonderOrganisatie();
+      
     } else {
       this.getOrganisatieWithWeerstations();
     }
   }
+
+
+  
+  
 
   ngOnDestroy() {
     this.organisaties$.unsubscribe();
