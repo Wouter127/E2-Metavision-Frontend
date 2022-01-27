@@ -1,22 +1,132 @@
-<div style="text-align:center">
-    <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [dataLabels]="chartOptions.dataLabels"
-        [xaxis]="chartOptions.xaxis" [yaxis]="chartOptions.yaxis" [title]="chartOptions.title"
-        [fill]="chartOptions.fill" [stroke]="chartOptions.stroke"></apx-chart>
+
+<div style="margin-top: 20px;">
+    <label for="start">Start date:</label>
+    <input type="date" id="start" name="trip-start"
+            value="2022-01-28"
+            min="2016-01-01" max="2024-12-31">
+
+    <label for="end">End date:</label>
+    <input type="date" id="end" name="trip-start"
+            value="2022-01-28"
+            min="2016-01-01" max="2024-12-31">
+</div>
+<div class="grid grid-cols-2 gap-2 mt-3">
+    <div class="p-4 mb-4 text-sm text-gray-700 bg-gray-100 rounded-lg dark:bg-gray-700 dark:text-gray-300">
+        <apx-chart [series]="chartOptionsT1.series" [chart]="chartOptionsT1.chart" [dataLabels]="chartOptionsT1.dataLabels"
+            [xaxis]="chartOptionsT1.xaxis" [yaxis]="chartOptionsT1.yaxis" [title]="chartOptionsT1.title"
+            [fill]="chartOptionsT1.fill" [stroke]="chartOptionsT1.stroke" [colors]="chartOptionsT1.colors"></apx-chart>
+    </div>
+    <div class="p-4 mb-4 text-sm text-gray-700 bg-gray-100 rounded-lg dark:bg-gray-700 dark:text-gray-300">
+        <apx-chart [series]="chartOptionsT2.series" [chart]="chartOptionsT2.chart" [dataLabels]="chartOptionsT2.dataLabels"
+        [xaxis]="chartOptionsT2.xaxis" [yaxis]="chartOptionsT2.yaxis" [title]="chartOptionsT2.title"
+        [stroke]="chartOptionsT2.stroke" [fill]="chartOptionsT2.fill" [colors]="chartOptionsT2.colors"></apx-chart>
+    </div>
 </div>
 
-
-<div style="text-align:center">
-    <apx-chart [series]="chartOptions2.series" [chart]="chartOptions2.chart" [dataLabels]="chartOptions2.dataLabels"
-        [xaxis]="chartOptions2.xaxis" [yaxis]="chartOptions2.yaxis" [title]="chartOptions2.title"
-        [stroke]="chartOptions2.stroke"></apx-chart>
+<div class="grid grid-cols-2 gap-2 mt-3">
+    <div class="p-4 mb-4 text-sm text-gray-700 bg-gray-100 rounded-lg dark:bg-gray-700 dark:text-gray-300">
+        <apx-chart [series]="chartOptionsLuchtvochtigheid.series" [chart]="chartOptionsLuchtvochtigheid.chart" [dataLabels]="chartOptionsLuchtvochtigheid.dataLabels"
+            [xaxis]="chartOptionsLuchtvochtigheid.xaxis" [yaxis]="chartOptionsLuchtvochtigheid.yaxis" [title]="chartOptionsLuchtvochtigheid.title"
+            [fill]="chartOptionsLuchtvochtigheid.fill" [stroke]="chartOptionsLuchtvochtigheid.stroke" [colors]="chartOptionsLuchtvochtigheid.colors"></apx-chart>
+    </div>
+    <div class="p-4 mb-4 text-sm text-gray-700 bg-gray-100 rounded-lg dark:bg-gray-700 dark:text-gray-300">
+        <apx-chart [series]="chartOptionsBatterijPercentage.series" [chart]="chartOptionsBatterijPercentage.chart" [dataLabels]="chartOptionsBatterijPercentage.dataLabels"
+        [xaxis]="chartOptionsBatterijPercentage.xaxis" [yaxis]="chartOptionsBatterijPercentage.yaxis" [title]="chartOptionsBatterijPercentage.title"
+        [stroke]="chartOptionsBatterijPercentage.stroke" [fill]="chartOptionsBatterijPercentage.fill" [colors]="chartOptionsBatterijPercentage.colors"></apx-chart>
+    </div>
 </div>
 
-<div style="text-align: center;">
-    <button class="btn-grad" (click)="updateInfraroodlicht()">Infrarood licht</button>
-    <button class="btn-grad" (click)="updateVisueellicht()">Visueel licht</button>
+<div class="p-4 mb-4 text-sm text-gray-700 bg-gray-100 rounded-lg dark:bg-gray-700 dark:text-gray-300">
+    <div style="text-align: center">
+        <button (click)="updateT1()" class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:ring-pink-200 dark:focus:ring-pink-800">
+            <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                T1 sensor
+            </span>
+        </button>
+        <button (click)="updateT2()" class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:ring-pink-200 dark:focus:ring-pink-800">
+            <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                T2 sensor
+            </span>
+        </button>
+        <button (click)="updateT3()" class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:ring-pink-200 dark:focus:ring-pink-800">
+            <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                T3 sensor
+            </span>
+        </button>
+    </div>
+    <div>
+        <apx-chart [series]="prechartOptionsTemperatuur.series" [chart]="prechartOptionsTemperatuur.chart"
+        [dataLabels]="prechartOptionsTemperatuur.dataLabels" [title]="prechartOptionsTemperatuur.title" [noData]="prechartOptionsTemperatuur.noData"
+        [fill]="prechartOptionsTemperatuur.fill" [xaxis]="prechartOptionsTemperatuur.xaxis" [yaxis]="prechartOptionsTemperatuur.yaxis"></apx-chart>
+    </div>
 </div>
-<div style="text-align:center">
-    <apx-chart [series]="prechartOptions.series" [chart]="prechartOptions.chart"
-        [dataLabels]="prechartOptions.dataLabels" [title]="prechartOptions.title" [noData]="prechartOptions.noData"
-        [fill]="prechartOptions.fill" [xaxis]="prechartOptions.xaxis" [yaxis]="prechartOptions.yaxis"></apx-chart>
+
+<div class="p-4 mb-4 text-sm text-gray-700 bg-gray-100 rounded-lg dark:bg-gray-700 dark:text-gray-300">
+    <div style="text-align: center;">
+        <button (click)="updateInfraroodlicht()" class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800">
+            <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                Infrarood licht
+            </span>
+        </button>
+        <button (click)="updateVisueellicht()" class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800">
+            <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                Visueel licht
+            </span>
+        </button>
+        <button (click)="updateLuxwaardes()" class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800">
+            <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                Lux waardes
+            </span>
+        </button>
+    </div>
+    <div class="p-4 mb-4 text-sm text-gray-700 bg-gray-100 rounded-lg dark:bg-gray-700 dark:text-gray-300">
+        <apx-chart [series]="prechartOptionsLicht.series" [chart]="prechartOptionsLicht.chart"
+        [dataLabels]="prechartOptionsLicht.dataLabels" [title]="prechartOptionsLicht.title" [noData]="prechartOptionsLicht.noData"
+        [fill]="prechartOptionsLicht.fill" [xaxis]="prechartOptionsLicht.xaxis" [yaxis]="prechartOptionsLicht.yaxis"></apx-chart>
+    </div>
+</div>
+
+<div class="p-4 mb-4 text-sm text-gray-700 bg-gray-100 rounded-lg dark:bg-gray-700 dark:text-gray-300">
+    <div style="text-align: center;">
+        <button (click)="updateBatterijspanning()" class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:ring-green-200 dark:focus:ring-green-800">
+            <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                Batterijspanning
+            </span>
+        </button>
+        <button (click)="updateBatterijpercentage()" class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:ring-green-200 dark:focus:ring-green-800">
+            <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                Batterijpercentage
+            </span>
+        </button>
+    </div>
+    <div>
+        <apx-chart [series]="prechartOptionsBatterij.series" [chart]="prechartOptionsBatterij.chart"
+        [dataLabels]="prechartOptionsBatterij.dataLabels" [title]="prechartOptionsBatterij.title" [noData]="prechartOptionsBatterij.noData"
+        [fill]="prechartOptionsBatterij.fill" [xaxis]="prechartOptionsBatterij.xaxis" [yaxis]="prechartOptionsBatterij.yaxis"></apx-chart>
+    </div>
+</div>
+
+<div class="p-4 mb-4 text-sm text-gray-700 bg-gray-100 rounded-lg dark:bg-gray-700 dark:text-gray-300">
+    <div style="text-align: center">
+        <button (click)="updateRh()" class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:ring-cyan-200 dark:focus:ring-cyan-800">
+            <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                RH waardes (luchtvochtigheid)
+            </span>
+        </button>
+        <button (click)="updateLw1()" class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:ring-cyan-200 dark:focus:ring-cyan-800">
+            <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                LW1 bladnat data
+            </span>
+        </button>
+        <button (click)="updateLw2()" class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:ring-cyan-200 dark:focus:ring-cyan-800">
+            <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                LW2 bladnat data
+            </span>
+        </button>
+    </div>
+    <div class="p-4 mb-4 text-sm text-gray-700 bg-gray-100 rounded-lg dark:bg-gray-700 dark:text-gray-300">
+        <apx-chart [series]="prechartOptionsLuchtvochtigheid.series" [chart]="prechartOptionsLuchtvochtigheid.chart"
+        [dataLabels]="prechartOptionsLuchtvochtigheid.dataLabels" [title]="prechartOptionsLuchtvochtigheid.title" [noData]="prechartOptionsLuchtvochtigheid.noData"
+        [fill]="prechartOptionsLuchtvochtigheid.fill" [xaxis]="prechartOptionsLuchtvochtigheid.xaxis" [yaxis]="prechartOptionsLuchtvochtigheid.yaxis"></apx-chart>
+    </div>
 </div>
