@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GebruikerInfoComponent } from './gebruiker/gebruiker-info/gebruiker-info.component';
 import { GebruikerFormComponent } from './gebruiker/gebruiker-form/gebruiker-form.component';
+import { AuthRoutingModule } from './auth-routing.module';
 
 
 
@@ -11,7 +12,8 @@ import { GebruikerFormComponent } from './gebruiker/gebruiker-form/gebruiker-for
     GebruikerFormComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    AuthRoutingModule
   ],
   exports: [
     GebruikerInfoComponent,

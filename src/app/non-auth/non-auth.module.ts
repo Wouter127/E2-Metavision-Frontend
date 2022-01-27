@@ -15,6 +15,7 @@ import { VervolledigOrganisatieBeheerderComponent } from './vervolledig-organisa
 import { PubliekeWeerstationsListComponent } from './publieke-weerstations-list/publieke-weerstations-list.component';
 import { WeerstationDashboardComponent } from './weerstation-dashboard/weerstation-dashboard.component';
 import { HomeComponent } from './home/home.component';
+import { NonAuthRoutingModule } from './non-auth-routing.module';
 
 
 
@@ -28,21 +29,17 @@ import { HomeComponent } from './home/home.component';
     HomeComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
     TooltipModule,
     HotToastModule.forRoot(),
     DialogModule.forRoot(),
-    FormsModule,
     ClipboardModule,
     ReactiveFormsModule,
     NgApexchartsModule,
+    NonAuthRoutingModule
   ],
   exports: [
     LoginComponent,

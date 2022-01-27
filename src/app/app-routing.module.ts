@@ -21,28 +21,17 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 
 const routes: Routes = [
   // Non-auth
-  { path: '', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
-
-  { path: 'vervolledig', component: VervolledigOrganisatieBeheerderComponent },
-  { path: 'publiekeweerstations', component: PubliekeWeerstationsListComponent }, // TODO: crud maken (= variant op Admin WeerstationListComponent)
-  { path: 'weerstation/:id/dashboard', component: WeerstationDashboardComponent },
+  { path: '', loadChildren: () => import('./non-auth/non-auth.module').then(m => m.NonAuthModule) },
 
   // Auth
-  { path: 'account', component: GebruikerInfoComponent }, // TODO: crud maken
-  
+  { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
+
   // Organisatiebeheerder
-  { path: 'organisatiebeheerder/weerstations', component: WeerstationsOrganisatieListComponent }, // TODO: crud maken (= variant op Admin WeerstationListComponent)
-  { path: 'weerstationactiveren', component: WeerstationsActiverenComponent }, // TODO: omzetten naar model die aangeroepen wordt bij weerstationlijst als organisatiebeheerder
-  { path: 'organisatiebeheerder/waardes/:id', component: WeerstationsAlarmSchakelwaardesListComponent },
+  { path: 'organisatiebeheerder', loadChildren: () => import('./organisatiebeheerder/organisatiebeheerder-routing.module').then(m => m.OrganisatiebeheerderRoutingModule) },
 
   // Admin
-  { path: 'admin/gebruikers', component: GebruikersListComponent },
-  { path: 'admin/weerstations', component: WeerstationListComponent },
-  { path: 'admin/organisaties', component: OrganisatieListComponent}, // TODO: crud maken
+  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
 
-
-  
   // 404
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent } // TODO
 ];
