@@ -180,14 +180,6 @@ export class WeerstationListComponent implements OnInit, OnDestroy {
       });
   }
 
-  
-  getOrganisatieWithWeerstations() {
-    var organisatieId = 1
-    this.organisaties$ = this.organisatieService.getOrganisatieWithWeerstations(organisatieId).subscribe(result => {
-      this.organisaties = result;
-    });
-  }
-
   getOrganisaties() {
     this.organisaties$ = this.organisatieService.getOrganisaties().subscribe(
       result => {

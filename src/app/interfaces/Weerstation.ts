@@ -10,11 +10,12 @@ export interface Weerstation {
   isPubliekZichtbaar?: number;
   gsmNummer: string;
   uniekeCode?: string;
+  isRelaisManueelAan?: number;
   created_at?: Date;
   updated_at?: Date;
+
   alarmWaardes?: AlarmWaarde[];
   schakelWaardes?: SchakelWaarde[];
   metings?: Meting[];
-
   organisatie?: Organisatie;
 }
