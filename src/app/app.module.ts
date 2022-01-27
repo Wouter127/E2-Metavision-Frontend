@@ -1,53 +1,50 @@
 import { NgModule } from '@angular/core';
+
+import { AppComponent } from './app.component';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+// Modules
+import { NonAuthModule } from './non-auth/non-auth.module';
+import { AuthModule } from './auth/auth.module';
+import { OrganisatiebeheerderModule } from './organisatiebeheerder/organisatiebeheerder.module';
+import { AdminModule } from './admin/admin.module';
+
 import { NavigationModule } from './navigation/navigation.module';
-import { OrganisatieModule } from './organisatie/organisatie.module';
-import { LoginComponent } from './non-auth/login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { DashboardModule } from './dashboard/dashboard.module';
-import { WeerstationModule } from './weerstation/weerstation.module';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+// Libraries
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { ClipboardModule } from 'ngx-clipboard';
+import { TooltipModule } from 'ng2-tooltip-directive';
 import { HotToastModule } from '@ngneat/hot-toast';
 import { DialogModule } from '@ngneat/dialog';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TooltipModule } from 'ng2-tooltip-directive';
-import { ClipboardModule } from 'ngx-clipboard';
-import { NgApexchartsModule } from 'ng-apexcharts';
+
+// Interceptors
 import { TokenInterceptor } from './security/token.interceptor';
-import { AdminModule } from './admin/admin.module';
-import { OrganisatiebeheerderModule } from './organisatiebeheerder/organisatiebeheerder.module';
-import { AuthModule } from './auth/auth.module';
-import { NonAuthModule } from './non-auth/non-auth.module';
-import { VervolledigOrganisatieBeheerderComponent } from './non-auth/vervolledig-organisatie-beheerder/vervolledig-organisatie-beheerder.component';
-import { SharedModule } from './shared/shared.module';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    RegisterComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NonAuthModule,
+    AuthModule,
+    OrganisatiebeheerderModule,
+    AdminModule,
     NavigationModule,
-    OrganisatieModule,
-    DashboardModule,
-    WeerstationModule,
-    HttpClientModule,
+    NgApexchartsModule,
+    ClipboardModule,
     TooltipModule,
     HotToastModule.forRoot(),
     DialogModule.forRoot(),
-    FormsModule,
-    ClipboardModule,
-    ReactiveFormsModule,
-    NgApexchartsModule,
-    AdminModule,
-    OrganisatiebeheerderModule,
-    AuthModule,
-    NonAuthModule,
-    SharedModule
+    HttpClientModule,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

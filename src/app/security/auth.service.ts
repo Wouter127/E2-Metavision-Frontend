@@ -37,14 +37,15 @@ export class AuthService {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
 
-    this.httpClient.post<any>(`${environment.API_URI}/auth/logout`, {}, { headers: headers }).pipe(
-      this.toast.observe({
-        loading: { content: 'Uitloggen...', position: 'bottom-right' },
-        success: { content: 'U bent succesvol uitgelogd!', position: 'bottom-right', dismissible: true },
-        error: { content: 'Er ging iets mis.', position: 'bottom-right', dismissible: true },
-      })
-    ).subscribe(
+    this.httpClient.post<any>(`${environment.API_URI}/auth/logout`, {}, { headers: headers }).subscribe(
       result => {
+        this.authStateService.setAuthState(false);
+        this.tokenService.removeToken();
+        this.router.navigate(['login']);
+
+        this.toast.success('U bent succesvol uitgelogd!', { position: 'bottom-right', dismissible: true });
+      },
+      error => {
         this.authStateService.setAuthState(false);
         this.tokenService.removeToken();
         this.router.navigate(['login']);

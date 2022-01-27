@@ -1,1 +1,13 @@
-<p>weerstations-activeren works!</p>
+<p>Voor ORG ADMIN en ADMIN. ADMIN omdat hij ook een weerstation aan zijn eigen org kan toevoegen </p>
+<p>form vraagt voor activatiecode en nieuwe naam voor het weerstation</p>
+<div class="alert alert-danger" role="alert" *ngIf="isSubmitted && errorMessage">
+    {{errorMessage}}
+</div>
+<form (ngSubmit)="onSubmit()" #activatieForm="ngForm">
+    <div class="form-group">
+        <label for="uniekeCode">code</label>
+        <input type="text" class="form-control" id="uniekeCode" [(ngModel)]="uniekeCode" name="uniekeCode"
+            placeholder="Name" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Toevoegen</button>
+</form>
