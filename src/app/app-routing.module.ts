@@ -21,8 +21,8 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 
 const routes: Routes = [
   // Non-auth
-  { path: '', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
+  { path: '', component: HomeComponent,data: { animation: 'isLeft' } },
+  { path: 'login', component: LoginComponent, data: { animation: 'isRight'} },
 
   { path: 'vervolledig', component: VervolledigOrganisatieBeheerderComponent },
   { path: 'publiekeweerstations', component: PubliekeWeerstationsListComponent }, // TODO: crud maken (= variant op Admin WeerstationListComponent)
