@@ -12,4 +12,6 @@ export class WeerstationsOrganisatieListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  
+
 }
