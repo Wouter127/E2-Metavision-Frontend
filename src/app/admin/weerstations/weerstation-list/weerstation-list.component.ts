@@ -33,8 +33,6 @@ export class WeerstationListComponent implements OnInit, OnDestroy {
   getLaatsteMeting$: Subscription = new Subscription();
   getReverseGeocoding$: Subscription = new Subscription();
 
-  isAdmin = true;
-
   form = new FormGroup({
     naam: new FormControl('')
   });
@@ -48,12 +46,8 @@ export class WeerstationListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    if (this.isAdmin) {
-      this.getOrganisaties();
-      this.getWeerstationsZonderOrganisatie();
-    } else {
-      this.getOrganisatieWithWeerstations();
-    }
+    this.getOrganisaties();
+    this.getWeerstationsZonderOrganisatie();
   }
 
   ngOnDestroy() {
@@ -184,14 +178,6 @@ export class WeerstationListComponent implements OnInit, OnDestroy {
           );
         }
       });
-  }
-
-  
-  getOrganisatieWithWeerstations() {
-    var organisatieId = 1
-    this.organisaties$ = this.organisatieService.getOrganisatieWithWeerstations(organisatieId).subscribe(result => {
-      this.organisaties = result;
-    });
   }
 
   getOrganisaties() {

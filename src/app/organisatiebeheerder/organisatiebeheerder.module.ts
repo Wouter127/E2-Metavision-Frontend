@@ -11,6 +11,8 @@ import { OrganisatieInfoComponent } from './organisatie/organisatie-info/organis
 import { OrganisatieFormComponent } from './organisatie/organisatie-form/organisatie-form.component';
 import { WeerstationsAlarmSchakelwaardesListComponent } from './weerstations-organisatie/weerstations-alarm-schakelwaardes-list/weerstations-alarm-schakelwaardes-list.component';
 import { WeerstationsAlarmSchakelwaardesFormComponent } from './weerstations-organisatie/weerstations-alarm-schakelwaardes-form/weerstations-alarm-schakelwaardes-form.component';
+import { TooltipModule } from 'ng2-tooltip-directive';
+import { NgToggleModule } from 'ng-toggle-button';
 
 
 
@@ -29,7 +31,9 @@ import { WeerstationsAlarmSchakelwaardesFormComponent } from './weerstations-org
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    TooltipModule,
+    NgToggleModule
   ],
   exports: [
     GebruikersOrganisatieListComponent,

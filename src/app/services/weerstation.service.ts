@@ -132,4 +132,11 @@ export class WeerstationService {
     return this.httpClient.get<Weerstation>(`${environment.API_URI}/auth/weerstations/${weerstation_id}/metingen${parameters}`);
 
   }
+
+  putWeerstationOrganisatieBeheerder(id: number, weerstation: Weerstation) {
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json; charset=utf-8');
+
+    return this.httpClient.put<Weerstation>(environment.API_URI + "/organisatiebeheerder/weerstations/" + id, weerstation, { headers: headers });
+  }
 }
