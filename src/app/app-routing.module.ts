@@ -7,17 +7,11 @@ import { VervolledigOrganisatieBeheerderComponent } from './non-auth/vervolledig
 import { PubliekeWeerstationsListComponent } from './non-auth/publieke-weerstations-list/publieke-weerstations-list.component';
 import { WeerstationDashboardComponent } from './non-auth/weerstation-dashboard/weerstation-dashboard.component';
 
-import { GebruikerInfoComponent } from './auth/gebruiker/gebruiker-info/gebruiker-info.component';
-
-import { WeerstationsOrganisatieListComponent } from './organisatiebeheerder/weerstations-organisatie/weerstations-organisatie-list/weerstations-organisatie-list.component';
-import { WeerstationsActiverenComponent } from './organisatiebeheerder/weerstations-organisatie/weerstations-activeren/weerstations-activeren.component';
-import { WeerstationsAlarmSchakelwaardesListComponent } from './organisatiebeheerder/weerstations-organisatie/weerstations-alarm-schakelwaardes-list/weerstations-alarm-schakelwaardes-list.component';
-
-import { GebruikersListComponent } from './admin/gebruikers/gebruikers-list/gebruikers-list.component';
-import { WeerstationListComponent } from './admin/weerstations/weerstation-list/weerstation-list.component';
-import { OrganisatieListComponent } from './admin/organisaties/organisatie-list/organisatie-list.component';
-
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+
+import { AuthGuard } from './auth.guard';
+import { OrganisatiebeheerderAuthGuard } from './organisatiebeheerder-auth.guard';
+import { AdminAuthGuard } from './admin-auth.guard';
 
 const routes: Routes = [
   // Non-auth
@@ -29,13 +23,14 @@ const routes: Routes = [
   { path: 'weerstation/:id/dashboard', component: WeerstationDashboardComponent },
 
   // Auth
-  { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
+  { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule), canActivate: [AuthGuard], canActivateChild: [AuthGuard] },
   
   // Organisatiebeheerder
-  { path: 'organisatiebeheerder', loadChildren: () => import('./organisatiebeheerder/organisatiebeheerder-routing.module').then(m => m.OrganisatiebeheerderRoutingModule) },
+  { path: 'organisatiebeheerder', loadChildren: () => import('./organisatiebeheerder/organisatiebeheerder-routing.module').then(m => m.OrganisatiebeheerderRoutingModule), canActivate: [OrganisatiebeheerderAuthGuard], canActivateChild: [OrganisatiebeheerderAuthGuard] },
+  // TODO: de waardes/:id route verplaatsen in een aparte routing module met zijn eigen auth guard die zowel organisatiebeheerder als admin toe laat
 
   // Admin
-  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
+  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule), canActivate: [AdminAuthGuard], canActivateChild: [AdminAuthGuard] },
 
 
   
