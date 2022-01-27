@@ -18,19 +18,20 @@ import { WeerstationListComponent } from './admin/weerstations/weerstation-list/
 import { OrganisatieListComponent } from './admin/organisaties/organisatie-list/organisatie-list.component';
 
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { AuthGuard } from './security/auth.guard';
 
 const routes: Routes = [
   // Non-auth
   { path: '', loadChildren: () => import('./non-auth/non-auth.module').then(m => m.NonAuthModule) },
 
   // Auth
-  { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
+  { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule), canActivate: [AuthGuard], canActivateChild: [AuthGuard] },
 
   // Organisatiebeheerder
-  { path: 'organisatiebeheerder', loadChildren: () => import('./organisatiebeheerder/organisatiebeheerder-routing.module').then(m => m.OrganisatiebeheerderRoutingModule) },
+  { path: 'organisatiebeheerder', loadChildren: () => import('./organisatiebeheerder/organisatiebeheerder.module').then(m => m.OrganisatiebeheerderModule), canActivate: [AuthGuard], canActivateChild: [AuthGuard] },
 
   // Admin
-  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
+  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule), canActivate: [AuthGuard], canActivateChild: [AuthGuard]},
 
   // 404
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent } // TODO
