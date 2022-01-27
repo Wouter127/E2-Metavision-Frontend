@@ -6,7 +6,7 @@
     </ul>
 </nav> -->
 
-<nav class="flex items-center justify-between flex-wrap bg-wbRed p-6">
+<nav class="flex items-center justify-between flex-wrap bg-wbRed-500 p-6">
   <div class="flex items-center flex-shrink-0 text-white mr-6">
     <svg class="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 259.96 367"><circle cx="38.23" cy="152.92" r="38.23"/><circle cx="84.1" cy="240.84" r="38.23"/><circle cx="175.85" cy="240.84" r="38.23"/><circle cx="129.98" cy="328.77" r="38.23"/><circle cx="129.98" cy="152.92" r="38.23"/><circle cx="221.73" cy="152.92" r="38.23"/><path d="M192.33,116.4s0-72.64,99.4-99.4V30.91s-84.11,20.5-84.11,89.31Z" transform="translate(-70 -17)"/></svg>
     <span class="font-semibold text-xl tracking-tight">Wijnbouwer</span>
@@ -46,8 +46,8 @@
 
     </div>
     <div>
-      <a  *ngIf="gebruiker"  class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-wbRed hover:bg-white mt-4 lg:mt-0">{{gebruiker.voornaam}} <ng-template [ngIf]="gebruiker.organisatieId != null">({{gebruiker.organisatie?.naam}})</ng-template></a>
-      <a  *ngIf="!isLoggedIn" routerLink="/login"  routerLinkActive="active"  [routerLinkActiveOptions]="{ exact: true }" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-wbRed hover:bg-white mt-4 lg:mt-0">Login</a>
+      <a  *ngIf="gebruiker"  class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-wbRed-500 hover:bg-white mt-4 lg:mt-0">{{gebruiker.voornaam}} <ng-template [ngIf]="gebruiker.organisatieId != null">({{gebruiker.organisatie?.naam}})</ng-template></a>
+      <a  *ngIf="!isLoggedIn" routerLink="/login"  routerLinkActive="active"  [routerLinkActiveOptions]="{ exact: true }" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-wbRed-500 hover:bg-white mt-4 lg:mt-0">Login</a>
     </div>
     </div>
 </nav>
@@ -62,7 +62,7 @@
     h-screen
     px-4
     py-8
-    bg-wbRed
+    bg-wbRed-500
     border-r
     dark:bg-gray-800 dark:border-gray-600
     grid
