@@ -11,10 +11,9 @@ import {
 
 export const slider =
   trigger('routeAnimations', [
-    transition('* => isLeft', slideTo('left') ),
-    transition('* => isRight', slideTo('right') ),
-    transition('isRight => *', slideTo('left') ),
-    transition('isLeft => *', slideTo('right') )
+    //Alleen animatie van home naar login en back, vul hier aan voor meerdere slides * = wildcard
+    transition('isRight => isLeft', slideTo('left') ),
+    transition('isLeft => isRight', slideTo('right') )
   ]);
 
 function slideTo(direction: any) {
@@ -23,7 +22,6 @@ function slideTo(direction: any) {
     query(':enter, :leave', [
       style({
         position: 'absolute',
-        top: 0,
         [direction]: 0,
         width: '100%'
       })
