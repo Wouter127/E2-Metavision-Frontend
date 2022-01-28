@@ -140,6 +140,7 @@ export class WeerstationsOrganisatieListComponent implements OnInit {
       error => {
         console.log(error);
 
+        // TODO: eventueel error weg laten?
         this.toast.error("Er ging iets mis.  De locatie van het weerstation kon niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false });
       }
     );
