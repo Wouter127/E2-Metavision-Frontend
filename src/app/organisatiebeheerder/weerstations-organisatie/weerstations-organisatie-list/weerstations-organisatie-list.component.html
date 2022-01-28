@@ -1,15 +1,15 @@
 <app-weerstations-activeren title="Weerstation activeren"></app-weerstations-activeren>
 
-<div class="flex row justify-end">
+<div class="flex row justify-end container mx-auto w-full px-8 pt-2">
     <button (click)="weerstationActiveren()"
-        class="p-2 px-5 bg-transparent border-2 border-wbRed-500 text-wbRed-500 text-md font-bold rounded-lg transition-colors duration-700 transform hover:bg-wbRed-500 hover:text-gray-100 mb-2">
+        class="p-2 px-5 bg-transparent border-2 border-wbRed-500 text-wbRed-500 text-md font-bold rounded-lg transition-colors duration-700 transform hover:bg-wbRed-500 hover:text-white mb-2">
         Weerstation activeren
     </button>
 </div>
 
 <ng-container *ngIf="!loading; else showLoading">
     <ng-container *ngIf="organisatie; else showGeenOrganisatie">
-        <div class="flex flex-col flex-wrap lg:flex-row">
+        <div class="flex flex-col flex-wrap lg:flex-row container mx-auto w-full px-8">
             <div class="mt-4 lg:mt-0 lg:w-3/5">
                 <div>
                     <h2 class="text-xl md:text-2xl ml-2 lg:ml-0 lg:text-3xl font-bold text-gray-900 tracking-normal lg:w-11/12">
@@ -40,7 +40,7 @@
                     <div class="flex flex-col justify-center w-full h-16 sm:h-auto sm:w-32 border-b-4 sm:border-b-0 sm:border-r-4 border-wbRed-500"
                         [ngClass]="{'bg-wbRed-500': weerstation.isRelaisManueelAan === 1}">
                         <ng-toggle [value]="weerstation.isRelaisManueelAan === 1 ? true : false"
-                            (change)="toggleRelais(weerstation.id)" [color]="{ unchecked: '#DDDEE3', checked: '#4F46E5'}"
+                            (change)="toggleRelais(weerstation.id)" [color]="{ unchecked: '#DDDEE3', checked: '#6C9A8B'}"
                             class="w-2 place-self-center -translate-x-5" tooltip="<p>Weerstation manueel schakelen.</p>"
                             [options]="{placement: 'bottom', hideDelay: 20}">
                         </ng-toggle>
@@ -105,7 +105,7 @@
     </ng-template>
 </ng-container>
 <ng-template #showLoading>
-    <div class="flex flex-col flex-wrap lg:flex-row">
+    <div class="flex flex-col flex-wrap lg:flex-row container mx-auto w-full px-8">
         <div class="mt-4 lg:mt-0 lg:w-3/5">
             <div class="w-8/12 bg-gray-300 h-10 rounded-full animate-pulse mb-1"></div>
         </div>
