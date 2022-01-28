@@ -151,7 +151,7 @@ export class WeerstationListComponent implements OnInit, OnDestroy {
   toevoegenWeerstation(): void {
     this.weerstationToevoegenComponent.openModal();
 
-    // When the weerstatopm is added successfully, refresh the list of weerstations.
+    // When the weerstation is added successfully, refresh the list of weerstations.
     this.weerstationToevoegenComponent.output.subscribe(() => {
       this.ngOnInit();
     }); 

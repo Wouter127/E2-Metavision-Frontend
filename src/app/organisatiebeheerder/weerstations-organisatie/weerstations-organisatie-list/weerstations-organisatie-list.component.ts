@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HotToastService } from '@ngneat/hot-toast';
 import { Subscription } from 'rxjs';
 import { Gebruiker } from 'src/app/interfaces/Gebruiker';
@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/security/auth.service';
 import { LocationService } from 'src/app/services/location.service';
 import { OrganisatieService } from 'src/app/services/organisatie.service';
 import { WeerstationService } from 'src/app/services/weerstation.service';
+import { WeerstationsActiverenComponent } from '../weerstations-activeren/weerstations-activeren.component';
 
 @Component({
   selector: 'app-weerstations-organisatie-list',
@@ -15,6 +16,7 @@ import { WeerstationService } from 'src/app/services/weerstation.service';
   styleUrls: ['./weerstations-organisatie-list.component.scss']
 })
 export class WeerstationsOrganisatieListComponent implements OnInit {
+  @ViewChild(WeerstationsActiverenComponent, { static: true }) weerstationActiverenComponent!: WeerstationsActiverenComponent;
 
   loading: boolean = true;
 
@@ -35,6 +37,15 @@ export class WeerstationsOrganisatieListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getOrganisatie();
+  }
+
+  weerstationActiveren(): void {
+    this.weerstationActiverenComponent.openModal();
+
+    // When the weerstation is added successfully, refresh the list of weerstations.
+    this.weerstationActiverenComponent.output.subscribe(() => {
+      this.ngOnInit();
+    }); 
   }
 
   toggleRelais(weerstation_id: number): void {
@@ -129,6 +140,7 @@ export class WeerstationsOrganisatieListComponent implements OnInit {
       error => {
         console.log(error);
 
+        // TODO: eventueel error weg laten?
         this.toast.error("Er ging iets mis.  De locatie van het weerstation kon niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false });
       }
     );
