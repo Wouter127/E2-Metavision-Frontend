@@ -1,3 +1,12 @@
+<app-weerstations-activeren title="Weerstation activeren"></app-weerstations-activeren>
+
+<div class="flex row justify-end">
+    <button (click)="weerstationActiveren()"
+        class="p-2 px-5 bg-transparent border-2 border-wbRed-500 text-wbRed-500 text-md font-bold rounded-lg transition-colors duration-700 transform hover:bg-wbRed-500 hover:text-gray-100 mb-2">
+        Weerstation activeren
+    </button>
+</div>
+
 <ng-container *ngIf="!loading; else showLoading">
     <ng-container *ngIf="organisatie; else showGeenOrganisatie">
         <div class="flex flex-col flex-wrap lg:flex-row">
@@ -26,10 +35,10 @@
             </div>
             <div class="w-full grid grid-cols-1 lg:grid-cols-2 pb-6 gap-8">
                 <div *ngFor="let weerstation of organisatie.weerstations"
-                    class="bg-white border-4 border-wbRed rounded-lg flex flex-col sm:flex-row">
+                    class="bg-white border-4 border-wbRed-500 rounded-lg flex flex-col sm:flex-row">
                     <!-- Slider -->
-                    <div class="flex flex-col justify-center w-full h-16 sm:h-auto sm:w-32 border-b-4 sm:border-b-0 sm:border-r-4 border-wbRed"
-                        [ngClass]="{'bg-wbRed': weerstation.isRelaisManueelAan === 1}">
+                    <div class="flex flex-col justify-center w-full h-16 sm:h-auto sm:w-32 border-b-4 sm:border-b-0 sm:border-r-4 border-wbRed-500"
+                        [ngClass]="{'bg-wbRed-500': weerstation.isRelaisManueelAan === 1}">
                         <ng-toggle [value]="weerstation.isRelaisManueelAan === 1 ? true : false"
                             (change)="toggleRelais(weerstation.id)" [color]="{ unchecked: '#DDDEE3', checked: '#4F46E5'}"
                             class="w-2 place-self-center -translate-x-5" tooltip="<p>Weerstation manueel schakelen.</p>"
@@ -57,7 +66,7 @@
                             <ng-container *ngIf="weerstation.laatsteMeting; else showGeenMeting">
                                 <ng-container *ngIf="weerstation.laatsteMeting === 'loading'; else showLaatsteGegevens">
                                     <div>
-                                        <i class="fas fa-circle-notch fa-spin mr-2 text-indigo-600 text-2xl text-center"></i>
+                                        <i class="fas fa-circle-notch fa-spin mr-2 text-wbRed-500 text-2xl text-center"></i>
                                     </div>
                                 </ng-container>
                                 <ng-template #showLaatsteGegevens>
@@ -82,7 +91,7 @@
                         </div>
                         <p class="pt-3">
                             <a href="weerstation/{{weerstation.id}}/dashboard"
-                                class="font-bold hover:underline cursor-pointer flex items-center text-wbRed">
+                                class="font-bold hover:underline cursor-pointer flex items-center text-wbRed-500">
                                 <span>Toon metingen</span><i class="ml-2 fas fa-arrow-right"></i>
                             </a>
                         </p>

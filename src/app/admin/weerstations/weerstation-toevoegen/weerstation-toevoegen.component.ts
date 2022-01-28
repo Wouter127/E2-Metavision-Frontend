@@ -18,9 +18,6 @@ export class WeerstationToevoegenComponent implements OnInit, OnDestroy {
 
   gsmNummer: string = '';
 
-  isSubmitted: boolean = false;
-  errorMessage: string = "";
-
   postWeerstation$: Subscription = new Subscription();
 
   constructor(private router: Router, private weerstationService: WeerstationService, private toast: HotToastService) {
@@ -47,7 +44,6 @@ export class WeerstationToevoegenComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    this.isSubmitted = true;
     this.postWeerstation$ = this.weerstationService.postWeerstation(this.gsmNummer).pipe(
       this.toast.observe({
         loading: { content: 'Toevoegen...', position: 'bottom-right' },
