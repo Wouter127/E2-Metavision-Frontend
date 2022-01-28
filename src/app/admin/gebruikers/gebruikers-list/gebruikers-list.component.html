@@ -1,20 +1,14 @@
-<p>laat een list zien van alle gebruikers</p>
-
-<p>als ADMIN zie je alle users van alle organisaties</p>
-<p>als ORG ADMIN zie je alle users van jouw organisatie</p>
-<p>bewerken of toevoegen gaat naar users-form component</p>
-
 <app-gebruikers-form title="Wijzig gebruiker"></app-gebruikers-form>
 <app-gebruikers-form-organisatiebeheerder title="Organisatie beheerder uitnodigen"></app-gebruikers-form-organisatiebeheerder>
 
-<div class="flex row justify-end">
+<div class="flex row justify-end container mx-auto w-full px-8 pt-2">
     <button (click)="toevoegenGebruiker()"
         class="p-2 px-5 bg-transparent border-2 border-indigo-600 text-indigo-600 text-md font-bold rounded-lg transition-colors duration-700 transform hover:bg-indigo-600 hover:text-gray-100 mb-2">
         Organisatie beheerder uitnodigen
     </button>
 </div>
 
-<div class="flex flex-col">
+<div class="flex flex-col container mx-auto w-full px-8">
     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
             <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
