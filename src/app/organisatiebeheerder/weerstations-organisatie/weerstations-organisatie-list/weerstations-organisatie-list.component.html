@@ -47,7 +47,11 @@
                     </div>
                     <!-- Info -->
                     <div class="p-5 rounded-md relative h-full w-full">
-                        <h3 class="pb-4 text-2xl font-semibold">{{ weerstation.naam }}</h3>
+                        <h3 class="pb-4 text-2xl font-semibold">{{ weerstation.naam }} <a href="organisatiebeheerder/waardes/{{weerstation.id}}"
+                          class="font-bold cursor-pointer flex text-wbRed-500 float-right">
+                          <i class="far fa-bell text-2xl"></i>
+                      </a></h3>
+
                         <div>
                             <span *ngIf="weerstation.isPubliekZichtbaar; else showNietZichtbaar"
                                 tooltip="<p>De metingen van het weerstation zijn raadpleegbaar voor iedereen.</p>"
