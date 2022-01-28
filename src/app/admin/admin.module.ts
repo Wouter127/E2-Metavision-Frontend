@@ -14,8 +14,7 @@ import { GebruikersFormComponent } from './gebruikers/gebruikers-form/gebruikers
 import { GebruikersFormOrganisatiebeheerderComponent } from './gebruikers/gebruikers-form-organisatiebeheerder/gebruikers-form-organisatiebeheerder.component';
 import { OrganisatieFormComponent } from './organisaties/organisatie-form/organisatie-form.component';
 import { OrganisatieListComponent } from './organisaties/organisatie-list/organisatie-list.component';
-
-
+import { AdminRoutingModule } from './admin-routing.module';
 
 @NgModule({
   declarations: [
@@ -29,14 +28,13 @@ import { OrganisatieListComponent } from './organisaties/organisatie-list/organi
     OrganisatieListComponent
   ],
   imports: [
-    AppRoutingModule,
     CommonModule,
-    BrowserModule,
     FormsModule,
     TooltipModule,
     NgToggleModule,
     ReactiveFormsModule,
-    NgApexchartsModule
+    NgApexchartsModule,
+    AdminRoutingModule
   ],
   exports: [
     WeerstationFormComponent,
