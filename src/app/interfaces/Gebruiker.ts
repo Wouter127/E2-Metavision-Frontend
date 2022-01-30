@@ -6,6 +6,8 @@ export interface Gebruiker {
     voornaam: string;
     achternaam: string;
     email: string;
+    gsm: string;
+    krijgtMelding: number;
     password: string;
     isOrganisatieBeheerder: number;
     isAdmin: number;
