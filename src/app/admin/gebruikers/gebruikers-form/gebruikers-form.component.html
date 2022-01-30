@@ -24,6 +24,11 @@
                 <form *ngIf="loading" action="#">
                     <div class="bg-white">
                         <div class="grid grid-cols-6 gap-6">
+                            <div class="col-span-6">
+                                <label class="block font-medium text-gray-700">Email</label>
+                                <div class="w-8/12 sm:w-4/12 bg-gray-300 h-4 rounded-full animate-pulse"></div>
+                            </div>
+
                             <div class="col-span-6 sm:col-span-3">
                                 <label class="block font-medium text-gray-700">Voornaam</label>
                                 <div class="w-12/12 mt-1 bg-gray-300 h-8 rounded-md animate-pulse"></div>
@@ -33,10 +38,10 @@
                                 <label class="block font-medium text-gray-700">Achternaam</label>
                                 <div class="w-12/12 mt-1 bg-gray-300 h-8 rounded-md animate-pulse"></div>
                             </div>
-                
+
                             <div class="col-span-6 sm:col-span-3">
-                                <label class="block font-medium text-gray-700">Email</label>
-                                <div class="w-6/12 bg-gray-300 h-4 rounded-full animate-pulse"></div>
+                                <label class="block font-medium text-gray-700">GSM nummer</label>
+                                <div class="w-12/12 mt-1 bg-gray-300 h-8 rounded-md animate-pulse"></div>
                             </div>
                 
                             <div class="col-span-6 sm:col-span-3">
@@ -61,6 +66,11 @@
                 <form *ngIf="!loading" (ngSubmit)="onSubmit()" #gebruikerForm="ngForm">
                     <div class="bg-white">
                         <div class="grid grid-cols-6 gap-6">
+                            <div class="col-span-6">
+                                <label class="block font-medium text-gray-700">Email</label>
+                                <p class="text-gray-500">{{ gebruiker.email }}</p>
+                            </div>
+
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="voornaam" class="block font-medium text-gray-700">Voornaam</label>
                                 <input type="text" name="voornaam" id="voornaam" [(ngModel)]="gebruiker.voornaam" #voornaam="ngModel" required minlength="2"
@@ -90,8 +100,16 @@
                             </div>
             
                             <div class="col-span-6 sm:col-span-3">
-                                <label class="block font-medium text-gray-700">Email</label>
-                                <p class="text-gray-500">{{ gebruiker.email }}</p>
+                                <label for="gsm" class="block font-medium text-gray-700">GSM nummer</label>
+                                <input type="text" name="gsm" id="gsm" [(ngModel)]="gebruiker.gsm" #gsm="ngModel"
+                                    minlength="10" maxlength="10"
+                                    class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 invalid:border-red-500 invalid:ring-red-500">
+                                <div *ngIf="gsm.invalid && (gsm.dirty || gsm.touched)"
+                                    class="text-xs text-red-500 font-medium">
+                                    <span *ngIf="gsm.errors?.['minlength'] || gsm.errors?.['maxlength']">
+                                       GSM nummer moet 10 karakters bevatten.
+                                    </span>
+                                </div>
                             </div>
             
                             <div class="col-span-6 sm:col-span-3">

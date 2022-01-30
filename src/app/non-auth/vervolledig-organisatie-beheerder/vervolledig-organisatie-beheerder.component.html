@@ -15,6 +15,11 @@
                     <label class="block font-medium text-gray-700">Achternaam</label>
                     <div class="w-12/12 mt-1 bg-gray-300 h-8 rounded-md animate-pulse"></div>
                 </div>
+
+                <div class="col-span-2">
+                    <label class="block font-medium text-gray-700">GSM nummer</label>
+                    <div class="w-12/12 mt-1 bg-gray-300 h-8 rounded-md animate-pulse"></div>
+                </div>
             
                 <div class="col-span-2">
                     <label class="block font-medium text-gray-700">Wachtwoord</label>
@@ -103,6 +108,19 @@
                         </span>
                         <span *ngIf="achternaam.errors?.['maxlength']">
                             Achternaam mag maximaal 60 karakters bevatten.
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-span-2">
+                    <label for="gsm" class="block font-medium text-gray-700">GSM nummer</label>
+                    <input placeholder="04xxxxxxxx" type="text" name="gsm" id="gsm" [(ngModel)]="gebruiker.gsm" #gsm="ngModel"
+                        minlength="10" maxlength="10"
+                        class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 invalid:border-red-500 invalid:ring-red-500">
+                    <div *ngIf="gsm.invalid && (gsm.dirty || gsm.touched)"
+                        class="text-xs text-red-500 font-medium">
+                        <span *ngIf="gsm.errors?.['minlength'] || gsm.errors?.['maxlength']">
+                            GSM nummer moet 10 karakters bevatten.
                         </span>
                     </div>
                 </div>
