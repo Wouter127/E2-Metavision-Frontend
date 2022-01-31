@@ -1,1 +1,169 @@
-<p>organisatie-form works!</p>
+<div *ngIf="showModal"
+    class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex mx-4">
+    <div class="relative w-auto my-6 mx-auto max-w-6xl sm:w-10/12">
+        <!--content-->
+        <div
+            class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+            <!--header-->
+            <div class="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
+                <h3 class="text-3xl font-semibold">
+                    {{ title }}
+                </h3>
+                <button
+                    class="p-1 ml-auto bg-transparent border-0 text-black opacity-50 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+                    (click)="closeModal()">
+                    <span
+                        class="bg-transparent text-black opacity-50 h-6 w-6 text-2xl block outline-none focus:outline-none">
+                        ×
+                    </span>
+                </button>
+            </div>
+            <!--body-->
+            <div class="relative p-6 flex-auto">
+                <!-- If loading, show skeleton -->
+                <form *ngIf="loading" action="#">
+                    <div class="bg-white">
+                        <div class="grid grid-cols-6 gap-6">
+                            <div class="col-span-6">
+                                <label class="block font-medium text-gray-700">Organisatie naam</label>
+                                <div class="w-12/12 sm:w-4/12 bg-gray-300 h-8 rounded-md animate-pulse"></div>
+                            </div>
+
+                            <div class="col-span-6 sm:col-span-3">
+                                <label class="block font-medium text-gray-700">Straat</label>
+                                <div class="w-12/12 mt-1 bg-gray-300 h-8 rounded-md animate-pulse"></div>
+                            </div>
+                
+                            <div class="col-span-6 sm:col-span-3">
+                                <label class="block font-medium text-gray-700">Huisnummer</label>
+                                <div class="w-12/12 mt-1 bg-gray-300 h-8 rounded-md animate-pulse"></div>
+                            </div>
+
+                            <div class="col-span-6 sm:col-span-3">
+                                <label class="block font-medium text-gray-700">Postcode</label>
+                                <div class="w-12/12 mt-1 bg-gray-300 h-8 rounded-md animate-pulse"></div>
+                            </div>
+                
+                            <div class="col-span-6 sm:col-span-3">
+                                <label class="block font-medium text-gray-700">Stad</label>
+                                <div class="w-12/12 mt-1 bg-gray-300 h-8 rounded-md animate-pulse"></div>
+                            </div>
+                            <div class="col-span-6 sm:col-span-3">
+                                <label class="block font-medium text-gray-700">Land</label>
+                                <div class="w-12/12 mt-1 bg-gray-300 h-8 rounded-md animate-pulse"></div>
+                            </div>
+                        </div>
+                        <div class="px-4 py-3">
+                            <div class="w-32 mx-auto mt-1 bg-gray-300 h-10 rounded-md animate-pulse"></div>
+                        </div>
+                    </div>
+                </form>
+                <!-- Done loading, show form -->
+                <form *ngIf="!loading" (ngSubmit)="onSubmit()" #organisatieForm="ngForm">
+                    <div class="bg-white">
+                        <div class="grid grid-cols-6 gap-6">
+                            
+                            <div class="col-span-6 sm:col-span-6">
+                                <label for="naam" class="block font-medium text-gray-700">Organisatie naam</label>
+                                <input type="text" name="naam" id="naam" [(ngModel)]="organisatie.naam" #naam="ngModel" required minlength="2"
+                                    class="mt-1 p-2 focus:ring-indigo-500 border focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md invalid:border-red-500 invalid:ring-red-500">
+                                <div *ngIf="naam.invalid && (naam.dirty || naam.touched)" class="text-xs text-red-500 font-medium">
+                                    <span *ngIf="naam.errors?.['required']">
+                                        Organisatie naam is veplicht.
+                                    </span>
+                                    <span *ngIf="naam.errors?.['minlength']">
+                                        Organisatie naam moet minstens 2 karakters bevatten.
+                                    </span>
+                                </div>
+                            </div>
+            
+                            <div class="col-span-6 sm:col-span-3">
+                                <label for="straat" class="block font-medium text-gray-700">Straat</label>
+                                <input type="text" name="straat" id="straat" [(ngModel)]="organisatie.straat" #straat="ngModel" required minlength="2"
+                                    class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 invalid:border-red-500 invalid:ring-red-500">
+                                <div *ngIf="straat.invalid && (straat.dirty || straat.touched)" class="text-xs text-red-500 font-medium">
+                                    <span *ngIf="straat.errors?.['required']">
+                                        Straat is veplicht.
+                                    </span>
+                                    <span *ngIf="straat.errors?.['minlength']">
+                                        Straat moet minstens 2 karakters bevatten.
+                                    </span>      
+                                </div>
+                            </div>
+
+                            <div class="col-span-6 sm:col-span-3">
+                                <label for="huisnummer" class="block font-medium text-gray-700">Huisnummer</label>
+                                <input type="text" name="huisnummer" id="huisnummer" [(ngModel)]="organisatie.huisnummer" #huisnummer="ngModel"
+                                required
+                                    class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 invalid:border-red-500 invalid:ring-red-500">
+                                <div *ngIf="huisnummer.invalid && (huisnummer.dirty || huisnummer.touched)"
+                                    class="text-xs text-red-500 font-medium">
+                                    <span *ngIf="huisnummer.errors?.['required']">
+                                       Huisnummer mag niet leeg zijn.
+                                    </span>
+                                </div>
+                            </div>
+            
+                            <div class="col-span-6 sm:col-span-3">
+                                <label for="postcode" class="block font-medium text-gray-700">Postcode</label>
+                                <input type="text" name="postcode" id="postcode" [(ngModel)]="organisatie.postcode" #postcode="ngModel"
+                                    required minlength="4"
+                                    class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 invalid:border-red-500 invalid:ring-red-500">
+                                <div *ngIf="postcode.invalid && (postcode.dirty || postcode.touched)"
+                                    class="text-xs text-red-500 font-medium">
+                                    <span *ngIf="postcode.errors?.['required']">
+                                       Postcode mag niet leeg zijn.
+                                    </span>
+                                    <span *ngIf="naam.errors?.['minlength']">
+                                        Postcodde moet minstens 4 karakters bevatten.
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="col-span-6 sm:col-span-3">
+                                <label for="stad" class="block font-medium text-gray-700">Stad</label>
+                                <input type="text" name="stad" id="stad" [(ngModel)]="organisatie.stad" #stad="ngModel"
+                                    required minlength="2"
+                                    class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 invalid:border-red-500 invalid:ring-red-500">
+                                <div *ngIf="stad.invalid && (stad.dirty || stad.touched)"
+                                    class="text-xs text-red-500 font-medium">
+                                    <span *ngIf="stad.errors?.['required']">
+                                       Stad mag niet leeg zijn.
+                                    </span>
+                                    <span *ngIf="naam.errors?.['minlength']">
+                                        Stad moet minstens 2 karakters bevatten.
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="col-span-6 sm:col-span-3">
+                                <label for="land" class="block font-medium text-gray-700">Land</label>
+                                <input type="text" name="land" id="land" [(ngModel)]="organisatie.land" #land="ngModel"
+                                    required minlength="2"
+                                    class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 invalid:border-red-500 invalid:ring-red-500">
+                                <div *ngIf="land.invalid && (land.dirty || land.touched)"
+                                    class="text-xs text-red-500 font-medium">
+                                    <span *ngIf="land.errors?.['required']">
+                                       Land mag niet leeg zijn.
+                                    </span>
+                                    <span *ngIf="naam.errors?.['minlength']">
+                                        Land moet minstens 2 karakters bevatten.
+                                    </span>
+                                </div>
+                            </div>
+            
+                            
+                        </div>
+                    </div>
+                    <div class="px-4 py-3 text-center sm:px-6">
+                        <button type="submit" [disabled]="!organisatieForm.form.valid"
+                            class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:bg-gray-400 disabled:cursor-not-allowed">
+                            Opslaan
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="showModal" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
