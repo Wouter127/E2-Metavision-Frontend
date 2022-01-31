@@ -15,6 +15,7 @@ import { VervolledigOrganisatieBeheerderComponent } from './vervolledig-organisa
 import { PubliekeWeerstationsListComponent } from './publieke-weerstations-list/publieke-weerstations-list.component';
 import { WeerstationDashboardComponent } from './weerstation-dashboard/weerstation-dashboard.component';
 import { HomeComponent } from './home/home.component';
+import { VervolledigGebruikerComponent } from './vervolledig-gebruiker/vervolledig-gebruiker.component';
 
 
 
@@ -25,7 +26,8 @@ import { HomeComponent } from './home/home.component';
     VervolledigOrganisatieBeheerderComponent,
     PubliekeWeerstationsListComponent,
     WeerstationDashboardComponent,
-    HomeComponent
+    HomeComponent,
+    VervolledigGebruikerComponent
   ],
   imports: [
     BrowserModule,

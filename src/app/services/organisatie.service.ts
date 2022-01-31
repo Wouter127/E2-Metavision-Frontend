@@ -17,12 +17,17 @@ export class OrganisatieService {
   }
 
   getOrganisatieWithWeerstations(organisatieId: number): Observable<Organisatie> {
-    
+
+    return this.httpClient.get<Organisatie>(environment.API_URI + "/organisatiebeheerder/organisaties/" + organisatieId);
+  }
+
+  getOrganisatieWithGebruikers(organisatieId: number): Observable<Organisatie> {
+
     return this.httpClient.get<Organisatie>(environment.API_URI + "/organisatiebeheerder/organisaties/" + organisatieId);
   }
 
   getAllOrganisatiesWithWeerstations(): Observable<Organisatie[]> {
-    
+
     return this.httpClient.get<Organisatie[]>(environment.API_URI + "/admin/organisaties/weerstations/");
   }
 

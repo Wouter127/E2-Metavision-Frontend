@@ -12,6 +12,7 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import { AuthGuard } from './auth.guard';
 import { OrganisatiebeheerderAuthGuard } from './organisatiebeheerder-auth.guard';
 import { AdminAuthGuard } from './admin-auth.guard';
+import { VervolledigGebruikerComponent } from './non-auth/vervolledig-gebruiker/vervolledig-gebruiker.component';
 
 const routes: Routes = [
   // Non-auth
@@ -19,6 +20,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, data: { animation: 'isRight'} },
 
   { path: 'vervolledig', component: VervolledigOrganisatieBeheerderComponent },
+  { path: 'vervolledigGebruiker', component: VervolledigGebruikerComponent },
+
   { path: 'publiekeweerstations', component: PubliekeWeerstationsListComponent }, // TODO: crud maken (= variant op Admin WeerstationListComponent)
   { path: 'weerstation/:id/dashboard', component: WeerstationDashboardComponent },
 
