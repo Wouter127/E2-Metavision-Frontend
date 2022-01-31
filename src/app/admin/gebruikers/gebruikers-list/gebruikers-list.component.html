@@ -75,27 +75,31 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="text-sm text-gray-900">
-                                    <div *ngIf="!gebruiker.vervolledig_token; else showNietVervolledigd">
+                                    
                                         <span *ngIf="gebruiker.organisatie?.naam; else geenOrganisatie">{{ gebruiker.organisatie?.naam }}</span>
                                         <ng-template #geenOrganisatie>
                                             <span></span>
                                         </ng-template>
+                                    
+                                </div>
+                                <div *ngIf="gebruiker.organisatie?.land; else adresNietVervolledigd">
+                                    <div class="text-sm text-gray-500">
+                                    {{ gebruiker.organisatie ? (gebruiker.organisatie.huisnummer ?? '') + ' ' + (gebruiker.organisatie.straat ?? '') : ''}}
                                     </div>
-                                    <ng-template #showNietVervolledigd>
-                                        <span class="inline-flex font-semibold rounded-full bg-orange-100 text-orange-800">
+                                    <div class="text-sm text-gray-500">
+                                        {{ gebruiker.organisatie ? (gebruiker.organisatie.postcode ?? '') + ' ' + (gebruiker.organisatie.stad ?? '') : ''}}
+                                    </div>
+                                    <div class="text-sm text-gray-500">
+                                        {{ gebruiker.organisatie ? gebruiker.organisatie.land : '' }}
+                                    </div>
+                                   
+                                </div>
+                                <ng-template #adresNietVervolledigd>
+                                        <span class="inline-flex font-semibold rounded-full bg-orange-100 text-orange-800 text-xs">
                                             Nog niet vervolledigd door gebruiker
                                         </span>
                                     </ng-template>
-                                </div>
-                                <div class="text-sm text-gray-500">
-                                    {{ gebruiker.organisatie ? (gebruiker.organisatie.huisnummer ?? '') + ' ' + (gebruiker.organisatie.straat ?? '') : ''}}
-                                </div>
-                                <div class="text-sm text-gray-500">
-                                    {{ gebruiker.organisatie ? (gebruiker.organisatie.postcode ?? '') + ' ' + (gebruiker.organisatie.stad ?? '') : ''}}
-                                </div>
-                                <div class="text-sm text-gray-500">
-                                    {{ gebruiker.organisatie ? gebruiker.organisatie.land : '' }}
-                                </div>
+                                
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <span *ngIf="gebruiker.isOrganisatieBeheerder" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
