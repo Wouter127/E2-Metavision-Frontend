@@ -163,7 +163,7 @@
                         </div>
                         <div *ngIf="isAdd">
                             <button type="submit"
-                                class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md text-white bg-wbRed-500 hover:bg-wbRed-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500">
                                 Toevoegen
                             </button>
                         </div>
@@ -173,7 +173,7 @@
                     <div class="bg-white">
                         <div class="grid grid-cols-6 gap-6">
                             <div class="col-span-6 sm:col-span-3">
-                            
+
                                 <label for="sensor" class="block font-medium text-gray-700">Sensor</label>
                                 <select id="sensor" name="sensor" (change)="selectSensorChangeHandler($event)"
                                     class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -190,7 +190,7 @@
                                     <option *ngFor="let switch of switches" value="{{ switch.id }}">{{ switch.type }}</option>
                                 </select>
                             </div>
-            
+
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="waarde" class="block font-medium text-gray-700">Waarde</label>
                                 <input type="number" name="waarde" id="waarde" (change)="waardeChangeHandler($event)" placeholder="Waarde"
@@ -224,7 +224,7 @@
                                     <option *ngFor="let switch of switches" value="{{ switch.id }}">{{ switch.type }}</option>
                                 </select>
                             </div>
-            
+
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="waarde" class="block font-medium text-gray-700">Waarde</label>
                                 <input type="number" name="waarde" id="waarde" [(ngModel)]="schakelwaarde.waarde" #waarde="ngModel"
@@ -259,7 +259,7 @@
                                     <option *ngFor="let switch of switches" value="{{ switch.id }}">{{ switch.type }}</option>
                                 </select>
                             </div>
-            
+
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="waarde" class="block font-medium text-gray-700">Waarde</label>
                                 <input type="number" name="waarde" id="waarde" (change)="waardeChangeHandler($event)" placeholder="Waarde"
