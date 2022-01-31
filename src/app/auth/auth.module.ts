@@ -7,7 +7,7 @@ import { AuthRoutingModule } from './auth-routing.module';
 @NgModule({
   declarations: [
     GebruikerInfoComponent,
-    GebruikerFormComponent
+    GebruikerFormComponent,
   ],
   imports: [
     CommonModule,

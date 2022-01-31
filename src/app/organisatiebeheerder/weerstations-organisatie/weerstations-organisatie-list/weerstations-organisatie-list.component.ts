@@ -45,12 +45,12 @@ export class WeerstationsOrganisatieListComponent implements OnInit {
     // When the weerstation is added successfully, refresh the list of weerstations.
     this.weerstationActiverenComponent.output.subscribe(() => {
       this.ngOnInit();
-    }); 
+    });
   }
 
   toggleRelais(weerstation_id: number): void {
     console.log('toggle clicked');
-    
+
     let weerstation: Weerstation|undefined = this.organisatie.weerstations.find((w:any) => w.id === weerstation_id);
 
     if (weerstation) {
@@ -75,7 +75,7 @@ export class WeerstationsOrganisatieListComponent implements OnInit {
       ).subscribe(
         result => {
           console.log(result);
-          
+
         }
       );
     }
