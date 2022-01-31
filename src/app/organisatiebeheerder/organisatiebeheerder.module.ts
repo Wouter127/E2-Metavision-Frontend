@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GebruikersOrganisatieListComponent } from './gebruikers-organisatie/gebruikers-organisatie-list/gebruikers-organisatie-list.component';
 import { GebruikersOrganisatieFormComponent } from './gebruikers-organisatie/gebruikers-organisatie-form/gebruikers-organisatie-form.component';
 import { GebruikersOrganisatieToevoegenComponent } from './gebruikers-organisatie/gebruikers-organisatie-toevoegen/gebruikers-organisatie-toevoegen.component';
@@ -26,14 +26,16 @@ import { OrganisatiebeheerderRoutingModule } from './organisatiebeheerder-routin
     OrganisatieInfoComponent,
     OrganisatieFormComponent,
     WeerstationsAlarmSchakelwaardesListComponent,
-    WeerstationsAlarmSchakelwaardesFormComponent
+    WeerstationsAlarmSchakelwaardesFormComponent,
+    
   ],
   imports: [
     CommonModule,
     FormsModule,
     TooltipModule,
     NgToggleModule,
-    OrganisatiebeheerderRoutingModule
+    OrganisatiebeheerderRoutingModule,
+    ReactiveFormsModule,
   ],
   exports: [
     GebruikersOrganisatieListComponent,
