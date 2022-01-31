@@ -1,1 +1,110 @@
-<p>gebruikers-organisatie-form works!</p>
+<div *ngIf="showModal"
+    class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex mx-4">
+    <div class="relative w-auto my-6 mx-auto max-w-6xl w-11/12 sm:w-10/12">
+        <!--content-->
+        <div
+            class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+            <!--header-->
+            <div class="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
+                <h3 class="text-3xl font-semibold">
+                    {{ title }}
+                </h3>
+                <button
+                    class="p-1 ml-auto bg-transparent border-0 text-black opacity-50 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+                    (click)="closeModal()">
+                    <span
+                        class="bg-transparent text-black opacity-50 h-6 w-6 text-2xl block outline-none focus:outline-none">
+                        ×
+                    </span>
+                </button>
+            </div>
+            <!--body-->
+            <div class="relative p-6 flex-auto">
+                <!-- If loading, show skeleton -->
+                <form *ngIf="loading" action="#">
+                    <div class="bg-white">
+                        <div class="grid grid-cols-6 gap-6">
+                            <div class="col-span-6 sm:col-span-3">
+                                <label class="block font-medium text-gray-700">Voornaam</label>
+                                <div class="w-12/12 mt-1 bg-gray-300 h-8 rounded-md animate-pulse"></div>
+                            </div>
+                
+                            <div class="col-span-6 sm:col-span-3">
+                                <label class="block font-medium text-gray-700">Achternaam</label>
+                                <div class="w-12/12 mt-1 bg-gray-300 h-8 rounded-md animate-pulse"></div>
+                            </div>
+                
+                            <div class="col-span-6 sm:col-span-3">
+                                <label class="block font-medium text-gray-700">Email</label>
+                                <div class="w-6/12 bg-gray-300 h-4 rounded-full animate-pulse"></div>
+                            </div>
+                
+                            
+                            <div class="col-span-6 sm:col-span-3">
+                                <label class="block font-medium text-gray-700">Organisatie beheerder</label>
+                                <div class="w-4 mt-1 bg-gray-300 h-4 rounded-md animate-pulse"></div>
+                            </div>
+                            
+                        </div>
+                        <div class="px-4 py-3">
+                            <div class="w-32 mx-auto mt-1 bg-gray-300 h-10 rounded-md animate-pulse"></div>
+                        </div>
+                    </div>
+                </form>
+                <!-- Done loading, show form -->
+                <form *ngIf="!loading" (ngSubmit)="onSubmit()" #gebruikerForm="ngForm">
+                    <div class="bg-white">
+                        <div class="grid grid-cols-6 gap-6">
+                            <div class="col-span-6 sm:col-span-3">
+                                <label for="voornaam" class="block font-medium text-gray-700">Voornaam</label>
+                                <input type="text" name="voornaam" id="voornaam" [(ngModel)]="gebruiker.voornaam" #voornaam="ngModel" required minlength="2"
+                                    class="mt-1 p-2 focus:ring-indigo-500 border focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md invalid:border-red-500 invalid:ring-red-500">
+                                <div *ngIf="voornaam.invalid && (voornaam.dirty || voornaam.touched)" class="text-xs text-red-500 font-medium">
+                                    <span *ngIf="voornaam.errors?.['required']">
+                                        Voornaam is veplicht.
+                                    </span>
+                                    <span *ngIf="voornaam.errors?.['minlength']">
+                                        Voornaam moet minstens 2 karakters bevatten.
+                                    </span>
+                                </div>
+                            </div>
+            
+                            <div class="col-span-6 sm:col-span-3">
+                                <label for="achternaam" class="block font-medium text-gray-700">Achternaam</label>
+                                <input type="text" name="achternaam" id="achternaam" [(ngModel)]="gebruiker.achternaam" #achternaam="ngModel" required minlength="2"
+                                    class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 invalid:border-red-500 invalid:ring-red-500">
+                                <div *ngIf="achternaam.invalid && (achternaam.dirty || achternaam.touched)" class="text-xs text-red-500 font-medium">
+                                    <span *ngIf="achternaam.errors?.['required']">
+                                        Achternaam is veplicht.
+                                    </span>
+                                    <span *ngIf="achternaam.errors?.['minlength']">
+                                        Achternaam moet minstens 2 karakters bevatten.
+                                    </span>      
+                                </div>
+                            </div>
+            
+                            <div class="col-span-6 sm:col-span-3">
+                                <label class="block font-medium text-gray-700">Email</label>
+                                <p class="text-gray-500">{{ gebruiker.email }}</p>
+                            </div>
+            
+                            
+
+                            <div class="col-span-6 sm:col-span-3">
+                                <label class="block font-medium text-gray-700" for="isOrganisatieBeheerder">Organisatie beheerder</label>
+                                <input class="ml-1 text-indigo-500" type="checkbox" role="switch" id="isOrganisatieBeheerder" [checked]="gebruiker.isOrganisatieBeheerder" (change)="gebruiker.isOrganisatieBeheerder ? gebruiker.isOrganisatieBeheerder = 0 : gebruiker.isOrganisatieBeheerder = 1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-4 py-3 text-center sm:px-6">
+                        <button type="submit" [disabled]="!gebruikerForm.form.valid"
+                            class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:bg-gray-400 disabled:cursor-not-allowed">
+                            Opslaan
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="showModal" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
