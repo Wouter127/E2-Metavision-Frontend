@@ -1,1 +1,26 @@
-<p>organisatie-info works!</p>
+<app-organisatie-form title="Wijzig organisatie info"></app-organisatie-form>
+
+
+<div class="grid grid-rows-12 container px-8">
+    <button (click)="editOrganisatieInfo()"
+        class="p-2 px-5 bg-transparent border-2 border-wbRed-500 text-wbRed-500 text-md font-bold rounded-lg transition-colors duration-700 transform hover:bg-wbRed-500 hover:text-white my-2">
+        Organisatie info aanpassen
+    </button>
+    <div class="text-lg font-bold">{{organisatie.naam}}</div>
+    <div class="ml-4">
+        <div>{{organisatie.straat + ' ' + organisatie.huisnummer}}</div>
+        <div>{{organisatie.postcode + ' ' + organisatie.stad}}</div>
+        <div>{{organisatie.land}}</div>
+    </div>
+
+    
+    <div>Gebruikers:</div>
+    <div *ngFor="let gebruiker of organisatie.gebruikers" class="ml-4">
+        <div>{{gebruiker.voornaam}}</div>
+    </div>
+    <div>Weerstations:</div>
+    <div *ngFor="let weerstation of organisatie.weerstations" class="ml-4">
+        <div>{{weerstation.naam}}</div>
+    </div>
+    <div class="font-bold">opmaak nog niet klaar</div>
+</div>

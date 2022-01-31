@@ -16,6 +16,10 @@ export class OrganisatieService {
     return this.httpClient.get<Organisatie[]>(`${environment.API_URI}/admin/organisaties`);
   }
 
+  getOrganisatieInfo(): Observable<Organisatie> {
+    return this.httpClient.get<Organisatie>(environment.API_URI + "/organisatiebeheerder/organisatie");
+  }
+
   getOrganisatieWithWeerstations(organisatieId: number): Observable<Organisatie> {
     
     return this.httpClient.get<Organisatie>(environment.API_URI + "/organisatiebeheerder/organisaties/" + organisatieId);
@@ -39,5 +43,12 @@ export class OrganisatieService {
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
 
     return this.httpClient.put<any>(environment.API_URI + "/admin/organisaties/" + id, organisatie, {headers: headers});
+  }
+
+  putOrganisatieAsOrganisatiebeheerder(id: number, organisatie: any) {
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json; charset=utf-8');
+
+    return this.httpClient.put<any>(environment.API_URI + "/organisatiebeheerder/organisaties/" + id, organisatie, {headers: headers});
   }
 }
