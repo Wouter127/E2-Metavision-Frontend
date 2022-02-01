@@ -34,14 +34,26 @@ export class LoginComponent implements OnInit {
 
         error: {
           content: (e) => {
-            let msg = '<ul>';
-            msg += `<li><b>Er ging iets mis!</b></li>`;
-            for (let key in e.error) {
-              msg += `<li>${e.error[key]}</li>`;
-            }
-            msg += '</ul>';
+            let checkHtml = /<([A-Za-z][A-Za-z0-9]*)\b[^>]*>(.*?)<\/\1>/.test(e.error);
+            
+            if (checkHtml) {
+              let msg = '<ul>';
+              msg += `<li><b>Er ging iets mis!</b></li>`;
+              msg += `<li>Probeer opnieuw of contacteer ons.</li>`;
+              msg += '</ul>';
 
-            return msg;
+              return msg;
+            }
+            else {
+              let msg = '<ul>';
+              msg += `<li><b>Er ging iets mis!</b></li>`;
+              for (let key in e.error) {
+                msg += `<li>${e.error[key]}</li>`;
+              }
+              msg += '</ul>';
+
+              return msg;
+            }
           }, position: 'bottom-right', dismissible: true, duration: 5000
         },
       })
@@ -50,7 +62,6 @@ export class LoginComponent implements OnInit {
         this.tokenService.handleData(result.access_token);
         this.authStateService.setAuthState(true);
         this.router.navigate(['auth/dashboard']);
-
       }
     );
   }
