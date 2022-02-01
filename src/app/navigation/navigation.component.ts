@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatMenuTrigger } from '@angular/material/menu';
 import { Gebruiker } from '../interfaces/Gebruiker';
 import { AuthStateService } from '../security/auth-state.service';
 import { AuthService } from '../security/auth.service';
@@ -9,10 +10,15 @@ import { AuthService } from '../security/auth.service';
   styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent implements OnInit {
+  @ViewChild(MatMenuTrigger)
+  trigger!: MatMenuTrigger;
 
+  someMethod() {
+    this.trigger.openMenu();
+  }
+  
   isLoggedIn: boolean = false;
   gebruiker!: Gebruiker | undefined;
-  dropdown: boolean = false;
 
   constructor(private authService: AuthService, private authStateService: AuthStateService) {}
 
@@ -37,7 +43,6 @@ export class NavigationComponent implements OnInit {
   }
 
   onLogout(): void {
-    this.dropdown = false;
     this.authService.logout();
   }
 }
