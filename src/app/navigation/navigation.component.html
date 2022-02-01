@@ -90,6 +90,18 @@
         class="block mt-4 lg:inline-block lg:mt-0 text-stone-300  hover:text-white mr-4">
         Organisatie info
       </a>
+      <a routerLink="/auth/help" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 lg:inline-block lg:mt-0 text-stone-300  hover:text-white mr-4">
+        Help 
+      </a>
+      <a routerLink="auth/account" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 lg:inline-block lg:mt-0 text-stone-300  hover:text-white mr-4">
+        Mijn account info 
+      </a>
+      <span  class="block mt-4 lg:inline-block lg:mt-0 text-stone-300  hover:text-white cursor-pointer" *ngIf="isLoggedIn"><a (click)="onLogout()">Logout</a></span>
+
+    </div>
+    <div>
+      <a  *ngIf="gebruiker"  class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-wbRed-500 hover:bg-white mt-4 lg:mt-0">{{gebruiker.voornaam}} <ng-template [ngIf]="gebruiker.organisatieId != null">({{gebruiker.organisatie?.naam}})</ng-template></a>
+      <a  *ngIf="!isLoggedIn" routerLink="/login"  routerLinkActive="active"  [routerLinkActiveOptions]="{ exact: true }" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-wbRed-500 hover:bg-white mt-4 lg:mt-0">Login</a>
     </div>
     <div class="relative lg:inline-block text-left float-right hidden">
       <div>
