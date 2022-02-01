@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { GebruikerInfoComponent } from './gebruiker/gebruiker-info/gebruiker-info.component';
 
 const routes: Routes = [
     { path: 'account', component: GebruikerInfoComponent }, // TODO: crud maken
+    { path: 'dashboard', component: DashboardComponent,data: { animation: 'isBottom' } }, // TODO: Dashboard maken
+
 ];
 
 @NgModule({

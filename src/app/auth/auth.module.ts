@@ -4,11 +4,13 @@ import { GebruikerInfoComponent } from './gebruiker/gebruiker-info/gebruiker-inf
 import { GebruikerFormComponent } from './gebruiker/gebruiker-form/gebruiker-form.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     GebruikerInfoComponent,
     GebruikerFormComponent,
+    DashboardComponent,
   ],
   imports: [
     CommonModule,
