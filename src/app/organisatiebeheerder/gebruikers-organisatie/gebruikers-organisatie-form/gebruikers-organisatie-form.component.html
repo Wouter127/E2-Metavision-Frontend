@@ -39,12 +39,20 @@
                                 <div class="w-6/12 bg-gray-300 h-4 rounded-full animate-pulse"></div>
                             </div>
                 
-                            
                             <div class="col-span-6 sm:col-span-3">
                                 <label class="block font-medium text-gray-700">Organisatie beheerder</label>
                                 <div class="w-4 mt-1 bg-gray-300 h-4 rounded-md animate-pulse"></div>
                             </div>
                             
+                            <div class="col-span-6 sm:col-span-3">
+                                <label class="block font-medium text-gray-700">GSM nummer</label>
+                                <div class="w-12/12 mt-1 bg-gray-300 h-8 rounded-md animate-pulse"></div>
+                            </div>
+
+                            <div class="col-span-6 sm:col-span-3">
+                                <label class="block font-medium text-gray-700">Krijgt melding</label>
+                                <div class="w-4 mt-1 bg-gray-300 h-4 rounded-md animate-pulse"></div>
+                            </div>
                         </div>
                         <div class="px-4 py-3">
                             <div class="w-32 mx-auto mt-1 bg-gray-300 h-10 rounded-md animate-pulse"></div>
@@ -87,12 +95,30 @@
                                 <label class="block font-medium text-gray-700">Email</label>
                                 <p class="text-gray-500">{{ gebruiker.email }}</p>
                             </div>
-            
-                            
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label class="block font-medium text-gray-700" for="isOrganisatieBeheerder">Organisatie beheerder</label>
                                 <input class="ml-1 text-indigo-500" type="checkbox" role="switch" id="isOrganisatieBeheerder" [checked]="gebruiker.isOrganisatieBeheerder" (change)="gebruiker.isOrganisatieBeheerder ? gebruiker.isOrganisatieBeheerder = 0 : gebruiker.isOrganisatieBeheerder = 1">
+                            </div>
+
+                            <div class="col-span-6 sm:col-span-3">
+                                <label for="gsm" class="block font-medium text-gray-700">GSM nummer</label>
+                                <input type="text" name="gsm" id="gsm" [(ngModel)]="gebruiker.gsm" #gsm="ngModel"
+                                    minlength="10" maxlength="10" placeholder="04xxxxxxxx"
+                                    class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 invalid:border-red-500 invalid:ring-red-500">
+                                <div *ngIf="gsm.invalid && (gsm.dirty || gsm.touched)"
+                                    class="text-xs text-red-500 font-medium">
+                                    <span *ngIf="gsm.errors?.['minlength'] || gsm.errors?.['maxlength']">
+                                        GSM nummer moet 10 karakters bevatten.
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="col-span-6 sm:col-span-3">
+                                <label class="block font-medium text-gray-700" for="krijgtMelding">Krijgt melding</label>
+                                <input class="ml-1 text-indigo-500" type="checkbox" role="switch" id="krijgtMelding"
+                                    [checked]="gebruiker.krijgtMelding"
+                                    (change)="gebruiker.krijgtMelding ? gebruiker.krijgtMelding = 0 : gebruiker.krijgtMelding = 1">
                             </div>
                         </div>
                     </div>
