@@ -24,6 +24,9 @@ import { DialogModule } from '@ngneat/dialog';
 // Interceptors
 import { TokenInterceptor } from './security/token.interceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -43,6 +46,10 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     DialogModule.forRoot(),
     HttpClientModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
+    CommonModule,
+    MatMenuModule,
+    MatSidenavModule,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
