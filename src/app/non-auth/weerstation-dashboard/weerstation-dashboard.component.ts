@@ -148,8 +148,7 @@ export class WeerstationDashboardComponent implements OnInit, AfterViewInit {
                   series: [],
                   chart: {
                     height: 350,
-                    type: 'line',
-                    background: '#fff'
+                    type: 'line'
                   },
                   dataLabels: {
                     enabled: false
@@ -181,8 +180,7 @@ export class WeerstationDashboardComponent implements OnInit, AfterViewInit {
                   series: [],
                   chart: {
                     height: 350,
-                    type: 'line',
-                    background: '#fff'
+                    type: 'line'
                   },
                   dataLabels: {
                     enabled: false
@@ -213,8 +211,7 @@ export class WeerstationDashboardComponent implements OnInit, AfterViewInit {
                   series: [],
                   chart: {
                     height: 350,
-                    type: 'line',
-                    background: '#fff'
+                    type: 'line'
                   },
                   dataLabels: {
                     enabled: false
@@ -245,8 +242,7 @@ export class WeerstationDashboardComponent implements OnInit, AfterViewInit {
                   series: [],
                   chart: {
                     height: 350,
-                    type: 'line',
-                    background: '#fff'
+                    type: 'line'
                   },
                   dataLabels: {
                     enabled: false
@@ -282,8 +278,7 @@ export class WeerstationDashboardComponent implements OnInit, AfterViewInit {
                   ],
                   chart: {
                     height: 350,
-                    type: "line",
-                    background: '#fff'
+                    type: "line"
                   },
                   stroke: {
                     width: 5,
@@ -333,8 +328,7 @@ export class WeerstationDashboardComponent implements OnInit, AfterViewInit {
                     height: 350,
                     zoom: {
                       enabled: true
-                    },
-                    background: '#fff'
+                    }
                   },
                   dataLabels: {
                     enabled: false
@@ -386,8 +380,7 @@ export class WeerstationDashboardComponent implements OnInit, AfterViewInit {
                     height: 350,
                     zoom: {
                       enabled: true
-                    },
-                    background: '#fff'
+                    }
                   },
                   dataLabels: {
                     enabled: false
@@ -437,8 +430,7 @@ export class WeerstationDashboardComponent implements OnInit, AfterViewInit {
                     height: 350,
                     zoom: {
                       enabled: true
-                    },
-                    background: '#fff'
+                    }
                   },
                   dataLabels: {
                     enabled: false
@@ -544,8 +536,7 @@ export class WeerstationDashboardComponent implements OnInit, AfterViewInit {
       },
       this.prechartOptionsTemperatuur.chart = {
         type: 'bar',
-        height: 350,
-        background: '#fff'
+        height: 350
       },
       this.prechartOptionsTemperatuur.fill = {
         type: "gradient",
@@ -574,8 +565,7 @@ export class WeerstationDashboardComponent implements OnInit, AfterViewInit {
       },
       this.prechartOptionsTemperatuur.chart = {
         type: 'bar',
-        height: 350,
-        background: '#fff'
+        height: 350
       },
       this.prechartOptionsTemperatuur.fill = {
         type: "gradient",
@@ -604,8 +594,7 @@ export class WeerstationDashboardComponent implements OnInit, AfterViewInit {
       },
       this.prechartOptionsTemperatuur.chart = {
         type: 'area',
-        height: 350,
-        background: '#fff'
+        height: 350
       },
       this.prechartOptionsTemperatuur.fill = {
         type: "gradient",
@@ -635,8 +624,7 @@ export class WeerstationDashboardComponent implements OnInit, AfterViewInit {
       },
       this.prechartOptionsLicht.chart = {
         type: 'area',
-        height: 350,
-        background: '#fff'
+        height: 350
       },
       this.prechartOptionsLicht.fill = {
         type: "solid",
@@ -666,8 +654,7 @@ export class WeerstationDashboardComponent implements OnInit, AfterViewInit {
       },
       this.prechartOptionsLicht.chart = {
         type: 'area',
-        height: 350,
-        background: '#fff'
+        height: 350
       },
       this.prechartOptionsLicht.fill = {
         type: "solid",
@@ -697,8 +684,7 @@ export class WeerstationDashboardComponent implements OnInit, AfterViewInit {
       },
       this.prechartOptionsLicht.chart = {
         type: 'area',
-        height: 350,
-        background: '#fff'
+        height: 350
       },
       this.prechartOptionsLicht.fill = {
         type: "gradient",
@@ -736,8 +722,7 @@ export class WeerstationDashboardComponent implements OnInit, AfterViewInit {
       },
       this.prechartOptionsBatterij.chart = {
         type: 'bar',
-        height: 350,
-        background: '#fff'
+        height: 350
       },
       this.prechartOptionsBatterij.fill = {
         type: "gradient",
@@ -774,8 +759,7 @@ export class WeerstationDashboardComponent implements OnInit, AfterViewInit {
       },
       this.prechartOptionsBatterij.chart = {
         type: 'bar',
-        height: 350,
-        background: '#fff'
+        height: 350
       },
       this.prechartOptionsBatterij.fill = {
         type: "gradient",
@@ -813,8 +797,7 @@ export class WeerstationDashboardComponent implements OnInit, AfterViewInit {
       },
       this.prechartOptionsLuchtvochtigheid.chart = {
         type: 'bar',
-        height: 350,
-        background: '#fff'
+        height: 350
       },
       this.prechartOptionsLuchtvochtigheid.fill = {
         type: "solid",
@@ -843,8 +826,7 @@ export class WeerstationDashboardComponent implements OnInit, AfterViewInit {
       },
       this.prechartOptionsLuchtvochtigheid.chart = {
         type: 'bar',
-        height: 350,
-        background: '#fff'
+        height: 350
       },
       this.prechartOptionsLuchtvochtigheid.fill = {
         type: "gradient",
@@ -881,8 +863,7 @@ export class WeerstationDashboardComponent implements OnInit, AfterViewInit {
       },
       this.prechartOptionsLuchtvochtigheid.chart = {
         type: 'bar',
-        height: 350,
-        background: '#fff'
+        height: 350
       },
       this.prechartOptionsLuchtvochtigheid.fill = {
         type: "gradient",
