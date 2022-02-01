@@ -34,9 +34,11 @@ export class LoginComponent implements OnInit {
 
         error: {
           content: (e) => {
+            console.log(e);
+            
             let checkHtml = /<([A-Za-z][A-Za-z0-9]*)\b[^>]*>(.*?)<\/\1>/.test(e.error);
             
-            if (checkHtml) {
+            if (checkHtml || e.status === 500) {
               let msg = '<ul>';
               msg += `<li><b>Er ging iets mis!</b></li>`;
               msg += `<li>Probeer opnieuw of contacteer ons.</li>`;
