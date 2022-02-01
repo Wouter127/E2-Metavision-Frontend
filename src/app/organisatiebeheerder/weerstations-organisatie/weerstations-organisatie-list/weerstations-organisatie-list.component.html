@@ -85,6 +85,9 @@
                                             <span class="px-2 inline-flex font-semibold rounded-full bg-red-100 text-red-800">
                                                 Uit
                                             </span>
+                                            <span *ngIf="weerstation.isRelaisManueelAan" class="text-sm text-orange-800">
+                                                (Wordt elke 15 minuten geupdate.)
+                                            </span>
                                         </ng-template>
                                     </p>
                                 </ng-template>
