@@ -61,31 +61,31 @@
       <mat-drawer #drawer class="bg-wbRed-500 p-6">
         <div *ngIf="gebruiker" class="text-sm">
           <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-            class="block mt-4 text-white mr-4">
+            class="block mt-4 text-white mr-4" (click)="drawer.toggle()">
             Home
           </a>
           <a *ngIf="gebruiker.isAdmin" routerLink="admin/gebruikers" routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4">
+            [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4" (click)="drawer.toggle()">
             Alle gebruikers
           </a>
           <a *ngIf="gebruiker.isAdmin" routerLink="admin/weerstations" routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4">
+            [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4" (click)="drawer.toggle()">
             Alle weerstations
           </a>
           <a *ngIf="gebruiker.isAdmin" routerLink="admin/organisaties" routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4">
+            [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4" (click)="drawer.toggle()">
             Alle organisaties
           </a>
           <a *ngIf="gebruiker.isOrganisatieBeheerder" routerLink="organisatiebeheerder/weerstations"
-            routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4">
+            routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4" (click)="drawer.toggle()">
             Mijn weerstations
           </a>
           <a *ngIf="gebruiker.isOrganisatieBeheerder" routerLink="organisatiebeheerder/gebruikers"
-            routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4">
+            routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4" (click)="drawer.toggle()">
             Gebruikers
           </a>
           <a *ngIf="gebruiker.isOrganisatieBeheerder" routerLink="organisatiebeheerder/organisatie"
-            routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4">
+            routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4" (click)="drawer.toggle()">
             Organisatie info
           </a>
         </div>
