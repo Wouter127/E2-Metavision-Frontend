@@ -85,4 +85,15 @@ export class GebruikerService {
 
     return this.httpClient.post<Gebruiker>(`${environment.API_URI}/organisatiebeheerder/gebruikers`, { email }, { headers: headers });
   }
+
+  getGebruikerInfo(): Observable<Gebruiker> {
+    return this.httpClient.get<Gebruiker>(`${environment.API_URI}/auth/account`)
+  }
+
+  putGebruikerAlsAuth(id: number, gebruiker: Gebruiker): Observable<Gebruiker> {
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json; charset=utf-8');
+
+    return this.httpClient.put<Gebruiker>(`${environment.API_URI}/auth/gebruikers/${id}`, gebruiker, { headers: headers });
+  }
 }
