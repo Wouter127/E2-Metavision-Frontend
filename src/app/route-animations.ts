@@ -13,7 +13,11 @@ export const slider =
   trigger('routeAnimations', [
     //Alleen animatie van home naar login en back, vul hier aan voor meerdere slides * = wildcard
     transition('isRight => isLeft', slideTo('left') ),
-    transition('isLeft => isRight', slideTo('right') )
+    transition('isLeft => isRight', slideTo('right') ),
+    transition('isRight => isBottom', slideTo('bottom') ),
+    transition('isBottom => isRight', slideTo('top') )
+
+
   ]);
 
 function slideTo(direction: any) {

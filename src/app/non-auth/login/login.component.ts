@@ -3,6 +3,7 @@ import { HotToastService } from '@ngneat/hot-toast';
 import { AuthService } from '../../security/auth.service';
 import { AuthStateService } from '../../security/auth-state.service';
 import { TokenService } from '../../security/token.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   email: string = '';
   password: string = '';
 
-  constructor(private authService: AuthService, private tokenService: TokenService, private authStateService: AuthStateService, private toast: HotToastService) { 
+  constructor(private authService: AuthService, private tokenService: TokenService, private authStateService: AuthStateService, private toast: HotToastService, private router: Router) { 
     // Reverse the order of which the toasts are displayed
     this.toast.defaultConfig = {
       ...this.toast.defaultConfig,
@@ -30,6 +31,7 @@ export class LoginComponent implements OnInit {
       this.toast.observe({
         loading: { content: 'Inloggen...', position: 'bottom-right' },
         success: { content: (result: any) => `Welkom ${result.gebruiker.voornaam}!`, position: 'bottom-right', dismissible: true },
+
         error: {
           content: (e) => {
             let msg = '<ul>';
@@ -47,6 +49,8 @@ export class LoginComponent implements OnInit {
       result => {
         this.tokenService.handleData(result.access_token);
         this.authStateService.setAuthState(true);
+        this.router.navigate(['auth/dashboard']);
+
       }
     );
   }
