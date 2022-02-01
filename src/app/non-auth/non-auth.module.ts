@@ -18,7 +18,6 @@ import { HomeComponent } from './home/home.component';
 import { VervolledigGebruikerComponent } from './vervolledig-gebruiker/vervolledig-gebruiker.component';
 
 
-
 @NgModule({
   declarations: [
     LoginComponent,
@@ -44,7 +43,7 @@ import { VervolledigGebruikerComponent } from './vervolledig-gebruiker/vervolled
     FormsModule,
     ClipboardModule,
     ReactiveFormsModule,
-    NgApexchartsModule,
+    NgApexchartsModule
   ],
   exports: [
     LoginComponent,
