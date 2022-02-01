@@ -12,6 +12,7 @@ export class NavigationComponent implements OnInit {
 
   isLoggedIn: boolean = false;
   gebruiker!: Gebruiker | undefined;
+  dropdown: boolean = false;
 
   constructor(private authService: AuthService, private authStateService: AuthStateService) {}
 
@@ -36,6 +37,7 @@ export class NavigationComponent implements OnInit {
   }
 
   onLogout(): void {
+    this.dropdown = false;
     this.authService.logout();
   }
 }
