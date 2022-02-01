@@ -55,9 +55,4 @@ export class AppComponent {
   onLogout(): void {
     this.authService.logout();
   }
-
-  clicks() {
-    console.log("click!");
-    
-  }
 }
