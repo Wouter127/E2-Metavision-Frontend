@@ -50,8 +50,6 @@ export class WeerstationsAlarmSchakelwaardesListComponent implements OnInit {
       result => {
         this.weerstation = result;
         this.loading = false;
-        console.log(this.weerstation.schakel_waardes.length);
-
       },
       error => {
         this.toast.error("Er ging iets mis.  De alarm- en schakelwaarden kunnen niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false })
@@ -70,6 +68,8 @@ export class WeerstationsAlarmSchakelwaardesListComponent implements OnInit {
   }
 
   wijzigAlarmWaarde(id: any) {
+    console.log('WIJZIGEN:', id);
+    
     this.alarmwaardesFormComponent.openEditAlarmWaardeModal(id);
 
     // When the alarmwaarde is edited successfully, refresh the list of alarmwaardes.
@@ -80,7 +80,6 @@ export class WeerstationsAlarmSchakelwaardesListComponent implements OnInit {
   }
 
   verwijderAlarmWaarde(id: any): void {
-    console.log("verwijder", id);
     this.dialog.confirm({
       title: 'Alarmwaarde verwijderen?',
       body: 'Deze actie kan niet ongedaan gemaakt worden.'
@@ -123,7 +122,6 @@ export class WeerstationsAlarmSchakelwaardesListComponent implements OnInit {
   }
 
   verwijderSchakelWaarde(id: any): void {
-    console.log("verwijder", id);
     this.dialog.confirm({
       title: 'schakelwaarde verwijderen?',
       body: 'Deze actie kan niet ongedaan gemaakt worden.'
