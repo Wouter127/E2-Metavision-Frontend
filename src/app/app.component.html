@@ -1,15 +1,12 @@
 <nav class="flex items-center justify-between flex-wrap bg-wbRed-500">
-
   <div class="flex flex-row p-6 w-full">
-    
-      <button (click)="drawer.toggle()" *ngIf="gebruiker"
-        class="flex items-center px-4 border rounded stone-300  border-white text-white hover:border-transparent hover:text-wbRed-500 hover:bg-white">
-        <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-          <title>Menu</title>
-          <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-        </svg>
-      </button>
-    
+    <button (click)="drawer.toggle()" *ngIf="gebruiker"
+      class="flex items-center px-4 border rounded stone-300  border-white text-white hover:border-transparent hover:text-wbRed-500 hover:bg-white">
+      <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <title>Menu</title>
+        <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+      </svg>
+    </button>
     <div class="ml-4">
       <button *ngIf="gebruiker" type="button" mat-icon-button [matMenuTriggerFor]="menu"
         class="inline-flex justify-center text-sm px-4 py-2 border rounded text-white border-white hover:border-transparent hover:text-wbRed-500 hover:bg-white"
@@ -38,54 +35,55 @@
     <div class="items-center grow flex justify-end">
       <div class="items-center">
         <div class="flex text-white ml-auto items-center cursor-pointer" routerLink="/" routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }">
-        <svg class="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54"
-          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 259.96 367">
-          <circle cx="38.23" cy="152.92" r="38.23" />
-          <circle cx="84.1" cy="240.84" r="38.23" />
-          <circle cx="175.85" cy="240.84" r="38.23" />
-          <circle cx="129.98" cy="328.77" r="38.23" />
-          <circle cx="129.98" cy="152.92" r="38.23" />
-          <circle cx="221.73" cy="152.92" r="38.23" />
-          <path d="M192.33,116.4s0-72.64,99.4-99.4V30.91s-84.11,20.5-84.11,89.31Z" transform="translate(-70 -17)" />
-        </svg>
-        <span class="font-semibold text-xl tracking-tight">Wijnbouwer</span>
-      </div>
+          [routerLinkActiveOptions]="{ exact: true }">
+          <svg class="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54"
+            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 259.96 367">
+            <circle cx="38.23" cy="152.92" r="38.23" />
+            <circle cx="84.1" cy="240.84" r="38.23" />
+            <circle cx="175.85" cy="240.84" r="38.23" />
+            <circle cx="129.98" cy="328.77" r="38.23" />
+            <circle cx="129.98" cy="152.92" r="38.23" />
+            <circle cx="221.73" cy="152.92" r="38.23" />
+            <path d="M192.33,116.4s0-72.64,99.4-99.4V30.91s-84.11,20.5-84.11,89.31Z" transform="translate(-70 -17)" />
+          </svg>
+          <span class="font-semibold text-xl tracking-tight">Wijnbouwer</span>
+        </div>
       </div>
     </div>
   </div>
-
   <div class="w-full block flex-grow">
     <mat-drawer-container class="example-container h-screen" [hasBackdrop]="true">
-
       <mat-drawer #drawer class="bg-wbRed-500 p-6">
         <div *ngIf="gebruiker" class="text-sm">
           <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-            class="block mt-4 text-white mr-4">
+            class="block mt-4 text-white mr-4" (click)="drawer.toggle()">
             Home
           </a>
           <a *ngIf="gebruiker.isAdmin" routerLink="admin/gebruikers" routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4">
+            [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4" (click)="drawer.toggle()">
             Alle gebruikers
           </a>
           <a *ngIf="gebruiker.isAdmin" routerLink="admin/weerstations" routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4">
+            [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4" (click)="drawer.toggle()">
             Alle weerstations
           </a>
           <a *ngIf="gebruiker.isAdmin" routerLink="admin/organisaties" routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4">
+            [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4" (click)="drawer.toggle()">
             Alle organisaties
           </a>
           <a *ngIf="gebruiker.isOrganisatieBeheerder" routerLink="organisatiebeheerder/weerstations"
-            routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4">
+            routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4"
+            (click)="drawer.toggle()">
             Mijn weerstations
           </a>
           <a *ngIf="gebruiker.isOrganisatieBeheerder" routerLink="organisatiebeheerder/gebruikers"
-            routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4">
+            routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4"
+            (click)="drawer.toggle()">
             Gebruikers
           </a>
           <a *ngIf="gebruiker.isOrganisatieBeheerder" routerLink="organisatiebeheerder/organisatie"
-            routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4">
+            routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4"
+            (click)="drawer.toggle()">
             Organisatie info
           </a>
         </div>
