@@ -1,3 +1,4 @@
+   
 import { Injectable } from '@angular/core';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -65,31 +66,6 @@ export class WeerstationService {
     return this.httpClient.get<any[]>(`${environment.API_URI}/auth/meting/${weerstation_id}/laatsteMeting`);
   }
 
-  getWeerstationWithMetingen(weerstation_id: number, begin?: string, eind?: string): Observable<Weerstation> {
-    let parameters: string = '';
-    let parameterCount = 0;
-    if (begin) {
-      if (parameterCount === 0) {
-        parameters += '?begin=' + begin;
-        parameterCount++;
-      }
-      else {
-        parameters += '&begin=' + begin;
-        parameterCount++;
-      }
-    }
-    if (eind) {
-      if (parameterCount === 0) {
-        parameters += '?eind=' + eind;
-        parameterCount++;
-      }
-      else {
-        parameters += '&eind=' + eind;
-        parameterCount++;
-      }
-    }
-    return this.httpClient.get<Weerstation>(`${environment.API_URI}/auth/weerstations/${weerstation_id}/metingen${parameters}`);
-  }
 
   activeerWeerstation(uniekeCode: string): Observable<Weerstation> {
     return this.httpClient.get<Weerstation>(environment.API_URI + "/organisatiebeheerder/weerstations/activeer/" + uniekeCode);
