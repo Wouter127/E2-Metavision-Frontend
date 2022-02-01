@@ -14,13 +14,13 @@
     </div>
 
 <div class="grid grid-cols-2 gap-2 mt-3">
-    <div class="ml-3 p-4 mb-4 text-sm text-gray-700 bg-gray-50 rounded-lg dark:bg-gray-700 dark:text-gray-300">
+    <div class="ml-3 p-4 mb-4 text-sm text-gray-700 bg-gray-50 rounded-lg dark:bg-gray-50 dark:text-gray-300">
         <apx-chart [series]="chartOptionsT1.series" [chart]="chartOptionsT1.chart"
             [dataLabels]="chartOptionsT1.dataLabels" [xaxis]="chartOptionsT1.xaxis" [yaxis]="chartOptionsT1.yaxis"
             [title]="chartOptionsT1.title" [fill]="chartOptionsT1.fill" [stroke]="chartOptionsT1.stroke"
             [colors]="chartOptionsT1.colors"></apx-chart>
     </div>
-    <div class="mr-3 p-4 mb-4 text-sm text-gray-700 bg-gray-50 rounded-lg dark:bg-gray-700 dark:text-gray-300">
+    <div class="mr-3 p-4 mb-4 text-sm text-gray-700 bg-gray-50 rounded-lg dark:bg-gray-50 dark:text-gray-300">
         <apx-chart [series]="chartOptionsT2.series" [chart]="chartOptionsT2.chart"
             [dataLabels]="chartOptionsT2.dataLabels" [xaxis]="chartOptionsT2.xaxis" [yaxis]="chartOptionsT2.yaxis"
             [title]="chartOptionsT2.title" [stroke]="chartOptionsT2.stroke" [fill]="chartOptionsT2.fill"
@@ -29,14 +29,14 @@
 </div>
 
 <div class="grid grid-cols-2 gap-2 mt-3">
-    <div class="ml-3 p-4 mb-4 text-sm text-gray-700 bg-gray-50 rounded-lg dark:bg-gray-700 dark:text-gray-300">
+    <div class="ml-3 p-4 mb-4 text-sm text-gray-700 bg-gray-50 rounded-lg dark:bg-gray-50 dark:text-gray-300">
         <apx-chart [series]="chartOptionsLuchtvochtigheid.series" [chart]="chartOptionsLuchtvochtigheid.chart"
             [dataLabels]="chartOptionsLuchtvochtigheid.dataLabels" [xaxis]="chartOptionsLuchtvochtigheid.xaxis"
             [yaxis]="chartOptionsLuchtvochtigheid.yaxis" [title]="chartOptionsLuchtvochtigheid.title"
             [fill]="chartOptionsLuchtvochtigheid.fill" [stroke]="chartOptionsLuchtvochtigheid.stroke"
             [colors]="chartOptionsLuchtvochtigheid.colors"></apx-chart>
     </div>
-    <div class="mr-3 p-4 mb-4 text-sm text-gray-700 bg-gray-50 rounded-lg dark:bg-gray-700 dark:text-gray-300">
+    <div class="mr-3 p-4 mb-4 text-sm text-gray-700 bg-gray-50 rounded-lg dark:bg-gray-50 dark:text-gray-300">
         <apx-chart [series]="chartOptionsBatterijPercentage.series" [chart]="chartOptionsBatterijPercentage.chart"
             [dataLabels]="chartOptionsBatterijPercentage.dataLabels" [xaxis]="chartOptionsBatterijPercentage.xaxis"
             [yaxis]="chartOptionsBatterijPercentage.yaxis" [title]="chartOptionsBatterijPercentage.title"
@@ -68,7 +68,7 @@
         </span>
     </button>
 </div>
-<div class="ml-4 mr-4 p-4 mb-4 text-sm text-gray-700 bg-gray-50 rounded-lg dark:bg-gray-700 dark:text-gray-300">
+<div class="ml-4 mr-4 p-4 mb-4 text-sm text-gray-700 bg-gray-50 rounded-lg dark:bg-gray-50 dark:text-gray-300">
     <div>
         <apx-chart [series]="prechartOptionsTemperatuur.series" [chart]="prechartOptionsTemperatuur.chart"
             [dataLabels]="prechartOptionsTemperatuur.dataLabels" [title]="prechartOptionsTemperatuur.title"
@@ -100,7 +100,7 @@
         </span>
     </button>
 </div>
-<div class="mr-4 ml-4 p-4 mb-4 text-sm text-gray-700 bg-gray-50 rounded-lg dark:bg-gray-700 dark:text-gray-300">
+<div class="mr-4 ml-4 p-4 mb-4 text-sm text-gray-700 bg-gray-50 rounded-lg dark:bg-gray-50 dark:text-gray-300">
     <div>
         <apx-chart [series]="prechartOptionsLicht.series" [chart]="prechartOptionsLicht.chart"
             [dataLabels]="prechartOptionsLicht.dataLabels" [title]="prechartOptionsLicht.title"
@@ -111,21 +111,21 @@
 
 <div class="text-center">
     <button (click)="updateBatterijspanning()"
-        class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:ring-teal-400 dark:focus:ring-green-800">
+        class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:ring-teal-200 dark:focus:ring-teal-300">
         <span
             class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
             Batterijspanning
         </span>
     </button>
     <button (click)="updateBatterijpercentage()"
-        class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:ring-teal-400 dark:focus:ring-green-800">
+        class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:ring-teal-200 dark:focus:ring-teal-300">
         <span
             class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
             Batterijpercentage
         </span>
     </button>
 </div>
-<div class="mr-4 ml-4 p-4 mb-4 text-sm text-gray-700 bg-gray-50 rounded-lg dark:bg-gray-700 dark:text-gray-300">
+<div class="mr-4 ml-4 p-4 mb-4 text-sm text-gray-700 bg-gray-50 rounded-lg dark:bg-gray-50 dark:text-gray-300">
     <div>
         <apx-chart [series]="prechartOptionsBatterij.series" [chart]="prechartOptionsBatterij.chart"
             [dataLabels]="prechartOptionsBatterij.dataLabels" [title]="prechartOptionsBatterij.title"
@@ -157,7 +157,7 @@
         </span>
     </button>
 </div>
-<div class="mr-4 ml-4 p-4 mb-4 text-sm text-gray-700 bg-gray-50 rounded-lg dark:bg-gray-700 dark:text-gray-300">
+<div class="mr-4 ml-4 p-4 mb-4 text-sm text-gray-700 bg-gray-50 rounded-lg dark:bg-gray-50 dark:text-gray-300">
     <div>
         <apx-chart [series]="prechartOptionsLuchtvochtigheid.series" [chart]="prechartOptionsLuchtvochtigheid.chart"
             [dataLabels]="prechartOptionsLuchtvochtigheid.dataLabels" [title]="prechartOptionsLuchtvochtigheid.title"

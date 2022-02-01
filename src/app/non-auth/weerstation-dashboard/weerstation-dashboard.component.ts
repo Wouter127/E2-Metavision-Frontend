@@ -53,8 +53,8 @@ export class WeerstationDashboardComponent implements OnInit, AfterViewInit {
   
   
 
-  begin: string | string = "2022-01-17";
-  eind: string | string = "2022-01-18";
+  begin: string | string = "2022-01-27";
+  eind: string | string = "2022-01-28";
 
   weerstation!: Weerstation;
   weerstation$: Subscription = new Subscription();
