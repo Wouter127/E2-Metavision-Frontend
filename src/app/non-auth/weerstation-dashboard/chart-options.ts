@@ -71,11 +71,3 @@ export interface chartOptionsColor {
     yaxis: ApexYAxis;
     noData: ApexNoData;
 };
-
-
-
-
-
-
-
-

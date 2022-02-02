@@ -6,7 +6,7 @@ import { Meting } from 'src/app/interfaces/Meting';
 import { Weerstation } from 'src/app/interfaces/Weerstation';
 import { WeerstationService } from 'src/app/services/weerstation.service';
 import { preChartOptionsTemperatuur, preChartOptionsLicht, preChartOptionsBatterij, preChartOptionsLuchtvochtigheid, chartOptionsColor } from './chart-options';
-import * as L from 'leaflet';
+import { WeerstationDashboardLocationComponent } from '../weerstation-dashboard-location/weerstation-dashboard-location.component';
 import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
@@ -15,13 +15,14 @@ import { HotToastService } from '@ngneat/hot-toast';
   styleUrls: ['./weerstation-dashboard.component.scss']
 })
 
-export class WeerstationDashboardComponent implements OnInit, AfterViewInit {
+export class WeerstationDashboardComponent implements OnInit {
   @ViewChild('chart', { static: false }) chart: ChartComponent = new ChartComponent();
+  @ViewChild(WeerstationDashboardLocationComponent, { static: true }) weerstationdashboardlocationComponent!: WeerstationDashboardLocationComponent;
   public prechartOptionsTemperatuur!: preChartOptionsTemperatuur;
   public prechartOptionsLicht!: preChartOptionsLicht;
   public prechartOptionsBatterij!: preChartOptionsBatterij;
   public prechartOptionsLuchtvochtigheid!: preChartOptionsLuchtvochtigheid;
-  
+
   public chartOptionsT1: chartOptionsColor = {
     series: [
       {
@@ -227,16 +228,6 @@ export class WeerstationDashboardComponent implements OnInit, AfterViewInit {
       text: 'Laden...'
     }
   };
-  map: any;
-
-  icon = {
-    icon: L.icon({
-      iconSize: [ 25, 41 ],
-      iconAnchor: [ 12, 41 ],
-      iconUrl: 'assets/leaflet/marker-icon.png',
-      shadowUrl: 'assets/leaflet/marker-shadow.png'
-    })
-  };
 
   //temperatuur
   tempArray: { y: number; x: Date }[] = [];
@@ -278,13 +269,12 @@ export class WeerstationDashboardComponent implements OnInit, AfterViewInit {
   }
 
 
-  ngAfterViewInit(): void {
-    this.initMap();
+  ngOnInit(): void {
+    this.getData(this.begin, this.eind);   
   }
 
-
-  ngOnInit(): void {
-    this.getData(this.begin, this.eind);
+  openModal(): void {
+    this.weerstationdashboardlocationComponent.openModal();
   }
 
   getData(begin: string, eind: string) {
@@ -530,19 +520,6 @@ export class WeerstationDashboardComponent implements OnInit, AfterViewInit {
 
   public updateDate() {
     this.getData(this.begin, this.eind);
-  }
-
-  
-  private initMap(): void {
-    //const map = L.map("map").setView([51.16557, 4.98917], 15);
-    const map = L.map("map").setView([50, 4.98917], 15);
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-  
-    const marker = L.marker([51.17217122414885,4.995923016103898], this.icon).addTo(map);
-    marker.bindPopup("" + this.weerstation.naam);
   }
 
 
