@@ -1,3 +1,4 @@
+
 <div class="ml-12 mt-5 space-x-20">
     <button routerLink="/weerstation/{{weerstation.id}}/dashboard/temperatuur" routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: true }"
@@ -42,11 +43,12 @@
             class="ml-5 text-gray-700 bg-white border border-gray-700 hover:text-white dark:hover:text-white hover:bg-wbRed-400 focus:ring-4 focus:ring-wbRed-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-wbRed-400 dark:text-dark dark:border-wbRed-500 dark:hover:bg-wbRed-400 dark:hover:border-wbRed-500 dark:focus:ring-wbRed-500">
             Pas toe
         </button>
-        <button
+
+        <a href="weerstation/{{weerstation.id}}/locatie"
             class="absolute top-0 right-0 mt-5 mr-6 text-gray-700 bg-white border border-gray-700 hover:text-white dark:hover:text-white hover:bg-wbRed-400 focus:ring-4 focus:ring-wbRed-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-wbRed-400 dark:text-dark dark:border-wbRed-500 dark:hover:bg-wbRed-400 dark:hover:border-wbRed-500 dark:focus:ring-wbRed-500">
             <i class="mr-2 fas fa-map-marker-alt"></i>
             Location
-        </button>
+        </a>
     </div>
 
 

@@ -17,6 +17,8 @@ import { WeerstationDashboardTemperatuurComponent } from './non-auth/weerstation
 import { WeerstationDashboardLuchtvochtigheidComponent } from './non-auth/weerstation-dashboard-luchtvochtigheid/weerstation-dashboard-luchtvochtigheid.component';
 import { WeerstationDashboardLichtComponent } from './non-auth/weerstation-dashboard-licht/weerstation-dashboard-licht.component';
 import { WeerstationDashboardBatterijComponent } from './non-auth/weerstation-dashboard-batterij/weerstation-dashboard-batterij.component';
+import { WeerstationDashboardLocationComponent } from './non-auth/weerstation-dashboard-location/weerstation-dashboard-location.component';
+
 
 const routes: Routes = [
   // Non-auth
@@ -28,6 +30,8 @@ const routes: Routes = [
 
   { path: 'publiekeweerstations', component: PubliekeWeerstationsListComponent }, // TODO: crud maken (= variant op Admin WeerstationListComponent)
   { path: 'weerstation/:id/dashboard', component: WeerstationDashboardComponent },
+  { path: 'weerstation/:id/locatie', component: WeerstationDashboardLocationComponent },
+
 
   { path: 'weerstation/:id/dashboard/temperatuur', component: WeerstationDashboardTemperatuurComponent },
   { path: 'weerstation/:id/dashboard/luchtvochtigheid', component: WeerstationDashboardLuchtvochtigheidComponent },

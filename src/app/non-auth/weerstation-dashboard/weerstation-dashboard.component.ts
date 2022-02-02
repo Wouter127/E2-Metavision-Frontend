@@ -17,7 +17,6 @@ import { HotToastService } from '@ngneat/hot-toast';
 
 export class WeerstationDashboardComponent implements OnInit {
   @ViewChild('chart', { static: false }) chart: ChartComponent = new ChartComponent();
-  @ViewChild(WeerstationDashboardLocationComponent, { static: true }) weerstationdashboardlocationComponent!: WeerstationDashboardLocationComponent;
 
   public chartOptionsT1: chartOptionsColor = {
     series: [
