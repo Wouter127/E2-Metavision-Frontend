@@ -59,57 +59,15 @@ export interface preChartOptionsLuchtvochtigheid {
     yaxis: ApexYAxis;
 };
 
-export interface chartOptionsT1 {
+export interface chartOptionsColor {
     series: ApexAxisChartSeries;
     chart: ApexChart;
-    dataLabels: ApexDataLabels;
-    fill: ApexFill;
-    xaxis: ApexXAxis;
-    yaxis: ApexYAxis;
     stroke: ApexStroke;
-    title: ApexTitleSubtitle;
-    colors: string[];
-};
-
-export interface chartOptionsT2 {
-    series: ApexAxisChartSeries;
-    chart: ApexChart;
-    xaxis: ApexXAxis;
-    stroke: ApexStroke | undefined;
     dataLabels: ApexDataLabels;
-    yaxis: ApexYAxis;
-    title: ApexTitleSubtitle;
     colors: string[];
-};
-
-
-export interface chartOptionsLuchtvochtigheid {
-    series: ApexAxisChartSeries;
-    chart: ApexChart;
+    fill: ApexFill;
+    title: ApexTitleSubtitle;
     xaxis: ApexXAxis;
-    stroke: ApexStroke | undefined;
-    dataLabels: ApexDataLabels;
     yaxis: ApexYAxis;
-    title: ApexTitleSubtitle;
-    colors: string[];
+    noData: ApexNoData;
 };
-
-
-export interface chartOptionsBatterijPercentage {
-    series: ApexAxisChartSeries;
-    chart: ApexChart;
-    xaxis: ApexXAxis;
-    stroke: ApexStroke | undefined;
-    dataLabels: ApexDataLabels;
-    yaxis: ApexYAxis;
-    title: ApexTitleSubtitle;
-    colors: string[];
-};
-
-
-
-
-
-
-
-

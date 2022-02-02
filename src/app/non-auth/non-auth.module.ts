@@ -16,6 +16,11 @@ import { PubliekeWeerstationsListComponent } from './publieke-weerstations-list/
 import { WeerstationDashboardComponent } from './weerstation-dashboard/weerstation-dashboard.component';
 import { HomeComponent } from './home/home.component';
 import { VervolledigGebruikerComponent } from './vervolledig-gebruiker/vervolledig-gebruiker.component';
+import { WeerstationDashboardLocationComponent } from './weerstation-dashboard-location/weerstation-dashboard-location.component';
+import { WeerstationDashboardTemperatuurComponent } from './weerstation-dashboard-temperatuur/weerstation-dashboard-temperatuur.component';
+import { WeerstationDashboardLuchtvochtigheidComponent } from './weerstation-dashboard-luchtvochtigheid/weerstation-dashboard-luchtvochtigheid.component';
+import { WeerstationDashboardLichtComponent } from './weerstation-dashboard-licht/weerstation-dashboard-licht.component';
+import { WeerstationDashboardBatterijComponent } from './weerstation-dashboard-batterij/weerstation-dashboard-batterij.component';
 
 
 @NgModule({
@@ -26,7 +31,12 @@ import { VervolledigGebruikerComponent } from './vervolledig-gebruiker/vervolled
     PubliekeWeerstationsListComponent,
     WeerstationDashboardComponent,
     HomeComponent,
-    VervolledigGebruikerComponent
+    VervolledigGebruikerComponent,
+    WeerstationDashboardLocationComponent,
+    WeerstationDashboardTemperatuurComponent,
+    WeerstationDashboardLuchtvochtigheidComponent,
+    WeerstationDashboardLichtComponent,
+    WeerstationDashboardBatterijComponent
   ],
   imports: [
     BrowserModule,
