@@ -1,18 +1,10 @@
-<app-weerstations-activeren title="Weerstation activeren"></app-weerstations-activeren>
-
-<div class="flex row justify-end container mx-auto w-full px-8 pt-2">
-    <button (click)="weerstationActiveren()"
-        class="p-2 px-5 bg-transparent border-2 border-wbRed-500 text-wbRed-500 text-md font-bold rounded-lg transition-colors duration-700 transform hover:bg-wbRed-500 hover:text-white mb-2">
-        Weerstation activeren
-    </button>
-</div>
-
 <ng-container *ngIf="!loading; else showLoading">
     <ng-container *ngIf="organisatie; else showGeenOrganisatie">
         <div class="flex flex-col flex-wrap lg:flex-row container mx-auto w-full px-8 mb-32">
-            <div class="mt-4 lg:mt-0 lg:w-3/5">
+            <div class="mt-4 lg:mt-2 lg:w-3/5">
                 <div>
-                    <h2 class="text-xl md:text-2xl ml-2 lg:ml-0 lg:text-3xl font-bold text-gray-900 tracking-normal lg:w-11/12">
+                    <h2
+                        class="text-xl md:text-2xl ml-2 lg:ml-0 lg:text-3xl font-bold text-gray-900 tracking-normal lg:w-11/12">
                         Weerstations van {{ organisatie.naam }}</h2>
                 </div>
             </div>
@@ -37,21 +29,21 @@
                 <div *ngFor="let weerstation of organisatie.weerstations"
                     class="bg-white border-4 border-wbRed-500 rounded-lg flex flex-col sm:flex-row">
                     <!-- Slider -->
-                    <div class="flex flex-col justify-center w-full h-16 sm:h-auto sm:w-32 border-b-4 sm:border-b-0 sm:border-r-4 border-wbRed-500"
+                    <!-- <div class="flex flex-col justify-center w-full h-16 sm:h-auto sm:w-32 border-b-4 sm:border-b-0 sm:border-r-4 border-wbRed-500"
                         [ngClass]="{'bg-wbRed-500': weerstation.isRelaisManueelAan === 1}">
                         <ng-toggle [value]="weerstation.isRelaisManueelAan === 1 ? true : false"
-                            (change)="toggleRelais(weerstation.id)" [color]="{ unchecked: '#DDDEE3', checked: '#6C9A8B'}"
                             class="w-2 place-self-center -translate-x-5" tooltip="<p>Weerstation manueel schakelen.</p>"
                             [options]="{placement: 'bottom', hideDelay: 20}">
                         </ng-toggle>
-                    </div>
+                    </div> -->
                     <!-- Info -->
                     <div class="p-5 rounded-md relative h-full w-full">
-                        <h3 class="pb-4 text-2xl font-semibold">{{ weerstation.naam }} <a href="organisatiebeheerder/waardes/{{weerstation.id}}"
-                          class="font-bold cursor-pointer flex text-wbRed-500 float-right">
-                          <i class="far fa-bell text-2xl"></i>
-                      </a></h3>
-
+                        <!-- <h3 class="pb-4 text-2xl font-semibold">{{ weerstation.naam }} <a
+                                href="organisatiebeheerder/waardes/{{weerstation.id}}"
+                                class="font-bold cursor-pointer flex text-wbRed-500 float-right">
+                                <i class="far fa-bell text-2xl"></i>
+                            </a>
+                        </h3> -->
                         <div>
                             <span *ngIf="weerstation.isPubliekZichtbaar; else showNietZichtbaar"
                                 tooltip="<p>De metingen van het weerstation zijn raadpleegbaar voor iedereen.</p>"
@@ -70,23 +62,24 @@
                             <ng-container *ngIf="weerstation.laatsteMeting; else showGeenMeting">
                                 <ng-container *ngIf="weerstation.laatsteMeting === 'loading'; else showLaatsteGegevens">
                                     <div>
-                                        <i class="fas fa-circle-notch fa-spin mr-2 text-wbRed-500 text-2xl text-center"></i>
+                                        <i
+                                            class="fas fa-circle-notch fa-spin mr-2 text-wbRed-500 text-2xl text-center"></i>
                                     </div>
                                 </ng-container>
                                 <ng-template #showLaatsteGegevens>
-                                    <p><span class="font-medium mr-1">Datum:</span>{{ weerstation.laatsteMeting.time | date:'d/W/yyyy HH:mm:ss'}}</p>
-                                    <p><span class="font-medium mr-1">Locatie:</span>{{ weerstation.laatsteMeting.location }}</p>
+                                    <p><span class="font-medium mr-1">Datum:</span>{{ weerstation.laatsteMeting.time |
+                                        date:'d/W/yyyy HH:mm:ss'}}</p>
+                                    <p><span class="font-medium mr-1">Locatie:</span>{{
+                                        weerstation.laatsteMeting.location }}</p>
                                     <p><span class="font-medium mr-1">Status:</span>
                                         <span *ngIf="weerstation.laatsteMeting.sw1 === 1; else showUit"
                                             class="px-2 inline-flex font-semibold rounded-full bg-green-100 text-green-800">
                                             Aan
                                         </span>
                                         <ng-template #showUit>
-                                            <span class="px-2 inline-flex font-semibold rounded-full bg-red-100 text-red-800">
+                                            <span
+                                                class="px-2 inline-flex font-semibold rounded-full bg-red-100 text-red-800">
                                                 Uit
-                                            </span>
-                                            <span *ngIf="weerstation.isRelaisManueelAan" class="text-sm text-orange-800">
-                                                (Wordt elke 15 minuten geupdate.)
                                             </span>
                                         </ng-template>
                                     </p>
@@ -122,8 +115,7 @@
             </div>
         </div>
         <div class="w-full grid grid-cols-1 lg:grid-cols-2 pb-6 gap-8">
-            <div *ngFor="let n of [1, 2, 3, 4]"
-                class="bg-gray-300 h-72 rounded-lg animate-pulse mb-1">
+            <div *ngFor="let n of [1, 2, 3, 4]" class="bg-gray-300 h-72 rounded-lg animate-pulse mb-1">
             </div>
         </div>
     </div>
