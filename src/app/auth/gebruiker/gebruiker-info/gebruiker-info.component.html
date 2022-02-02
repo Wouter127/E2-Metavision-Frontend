@@ -1,1 +1,17 @@
-<p>gebruiker-info works!</p>
+<app-gebruiker-form title="Wijzig account info"></app-gebruiker-form>
+
+<div *ngIf="loading">
+    LOADING
+</div>
+<div *ngIf="!loading" class="grid grid-rows-12 container px-8">
+    <button (click)="editGebruikerInfo()"
+        class="p-2 px-5 bg-transparent border-2 border-wbRed-500 text-wbRed-500 text-md font-bold rounded-lg transition-colors duration-700 transform hover:bg-wbRed-500 hover:text-white my-2">
+        account info aanpassen
+    </button>
+    <div class="text-lg font-bold">{{gebruiker.voornaam + ' ' + gebruiker.achternaam}}</div>
+    <div class="text-sm">{{gebruiker.email}}</div>
+    <div class="text-sm">{{gebruiker.gsm}}</div>
+    <div class="text-sm">{{gebruiker.krijgtMelding ? 'U ontvangt meldingen op ' + gebruiker.gsm : 'U onvangt geen meldingen'}}</div>
+
+    <div class="font-bold">opmaak nog niet klaar</div>
+</div>

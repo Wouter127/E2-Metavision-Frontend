@@ -1,3 +1,4 @@
+   
 import { Injectable } from '@angular/core';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -90,6 +91,7 @@ export class WeerstationService {
     }
     return this.httpClient.get<Weerstation>(`${environment.API_URI}/weerstations/${weerstation_id}/metingen${parameters}`);
   }
+
 
   activeerWeerstation(uniekeCode: string): Observable<Weerstation> {
     return this.httpClient.get<Weerstation>(environment.API_URI + "/organisatiebeheerder/weerstations/activeer/" + uniekeCode);

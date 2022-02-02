@@ -43,7 +43,7 @@ import { VervolledigGebruikerComponent } from './vervolledig-gebruiker/vervolled
     FormsModule,
     ClipboardModule,
     ReactiveFormsModule,
-    NgApexchartsModule,
+    NgApexchartsModule
   ],
   exports: [
     LoginComponent,
