@@ -18,7 +18,6 @@ import { HomeComponent } from './home/home.component';
 import { VervolledigGebruikerComponent } from './vervolledig-gebruiker/vervolledig-gebruiker.component';
 
 
-
 @NgModule({
   declarations: [
     LoginComponent,
@@ -27,7 +26,7 @@ import { VervolledigGebruikerComponent } from './vervolledig-gebruiker/vervolled
     PubliekeWeerstationsListComponent,
     WeerstationDashboardComponent,
     HomeComponent,
-    VervolledigGebruikerComponent
+    VervolledigGebruikerComponent,
   ],
   imports: [
     BrowserModule,
