@@ -1,4 +1,4 @@
-<nav class="flex items-center justify-between flex-wrap bg-wbRed-500">
+<nav class="flex items-center justify-between flex-wrap bg-wbRed-500 fixed w-screen">
   <div class="flex flex-row p-6 w-full">
     <button (click)="drawer.toggle()" *ngIf="gebruiker"
       class="flex items-center px-4 border rounded stone-300  border-white text-white hover:border-transparent hover:text-wbRed-500 hover:bg-white">
@@ -22,20 +22,20 @@
       <mat-menu #menu="matMenu" class="mt-2 rounded-md shadow-lg" xPosition="before">
         <div mat-menu-item href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
           role="menuitem" routerLink="auth/account" routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }">Account
+          [routerLinkActiveOptions]="{ exact: true }" (click)="drawer.close()">Account
           info
         </div>
         <div mat-menu-item href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-          role="menuitem" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Help
+          role="menuitem" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="drawer.close()">Help
         </div>
         <div mat-menu-item href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-          role="menuitem" (click)="onLogout()">Log out</div>
+          role="menuitem" (click)="onLogout()" (click)="drawer.close()">Log out</div>
       </mat-menu>
     </div>
     <div class="items-center grow flex justify-end">
       <div class="items-center">
         <div class="flex text-white ml-auto items-center cursor-pointer" routerLink="/" routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }">
+          [routerLinkActiveOptions]="{ exact: true }" (click)="drawer.close()">
           <svg class="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54"
             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 259.96 367">
             <circle cx="38.23" cy="152.92" r="38.23" />
@@ -56,34 +56,39 @@
       <mat-drawer #drawer class="bg-wbRed-500 p-6">
         <div *ngIf="gebruiker" class="text-sm">
           <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-            class="block mt-4 text-white mr-4" (click)="drawer.toggle()">
+            class="block mt-4 text-white mr-4" (click)="drawer.close()">
             Home
           </a>
           <a *ngIf="gebruiker.isAdmin" routerLink="admin/gebruikers" routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4" (click)="drawer.toggle()">
+            [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4" (click)="drawer.close()">
             Alle gebruikers
           </a>
           <a *ngIf="gebruiker.isAdmin" routerLink="admin/weerstations" routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4" (click)="drawer.toggle()">
+            [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4" (click)="drawer.close()">
             Alle weerstations
           </a>
           <a *ngIf="gebruiker.isAdmin" routerLink="admin/organisaties" routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4" (click)="drawer.toggle()">
+            [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4" (click)="drawer.close()">
             Alle organisaties
           </a>
           <a *ngIf="gebruiker.isOrganisatieBeheerder" routerLink="organisatiebeheerder/weerstations"
             routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4"
-            (click)="drawer.toggle()">
+            (click)="drawer.close()">
+            Mijn weerstations
+          </a>
+          <a *ngIf="!gebruiker.isOrganisatieBeheerder && gebruiker.organisatieId" routerLink="auth/weerstations"
+            routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4"
+            (click)="drawer.close()">
             Mijn weerstations
           </a>
           <a *ngIf="gebruiker.isOrganisatieBeheerder" routerLink="organisatiebeheerder/gebruikers"
             routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4"
-            (click)="drawer.toggle()">
+            (click)="drawer.close()">
             Gebruikers
           </a>
           <a *ngIf="gebruiker.isOrganisatieBeheerder" routerLink="organisatiebeheerder/organisatie"
             routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4"
-            (click)="drawer.toggle()">
+            (click)="drawer.close()">
             Organisatie info
           </a>
         </div>
