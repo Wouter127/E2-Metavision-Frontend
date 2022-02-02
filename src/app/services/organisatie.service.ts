@@ -25,6 +25,11 @@ export class OrganisatieService {
     return this.httpClient.get<Organisatie>(environment.API_URI + "/organisatiebeheerder/organisaties/" + organisatieId);
   }
 
+  getOrganisatieWithWeerstationsAsAuth(organisatieId: number): Observable<Organisatie> {
+
+    return this.httpClient.get<Organisatie>(environment.API_URI + "/auth/organisaties/" + organisatieId);
+  }
+
   getOrganisatieWithGebruikers(organisatieId: number): Observable<Organisatie> {
 
     return this.httpClient.get<Organisatie>(environment.API_URI + "/organisatiebeheerder/organisaties/" + organisatieId);

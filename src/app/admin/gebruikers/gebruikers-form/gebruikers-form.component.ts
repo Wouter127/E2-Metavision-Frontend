@@ -74,24 +74,7 @@ export class GebruikersFormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.putGebruiker$ = this.adminGebruikerService.putGebruiker(this.gebruiker.id, this.gebruiker).pipe(
-      this.toast.observe({
-        loading: { content: 'Aanpassen...', position: 'bottom-right' },
-        success: { content: 'Gebruiker aangepast!', position: 'bottom-right', dismissible: true },
-        error: {
-          content: (e) => {
-            let msg = '<ul>';
-            msg += `<li><b>Er ging iets mis!</b></li>`;
-            for (let key in e.error.errors) {
-              msg += `<li>${e.error.errors[key]}</li>`;
-            }
-            msg += '</ul>';
-
-            return msg;
-          }, position: 'bottom-right', dismissible: true, duration: 5000
-        },
-      })
-    ).subscribe(
+    this.putGebruiker$ = this.adminGebruikerService.putGebruiker(this.gebruiker.id, this.gebruiker).subscribe(
       result => {
         this.showModal = false;
 

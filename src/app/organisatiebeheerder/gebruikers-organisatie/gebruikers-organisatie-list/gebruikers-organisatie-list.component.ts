@@ -74,11 +74,26 @@ export class GebruikersOrganisatieListComponent implements OnInit {
             this.toast.observe({
               loading: { content: 'Verwijderen...', position: 'bottom-right' },
               success: { content: 'Gebruiker verwijderd!', position: 'bottom-right', dismissible: true },
-              error: { content: 'Er ging iets mis.', position: 'bottom-right', dismissible: true },
+              error: {
+                content: (e) => {
+                  let msg = '<ul>';
+                  msg += `<li><b>Er ging iets mis!</b></li>`;
+                  for (let key in e.error.errors) {
+                    msg += `<li>${e.error.errors[key]}</li>`;
+                  }
+                  msg += '</ul>';
+
+                  return msg;
+                }, position: 'bottom-right', dismissible: true, duration: 5000
+              },
             })
           ).subscribe(
             result => {
               this.getOrganisatie();
+            },
+            error => {
+              console.log(error);
+              
             }
           );
         }
@@ -97,7 +112,6 @@ export class GebruikersOrganisatieListComponent implements OnInit {
                   this.loading = false;
 
                   this.organisatie = result;
-                  console.log(this.organisatie);
                 },
                 error => {
                   this.toast.error("Er ging iets mis. De weerstations kunnen niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false });

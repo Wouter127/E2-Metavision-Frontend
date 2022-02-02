@@ -4,11 +4,11 @@
 <div class="flex row justify-end container mx-auto w-full px-8 pt-2">
     <button (click)="toevoegenGebruiker()"
         class="p-2 px-5 bg-transparent border-2 border-wbRed-500 text-wbRed-500 text-md font-bold rounded-lg transition-colors duration-700 transform hover:bg-wbRed-500 hover:text-white mb-2">
-        Organisatie beheerder uitnodigen
+        Organisatie gebruiker uitnodigen
     </button>
 </div>
 
-<div class="flex flex-col container mx-auto w-full px-8">
+<div class="flex flex-col container mx-auto w-full px-8 mb-32">
     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
             <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
@@ -20,8 +20,12 @@
                                 Naam
                             </th>
                             <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Rol
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Krijgt melding <i class="far fa-question-circle text-base"
+                                    tooltip="<p class='text-xs'>De gebruiker krijgt SMS-meldingen wanneer een ingestelde alarmwaarde wordt voldaan.</p>" [options]="{placement: 'top', hideDelay: 20}"></i>
                             </th>
                             <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Acties
@@ -35,15 +39,13 @@
                                 <div class="w-10/12 bg-gray-300 h-4 rounded-full animate-pulse"></div>
                             </td>
                             <td class="px-6 py-4">
-                                <div class="w-6/12 bg-gray-300 h-4 rounded-full animate-pulse mb-1"></div>
-                                <div class="w-6/12 bg-gray-300 h-4 rounded-full animate-pulse mb-1"></div>
-                                <div class="w-5/12 bg-gray-300 h-4 rounded-full animate-pulse mb-1"></div>
-                                <div class="w-4/12 bg-gray-300 h-4 rounded-full animate-pulse"></div>
+                                <div class="flex justify-around">
+                                    <div class="w-8/12 bg-gray-300 h-4 rounded-full animate-pulse mr-1"></div>
+                                </div>
                             </td>
                             <td class="px-6 py-4">
-                                <div class="flex row">
-                                    <div class="w-4/12 bg-gray-300 h-4 rounded-full animate-pulse mr-1"></div>
-                                    <div class="w-8/12 bg-gray-300 h-4 rounded-full animate-pulse"></div>
+                                <div class="flex justify-around">
+                                    <div class="w-2/12 bg-gray-300 h-4 rounded-full animate-pulse mr-1"></div>
                                 </div>
                             </td>
                             <td class="px-6 py-4">
@@ -71,12 +73,30 @@
                             </td>
                            
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <span *ngIf="gebruiker.isOrganisatieBeheerder" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                    Organisatie beheerder
-                                </span>
-                                <span *ngIf="!gebruiker.isOrganisatieBeheerder" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                    Gebruiker
-                                </span>
+                                <div class="flex justify-around">
+                                    <span *ngIf="gebruiker.isOrganisatieBeheerder"
+                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                        Organisatie beheerder
+                                    </span>
+                                    <span *ngIf="!gebruiker.isOrganisatieBeheerder"
+                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                        Gebruiker
+                                    </span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                <div class="flex justify-around">
+                                    <div class="flex justify-around">
+                                        <span *ngIf="gebruiker.krijgtMelding"
+                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                            Ja
+                                        </span>
+                                        <span *ngIf="!gebruiker.krijgtMelding"
+                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
+                                            Nee
+                                        </span>
+                                    </div>
+                                </div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                               <div class="flex justify-around">

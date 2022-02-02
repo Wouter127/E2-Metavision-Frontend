@@ -1,26 +1,52 @@
 <app-organisatie-form title="Wijzig organisatie info"></app-organisatie-form>
 
+<div *ngIf="loading">
+    <div class="p-4 border-2 m-4 border-gray-300 animate-pulse ">
+        <div class="bg-gray-300 animate-pulse h-8 md:w-3/12 w-8/12 rounded-md my-2"></div>
+        <div class="px-4 py-2">
 
-<div class="grid grid-rows-12 container px-8">
+
+            <div class="bg-gray-300 animate-pulse h-6 md:w-2/12 w-5/12 rounded-md mb-1"></div>
+            <div class="bg-gray-300 animate-pulse h-4 md:w-2/12 w-4/12 rounded-md mb-1"></div>
+            <div class="bg-gray-300 animate-pulse h-4 md:w-1/12 w-2/12 rounded-md mb-2"></div>
+            <div class="bg-gray-300 animate-pulse h-4 md:w-2/12 w-6/12 rounded-md mb-2"></div>
+            <div class="bg-gray-300 animate-pulse h-4 md:w-1/12 w-6/12 rounded-md"></div>
+        </div>
+    </div>
+    <div class="m-4 md:w-2/12 w-6/12 h-10 bg-gray-300 rounded-lg animate-pulse"></div>
+</div>
+<div *ngIf="!loading" class="mb-32">
+    <div class="p-4 border-2 m-4">
+        <div class="text-xl font-bold">{{organisatie.naam}}</div>
+        <div class="px-4 py-2">
+            <div class="text-sm">{{organisatie.straat + ' ' + organisatie.huisnummer}}{{organisatie.extra ?
+                organisatie.extra : ''}}</div>
+            <div class="text-sm">{{organisatie.postcode + ' ' + organisatie.stad}}</div>
+            <div class="text-sm">{{organisatie.land}}</div>
+            <table>
+                <tr>
+                    <td>
+                        <span class="text-sm font-bold pr-4 cursor-pointer" routerLink="/organisatiebeheerder/weerstations"
+                        routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"># Weerstations</span>
+                    </td>
+                    <td>
+                        <span class="text-sm">{{organisatie.weerstations.length}} </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="text-sm font-bold pr-4 cursor-pointer" routerLink="/organisatiebeheerder/gebruikers"
+                        routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"># Gebruikers</span>
+                    </td>
+                    <td>
+                        <span class="text-sm">{{organisatie.gebruikers.length}} </span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
     <button (click)="editOrganisatieInfo()"
-        class="p-2 px-5 bg-transparent border-2 border-wbRed-500 text-wbRed-500 text-md font-bold rounded-lg transition-colors duration-700 transform hover:bg-wbRed-500 hover:text-white my-2">
+        class="mx-4 p-2 px-5 bg-transparent border-2 border-wbRed-500 text-wbRed-500 text-md font-bold rounded-lg transition-colors duration-700 transform hover:bg-wbRed-500 hover:text-white">
         Organisatie info aanpassen
     </button>
-    <div class="text-lg font-bold">{{organisatie.naam}}</div>
-    <div class="ml-4">
-        <div>{{organisatie.straat + ' ' + organisatie.huisnummer}}</div>
-        <div>{{organisatie.postcode + ' ' + organisatie.stad}}</div>
-        <div>{{organisatie.land}}</div>
-    </div>
-
-    
-    <div>Gebruikers:</div>
-    <div *ngFor="let gebruiker of organisatie.gebruikers" class="ml-4">
-        <div>{{gebruiker.voornaam}}</div>
-    </div>
-    <div>Weerstations:</div>
-    <div *ngFor="let weerstation of organisatie.weerstations" class="ml-4">
-        <div>{{weerstation.naam}}</div>
-    </div>
-    <div class="font-bold">opmaak nog niet klaar</div>
 </div>

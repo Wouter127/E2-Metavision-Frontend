@@ -88,6 +88,10 @@ export class WeerstationsAlarmSchakelwaardesFormComponent implements OnInit {
       result => {
         this.alarmwaarde = result;
 
+
+        console.log('Je edit de alarmwaarde:', result);
+        
+
         this.loading = false;
       },
       error => {
@@ -172,6 +176,8 @@ export class WeerstationsAlarmSchakelwaardesFormComponent implements OnInit {
   getSensoren() {
     this.sensoren$ = this.sensorService.getSensoren().subscribe(result => {
       this.sensoren = result;
+      console.log('Alle sensoren:', result);
+      
     });
   }
 
@@ -182,11 +188,15 @@ export class WeerstationsAlarmSchakelwaardesFormComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log('Submitting alarm:', this.alarmwaarde);
+    console.log('Submitting schakel:', this.schakelwaarde);
+    
+
     if (this.isEdit && this.isAlarm) {
       this.putAlarmwaarde$ = this.alarmwaardeService.putAlarmwaarde(this.alarmwaarde.id, { weerstationId: this.alarmwaarde.weerstationId, waarde: this.alarmwaarde.waarde, switchLogicId: this.alarmwaarde.switchLogicId, sensorId: this.alarmwaarde.sensorId }).pipe(
         this.toast.observe({
           loading: { content: 'Aanpassen...', position: 'bottom-right' },
-          success: { content: 'Alarmwaarde aangepast! <br> Deze wijzigingen worden binnen 15 minuten doorgevoerd.', position: 'bottom-right', dismissible: true },
+          success: { content: 'Alarmwaarde aangepast! <br> Deze wijzigingen worden binnen 1 minuut doorgevoerd.', position: 'bottom-right', dismissible: true },
           error: {
             content: (e) => {
               let msg = '<ul>';
@@ -209,7 +219,8 @@ export class WeerstationsAlarmSchakelwaardesFormComponent implements OnInit {
           this.isAlarm = false;
 
           this.output.next(); // Send event to parent component.
-        });
+        }
+      );
     }
 
     if (this.isAdd && this.isAlarm) {
@@ -217,7 +228,7 @@ export class WeerstationsAlarmSchakelwaardesFormComponent implements OnInit {
       this.postAlarmwaarde$ = this.alarmwaardeService.postAlarmwaarde({ weerstationId: weerstationId, waarde: this.alarmwaarde.waarde, switchLogicId: this.alarmwaarde.switchLogicId, sensorId: this.alarmwaarde.sensorId }).pipe(
         this.toast.observe({
           loading: { content: 'Toevoegen...', position: 'bottom-right' },
-          success: { content: 'Alarmwaarde toegevoegt! <br> Deze wijzigingen worden binnen 15 minuten doorgevoerd.', position: 'bottom-right', dismissible: true },
+          success: { content: 'Alarmwaarde toegevoegt! <br> Deze wijzigingen worden binnen 1 minuut doorgevoerd.', position: 'bottom-right', dismissible: true },
           error: {
             content: (e) => {
               let msg = '<ul>';
@@ -233,6 +244,7 @@ export class WeerstationsAlarmSchakelwaardesFormComponent implements OnInit {
         })
       ).subscribe(
         result => {
+          console.log('result:', result)
           this.showModal = false;
           this.isEdit = false;
           this.isAdd = false;
@@ -240,14 +252,15 @@ export class WeerstationsAlarmSchakelwaardesFormComponent implements OnInit {
           this.isAlarm = false;
 
           this.output.next(); // Send event to parent component.
-        });
+        }
+      );
     }
 
     if (this.isEdit && this.isSchakel) {
       this.putSchakelwaarde$ = this.schakelwaardeService.putSchakelwaarde(this.schakelwaarde.id, { weerstationId: this.schakelwaarde.weerstationId, waarde: this.schakelwaarde.waarde, switchLogicId: this.schakelwaarde.switchLogicId, sensorId: this.schakelwaarde.sensorId }).pipe(
         this.toast.observe({
           loading: { content: 'Aanpassen...', position: 'bottom-right' },
-          success: { content: 'Schakelwaarde aangepast! <br> Deze wijzigingen worden binnen 15 minuten doorgevoerd.', position: 'bottom-right', dismissible: true },
+          success: { content: 'Schakelwaarde aangepast! <br> Deze wijzigingen worden binnen 1 minuut doorgevoerd.', position: 'bottom-right', dismissible: true },
           error: {
             content: (e) => {
               let msg = '<ul>';
@@ -278,7 +291,7 @@ export class WeerstationsAlarmSchakelwaardesFormComponent implements OnInit {
       this.postSchakelwaarde$ = this.schakelwaardeService.postSchakelwaarde({ weerstationId: weerstationId, waarde: this.schakelwaarde.waarde, switchLogicId: this.schakelwaarde.switchLogicId, sensorId: this.schakelwaarde.sensorId }).pipe(
         this.toast.observe({
           loading: { content: 'Toevoegen...', position: 'bottom-right' },
-          success: { content: 'Schakelwaarde toegevoegt! <br> Deze wijzigingen worden binnen 15 minuten doorgevoerd.', position: 'bottom-right', dismissible: true },
+          success: { content: 'Schakelwaarde toegevoegt! <br> Deze wijzigingen worden binnen 1 minuut doorgevoerd.', position: 'bottom-right', dismissible: true },
           error: {
             content: (e) => {
               let msg = '<ul>';
@@ -294,6 +307,8 @@ export class WeerstationsAlarmSchakelwaardesFormComponent implements OnInit {
         })
       ).subscribe(
         result => {
+          console.log(result);
+          
           this.showModal = false;
           this.isEdit = false;
           this.isAdd = false;

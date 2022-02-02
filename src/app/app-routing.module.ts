@@ -25,6 +25,8 @@ const routes: Routes = [
   { path: 'publiekeweerstations', component: PubliekeWeerstationsListComponent }, // TODO: crud maken (= variant op Admin WeerstationListComponent)
   { path: 'weerstation/:id/dashboard', component: WeerstationDashboardComponent },
 
+
+
   // Auth
   { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule), canActivate: [AuthGuard], canActivateChild: [AuthGuard] },
   

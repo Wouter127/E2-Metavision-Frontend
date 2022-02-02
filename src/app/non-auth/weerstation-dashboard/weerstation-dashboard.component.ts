@@ -8,7 +8,6 @@ import { WeerstationService } from 'src/app/services/weerstation.service';
 import { preChartOptionsTemperatuur, preChartOptionsLicht, preChartOptionsBatterij, preChartOptionsLuchtvochtigheid, chartOptionsColor } from './chart-options';
 import { WeerstationDashboardLocationComponent } from '../weerstation-dashboard-location/weerstation-dashboard-location.component';
 import { HotToastService } from '@ngneat/hot-toast';
-import * as L from 'leaflet';
 
 @Component({
   selector: 'app-weerstation-dashboard',
@@ -23,7 +22,6 @@ export class WeerstationDashboardComponent implements OnInit {
   public prechartOptionsLicht!: preChartOptionsLicht;
   public prechartOptionsBatterij!: preChartOptionsBatterij;
   public prechartOptionsLuchtvochtigheid!: preChartOptionsLuchtvochtigheid;
-
 
   public chartOptionsT1: chartOptionsColor = {
     series: [
@@ -272,11 +270,9 @@ export class WeerstationDashboardComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getData(this.begin, this.eind);
-    
+    this.getData(this.begin, this.eind);   
   }
 
-  
   openModal(): void {
     this.weerstationdashboardlocationComponent.openModal();
   }

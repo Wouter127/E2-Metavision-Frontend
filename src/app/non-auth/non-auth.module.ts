@@ -37,6 +37,7 @@ import { WeerstationDashboardBatterijComponent } from './weerstation-dashboard-b
     WeerstationDashboardLuchtvochtigheidComponent,
     WeerstationDashboardLichtComponent,
     WeerstationDashboardBatterijComponent
+
   ],
   imports: [
     BrowserModule,
