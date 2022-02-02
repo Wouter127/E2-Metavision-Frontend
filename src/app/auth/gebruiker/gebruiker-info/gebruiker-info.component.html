@@ -13,7 +13,7 @@
         <div class="bg-gray-300 animate-pulse h-8 md:w-3/12 w-8/12 rounded-md my-2"></div>
         <div class="px-4 py-2">
 
-            
+
             <div class="bg-gray-300 animate-pulse h-6 md:w-2/12 w-5/12 rounded-md mb-1"></div>
             <div class="bg-gray-300 animate-pulse h-4 md:w-2/12 w-4/12 rounded-md mb-1"></div>
             <div class="bg-gray-300 animate-pulse h-4 md:w-1/12 w-2/12 rounded-md mb-2"></div>
@@ -27,38 +27,53 @@
     <div class="p-4 border-2 m-4">
         <div class="text-xl font-bold">{{gebruiker.voornaam + ' ' + gebruiker.achternaam}}</div>
         <div class="px-4 py-2">
-            <div class="text-md">{{gebruiker.isOrganisatieGebruiker ? 'organisatiebeeherder van ' + gebruiker.organisatie.naam : 'lid van ' + gebruiker.organisatie.naam}}</div>
-            <div class="text-sm">Email: {{gebruiker.email}}</div>
-            <div class="text-sm">Tel: {{gebruiker.gsm}}</div>
+            <div class="text-md" *ngIf="gebruiker.organisatie != null">{{gebruiker.isOrganisatieGebruiker ?
+                'organisatiebeeherder van ' + gebruiker.organisatie.naam : 'lid van ' + gebruiker.organisatie.naam}}
+            </div>
+            <div *ngIf="gebruiker.email; else noEmail" class="text-sm">Email: {{gebruiker.email}}</div>
+            <ng-template #noEmail>
+                <div class="inline-flex text-sm">
+                    Email: Geen email opgegeven
+                </div>
+            </ng-template>
+            <div *ngIf="gebruiker.gsm; else noGsm" class="text-sm">Tel: {{gebruiker.gsm}}</div>
+            <ng-template #noGsm>
+                <div class="inline-flex text-sm">
+                    Tel: Geen gsm nummer opgegeven
+                </div>
+            </ng-template>
             <div class="text-sm">Ontvang medldingen: {{gebruiker.krijgtMelding ? 'Ja' : 'Nee'}}</div>
-            <div class="text-xs">Wachtwoord vergeten? <span class="underline text-xs">stel nieuw wachtwoord in</span></div>
+            <div class="text-xs">Wachtwoord vergeten? <span class="underline text-xs hover:text-blue-700 cursor-pointer">stel nieuw wachtwoord in</span>
+            </div>
         </div>
-
-        <div class="text-xl font-bold">{{gebruiker.organisatie.naam}}</div>
-        <div class="px-4 py-2">
-            <div class="text-sm">{{gebruiker.organisatie.straat + ' ' + gebruiker.organisatie.huisnummer}}{{gebruiker.organisatie.extra ? gebruiker.organisatie.extra : ''}}</div>
-            <div class="text-sm">{{gebruiker.organisatie.postcode + ' ' + gebruiker.organisatie.stad}}</div>
-            <div class="text-sm">{{gebruiker.organisatie.land}}</div>
-            <table>
-                <tr>
-                    <td>
-                        <span class="text-sm font-bold pr-4"># Weerstations</span>
-                    </td>
-                    <td>
-                        <span class="text-sm">{{gebruiker.organisatie.weerstations.length}} </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="text-sm font-bold pr-4"># Gebruikers</span>
-                    </td>
-                    <td>
-                        <span class="text-sm">{{gebruiker.organisatie.gebruikers.length}} </span>
-                    </td>
-                </tr>
-            </table>
+        <div *ngIf="gebruiker.organisatie">
+            <div class="text-xl font-bold">{{gebruiker.organisatie.naam}}</div>
+            <div class="px-4 py-2">
+                <div class="text-sm">{{gebruiker.organisatie.straat + ' ' + gebruiker.organisatie.huisnummer}}{{gebruiker.organisatie.extra ? gebruiker.organisatie.extra : ''}}</div>
+                <div class="text-sm">{{gebruiker.organisatie.postcode + ' ' + gebruiker.organisatie.stad}}</div>
+                <div class="text-sm">{{gebruiker.organisatie.land}}</div>
+                <table>
+                    <tr>
+                        <td>
+                            <span class="text-sm font-bold pr-4 underline"># Weerstations</span>
+                        </td>
+                        <td>
+                            <span class="text-sm">{{gebruiker.organisatie.weerstations.length}} </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="text-sm font-bold pr-4 underline"># Gebruikers</span>
+                        </td>
+                        <td>
+                            <span class="text-sm">{{gebruiker.organisatie.gebruikers.length}} </span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
+
     <button (click)="editGebruikerInfo()"
         class="mx-4 p-2 px-5 bg-transparent border-2 border-wbRed-500 text-wbRed-500 text-sm font-bold rounded-lg transition-colors duration-700 transform hover:bg-wbRed-500 hover:text-white">
         account info aanpassen
