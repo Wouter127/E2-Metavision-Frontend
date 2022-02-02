@@ -52,23 +52,32 @@ export class WeerstationDashboardComponent implements OnInit, AfterViewInit {
   bapArray: { y: number; x: Date }[] = [];
   
   
+  eindDate = new Date();  
+  beginDate = new Date();
+  // beginDate = new Date(begin.setDate(this.eindDate.getDate() - 3));
+  
+  
 
-  begin: string | string = "2022-01-17";
-  eind: string | string = "2022-01-18";
+  begin: string;  
+  eind: string;
 
   weerstation!: Weerstation;
   weerstation$: Subscription = new Subscription();
   routeParams$: Subscription = new Subscription();
 
   constructor(private route: ActivatedRoute, private authWeerstationService: WeerstationService) {
+    this.beginDate.setDate(this.eindDate.getDate() - 2);
+    this.begin = this.beginDate.toISOString().split('T')[0]
+    this.eind = this.eindDate.toISOString().split('T')[0];
   }
+
+
   ngAfterViewInit(): void {
     this.initMap();
   }
 
 
   ngOnInit(): void {
-    
     this.getData(this.begin, this.eind)
 
   }
