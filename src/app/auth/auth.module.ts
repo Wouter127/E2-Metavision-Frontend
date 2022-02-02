@@ -6,6 +6,7 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HelpComponent } from './help/help.component';
+import {MatExpansionModule} from '@angular/material/expansion';
 import { WeerstationsComponent } from './weerstations/weerstations.component';
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { NgToggleModule } from 'ng-toggle-button';
@@ -23,6 +24,7 @@ import { NgToggleModule } from 'ng-toggle-button';
     AuthRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    MatExpansionModule,
     TooltipModule,
     NgToggleModule,
   ],

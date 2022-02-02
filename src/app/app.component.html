@@ -26,7 +26,8 @@
           info
         </div>
         <div mat-menu-item href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-          role="menuitem" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="drawer.close()">Help
+
+          role="menuitem" routerLink="/auth/help" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="drawer.close()">Help
         </div>
         <div mat-menu-item href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
           role="menuitem" (click)="onLogout()" (click)="drawer.close()">Log out</div>
@@ -91,6 +92,7 @@
             (click)="drawer.close()">
             Organisatie info
           </a>
+          
         </div>
         <div class="relative text-left float-right hidden">
           <div>
@@ -113,7 +115,7 @@
               </div>
               <div mat-menu-item href="#"
                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem"
-                routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Help
+                routerLink="/auth/help" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Help
               </div>
               <div mat-menu-item href="#"
                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem"
