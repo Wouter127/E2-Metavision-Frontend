@@ -37,7 +37,7 @@ export class WeerstationDashboardLocationComponent implements OnInit {
   }
   
   private initMap(): void {
-    const map = L.map("map").setView([51.16557, 4.98917], 15);
+    const map = L.map("map").setView([51.17217122414885,4.995923016103898], 15);
     //const map = L.map("map").setView([50, 4.98917], 15);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
