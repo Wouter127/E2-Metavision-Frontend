@@ -1,17 +1,66 @@
 <app-gebruiker-form title="Wijzig account info"></app-gebruiker-form>
 
 <div *ngIf="loading">
-    LOADING
+    <div class="p-4 border-2 m-4 border-gray-300 animate-pulse ">
+        <div class="bg-gray-300 animate-pulse h-8 md:w-3/12 w-8/12 rounded-md my-2"></div>
+        <div class="px-4 py-2">
+            <div class="bg-gray-300 animate-pulse h-6 md:w-2/12 w-9/12 rounded-md mb-1"></div>
+            <div class="bg-gray-300 animate-pulse h-4 md:w-2/12 w-10/12 rounded-md mb-1"></div>
+            <div class="bg-gray-300 animate-pulse h-4 md:w-1/12 w-5/12 rounded-md mb-1"></div>
+            <div class="bg-gray-300 animate-pulse h-4 md:w-1/12 w-7/12 rounded-md mb-1"></div>
+            <div class="bg-gray-300 animate-pulse h-3 md:w-2/12 w-11/12 rounded-md"></div>
+        </div>
+        <div class="bg-gray-300 animate-pulse h-8 md:w-3/12 w-8/12 rounded-md my-2"></div>
+        <div class="px-4 py-2">
+
+            
+            <div class="bg-gray-300 animate-pulse h-6 md:w-2/12 w-5/12 rounded-md mb-1"></div>
+            <div class="bg-gray-300 animate-pulse h-4 md:w-2/12 w-4/12 rounded-md mb-1"></div>
+            <div class="bg-gray-300 animate-pulse h-4 md:w-1/12 w-2/12 rounded-md mb-2"></div>
+            <div class="bg-gray-300 animate-pulse h-4 md:w-2/12 w-6/12 rounded-md mb-2"></div>
+            <div class="bg-gray-300 animate-pulse h-4 md:w-1/12 w-6/12 rounded-md"></div>
+        </div>
+    </div>
+    <div class="m-4 md:w-2/12 w-6/12 h-10 bg-gray-300 rounded-lg animate-pulse"></div>
 </div>
-<div *ngIf="!loading" class="grid grid-rows-12 container px-8">
+<div *ngIf="!loading" class="mb-32">
+    <div class="p-4 border-2 m-4">
+        <div class="text-xl font-bold">{{gebruiker.voornaam + ' ' + gebruiker.achternaam}}</div>
+        <div class="px-4 py-2">
+            <div class="text-md">{{gebruiker.isOrganisatieGebruiker ? 'organisatiebeeherder van ' + gebruiker.organisatie.naam : 'lid van ' + gebruiker.organisatie.naam}}</div>
+            <div class="text-sm">Email: {{gebruiker.email}}</div>
+            <div class="text-sm">Tel: {{gebruiker.gsm}}</div>
+            <div class="text-sm">Ontvang medldingen: {{gebruiker.krijgtMelding ? 'Ja' : 'Nee'}}</div>
+            <div class="text-xs">Wachtwoord vergeten? <span class="underline text-xs">stel nieuw wachtwoord in</span></div>
+        </div>
+
+        <div class="text-xl font-bold">{{gebruiker.organisatie.naam}}</div>
+        <div class="px-4 py-2">
+            <div class="text-sm">{{gebruiker.organisatie.straat + ' ' + gebruiker.organisatie.huisnummer}}{{gebruiker.organisatie.extra ? gebruiker.organisatie.extra : ''}}</div>
+            <div class="text-sm">{{gebruiker.organisatie.postcode + ' ' + gebruiker.organisatie.stad}}</div>
+            <div class="text-sm">{{gebruiker.organisatie.land}}</div>
+            <table>
+                <tr>
+                    <td>
+                        <span class="text-sm font-bold pr-4"># Weerstations</span>
+                    </td>
+                    <td>
+                        <span class="text-sm">{{gebruiker.organisatie.weerstations.length}} </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="text-sm font-bold pr-4"># Gebruikers</span>
+                    </td>
+                    <td>
+                        <span class="text-sm">{{gebruiker.organisatie.gebruikers.length}} </span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
     <button (click)="editGebruikerInfo()"
-        class="p-2 px-5 bg-transparent border-2 border-wbRed-500 text-wbRed-500 text-md font-bold rounded-lg transition-colors duration-700 transform hover:bg-wbRed-500 hover:text-white my-2">
+        class="mx-4 p-2 px-5 bg-transparent border-2 border-wbRed-500 text-wbRed-500 text-sm font-bold rounded-lg transition-colors duration-700 transform hover:bg-wbRed-500 hover:text-white">
         account info aanpassen
     </button>
-    <div class="text-lg font-bold">{{gebruiker.voornaam + ' ' + gebruiker.achternaam}}</div>
-    <div class="text-sm">{{gebruiker.email}}</div>
-    <div class="text-sm">{{gebruiker.gsm}}</div>
-    <div class="text-sm">{{gebruiker.krijgtMelding ? 'U ontvangt meldingen op ' + gebruiker.gsm : 'U onvangt geen meldingen'}}</div>
-
-    <div class="font-bold">opmaak nog niet klaar</div>
 </div>

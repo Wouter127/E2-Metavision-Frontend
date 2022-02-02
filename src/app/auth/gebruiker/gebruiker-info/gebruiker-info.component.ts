@@ -51,6 +51,8 @@ export class GebruikerInfoComponent implements OnInit {
       result => {
         this.gebruiker = result;
         this.loading = false;
+        console.log(result);
+        
       },
       error => {  
         this.toast.error("Er ging iets mis.  Uw acoount info kan niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false });
