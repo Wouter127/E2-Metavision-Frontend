@@ -13,6 +13,10 @@ import { AuthGuard } from './auth.guard';
 import { OrganisatiebeheerderAuthGuard } from './organisatiebeheerder-auth.guard';
 import { AdminAuthGuard } from './admin-auth.guard';
 import { VervolledigGebruikerComponent } from './non-auth/vervolledig-gebruiker/vervolledig-gebruiker.component';
+import { WeerstationDashboardTemperatuurComponent } from './non-auth/weerstation-dashboard-temperatuur/weerstation-dashboard-temperatuur.component';
+import { WeerstationDashboardLuchtvochtigheidComponent } from './non-auth/weerstation-dashboard-luchtvochtigheid/weerstation-dashboard-luchtvochtigheid.component';
+import { WeerstationDashboardLichtComponent } from './non-auth/weerstation-dashboard-licht/weerstation-dashboard-licht.component';
+import { WeerstationDashboardBatterijComponent } from './non-auth/weerstation-dashboard-batterij/weerstation-dashboard-batterij.component';
 
 const routes: Routes = [
   // Non-auth
@@ -25,6 +29,10 @@ const routes: Routes = [
   { path: 'publiekeweerstations', component: PubliekeWeerstationsListComponent }, // TODO: crud maken (= variant op Admin WeerstationListComponent)
   { path: 'weerstation/:id/dashboard', component: WeerstationDashboardComponent },
 
+  { path: 'weerstation/:id/dashboard/temperatuur', component: WeerstationDashboardTemperatuurComponent },
+  { path: 'weerstation/:id/dashboard/luchtvochtigheid', component: WeerstationDashboardLuchtvochtigheidComponent },
+  { path: 'weerstation/:id/dashboard/licht', component: WeerstationDashboardLichtComponent },
+  { path: 'weerstation/:id/dashboard/batterij', component: WeerstationDashboardBatterijComponent },
 
 
   // Auth
