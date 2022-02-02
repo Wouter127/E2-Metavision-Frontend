@@ -1,1 +1,101 @@
-<p>weerstation-dashboard-temperatuur works!</p>
+<div class="ml-12 mt-5 space-x-20">
+    <button routerLink="/weerstation/{{weerstation.id}}/dashboard/temperatuur" routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-700 bg-white border border-gray-700 hover:text-white dark:hover:text-white hover:bg-wbRed-400 focus:ring-4 focus:ring-wbRed-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-wbRed-400 dark:text-dark dark:border-wbRed-500 dark:hover:bg-wbRed-400 dark:hover:border-wbRed-500 dark:focus:ring-wbRed-500">
+        <i class="mr-2 fas fa-thermometer-three-quarters"></i>
+        Dashboard temperatuur
+    </button>
+    <button routerLink="/weerstation/{{weerstation.id}}/dashboard/luchtvochtigheid" routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-700 bg-white border border-gray-700 hover:text-white dark:hover:text-white hover:bg-wbRed-400 focus:ring-4 focus:ring-wbRed-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-wbRed-400 dark:text-dark dark:border-wbRed-500 dark:hover:bg-wbRed-400 dark:hover:border-wbRed-500 dark:focus:ring-wbRed-500">
+        <i class="mr-2 fas fa-tint"></i>
+        Dashboard luchtvochtigheid
+    </button>
+    <button routerLink="/weerstation/{{weerstation.id}}/dashboard/licht" routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-700 bg-white border border-gray-700 hover:text-white dark:hover:text-white hover:bg-wbRed-400 focus:ring-4 focus:ring-wbRed-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-wbRed-400 dark:text-dark dark:border-wbRed-500 dark:hover:bg-wbRed-400 dark:hover:border-wbRed-500 dark:focus:ring-wbRed-500">
+        <i class="mr-2  fas fa-lightbulb"></i>
+        Dashboard licht
+    </button>
+    <button routerLink="/weerstation/{{weerstation.id}}/dashboard/batterij" routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-700 bg-white border border-gray-700 hover:text-white dark:hover:text-white hover:bg-wbRed-400 focus:ring-4 focus:ring-wbRed-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-wbRed-400 dark:text-dark dark:border-wbRed-500 dark:hover:bg-wbRed-400 dark:hover:border-wbRed-500 dark:focus:ring-wbRed-500">
+        <i class="mr-2 fas fa-battery-three-quarters"></i>
+        Dashboard batterij
+    </button>
+    <button routerLink="/weerstation/{{weerstation.id}}/dashboard" routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-700 bg-white border border-gray-700 hover:text-white dark:hover:text-white hover:bg-wbRed-400 focus:ring-4 focus:ring-wbRed-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-wbRed-400 dark:text-dark dark:border-wbRed-500 dark:hover:bg-wbRed-400 dark:hover:border-wbRed-500 dark:focus:ring-wbRed-500">
+        <i class="mr-2 fas fa-chart-line"></i>
+        Algemeen dashboard
+    </button>
+</div>
+
+<div class="container mx-auto w-full px-8 mb-32">
+    <div class="mt-4">
+        <label class="p-4" for="beginDate">Start datum:</label>
+        <input [(ngModel)]="begin" type="date" id="begin" name="begin" value="{{begin}}" min="2016-01-01"
+            max="2024-12-31">
+        <label class="p-4" for="eindDate">Eind datum:</label>
+        <input [(ngModel)]="eind" id="eind" type="date" name="eind" value="{{eind}}" min="2016-01-01" max="2024-12-31">
+        <button (click)="updateDate()" type="submit"
+            class="ml-5 text-gray-700 bg-white border border-gray-700 hover:text-white dark:hover:text-white hover:bg-wbRed-400 focus:ring-4 focus:ring-wbRed-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-wbRed-400 dark:text-dark dark:border-wbRed-500 dark:hover:bg-wbRed-400 dark:hover:border-wbRed-500 dark:focus:ring-wbRed-500">
+            Pas toe
+        </button>
+        <button
+            class="absolute top-0 right-0 mt-5 mr-6 text-gray-700 bg-white border border-gray-700 hover:text-white dark:hover:text-white hover:bg-wbRed-400 focus:ring-4 focus:ring-wbRed-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-wbRed-400 dark:text-dark dark:border-wbRed-500 dark:hover:bg-wbRed-400 dark:hover:border-wbRed-500 dark:focus:ring-wbRed-500">
+            <i class="mr-2 fas fa-map-marker-alt"></i>
+            Location
+        </button>
+    </div>
+
+
+    <div class="grid grid-cols-2 gap-2 mt-3">
+        <div class="ml-3 p-4 mb-4 text-sm text-gray-700 bg-gray-50 rounded-lg dark:bg-gray-50 dark:text-gray-300">
+            <apx-chart [series]="chartOptionsT1.series" [chart]="chartOptionsT1.chart" [noData]="chartOptionsT1.noData"
+                [dataLabels]="chartOptionsT1.dataLabels" [xaxis]="chartOptionsT1.xaxis" [yaxis]="chartOptionsT1.yaxis"
+                [title]="chartOptionsT1.title" [fill]="chartOptionsT1.fill" [stroke]="chartOptionsT1.stroke"
+                [colors]="chartOptionsT1.colors"></apx-chart>
+        </div>
+        <div class="mr-3 p-4 mb-4 text-sm text-gray-700 bg-gray-50 rounded-lg dark:bg-gray-50 dark:text-gray-300">
+            <apx-chart [series]="chartOptionsT2.series" [chart]="chartOptionsT2.chart" [noData]="chartOptionsT2.noData"
+                [dataLabels]="chartOptionsT2.dataLabels" [xaxis]="chartOptionsT2.xaxis" [yaxis]="chartOptionsT2.yaxis"
+                [title]="chartOptionsT2.title" [stroke]="chartOptionsT2.stroke" [fill]="chartOptionsT2.fill"
+                [colors]="chartOptionsT2.colors"></apx-chart>
+        </div>
+    </div>
+
+
+    <div class="text-center">
+        <button (click)="updateT1()"
+            class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-dark focus:ring-4 focus:ring-pink-200 dark:focus:ring-pink-800">
+            <span
+                class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-50 rounded-md group-hover:bg-opacity-0">
+                T1 sensor
+            </span>
+        </button>
+        <button (click)="updateT2()"
+            class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-dark focus:ring-4 focus:ring-pink-200 dark:focus:ring-pink-800">
+            <span
+                class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-50 rounded-md group-hover:bg-opacity-0">
+                T2 sensor
+            </span>
+        </button>
+        <button (click)="updateT3()"
+            class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-dark focus:ring-4 focus:ring-pink-200 dark:focus:ring-pink-800">
+            <span
+                class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-50 rounded-md group-hover:bg-opacity-0">
+                T3 sensor
+            </span>
+        </button>
+    </div>
+    <div class="ml-4 mr-4 p-4 mb-4 text-sm text-gray-700 bg-gray-50 rounded-lg dark:bg-gray-50 dark:text-gray-300">
+        <div>
+            <apx-chart [series]="prechartOptionsTemperatuur.series" [chart]="prechartOptionsTemperatuur.chart"
+                [dataLabels]="prechartOptionsTemperatuur.dataLabels" [title]="prechartOptionsTemperatuur.title"
+                [noData]="prechartOptionsTemperatuur.noData" [fill]="prechartOptionsTemperatuur.fill"
+                [xaxis]="prechartOptionsTemperatuur.xaxis" [yaxis]="prechartOptionsTemperatuur.yaxis"></apx-chart>
+        </div>
+    </div>
+
+</div>
