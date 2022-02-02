@@ -1,5 +1,6 @@
 <app-gebruikers-form title="Wijzig gebruiker"></app-gebruikers-form>
-<app-gebruikers-form-organisatiebeheerder title="Organisatie beheerder uitnodigen"></app-gebruikers-form-organisatiebeheerder>
+<app-gebruikers-form-organisatiebeheerder title="Organisatie beheerder uitnodigen">
+</app-gebruikers-form-organisatiebeheerder>
 
 <div class="flex row justify-end container mx-auto w-full px-8 pt-2">
     <button (click)="toevoegenGebruiker()"
@@ -27,7 +28,8 @@
                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Rol
                             </th>
-                            <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <th scope="col"
+                                class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Acties
                             </th>
                         </tr>
@@ -62,9 +64,11 @@
                         <tr *ngFor="let gebruiker of gebruikers">
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="text-sm font-medium text-gray-900">
-                                    <span *ngIf="!gebruiker.vervolledig_token; else showNietVervolledigd">{{ gebruiker.voornaam + ' ' + gebruiker.achternaam }}</span>
+                                    <span *ngIf="!gebruiker.vervolledig_token; else showNietVervolledigd">{{
+                                        gebruiker.voornaam + ' ' + gebruiker.achternaam }}</span>
                                     <ng-template #showNietVervolledigd>
-                                        <span class="inline-flex font-semibold rounded-full bg-orange-100 text-orange-800">
+                                        <span
+                                            class="inline-flex font-semibold rounded-full bg-orange-100 text-orange-800">
                                             Nog niet vervolledigd door gebruiker
                                         </span>
                                     </ng-template>
@@ -75,44 +79,44 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="text-sm text-gray-900">
-                                    
+                                    <div *ngIf="!gebruiker.vervolledig_token; else showNietVervolledigd">
                                         <span *ngIf="gebruiker.organisatie?.naam; else geenOrganisatie">{{ gebruiker.organisatie?.naam }}</span>
                                         <ng-template #geenOrganisatie>
                                             <span></span>
                                         </ng-template>
-                                    
-                                </div>
-                                <div *ngIf="gebruiker.organisatie?.land; else adresNietVervolledigd">
-                                    <div class="text-sm text-gray-500">
-                                    {{ gebruiker.organisatie ? (gebruiker.organisatie.huisnummer ?? '') + ' ' + (gebruiker.organisatie.straat ?? '') : ''}}
                                     </div>
-                                    <div class="text-sm text-gray-500">
-                                        {{ gebruiker.organisatie ? (gebruiker.organisatie.postcode ?? '') + ' ' + (gebruiker.organisatie.stad ?? '') : ''}}
-                                    </div>
-                                    <div class="text-sm text-gray-500">
-                                        {{ gebruiker.organisatie ? gebruiker.organisatie.land : '' }}
-                                    </div>
-                                   
-                                </div>
-                                <ng-template #adresNietVervolledigd>
-                                        <span class="inline-flex font-semibold rounded-full bg-orange-100 text-orange-800 text-xs">
+                                    <ng-template #showNietVervolledigd>
+                                        <span class="inline-flex font-semibold rounded-full bg-orange-100 text-orange-800">
                                             Nog niet vervolledigd door gebruiker
                                         </span>
                                     </ng-template>
-                                
+                                </div>
+                                <div class="text-sm text-gray-500">
+                                    {{ gebruiker.organisatie ? (gebruiker.organisatie.huisnummer ?? '') + ' ' + (gebruiker.organisatie.straat ?? '') : ''}}
+                                </div>
+                                <div class="text-sm text-gray-500">
+                                    {{ gebruiker.organisatie ? (gebruiker.organisatie.postcode ?? '') + ' ' + (gebruiker.organisatie.stad ?? '') : ''}}
+                                </div>
+                                <div class="text-sm text-gray-500">
+                                    {{ gebruiker.organisatie ? gebruiker.organisatie.land : '' }}
+                                </div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <span *ngIf="gebruiker.isOrganisatieBeheerder" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                <span *ngIf="gebruiker.isOrganisatieBeheerder"
+                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                     Organisatie beheerder
                                 </span>
-                                <span *ngIf="gebruiker.isAdmin" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                <span *ngIf="gebruiker.isAdmin"
+                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
                                     Admin
                                 </span>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                 <div class="flex justify-around">
-                                    <a class="text-indigo-600 hover:text-indigo-900 cursor-pointer mr-1 sm:mr-0" (click)="wijzigGebruiker(gebruiker.id)">Wijzig</a>
-                                    <a class="text-indigo-600 hover:text-indigo-900 cursor-pointer ml-1 sm:ml-0" (click)="verwijderGebruiker(gebruiker.id)">Verwijder</a>
+                                    <a class="text-indigo-600 hover:text-indigo-900 cursor-pointer mr-1 sm:mr-0"
+                                        (click)="wijzigGebruiker(gebruiker.id)">Wijzig</a>
+                                    <a class="text-indigo-600 hover:text-indigo-900 cursor-pointer ml-1 sm:ml-0"
+                                        (click)="verwijderGebruiker(gebruiker.id)">Verwijder</a>
                                 </div>
                             </td>
                         </tr>

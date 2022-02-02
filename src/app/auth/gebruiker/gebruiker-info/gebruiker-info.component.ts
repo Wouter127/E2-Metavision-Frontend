@@ -36,6 +36,8 @@ export class GebruikerInfoComponent implements OnInit {
   }
 
   editGebruikerInfo(): void {
+    console.log("click");
+    
     this.gebruikerFormComponent.openModal();
 
     // When the gebruiker is added successfully, refresh the list of gebruikers.
