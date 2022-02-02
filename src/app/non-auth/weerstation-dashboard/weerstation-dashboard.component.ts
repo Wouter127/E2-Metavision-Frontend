@@ -5,8 +5,9 @@ import { Subscription } from 'rxjs';
 import { Meting } from 'src/app/interfaces/Meting';
 import { Weerstation } from 'src/app/interfaces/Weerstation';
 import { WeerstationService } from 'src/app/services/weerstation.service';
-import { preChartOptionsTemperatuur, preChartOptionsLicht, preChartOptionsBatterij, preChartOptionsLuchtvochtigheid } from './chart-options';
+import { preChartOptionsTemperatuur, preChartOptionsLicht, preChartOptionsBatterij, preChartOptionsLuchtvochtigheid, chartOptionsColor } from './chart-options';
 import * as L from 'leaflet';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'app-weerstation-dashboard',
@@ -20,10 +21,212 @@ export class WeerstationDashboardComponent implements OnInit, AfterViewInit {
   public prechartOptionsLicht!: preChartOptionsLicht;
   public prechartOptionsBatterij!: preChartOptionsBatterij;
   public prechartOptionsLuchtvochtigheid!: preChartOptionsLuchtvochtigheid;
-  public chartOptionsT1: any = {}
-  public chartOptionsT2: any = {}
-  public chartOptionsLuchtvochtigheid: any = {}
-  public chartOptionsBatterijPercentage: any = {}
+  
+  public chartOptionsT1: chartOptionsColor = {
+    series: [
+      {
+        name: "T1 sensor (buitentemperatuur)",
+        data: []
+      }
+    ],
+    chart: {
+      height: 350,
+      type: "line"
+    },
+    stroke: {
+      width: 5,
+      curve: "smooth"
+    },
+    dataLabels: {
+      enabled: false
+    },
+    colors: ['#4CAF50'],
+    fill: {
+      type: "gradient",
+      gradient: {
+        shade: "dark",
+        gradientToColors: ["#FDD835"],
+        shadeIntensity: 1,
+        type: "horizontal",
+        opacityFrom: 1,
+        opacityTo: 1,
+        stops: [0, 100, 100, 100]
+      }
+    },
+    title: {
+      text: "T1 sensor metingen (buiten)"
+    },
+    xaxis: {
+      type: 'datetime',
+      title: {
+        text: 'Per datum/uur'
+      }
+    },
+    yaxis: {
+      title: {
+        text: 'T1 sensorwaardes'
+      }
+    },
+    noData: {
+      text: 'Laden...'
+    }
+  }
+  public chartOptionsT2: chartOptionsColor = {
+    series: [
+      {
+        name: "T2 sensor (binnen de isolatie)",
+        data: []
+      }
+    ],
+    chart: {
+      type: "line",
+      height: 350,
+      zoom: {
+        enabled: true
+      }
+    },
+    stroke: {
+      width: 5,
+      curve: "smooth"
+    },
+    dataLabels: {
+      enabled: false
+    },
+    colors: ['#4CAF50'],
+    title: {
+      text: "T2 sensor metingen (binnen de isolatie)"
+    },
+    fill: {
+      type: "gradient",
+      gradient: {
+        shade: "dark",
+        gradientToColors: ["#F86624"],
+        shadeIntensity: 1,
+        type: "horizontal",
+        opacityFrom: 0.9,
+        opacityTo: 1,
+        stops: [0, 100, 100, 100]
+      }
+    },
+    xaxis: {
+      type: "datetime",
+      title: {
+        text: 'Per datum/uur'
+      }
+    },
+    yaxis: {
+      title: {
+        text: 'Batterij percentage'
+      }
+    },
+    noData: {
+      text: 'Laden...'
+    }
+  };
+  public chartOptionsLuchtvochtigheid: chartOptionsColor = {
+    series: [
+      {
+        name: "RH waardes (luchtvochtigheid)",
+        data: []
+      }
+    ],
+    chart: {
+      type: "bar",
+      height: 350,
+      zoom: {
+        enabled: true
+      }
+    },
+    dataLabels: {
+      enabled: false
+    },
+    stroke: {
+      width: 6
+    },
+    colors: ['#662E9B'],
+    fill: {
+      type: "gradient",
+      gradient: {
+        shade: "dark",
+        gradientToColors: ["#662E9B"],
+        shadeIntensity: 1,
+        type: "horizontal",
+        opacityFrom: 0.9,
+        opacityTo: 1,
+        stops: [0, 100, 100, 100]
+      }
+    },
+    title: {
+      text: "RH waardes (luchtvochtigheid)"
+    },
+    xaxis: {
+      type: "datetime",
+      title: {
+        text: 'Per datum/uur'
+      }
+    },
+    yaxis: {
+      title: {
+        text: 'RH waarde (luchtvochtigheid)'
+      }
+    },
+    noData: {
+      text: 'Laden...'
+    }
+  };
+  public chartOptionsBatterijPercentage: chartOptionsColor = {
+    series: [
+      {
+        name: "Batterijpercentage",
+        data: []
+      }
+    ],
+    chart: {
+      type: "area",
+      height: 350,
+      zoom: {
+        enabled: true
+      }
+    },
+    dataLabels: {
+      enabled: false
+    },
+    stroke: {
+      width: 3,
+      curve: "smooth"
+    },
+    colors: ['#13D8AA'],
+    fill: {
+      type: "gradient",
+      gradient: {
+        shade: "dark",
+        gradientToColors: ["#A300D6"],
+        shadeIntensity: 1,
+        type: "horizontal",
+        opacityFrom: 0.9,
+        opacityTo: 0.7,
+        stops: [0, 100, 100]
+      }
+    },
+
+    title: {
+      text: "Batterijpercentage"
+    },
+    xaxis: {
+      type: "datetime",
+      title: {
+        text: 'Per datum/uur'
+      }
+    },
+    yaxis: {
+      title: {
+        text: 'Batterijpercentage'
+      }
+    },
+    noData: {
+      text: 'Laden...'
+    }
+  };
   map: any;
 
   icon = {
@@ -51,13 +254,10 @@ export class WeerstationDashboardComponent implements OnInit, AfterViewInit {
   bavArray: { y: number; x: Date }[] = [];
   bapArray: { y: number; x: Date }[] = [];
   
-  
+  // Chosen dates
   eindDate = new Date();  
   beginDate = new Date();
-  // beginDate = new Date(begin.setDate(this.eindDate.getDate() - 3));
   
-  
-
   begin: string;  
   eind: string;
 
@@ -65,10 +265,16 @@ export class WeerstationDashboardComponent implements OnInit, AfterViewInit {
   weerstation$: Subscription = new Subscription();
   routeParams$: Subscription = new Subscription();
 
-  constructor(private route: ActivatedRoute, private authWeerstationService: WeerstationService) {
+  constructor(private route: ActivatedRoute, private authWeerstationService: WeerstationService, private toast: HotToastService) {
     this.beginDate.setDate(this.eindDate.getDate() - 2);
     this.begin = this.beginDate.toISOString().split('T')[0]
     this.eind = this.eindDate.toISOString().split('T')[0];
+
+    // Reverse the order of which the toasts are displayed
+    this.toast.defaultConfig = {
+      ...this.toast.defaultConfig,
+      reverseOrder: true
+    }
   }
 
 
@@ -78,20 +284,33 @@ export class WeerstationDashboardComponent implements OnInit, AfterViewInit {
 
 
   ngOnInit(): void {
-    this.getData(this.begin, this.eind)
-
+    this.getData(this.begin, this.eind);
   }
 
   getData(begin: string, eind: string) {
+    // Empty the arrays
+    this.tempArray = [];
+    this.temp2Array = [];
+    this.temp3Array = [];
+    //array licht
+    this.IrlArray = [];
+    this.VilArray = [];
+    this.LuxArray = [];
+    //array luchtvochtigheid
+    this.rhArray = [];
+    this.lw1Array = [];
+    this.lw2Array = [];
+    //array batterij
+    this.bavArray = [];
+    this.bapArray = [];
+    
     this.routeParams$ = this.route.params.subscribe(
       params => {
-        this.weerstation$ = this.authWeerstationService.getDataBetweenDates(params['id'], begin, eind)
-          .subscribe((result: Weerstation) => {
+        this.weerstation$ = this.authWeerstationService.getDataBetweenDates(params['id'], begin, eind).subscribe(
+          (result: Weerstation) => {
             this.weerstation = result;
-            console.log("Result:", result);
 
             result.metings?.forEach((meting: Meting) => {
-
               //temperatuur
               let temperatuur1 = Math.round(meting.t1 * 100) / 100;
               let temperatuur2 = Math.round(meting.t2 * 100) / 100;
@@ -142,381 +361,175 @@ export class WeerstationDashboardComponent implements OnInit, AfterViewInit {
               //array batterij
               this.bavArray.push(bavObject);
               this.bapArray.push(bapObject);
-            })
-          });
+            });
 
 
-        this.routeParams$ = this.route.params.subscribe(
-          params => {
-            this.weerstation$ = this.authWeerstationService.getDataBetweenDates(params['id'], this.begin, this.eind).subscribe(
-              result => {
-
-                this.weerstation = result;
-
-                this.prechartOptionsTemperatuur = {
-                  series: [],
-                  chart: {
-                    height: 350,
-                    type: 'line'
-                  },
-                  dataLabels: {
-                    enabled: false
-                  },
-                  title: {
-                    text: 'Graph generator temperatuur sensoren',
-                  },
-                  noData: {
-                    text: 'Selecteer een categorie om jouw grafiek te genereren'
-                  },
-                  colors: ['#FFFFFF'],
-                  fill: {
-                    type: "solid",
-                    colors: ['#FFFFFF']
-                  },
-                  xaxis: {
-                    title: {
-                      text: "Per datum/uur"
-                    }
-                  },
-                  yaxis: {
-                    title: {
-                      text: "Metingen temperatuur"
-                    }
-                  }
-                };
-
-                this.prechartOptionsLicht = {
-                  series: [],
-                  chart: {
-                    height: 350,
-                    type: 'line'
-                  },
-                  dataLabels: {
-                    enabled: false
-                  },
-                  title: {
-                    text: 'Graph generator licht sensoren',
-                  },
-                  noData: {
-                    text: 'Selecteer een categorie om jouw grafiek te genereren'
-                  },
-                  fill: {
-                    type: "solid",
-                    colors: ['#FFFFFF']
-                  },
-                  xaxis: {
-                    title: {
-                      text: "Per datum/uur"
-                    }
-                  },
-                  yaxis: {
-                    title: {
-                      text: "Metingen licht"
-                    }
-                  }
-                };
-
-                this.prechartOptionsBatterij = {
-                  series: [],
-                  chart: {
-                    height: 350,
-                    type: 'line'
-                  },
-                  dataLabels: {
-                    enabled: false
-                  },
-                  title: {
-                    text: 'Graph generator batterij metingen',
-                  },
-                  noData: {
-                    text: 'Selecteer een categorie om jouw grafiek te genereren'
-                  },
-                  fill: {
-                    type: "solid",
-                    colors: ['#FFFFFF']
-                  },
-                  xaxis: {
-                    title: {
-                      text: "Per datum/uur"
-                    }
-                  },
-                  yaxis: {
-                    title: {
-                      text: "Batterij metingen"
-                    }
-                  }
-                };
-
-                this.prechartOptionsLuchtvochtigheid = {
-                  series: [],
-                  chart: {
-                    height: 350,
-                    type: 'line'
-                  },
-                  dataLabels: {
-                    enabled: false
-                  },
-                  title: {
-                    text: 'Graph generator vochtigheid sensoren',
-                  },
-                  noData: {
-                    text: 'Selecteer een categorie om jouw grafiek te genereren'
-                  },
-                  fill: {
-                    type: "solid",
-                    colors: ['#FFFFFF']
-                  },
-                  xaxis: {
-                    title: {
-                      text: "Per datum/uur"
-                    }
-                  },
-                  yaxis: {
-                    title: {
-                      text: "Metingen vochtigheid"
-                    }
-                  }
-                };
-
-                this.chartOptionsT1 = {
-                  series: [
-                    {
-                      name: "T1 sensor (buitentemperatuur)",
-                      data: this.tempArray
-                    }
-                  ],
-                  chart: {
-                    height: 350,
-                    type: "line"
-                  },
-                  stroke: {
-                    width: 5,
-                    curve: "smooth"
-                  },
-                  dataLabels: {
-                    enabled: false
-                  },
-                  colors: ['#4CAF50'],
-                  fill: {
-                    type: "gradient",
-                    gradient: {
-                      shade: "dark",
-                      gradientToColors: ["#FDD835"],
-                      shadeIntensity: 1,
-                      type: "horizontal",
-                      opacityFrom: 1,
-                      opacityTo: 1,
-                      stops: [0, 100, 100, 100]
-                    }
-                  },
-                  title: {
-                    text: "T1 sensor metingen (buiten)"
-                  },
-                  xaxis: {
-                    type: 'datetime',
-                    title: {
-                      text: 'Per datum/uur'
-                    }
-                  },
-                  yaxis: {
-                    title: {
-                      text: 'T1 sensorwaardes'
-                    }
-                  }
-                };
-
-                this.chartOptionsT2 = {
-                  series: [
-                    {
-                      name: "T2 sensor (binnen de isolatie)",
-                      data: this.temp2Array
-                    }
-                  ],
-                  chart: {
-                    type: "line",
-                    height: 350,
-                    zoom: {
-                      enabled: true
-                    }
-                  },
-                  dataLabels: {
-                    enabled: false
-                  },
-                  stroke: {
-                    width: 5,
-                    curve: "smooth"
-                  },
-                  colors: ['#4CAF50'],
-                  fill: {
-                    type: "gradient",
-                    gradient: {
-                      shade: "dark",
-                      gradientToColors: ["#F86624"],
-                      shadeIntensity: 1,
-                      type: "horizontal",
-                      opacityFrom: 0.9,
-                      opacityTo: 1,
-                      stops: [0, 100, 100, 100]
-                    }
-                  },
-
-                  title: {
-                    text: "T2 sensor metingen (binnen de isolatie)"
-                  },
-                  xaxis: {
-                    type: "datetime",
-                    title: {
-                      text: 'Per datum/uur'
-                    }
-                  },
-                  yaxis: {
-                    title: {
-                      text: 'Batterij percentage'
-                    }
-                  }
-                };
-
-
-                this.chartOptionsLuchtvochtigheid = {
-                  series: [
-                    {
-                      name: "RH waardes (luchtvochtigheid)",
-                      data: this.rhArray
-                    }
-                  ],
-                  chart: {
-                    type: "bar",
-                    height: 350,
-                    zoom: {
-                      enabled: true
-                    }
-                  },
-                  dataLabels: {
-                    enabled: false
-                  },
-                  stroke: {
-                    width: 6
-                  },
-                  colors: ['#662E9B'],
-                  fill: {
-                    type: "gradient",
-                    gradient: {
-                      shade: "dark",
-                      gradientToColors: ["#662E9B"],
-                      shadeIntensity: 1,
-                      type: "horizontal",
-                      opacityFrom: 0.9,
-                      opacityTo: 1,
-                      stops: [0, 100, 100, 100]
-                    }
-                  },
-                  title: {
-                    text: "RH waardes (luchtvochtigheid)"
-                  },
-                  xaxis: {
-                    type: "datetime",
-                    title: {
-                      text: 'Per datum/uur'
-                    }
-                  },
-                  yaxis: {
-                    title: {
-                      text: 'RH waarde (luchtvochtigheid)'
-                    }
-                  }
-                };
-
-
-                this.chartOptionsBatterijPercentage = {
-                  series: [
-                    {
-                      name: "Batterijpercentage",
-                      data: this.bapArray
-                    }
-                  ],
-                  chart: {
-                    type: "area",
-                    height: 350,
-                    zoom: {
-                      enabled: true
-                    }
-                  },
-                  dataLabels: {
-                    enabled: false
-                  },
-                  stroke: {
-                    width: 3,
-                    curve: "smooth"
-                  },
-                  colors: ['#13D8AA'],
-                  fill: {
-                    type: "gradient",
-                    gradient: {
-                      shade: "dark",
-                      gradientToColors: ["#A300D6"],
-                      shadeIntensity: 1,
-                      type: "horizontal",
-                      opacityFrom: 0.9,
-                      opacityTo: 0.7,
-                      stops: [0, 100, 100]
-                    }
-                  },
-
-                  title: {
-                    text: "Batterijpercentage"
-                  },
-                  xaxis: {
-                    type: "datetime",
-                    title: {
-                      text: 'Per datum/uur'
-                    }
-                  },
-                  yaxis: {
-                    title: {
-                      text: 'Batterijpercentage'
-                    }
-                  }
-                };
+            // Update charts
+            this.prechartOptionsTemperatuur = {
+              series: [],
+              chart: {
+                height: 350,
+                type: 'line'
+              },
+              dataLabels: {
+                enabled: false
+              },
+              title: {
+                text: 'Graph generator temperatuur sensoren',
+              },
+              noData: {
+                text: 'Selecteer een categorie om jouw grafiek te genereren'
+              },
+              colors: ['#FFFFFF'],
+              fill: {
+                type: "solid",
+                colors: ['#FFFFFF']
+              },
+              xaxis: {
+                title: {
+                  text: "Per datum/uur"
+                }
+              },
+              yaxis: {
+                title: {
+                  text: "Metingen temperatuur"
+                }
               }
-            );
+            };
+
+            this.prechartOptionsLicht = {
+              series: [],
+              chart: {
+                height: 350,
+                type: 'line'
+              },
+              dataLabels: {
+                enabled: false
+              },
+              title: {
+                text: 'Graph generator licht sensoren',
+              },
+              noData: {
+                text: 'Selecteer een categorie om jouw grafiek te genereren'
+              },
+              fill: {
+                type: "solid",
+                colors: ['#FFFFFF']
+              },
+              xaxis: {
+                title: {
+                  text: "Per datum/uur"
+                }
+              },
+              yaxis: {
+                title: {
+                  text: "Metingen licht"
+                }
+              }
+            };
+
+            this.prechartOptionsBatterij = {
+              series: [],
+              chart: {
+                height: 350,
+                type: 'line'
+              },
+              dataLabels: {
+                enabled: false
+              },
+              title: {
+                text: 'Graph generator batterij metingen',
+              },
+              noData: {
+                text: 'Selecteer een categorie om jouw grafiek te genereren'
+              },
+              fill: {
+                type: "solid",
+                colors: ['#FFFFFF']
+              },
+              xaxis: {
+                title: {
+                  text: "Per datum/uur"
+                }
+              },
+              yaxis: {
+                title: {
+                  text: "Batterij metingen"
+                }
+              }
+            };
+
+            this.prechartOptionsLuchtvochtigheid = {
+              series: [],
+              chart: {
+                height: 350,
+                type: 'line'
+              },
+              dataLabels: {
+                enabled: false
+              },
+              title: {
+                text: 'Graph generator vochtigheid sensoren',
+              },
+              noData: {
+                text: 'Selecteer een categorie om jouw grafiek te genereren'
+              },
+              fill: {
+                type: "solid",
+                colors: ['#FFFFFF']
+              },
+              xaxis: {
+                title: {
+                  text: "Per datum/uur"
+                }
+              },
+              yaxis: {
+                title: {
+                  text: "Metingen vochtigheid"
+                }
+              }
+            };
+
+            this.chartOptionsT1.series = [{
+              data: this.tempArray
+            }];
+            this.chartOptionsT1.noData = {
+              text: 'Geen data om weer te geven.'
+            }
             
+            this.chartOptionsT2.series = [{
+              data: this.temp2Array
+            }];
+            this.chartOptionsT2.noData = {
+              text: 'Geen data om weer te geven.'
+            }
+
+            this.chartOptionsLuchtvochtigheid.series = [{
+              data: this.rhArray
+            }];
+            this.chartOptionsT2.noData = {
+              text: 'Geen data om weer te geven.'
+            }
+
+            this.chartOptionsBatterijPercentage.series = [{
+              data: this.bapArray
+            }];
+            this.chartOptionsBatterijPercentage.noData = {
+              text: 'Geen data om weer te geven.'
+            }
+
+          },
+          error => {
+            console.log('Error getting metings:', error);
           }
-        )
+        );
       }
-    )
+    );
   }
 
 
   public updateDate() {
-    
-    this.getData(this.begin, this.eind)
-
-    this.chartOptionsT1.series = [{
-      name: "T1 sensor",
-      data: this.tempArray
-    }],
-      this.prechartOptionsTemperatuur.title = {
-        text: 'T1 sensor'
-      },
-      this.prechartOptionsTemperatuur.chart = {
-        type: 'bar',
-        height: 350
-      },
-      this.prechartOptionsTemperatuur.fill = {
-        type: "gradient",
-        colors: ["#FEB019"]
-      },
-      this.prechartOptionsTemperatuur.xaxis = {
-        type: "datetime",
-        title: {
-          text: "Per meting"
-        }
-      };
-    this.prechartOptionsTemperatuur.yaxis = {
-      title: {
-        text: "T1 sensor"
-      }
-    }
+    this.getData(this.begin, this.eind);
   }
 
   
