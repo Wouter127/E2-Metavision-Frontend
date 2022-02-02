@@ -7,6 +7,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HelpComponent } from './help/help.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { WeerstationsComponent } from './weerstations/weerstations.component';
+import { TooltipModule } from 'ng2-tooltip-directive';
+import { NgToggleModule } from 'ng-toggle-button';
 
 @NgModule({
   declarations: [
@@ -14,17 +17,23 @@ import {MatExpansionModule} from '@angular/material/expansion';
     GebruikerFormComponent,
     DashboardComponent,
     HelpComponent,
+    WeerstationsComponent,
   ],
   imports: [
     CommonModule,
     AuthRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    MatExpansionModule
+    MatExpansionModule,
+    TooltipModule,
+    NgToggleModule,
   ],
   exports: [
     GebruikerInfoComponent,
-    GebruikerFormComponent
+    GebruikerFormComponent,
+    DashboardComponent,
+    HelpComponent,
+    WeerstationsComponent,
   ]
 })
 export class AuthModule { }
