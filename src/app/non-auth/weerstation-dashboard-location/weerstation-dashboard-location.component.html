@@ -1,29 +1,22 @@
+<!-- <div class="grid grid-cols-12 ">
+        <div id="map" class="col-span-6 col-start-4 h-screen"></div>
+    </div> -->
 
-<div *ngIf="showModal"
-    class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex mx-4">
-    <div class="relative w-auto my-6 mx-auto max-w-6xl sm:w-10/12">
-        <!--content-->
-        <div
-            class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-            <!--header-->
-            <div class="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
-                <h3 class="text-3xl font-semibold">
-                    {{ title }}
-                </h3>
-                <button
-                    class="p-1 ml-auto bg-transparent border-0 text-black opacity-50 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                    (click)="closeModal()">
-                    <span
-                        class="bg-transparent text-black opacity-50 h-6 w-6 text-2xl block outline-none focus:outline-none">
-                        ×
-                    </span>
-                </button>
+  
+    <div class="2xl:container 2xl:mx-auto lg:py-16 lg:px-20 md:py-12 md:px-6 py-9 px-4">
+        <div class="flex flex-col lg:flex-row justify-between gap-8">
+            <div class="w-full lg:w-5/12 flex flex-col justify-center">
+                <h1 class="text-3xl lg:text-4xl font-bold leading-9 text-wbRed-800 pb-4">Locatie</h1>
+                <!-- Terug knop nog programmeren -->
+                <div routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" 
+                class="bg-wbRed-500 hover:bg-wbRed-700 text-white text-sm font-semibold py-2 px-4 rounded mt-4 text-center">
+                  Terug
+                </div>            
             </div>
-            <!--body-->
-            <div>
+            <div class="w-full lg:w-8/12">
                 <div id="map" style="height: 70vh;"></div>
+
             </div>
         </div>
+
     </div>
-</div>
-<div *ngIf="showModal" class="opacity-25 fixed inset-0 z-40 bg-black"></div>

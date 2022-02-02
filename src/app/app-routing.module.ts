@@ -13,6 +13,7 @@ import { AuthGuard } from './auth.guard';
 import { OrganisatiebeheerderAuthGuard } from './organisatiebeheerder-auth.guard';
 import { AdminAuthGuard } from './admin-auth.guard';
 import { VervolledigGebruikerComponent } from './non-auth/vervolledig-gebruiker/vervolledig-gebruiker.component';
+import { WeerstationDashboardLocationComponent } from './non-auth/weerstation-dashboard-location/weerstation-dashboard-location.component';
 
 const routes: Routes = [
   // Non-auth
@@ -24,6 +25,8 @@ const routes: Routes = [
 
   { path: 'publiekeweerstations', component: PubliekeWeerstationsListComponent }, // TODO: crud maken (= variant op Admin WeerstationListComponent)
   { path: 'weerstation/:id/dashboard', component: WeerstationDashboardComponent },
+  { path: 'weerstation/:id/locatie', component: WeerstationDashboardLocationComponent },
+
 
 
 

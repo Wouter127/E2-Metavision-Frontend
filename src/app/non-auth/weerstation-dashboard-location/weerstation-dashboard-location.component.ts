@@ -35,7 +35,7 @@ export class WeerstationDashboardLocationComponent implements OnInit {
   ngOnInit(): void {
     
   }
-
+  
   private initMap(): void {
     const map = L.map("map").setView([51.16557, 4.98917], 15);
     //const map = L.map("map").setView([50, 4.98917], 15);
@@ -46,10 +46,7 @@ export class WeerstationDashboardLocationComponent implements OnInit {
 
   
     const marker = L.marker([51.17217122414885,4.995923016103898], this.icon).addTo(map);
-    marker.bindPopup("" + this.weerstation.naam);
-
-    console.log("initmap");
-    
+    marker.bindPopup("" + this.weerstation.naam);    
     
   }
 

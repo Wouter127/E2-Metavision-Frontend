@@ -17,7 +17,6 @@ import { HotToastService } from '@ngneat/hot-toast';
 
 export class WeerstationDashboardComponent implements OnInit {
   @ViewChild('chart', { static: false }) chart: ChartComponent = new ChartComponent();
-  @ViewChild(WeerstationDashboardLocationComponent, { static: true }) weerstationdashboardlocationComponent!: WeerstationDashboardLocationComponent;
   public prechartOptionsTemperatuur!: preChartOptionsTemperatuur;
   public prechartOptionsLicht!: preChartOptionsLicht;
   public prechartOptionsBatterij!: preChartOptionsBatterij;
@@ -273,9 +272,7 @@ export class WeerstationDashboardComponent implements OnInit {
     this.getData(this.begin, this.eind);   
   }
 
-  openModal(): void {
-    this.weerstationdashboardlocationComponent.openModal();
-  }
+  
 
   getData(begin: string, eind: string) {
     // Empty the arrays
