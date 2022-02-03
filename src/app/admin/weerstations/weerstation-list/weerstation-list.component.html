@@ -32,6 +32,11 @@
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Publiek zichtbaar <i class="far fa-question-circle text-base" tooltip="<p class='text-xs'>Zijn de metingen van het weerstation beschikbaar voor iedereen.</p>" [options]="{placement: 'top', hideDelay: 20}"></i>
                             </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Geautoriseerd <i class="far fa-question-circle text-base"
+                                    tooltip="<p class='text-xs'>Is er een authenticatie token afgesproken tussen weerstation en API.</p>"
+                                    [options]="{placement: 'top', hideDelay: 20}"></i>
+                            </th>
                             <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Dashboard
                             </th>
@@ -62,6 +67,9 @@
                             </td>
                             <td class="px-6 py-4">
                                 <div class="w-6/12 bg-gray-300 h-4 rounded-full animate-pulse mb-1"></div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="w-4/12 bg-gray-300 h-4 rounded-full animate-pulse mb-1"></div>
                             </td>
                             <td class="px-6 py-4">
                                 <div class="flex justify-around">
@@ -113,6 +121,15 @@
                                     <ng-template #showNietZichtbaar>
                                         <span class="px-2 inline-flex font-semibold rounded-full bg-orange-100 text-orange-800">
                                             Niet zichtbaar
+                                        </span>
+                                    </ng-template>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                    <span *ngIf="weerstation.authToken; else showNietAuth"
+                                        class="px-2 inline-flex font-semibold rounded-full bg-green-100 text-green-800">Ja</span>
+                                    <ng-template #showNietAuth>
+                                        <span class="px-2 inline-flex font-semibold rounded-full bg-red-100 text-red-800">
+                                            Nee
                                         </span>
                                     </ng-template>
                                 </td>
@@ -198,6 +215,11 @@
                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Publiek zichtbaar <i class="far fa-question-circle text-base" tooltip="<p class='text-xs'>Zijn de metingen van het weerstation beschikbaar voor iedereen.</p>" [options]="{placement: 'top', hideDelay: 20}"></i>
                             </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Geautoriseerd <i class="far fa-question-circle text-base"
+                                    tooltip="<p class='text-xs'>Is er een authenticatie token afgesproken tussen weerstation en API.</p>"
+                                    [options]="{placement: 'top', hideDelay: 20}"></i>
+                            </th>
                             <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Dashboard
                             </th>
@@ -226,6 +248,9 @@
                             </td>
                             <td class="px-6 py-4">
                                 <div class="w-6/12 bg-gray-300 h-4 rounded-full animate-pulse mb-1"></div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="w-4/12 bg-gray-300 h-4 rounded-full animate-pulse mb-1"></div>
                             </td>
                             <td class="px-6 py-4">
                                 <div class="flex justify-around">
@@ -278,6 +303,15 @@
                                         <ng-template #showNietZichtbaar>
                                             <span class="px-2 inline-flex font-semibold rounded-full bg-orange-100 text-orange-800">
                                                 Niet zichtbaar
+                                            </span>
+                                        </ng-template>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                        <span *ngIf="weerstation.authToken; else showNietAuth"
+                                            class="px-2 inline-flex font-semibold rounded-full bg-green-100 text-green-800">Ja</span>
+                                        <ng-template #showNietAuth>
+                                            <span class="px-2 inline-flex font-semibold rounded-full bg-red-100 text-red-800">
+                                                Nee
                                             </span>
                                         </ng-template>
                                     </td>

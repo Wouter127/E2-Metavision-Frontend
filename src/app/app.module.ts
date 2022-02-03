@@ -43,7 +43,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     ClipboardModule,
     TooltipModule,
     HotToastModule.forRoot(),
-    DialogModule.forRoot(),
+    DialogModule.forRoot({
+      width: 'md'
+    }),
     HttpClientModule,
     BrowserAnimationsModule,
     AppRoutingModule,

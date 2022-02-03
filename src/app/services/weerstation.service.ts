@@ -22,6 +22,13 @@ export class WeerstationService {
     return this.httpClient.put<Weerstation>(environment.API_URI + "/admin/weerstations/nieuwecode/" + id, {headers: headers});
   }
 
+  genereerNieuweToken(id: number) {
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json; charset=utf-8');
+
+    return this.httpClient.put<Weerstation>(environment.API_URI + "/admin/weerstations/nieuwetoken/" + id, { headers: headers });
+  }
+
   putWeerstation(id: number, weerstation: Weerstation) {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
@@ -55,11 +62,11 @@ export class WeerstationService {
   }
 
 
-  postWeerstation(gsmNummer: string): Observable<Weerstation> {
+  postWeerstation(gsmNummer: string): Observable<any> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
 
-    return this.httpClient.post<Weerstation>(environment.API_URI + "/admin/weerstations", { gsmNummer }, {headers: headers});
+    return this.httpClient.post<any>(environment.API_URI + "/admin/weerstations", { gsmNummer }, {headers: headers});
   }
 
   getLaatsteMeting(weerstation_id: number): Observable<any> {
