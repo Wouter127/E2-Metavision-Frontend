@@ -83,8 +83,8 @@ export class WeerstationToevoegenComponent implements OnInit, OnDestroy {
                       </ol>
                       </br>
                       <h3 class="text-xl font-semibold">Hoe wordt een weerstation geautoriseerd ?</h3>
-                      <p class="text-lg">Wanneer een weerstation opstart zal deze zich 'announcen'. Dit betekent dat het weerstation een authorizatie token vastlegt met de API. Mocht dit weerstation al een authorizatie token hebben, dan wordt dit niet gedaan en zou het weerstation en de API al over eenzelfde authorizatie token beschikken.</p>
-                      <p class="text-lg">De authorizatie token wordt bij elke request naar de API meegegeven om zich te authorizeren.</p>`
+                      <p class="text-lg">Wanneer een weerstation opstart zal deze zich 'announcen'. Dit betekent dat het weerstation een authenticatie token vastlegt met de API. Mocht dit weerstation al een authenticatie token hebben, dan wordt dit niet gedaan en zou het weerstation en de API al over eenzelfde authenticatie token beschikken.</p>
+                      <p class="text-lg">De authenticatie token wordt bij elke request naar de API meegegeven om zich te authorizeren.</p>`
         });
       }
     );
