@@ -70,7 +70,7 @@
               <div class="col-span-6 sm:col-span-3">
                 <label for="gsmNummer" class="block font-medium text-gray-700">GSM nummer</label>
                 <input type="text" name="gsmNummer" id="gsmNummer" [(ngModel)]="weerstation.gsmNummer"
-                  #gsmNummer="ngModel" required minlength="10" maxlength="10"
+                  #gsmNummer="ngModel" required minlength="13" maxlength="13" placeholder="0032xxxxxxxxx"
                   class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 invalid:border-red-500 invalid:ring-red-500">
                 <div *ngIf="gsmNummer.invalid && (gsmNummer.dirty || gsmNummer.touched)"
                   class="text-xs text-red-500 font-medium">
@@ -78,7 +78,7 @@
                     GSM nummer is veplicht.
                   </span>
                   <span *ngIf="gsmNummer.errors?.['minlength'] || gsmNummer.errors?.['maxlength']">
-                    GSM nummer moet 10 karakters bevatten.
+                    GSM nummer moet 13 karakters bevatten.
                   </span>
                 </div>
               </div>
