@@ -273,8 +273,8 @@
                     <tbody *ngIf="!loading" class="bg-white divide-y divide-gray-200">
                         <!-- Row voor elk weerstation van een organisatie -->
                         <ng-container *ngFor="let organisatie of organisaties">
-                            <tr colspan="100%">
-                                <td colspan="6" class="px-6 py-4 whitespace-nowrap">
+                            <tr>
+                                <td colspan="100%" class="px-6 py-4 whitespace-nowrap">
                                     <div class="font-bold text-gray-900">
                                         {{ organisatie.naam }} <span class="font-normal text-sm">({{organisatie.weerstations.length}} weerstations)</span>
                                     </div>
