@@ -6,7 +6,6 @@ import { Meting } from 'src/app/interfaces/Meting';
 import { Weerstation } from 'src/app/interfaces/Weerstation';
 import { WeerstationService } from 'src/app/services/weerstation.service';
 import { chartOptionsColor } from './chart-options';
-import { WeerstationDashboardLocationComponent } from '../weerstation-dashboard-location/weerstation-dashboard-location.component';
 import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
@@ -305,7 +304,6 @@ export class WeerstationDashboardComponent implements OnInit {
 
 
             // Update charts
-
             this.chartOptionsT1.series = [{
               data: this.tempArray
             }];

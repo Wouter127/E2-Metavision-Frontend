@@ -18,7 +18,7 @@ export interface Meting {
     bap: number;
     wd: number;
     ws: number;
-    vla: number;
+    gla: number;
     glo: number;
     sw1: boolean;
     sw1t: number;
