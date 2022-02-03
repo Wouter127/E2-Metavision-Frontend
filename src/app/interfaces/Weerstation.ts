@@ -10,6 +10,7 @@ export interface Weerstation {
   isPubliekZichtbaar?: number;
   gsmNummer: string;
   uniekeCode?: string;
+  authToken?: string;
   isRelaisManueelAan?: number;
   created_at?: Date;
   updated_at?: Date;

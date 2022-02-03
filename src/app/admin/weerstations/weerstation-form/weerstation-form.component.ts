@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { DialogService } from '@ngneat/dialog';
 import { HotToastService } from '@ngneat/hot-toast';
 import { Subscription } from 'rxjs';
 import { Organisatie } from 'src/app/interfaces/Organisatie';
@@ -27,7 +28,7 @@ export class WeerstationFormComponent implements OnInit {
 
   putWeerstation$: Subscription = new Subscription();
 
-  constructor(private router: Router, private adminWeerstationService: WeerstationService, private adminOrganisatieService: OrganisatieService, private toast: HotToastService) {
+  constructor(private router: Router, private adminWeerstationService: WeerstationService, private adminOrganisatieService: OrganisatieService, private toast: HotToastService, private dialog: DialogService) {
     // Reverse the order of which the toasts are displayed
     this.toast.defaultConfig = {
       ...this.toast.defaultConfig,
