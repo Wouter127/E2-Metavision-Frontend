@@ -70,15 +70,15 @@
               <div class="col-span-6 sm:col-span-3">
                 <label for="gsmNummer" class="block font-medium text-gray-700">GSM nummer</label>
                 <input type="text" name="gsmNummer" id="gsmNummer" [(ngModel)]="weerstation.gsmNummer"
-                  #gsmNummer="ngModel" required minlength="13" maxlength="13" placeholder="0032xxxxxxxxx"
+                  #gsmNummer="ngModel" required placeholder="0032xxxxxxxxx" pattern="^(0032)[0-9]{9}"
                   class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 invalid:border-red-500 invalid:ring-red-500">
                 <div *ngIf="gsmNummer.invalid && (gsmNummer.dirty || gsmNummer.touched)"
                   class="text-xs text-red-500 font-medium">
                   <span *ngIf="gsmNummer.errors?.['required']">
                     GSM nummer is veplicht.
                   </span>
-                  <span *ngIf="gsmNummer.errors?.['minlength'] || gsmNummer.errors?.['maxlength']">
-                    GSM nummer moet 13 karakters bevatten.
+                  <span *ngIf="gsmNummer.errors?.['pattern']">
+                    GSM nummer moet beginnen met 0032 en moet uit 13 karakters bestaan.
                   </span>
                 </div>
               </div>
