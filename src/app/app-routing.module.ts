@@ -28,7 +28,7 @@ const routes: Routes = [
   { path: 'vervolledig', component: VervolledigOrganisatieBeheerderComponent },
   { path: 'vervolledigGebruiker', component: VervolledigGebruikerComponent },
 
-  { path: 'publiekeweerstations', component: PubliekeWeerstationsListComponent }, // TODO: crud maken (= variant op Admin WeerstationListComponent)
+  { path: 'weerstations/publiek', component: PubliekeWeerstationsListComponent }, // TODO: crud maken (= variant op Admin WeerstationListComponent)
   { path: 'weerstation/:id/dashboard', component: WeerstationDashboardComponent },
   { path: 'weerstation/:id/locatie', component: WeerstationDashboardLocationComponent },
 
