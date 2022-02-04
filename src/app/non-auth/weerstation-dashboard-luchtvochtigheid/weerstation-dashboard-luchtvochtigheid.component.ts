@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { Meting } from 'src/app/interfaces/Meting';
 import { Weerstation } from 'src/app/interfaces/Weerstation';
 import { WeerstationService } from 'src/app/services/weerstation.service';
-import { preChartOptionsLuchtvochtigheid, chartOptionsColor } from '../weerstation-dashboard/chart-options';
+import { preChartOptionsLuchtvochtigheid } from '../weerstation-dashboard/chart-options';
 import { WeerstationDashboardLocationComponent } from '../weerstation-dashboard-location/weerstation-dashboard-location.component';
 import { HotToastService } from '@ngneat/hot-toast';
 
@@ -21,57 +21,6 @@ export class WeerstationDashboardLuchtvochtigheidComponent implements OnInit {
   @ViewChild(WeerstationDashboardLocationComponent, { static: true }) weerstationdashboardlocationComponent!: WeerstationDashboardLocationComponent;
   public prechartOptionsLuchtvochtigheid!: preChartOptionsLuchtvochtigheid;
 
-  public chartOptionsLuchtvochtigheid: chartOptionsColor = {
-    series: [
-      {
-        name: "RH waardes (luchtvochtigheid)",
-        data: []
-      }
-    ],
-    chart: {
-      type: "bar",
-      height: 350,
-      zoom: {
-        enabled: true
-      }
-    },
-    dataLabels: {
-      enabled: false
-    },
-    stroke: {
-      width: 6
-    },
-    colors: ['#662E9B'],
-    fill: {
-      type: "gradient",
-      gradient: {
-        shade: "dark",
-        gradientToColors: ["#662E9B"],
-        shadeIntensity: 1,
-        type: "horizontal",
-        opacityFrom: 0.9,
-        opacityTo: 1,
-        stops: [0, 100, 100, 100]
-      }
-    },
-    title: {
-      text: "RH waardes (luchtvochtigheid)"
-    },
-    xaxis: {
-      type: "datetime",
-      title: {
-        text: 'Per datum/uur'
-      }
-    },
-    yaxis: {
-      title: {
-        text: 'RH waarde (luchtvochtigheid)'
-      }
-    },
-    noData: {
-      text: 'Laden...'
-    }
-  };
 
   //luchtvochtigheid
   rhArray: { y: number; x: Date }[] = [];
@@ -144,39 +93,39 @@ export class WeerstationDashboardLuchtvochtigheidComponent implements OnInit {
 
             // Update charts
             this.prechartOptionsLuchtvochtigheid = {
-              series: [],
+              series: [{
+                name: "RH waarde (luchtvochtigheid)",
+                data: this.rhArray
+              }],
               chart: {
                 height: 350,
-                type: 'line'
+                type: 'bar'
               },
               dataLabels: {
                 enabled: false
               },
               title: {
-                text: 'Graph generator vochtigheid sensoren',
+                text: 'Rh waardes (luchtvochtigheid)',
               },
               noData: {
-                text: 'Selecteer een categorie om jouw grafiek te genereren'
+                text: 'Geen data om weer te geven.'
               },
               fill: {
                 type: "solid",
-                colors: ['#FFFFFF']
+                colors: ["#4ECDC4"]
               },
               xaxis: {
+                type: "datetime",
                 title: {
                   text: "Per datum/uur"
                 }
               },
               yaxis: {
                 title: {
-                  text: "Metingen vochtigheid"
+                  text: "Rh waardes (luchtvochtigheid)"
                 }
               }
             };
-
-            this.chartOptionsLuchtvochtigheid.series = [{
-              data: this.rhArray
-            }];
 
           },
           error => {
@@ -212,7 +161,7 @@ export class WeerstationDashboardLuchtvochtigheidComponent implements OnInit {
       this.prechartOptionsLuchtvochtigheid.xaxis = {
         type: "datetime",
         title: {
-          text: "Per meting"
+          text: "Per datum/uur"
         }
       };
     this.prechartOptionsLuchtvochtigheid.yaxis = {

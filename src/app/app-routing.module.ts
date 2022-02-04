@@ -33,8 +33,7 @@ const routes: Routes = [
   { path: 'requestWachtwoordReset', component: ResetWachtwoordComponent},
   { path: 'nieuw-wachtwoord', component: NieuwWachtwoordComponent},
 
-
-  { path: 'publiekeweerstations', component: PubliekeWeerstationsListComponent }, // TODO: crud maken (= variant op Admin WeerstationListComponent)
+  { path: 'weerstations/publiek', component: PubliekeWeerstationsListComponent }, // TODO: crud maken (= variant op Admin WeerstationListComponent)
   { path: 'weerstation/:id/dashboard', component: WeerstationDashboardComponent },
   { path: 'weerstation/:id/locatie', component: WeerstationDashboardLocationComponent },
 

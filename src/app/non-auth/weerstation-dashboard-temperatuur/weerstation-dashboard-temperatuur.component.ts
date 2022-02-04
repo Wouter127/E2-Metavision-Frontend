@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { Meting } from 'src/app/interfaces/Meting';
 import { Weerstation } from 'src/app/interfaces/Weerstation';
 import { WeerstationService } from 'src/app/services/weerstation.service';
-import { preChartOptionsTemperatuur, chartOptionsColor } from '../weerstation-dashboard/chart-options';
+import { preChartOptionsTemperatuur } from '../weerstation-dashboard/chart-options';
 import { WeerstationDashboardLocationComponent } from '../weerstation-dashboard-location/weerstation-dashboard-location.component';
 import { HotToastService } from '@ngneat/hot-toast';
 
@@ -20,109 +20,6 @@ export class WeerstationDashboardTemperatuurComponent implements OnInit {
   @ViewChild(WeerstationDashboardLocationComponent, { static: true }) weerstationdashboardlocationComponent!: WeerstationDashboardLocationComponent;
   public prechartOptionsTemperatuur!: preChartOptionsTemperatuur;
 
-
-  public chartOptionsT1: chartOptionsColor = {
-    series: [
-      {
-        name: "T1 sensor (buitentemperatuur)",
-        data: []
-      }
-    ],
-    chart: {
-      height: 350,
-      type: "line"
-    },
-    stroke: {
-      width: 5,
-      curve: "smooth"
-    },
-    dataLabels: {
-      enabled: false
-    },
-    colors: ['#4CAF50'],
-    fill: {
-      type: "gradient",
-      gradient: {
-        shade: "dark",
-        gradientToColors: ["#FDD835"],
-        shadeIntensity: 1,
-        type: "horizontal",
-        opacityFrom: 1,
-        opacityTo: 1,
-        stops: [0, 100, 100, 100]
-      }
-    },
-    title: {
-      text: "T1 sensor metingen (buiten)"
-    },
-    xaxis: {
-      type: 'datetime',
-      title: {
-        text: 'Per datum/uur'
-      }
-    },
-    yaxis: {
-      title: {
-        text: 'T1 sensorwaardes'
-      }
-    },
-    noData: {
-      text: 'Laden...'
-    }
-  }
-  public chartOptionsT2: chartOptionsColor = {
-    series: [
-      {
-        name: "T2 sensor (binnen de isolatie)",
-        data: []
-      }
-    ],
-    chart: {
-      type: "line",
-      height: 350,
-      zoom: {
-        enabled: true
-      }
-    },
-    stroke: {
-      width: 5,
-      curve: "smooth"
-    },
-    dataLabels: {
-      enabled: false
-    },
-    colors: ['#4CAF50'],
-    title: {
-      text: "T2 sensor metingen (binnen de isolatie)"
-    },
-    fill: {
-      type: "gradient",
-      gradient: {
-        shade: "dark",
-        gradientToColors: ["#F86624"],
-        shadeIntensity: 1,
-        type: "horizontal",
-        opacityFrom: 0.9,
-        opacityTo: 1,
-        stops: [0, 100, 100, 100]
-      }
-    },
-    xaxis: {
-      type: "datetime",
-      title: {
-        text: 'Per datum/uur'
-      }
-    },
-    yaxis: {
-      title: {
-        text: 'Batterij percentage'
-      }
-    },
-    noData: {
-      text: 'Laden...'
-    }
-  };
-  
   //temperatuur
   tempArray: { y: number; x: Date }[] = [];
   temp2Array: { y: number; x: Date }[] = [];
@@ -193,50 +90,40 @@ export class WeerstationDashboardTemperatuurComponent implements OnInit {
 
             // Update charts
             this.prechartOptionsTemperatuur = {
-              series: [],
+              series: [{
+                name: "T1 sensor",
+                data: this.tempArray
+              }],
               chart: {
                 height: 350,
-                type: 'line'
+                type: 'bar'
               },
               dataLabels: {
                 enabled: false
               },
               title: {
-                text: 'Graph generator temperatuur sensoren',
+                text: 'T1 sensor',
               },
               noData: {
-                text: 'Selecteer een categorie om jouw grafiek te genereren'
+                text: 'Geen data om weer te geven.'
               },
               colors: ['#FFFFFF'],
               fill: {
-                type: "solid",
-                colors: ['#FFFFFF']
+                type: "gradient",
+                colors: ["#FEB019"]
               },
               xaxis: {
+                type: "datetime",
                 title: {
                   text: "Per datum/uur"
                 }
               },
               yaxis: {
                 title: {
-                  text: "Metingen temperatuur"
+                  text: "T1 sensor"
                 }
               }
             };
-
-            this.chartOptionsT1.series = [{
-              data: this.tempArray
-            }];
-            this.chartOptionsT1.noData = {
-              text: 'Geen data om weer te geven.'
-            }
-            
-            this.chartOptionsT2.series = [{
-              data: this.temp2Array
-            }];
-            this.chartOptionsT2.noData = {
-              text: 'Geen data om weer te geven.'
-            }
 
           },
           error => {
@@ -274,7 +161,7 @@ export class WeerstationDashboardTemperatuurComponent implements OnInit {
       this.prechartOptionsTemperatuur.xaxis = {
         type: "datetime",
         title: {
-          text: "Per meting"
+          text: "Per datum/uur"
         }
       };
     this.prechartOptionsTemperatuur.yaxis = {
