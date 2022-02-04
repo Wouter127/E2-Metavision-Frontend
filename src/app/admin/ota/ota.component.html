@@ -1,61 +1,66 @@
-<h2>OTA plannen</h2>
-
-<div class="shadow-xl rounded-md mx-4 my-5 sm:mx-auto w-100 sm:w-4/5 md:w-3/5">
-    <form (ngSubmit)="onSubmit()" #otaForm="ngForm">
-        <div class="p-2">
-            <div class="flex row mb-4">
-                <div class="font-bold border border-4 border-wbRed-500 rounded-full bg-white flex items-center justify-center font-mono"
-                    style="height: 45px; width: 45px; font-size: 25px;">1</div>
-                <p class="place-self-center font-semibold text-2xl ml-2">BIN bestand kiezen</p>
+<div class="container mb-32">
+    <h2>OTA plannen</h2>
+    
+    <div class="shadow-xl rounded-md mx-4 my-5 sm:mx-auto w-100 sm:w-4/5 md:w-3/5">
+        <form (ngSubmit)="onSubmit()" #otaForm="ngForm">
+            <div class="p-2">
+                <div class="flex row mb-4">
+                    <div class="font-bold border border-4 border-wbRed-500 rounded-full bg-white flex items-center justify-center font-mono"
+                        style="height: 45px; width: 45px; font-size: 25px;">1</div>
+                    <p class="place-self-center font-semibold text-2xl ml-2">BIN bestand kiezen</p>
+                </div>
+                <div class="ml-4">
+                    <p class="text-md mb-2">Dit is het bestand dat op de geselecteerde weerstations wordt gezet.</p>
+                    <input type="file" (change)="onFileSelect($event)" accept=".bin" class="block w-full text-sm text-slate-500
+                                    file:mr-4 file:py-2 file:px-4
+                                    file:rounded-full file:border-0
+                                    file:text-base file:font-semibold
+                                    file:bg-gray-100 file:text-wbRed-700
+                                    hover:file:bg-gray-200
+                                    cursor-pointer
+                                    ">
+                </div>
+    
+                <div class="flex row mt-8 mb-4">
+                    <div class="font-bold border border-4 border-wbRed-500 rounded-full bg-white flex items-center justify-center font-mono"
+                        style="height: 45px; width: 45px; font-size: 25px;">2</div>
+                    <p class="place-self-center font-semibold text-2xl ml-2">Update datum kiezen</p>
+                </div>
+                <div class="ml-4">
+                    <p class="text-md mb-2">Dit is de datum vanaf wanneer de update kan worden uitgevoerd op de
+                        geselecteerde weerstations. Wanneer de datum is gepasseerd zal het weerstation de volgende keer bij
+                        het ophalen van de configuratie zijn update doen.</p>
+                    <input type="date" id="vanafDatum" name="vanafDatum" [(ngModel)]="vanafDatum" class="mr-2">
+                    <input type="time" name="vanafTijd" [(ngModel)]="vanafTijd">
+                </div>
+    
+                <div class="flex row mt-8 mb-4">
+                    <div class="font-bold border border-4 border-wbRed-500 rounded-full bg-white flex items-center justify-center font-mono"
+                        style="height: 45px; width: 45px; font-size: 25px;">3</div>
+                    <p class="place-self-center font-semibold text-2xl ml-2">Weerstations kiezen</p>
+                </div>
+                <ul>
+                    <li *ngFor="let organisatie of organisaties">
+                        <label><input type="checkbox" (change)="organisatieListItem($event)" name="organisatie"
+                                [(ngModel)]="organisatie.isChecked" [ngModelOptions]="{standalone: true}"
+                                value="{{ organisatie.id }}">{{ organisatie.naam }}</label>
+                        <ul class="ml-2">
+                            <li *ngFor="let weerstation of organisatie.weerstations">
+                                <label><input type="checkbox" (change)="weerstationListItem($event)" name="weerstation"
+                                        [(ngModel)]="weerstation.isChecked" [ngModelOptions]="{standalone: true}"
+                                        value="{{ weerstation.id }}">{{ weerstation.naam + ' (' + weerstation.gsmNummer +
+                                    ')' }}
+                                    {{
+                                    weerstation.isChecked }}</label>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <button type="submit" [disabled]="!otaForm.form.valid"
+                    class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md text-white bg-wbRed-500 hover:bg-wbRed-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 disabled:bg-gray-400 disabled:cursor-not-allowed">
+                    Plan ota
+                </button>
             </div>
-            <div class="ml-4">
-                <p class="text-md mb-2">Dit is het bestand dat op de geselecteerde weerstations wordt gezet.</p>
-                <input type="file" (change)="onFileSelect($event)" accept=".bin" class="block w-full text-sm text-slate-500
-                                file:mr-4 file:py-2 file:px-4
-                                file:rounded-full file:border-0
-                                file:text-base file:font-semibold
-                                file:bg-gray-100 file:text-wbRed-700
-                                hover:file:bg-gray-200
-                                cursor-pointer
-                                ">
-            </div>
-
-            <div class="flex row mt-8 mb-4">
-                <div class="font-bold border border-4 border-wbRed-500 rounded-full bg-white flex items-center justify-center font-mono"
-                    style="height: 45px; width: 45px; font-size: 25px;">2</div>
-                <p class="place-self-center font-semibold text-2xl ml-2">Update datum kiezen</p>
-            </div>
-            <div class="ml-4">
-                <p class="text-md mb-2">Dit is de datum vanaf wanneer de update kan worden uitgevoerd op de geselecteerde weerstations. Wanneer de datum is gepasseerd zal het weerstation de volgende keer bij het ophalen van de configuratie zijn update doen.</p>
-                <input type="date" id="vanafDatum" name="vanafDatum" [(ngModel)]="vanafDatum" class="mr-2">
-                <input type="time" name="vanafTijd" [(ngModel)]="vanafTijd">
-            </div>
-
-            <div class="flex row mt-8 mb-4">
-                <div class="font-bold border border-4 border-wbRed-500 rounded-full bg-white flex items-center justify-center font-mono"
-                    style="height: 45px; width: 45px; font-size: 25px;">3</div>
-                <p class="place-self-center font-semibold text-2xl ml-2">Weerstations kiezen</p>
-            </div>
-            <ul>
-                <li *ngFor="let organisatie of organisaties">
-                    <label><input type="checkbox" (change)="organisatieListItem($event)" name="organisatie"
-                            [(ngModel)]="organisatie.isChecked" [ngModelOptions]="{standalone: true}"
-                            value="{{ organisatie.id }}">{{ organisatie.naam }}</label>
-                    <ul class="ml-2">
-                        <li *ngFor="let weerstation of organisatie.weerstations">
-                            <label><input type="checkbox" (change)="weerstationListItem($event)" name="weerstation"
-                                    [(ngModel)]="weerstation.isChecked" [ngModelOptions]="{standalone: true}"
-                                    value="{{ weerstation.id }}">{{ weerstation.naam + ' (' + weerstation.gsmNummer + ')' }}
-                                {{
-                                weerstation.isChecked }}</label>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            <button type="submit" [disabled]="!otaForm.form.valid"
-                class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md text-white bg-wbRed-500 hover:bg-wbRed-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 disabled:bg-gray-400 disabled:cursor-not-allowed">
-                Plan ota
-            </button>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>
