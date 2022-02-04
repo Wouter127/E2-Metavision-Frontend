@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HotToastService } from '@ngneat/hot-toast';
 import { Subscription } from 'rxjs';
 import { Organisatie } from 'src/app/interfaces/Organisatie';
 import { OrganisatieService } from 'src/app/services/organisatie.service';
@@ -23,9 +24,15 @@ export class OtaComponent implements OnInit {
 
   formData: FormData = new FormData();
 
-  constructor(private weerstationService: WeerstationService, private organisatieService: OrganisatieService) { 
+  constructor(private weerstationService: WeerstationService, private organisatieService: OrganisatieService, private toast: HotToastService) { 
     this.vanafDatum = this.vandaag.toISOString().split('T')[0];
     this.vanafTijd = this.vandaag.toLocaleTimeString().substring(0,5);
+
+    // Reverse the order of which the toasts are displayed
+    this.toast.defaultConfig = {
+      ...this.toast.defaultConfig,
+      reverseOrder: true
+    }
   }
 
   ngOnInit(): void {
@@ -91,7 +98,24 @@ export class OtaComponent implements OnInit {
     let weerstationIds: number[] = [];
     this.organisaties.map((o: any) => o.weerstations.map((w: any) => {if (w.isChecked === true) {weerstationIds.push(w.id)}}));
     
-    this.planOta$ = this.weerstationService.planOta(1, this.file, otaVanaf, weerstationIds).subscribe(
+    this.planOta$ = this.weerstationService.planOta(1, this.file, otaVanaf, weerstationIds).pipe(
+      this.toast.observe({
+        loading: { content: 'OTA aan het plannen...', position: 'bottom-right' },
+        success: { content: 'OTA gepland!', position: 'bottom-right', dismissible: true },
+        error: {
+          content: (e) => {
+            let msg = '<ul>';
+            msg += `<li><b>Er ging iets mis!</b></li>`;
+            for (let key in e.error.errors) {
+              msg += `<li>${e.error.errors[key]}</li>`;
+            }
+            msg += '</ul>';
+
+            return msg;
+          }, position: 'bottom-right', dismissible: true, duration: 5000
+        },
+      })
+    ).subscribe(
       result => {
         console.log('result', result);
       },
