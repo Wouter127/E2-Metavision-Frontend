@@ -18,6 +18,8 @@ import { WeerstationDashboardLuchtvochtigheidComponent } from './non-auth/weerst
 import { WeerstationDashboardLichtComponent } from './non-auth/weerstation-dashboard-licht/weerstation-dashboard-licht.component';
 import { WeerstationDashboardBatterijComponent } from './non-auth/weerstation-dashboard-batterij/weerstation-dashboard-batterij.component';
 import { WeerstationDashboardLocationComponent } from './non-auth/weerstation-dashboard-location/weerstation-dashboard-location.component';
+import { ResetWachtwoordComponent } from './non-auth/reset-wachtwoord/reset-wachtwoord.component';
+import { NieuwWachtwoordComponent } from './non-auth/nieuw-wachtwoord/nieuw-wachtwoord.component';
 
 
 const routes: Routes = [
@@ -27,6 +29,10 @@ const routes: Routes = [
 
   { path: 'vervolledig', component: VervolledigOrganisatieBeheerderComponent },
   { path: 'vervolledigGebruiker', component: VervolledigGebruikerComponent },
+
+  { path: 'requestWachtwoordReset', component: ResetWachtwoordComponent},
+  { path: 'nieuw-wachtwoord', component: NieuwWachtwoordComponent},
+
 
   { path: 'publiekeweerstations', component: PubliekeWeerstationsListComponent }, // TODO: crud maken (= variant op Admin WeerstationListComponent)
   { path: 'weerstation/:id/dashboard', component: WeerstationDashboardComponent },

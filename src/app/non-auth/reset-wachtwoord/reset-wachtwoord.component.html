@@ -1,1 +1,6 @@
-<p>reset-wachtwoord works!</p>
+<form #RequestForm=ngForm (ngSubmit)="onSubmit()">
+    <label for="email">email</label><br>
+    <input type="email" id="email" name="email" class="bg-gray-200" [(ngModel)]="form.email"><br>
+    <button type="submit" class="bg-gray-500" >Stuur wachtwoord reset mail</button>
+
+</form>
