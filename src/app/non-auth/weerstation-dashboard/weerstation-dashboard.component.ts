@@ -63,7 +63,7 @@ export class WeerstationDashboardComponent implements OnInit {
       }
     },
     noData: {
-      text: 'Laden...'
+      text: 'Geen data om weer te geven.'
     }
   }
   public chartOptionsT2: chartOptionsColor = {
@@ -115,7 +115,7 @@ export class WeerstationDashboardComponent implements OnInit {
       }
     },
     noData: {
-      text: 'Laden...'
+      text: 'Geen data om weer te geven.'
     }
   };
   public chartOptionsLuchtvochtigheid: chartOptionsColor = {
@@ -166,13 +166,13 @@ export class WeerstationDashboardComponent implements OnInit {
       }
     },
     noData: {
-      text: 'Laden...'
+      text: 'Geen data om weer te geven.'
     }
   };
   public chartOptionsBatterijPercentage: chartOptionsColor = {
     series: [
       {
-        name: "Batterijpercentage",
+        name: "Batterijpercentage (%)",
         data: []
       }
     ],
@@ -215,11 +215,11 @@ export class WeerstationDashboardComponent implements OnInit {
     },
     yaxis: {
       title: {
-        text: 'Batterijpercentage'
+        text: 'Batterijpercentage (%)'
       }
     },
     noData: {
-      text: 'Laden...'
+      text: 'Geen data om weer te geven.'
     }
   };
 
@@ -305,6 +305,7 @@ export class WeerstationDashboardComponent implements OnInit {
 
             // Update charts
             this.chartOptionsT1.series = [{
+              name: 'T1 sensor (buitentemperatuur)',
               data: this.tempArray
             }];
             this.chartOptionsT1.noData = {
@@ -312,6 +313,7 @@ export class WeerstationDashboardComponent implements OnInit {
             }
             
             this.chartOptionsT2.series = [{
+              name: 'T2 sensor (binnen de isolatie)',
               data: this.temp2Array
             }];
             this.chartOptionsT2.noData = {
@@ -319,6 +321,7 @@ export class WeerstationDashboardComponent implements OnInit {
             }
 
             this.chartOptionsLuchtvochtigheid.series = [{
+              name: 'RH waardes (luchtvochtigheid)',
               data: this.rhArray
             }];
             this.chartOptionsT2.noData = {
@@ -326,6 +329,7 @@ export class WeerstationDashboardComponent implements OnInit {
             }
 
             this.chartOptionsBatterijPercentage.series = [{
+              name: 'Batterijpercentage (%)',
               data: this.bapArray
             }];
             this.chartOptionsBatterijPercentage.noData = {
