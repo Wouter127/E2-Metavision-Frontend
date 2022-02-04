@@ -166,4 +166,24 @@ export class WeerstationService {
     return this.httpClient.get<Weerstation[]>(environment.API_URI + "/publiekeweerstations" + parameters);
   }
 
+  planOta(id: number, file: any, vanafDatum: string, weerstationIds: number[]): Observable<any> {
+    let headers = new HttpHeaders();
+
+    let formData: FormData = new FormData();
+    formData.append('otaFile', file);
+    formData.append('otaVanaf', vanafDatum);
+
+    let weerstationIdsString = '';
+    weerstationIds.forEach(id => {
+      weerstationIdsString += id + ','
+    });
+    weerstationIdsString = weerstationIdsString.substring(0, weerstationIdsString.length-1);
+
+    formData.append('weerstationIds', weerstationIdsString);
+    
+    console.log(weerstationIdsString);
+
+    return this.httpClient.post<any>(environment.API_URI + "/admin/weerstations/otaplannen", formData, { headers: headers });
+  }
+
 }
