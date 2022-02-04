@@ -67,9 +67,7 @@ export class WeerstationsAlarmSchakelwaardesListComponent implements OnInit {
     });
   }
 
-  wijzigAlarmWaarde(id: any) {
-    console.log('WIJZIGEN:', id);
-    
+  wijzigAlarmWaarde(id: any) {   
     this.alarmwaardesFormComponent.openEditAlarmWaardeModal(id);
 
     // When the alarmwaarde is edited successfully, refresh the list of alarmwaardes.

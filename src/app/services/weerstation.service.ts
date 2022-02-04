@@ -135,9 +135,7 @@ export class WeerstationService {
         parameters += '&eind=' + eind;
         parameterCount++;
       }
-    }
-    console.log(`${environment.API_URI}/weerstations/${weerstation_id}/metingen${parameters}`);
-    
+    }    
     return this.httpClient.get<Weerstation>(`${environment.API_URI}/weerstations/${weerstation_id}/metingen${parameters}`);
 
   }
@@ -181,8 +179,6 @@ export class WeerstationService {
 
     formData.append('weerstationIds', weerstationIdsString);
     
-    console.log(weerstationIdsString);
-
     return this.httpClient.post<any>(environment.API_URI + "/admin/weerstations/otaplannen", formData, { headers: headers });
   }
 

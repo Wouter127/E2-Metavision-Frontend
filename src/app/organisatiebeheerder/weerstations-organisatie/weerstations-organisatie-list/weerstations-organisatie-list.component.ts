@@ -49,10 +49,7 @@ export class WeerstationsOrganisatieListComponent implements OnInit {
   }
 
   toggleRelais(weerstation_id: number): void {
-    console.log('toggle clicked');
-
     let weerstation: Weerstation|undefined = this.organisatie.weerstations.find((w:any) => w.id === weerstation_id);
-
     if (weerstation) {
       weerstation.isRelaisManueelAan = weerstation.isRelaisManueelAan ? 0 : 1;
       this.weerstationService.putWeerstationOrganisatieBeheerder(weerstation_id, weerstation).pipe(
@@ -74,8 +71,6 @@ export class WeerstationsOrganisatieListComponent implements OnInit {
         })
       ).subscribe(
         result => {
-          console.log(result);
-
         }
       );
     }
@@ -138,8 +133,6 @@ export class WeerstationsOrganisatieListComponent implements OnInit {
         this.organisatie.weerstations.find((w: any) => w.id === id).laatsteMeting.location = result.address.country + (result.address.town ? ", " + result.address.town : '');
       },
       error => {
-        console.log(error);
-
         // TODO: eventueel error weg laten?
         this.toast.error("Er ging iets mis.  De locatie van het weerstation kon niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false });
       }

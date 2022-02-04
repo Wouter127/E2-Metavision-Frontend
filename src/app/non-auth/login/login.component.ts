@@ -33,9 +33,7 @@ export class LoginComponent implements OnInit {
         success: { content: (result: any) => `Welkom ${result.gebruiker.voornaam}!`, position: 'bottom-right', dismissible: true },
 
         error: {
-          content: (e) => {
-            console.log(e);
-            
+          content: (e) => {          
             let checkHtml = /<([A-Za-z][A-Za-z0-9]*)\b[^>]*>(.*?)<\/\1>/.test(e.error);
             
             if (checkHtml || e.status === 500) {

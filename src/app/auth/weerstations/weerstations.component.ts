@@ -90,8 +90,6 @@ export class WeerstationsComponent implements OnInit {
         this.organisatie.weerstations.find((w: any) => w.id === id).laatsteMeting.location = result.address.country + (result.address.town ? ", " + result.address.town : '');
       },
       error => {
-        console.log(error);
-
         // TODO: eventueel error weg laten?
         this.toast.error("Er ging iets mis.  De locatie van het weerstation kon niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false });
       }

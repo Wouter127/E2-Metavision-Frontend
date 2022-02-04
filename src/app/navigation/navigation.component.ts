@@ -31,7 +31,6 @@ export class NavigationComponent implements OnInit {
           this.authService.getGebruiker().subscribe(
             gebruiker => {
               this.gebruiker = gebruiker;
-              console.log(gebruiker);
             }
           );
         }

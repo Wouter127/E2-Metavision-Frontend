@@ -52,8 +52,6 @@ export class OrganisatieFormComponent implements OnInit {
     this.organisatie$ = this.organisatieService.getOrganisatieById(id).subscribe(
       result => {
         this.organisatie = result;
-        console.log(result);
-        
         this.loading = false;
       },
       error => {

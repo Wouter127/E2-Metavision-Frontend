@@ -53,10 +53,7 @@ export class WeerstationDashboardLocationComponent implements OnInit, AfterViewI
         this.getLaatsteMeting$= this.authWeerstationService.getLaatsteMeting(params['id']).subscribe(
           (result: any) => {
             this.meting = result;
-
-            this.initMap();
-            console.log(result);
-            
+            this.initMap();            
           }
         );
       }

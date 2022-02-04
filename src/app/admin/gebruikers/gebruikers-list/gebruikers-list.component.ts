@@ -89,9 +89,7 @@ export class GebruikersListComponent implements OnInit {
     this.gebruikers$ = this.adminGebruikerService.getGebruikers().subscribe(
       result => {
         this.gebruikers = result;
-        this.loading = false;
-        console.log(result);
-        
+        this.loading = false;       
       },
       error => {
         this.toast.error("Er ging iets mis.  De gebruiker kan niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false });

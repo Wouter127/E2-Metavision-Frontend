@@ -36,8 +36,6 @@ export class GebruikerInfoComponent implements OnInit {
   }
 
   editGebruikerInfo(): void {
-    console.log("click");
-    
     this.gebruikerFormComponent.openModal();
 
     // When the gebruiker is added successfully, refresh the list of gebruikers.
@@ -53,8 +51,6 @@ export class GebruikerInfoComponent implements OnInit {
       result => {
         this.gebruiker = result;
         this.loading = false;
-        console.log(result);
-        
       },
       error => {  
         this.toast.error("Er ging iets mis.  Uw acoount info kan niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false });

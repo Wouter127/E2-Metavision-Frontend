@@ -12,7 +12,6 @@ export class GebruikerService {
   login(): void {
     const url = `http://pruebas./sanctum/csrf-cookie`;
     this.http.get<any>(url).subscribe((res) => {
-      console.log(res);
     })
   }
 }

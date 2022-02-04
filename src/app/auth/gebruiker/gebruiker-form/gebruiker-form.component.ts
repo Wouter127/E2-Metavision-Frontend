@@ -69,7 +69,6 @@ export class GebruikerFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("onsubmit", this.gebruiker);
     if(this.gebruiker.gsm == ""){
       
     }
@@ -92,9 +91,7 @@ export class GebruikerFormComponent implements OnInit {
       })
     ).subscribe(
       result => {
-        this.showModal = false;
-        console.log('submit', result);
-        
+        this.showModal = false;       
         this.output.next(); // Send event to parent component.
       }
     );

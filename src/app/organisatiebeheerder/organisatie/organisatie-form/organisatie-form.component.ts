@@ -39,9 +39,7 @@ export class OrganisatieFormComponent implements OnInit {
     this.loading = true;
     this.organisatie$ = this.organisatieService.getOrganisatieInfo().subscribe(
       result => {
-        this.organisatie = result;
-        console.log(result);
-        
+        this.organisatie = result;       
         this.loading = false;
       },
       error => {
