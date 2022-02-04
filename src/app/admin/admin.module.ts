@@ -15,6 +15,7 @@ import { GebruikersFormOrganisatiebeheerderComponent } from './gebruikers/gebrui
 import { OrganisatieFormComponent } from './organisaties/organisatie-form/organisatie-form.component';
 import { OrganisatieListComponent } from './organisaties/organisatie-list/organisatie-list.component';
 import { AdminRoutingModule } from './admin-routing.module';
+import { OtaComponent } from './ota/ota.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AdminRoutingModule } from './admin-routing.module';
     GebruikersFormComponent,
     GebruikersFormOrganisatiebeheerderComponent,
     OrganisatieFormComponent,
-    OrganisatieListComponent
+    OrganisatieListComponent,
+    OtaComponent
   ],
   imports: [
     CommonModule,

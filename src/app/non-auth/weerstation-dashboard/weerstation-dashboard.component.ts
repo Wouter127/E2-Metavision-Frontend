@@ -244,7 +244,7 @@ export class WeerstationDashboardComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private authWeerstationService: WeerstationService, private toast: HotToastService) {
     this.beginDate.setDate(this.eindDate.getDate() - 2);
-    this.begin = this.beginDate.toISOString().split('T')[0]
+    this.begin = this.beginDate.toISOString().split('T')[0];
     this.eind = this.eindDate.toISOString().split('T')[0];
 
     // Reverse the order of which the toasts are displayed
