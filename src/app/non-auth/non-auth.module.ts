@@ -21,6 +21,7 @@ import { WeerstationDashboardTemperatuurComponent } from './weerstation-dashboar
 import { WeerstationDashboardLuchtvochtigheidComponent } from './weerstation-dashboard-luchtvochtigheid/weerstation-dashboard-luchtvochtigheid.component';
 import { WeerstationDashboardLichtComponent } from './weerstation-dashboard-licht/weerstation-dashboard-licht.component';
 import { WeerstationDashboardBatterijComponent } from './weerstation-dashboard-batterij/weerstation-dashboard-batterij.component';
+import { NieuwWachtwoordComponent } from './nieuw-wachtwoord/nieuw-wachtwoord.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { WeerstationDashboardBatterijComponent } from './weerstation-dashboard-b
     WeerstationDashboardTemperatuurComponent,
     WeerstationDashboardLuchtvochtigheidComponent,
     WeerstationDashboardLichtComponent,
-    WeerstationDashboardBatterijComponent
+    WeerstationDashboardBatterijComponent,
+    NieuwWachtwoordComponent,
 
   ],
   imports: [
