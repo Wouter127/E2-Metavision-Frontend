@@ -1,34 +1,38 @@
 <div class="ml-12 mt-5 space-x-20">
     <button routerLink="/weerstation/{{weerstation.id}}/dashboard" routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: true }"
-        class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-700 ring-4 ring-wbRed-500 bg-white border border-gray-700 hover:text-white dark:hover:text-white hover:bg-wbRed-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-gray-50 dark:text-dark dark:border-wbRed-500 dark:hover:bg-wbRed-400 dark:hover:border-wbRed-500">
+        class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-wbRed-500 transition-colors duration-700 transform hover:bg-wbRed-400 hover:text-white ring-4 ring-wbRed-500 bg-white border border-gray-700 hover:text-white dark:hover:text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-gray-50 dark:text-dark dark:border-wbRed-500 dark:hover:bg-wbRed-400 dark:hover:border-wbRed-500">
         <i class="mr-2 fas fa-chart-line"></i>
         Algemeen dashboard
     </button>
     <button routerLink="/weerstation/{{weerstation.id}}/dashboard/temperatuur" routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: true }"
-        class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-700 bg-white border border-gray-700 hover:text-white dark:hover:text-white hover:bg-wbRed-400 focus:ring-4 focus:ring-wbRed-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-gray-50 dark:text-dark dark:border-wbRed-500 dark:hover:bg-wbRed-400 dark:hover:border-wbRed-500 dark:focus:ring-wbRed-500">
+        class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-700 bg-white border border-gray-700 transition-colors duration-700 transform hover:bg-wbRed-400 hover:text-white dark:hover:text-white focus:ring-4 focus:ring-wbRed-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-gray-50 dark:text-dark dark:border-wbRed-500 dark:hover:bg-wbRed-400 dark:hover:border-wbRed-500 dark:focus:ring-wbRed-500">
         <i class="mr-2 fas fa-thermometer-three-quarters"></i>
         Dashboard temperatuur
     </button>
     <button routerLink="/weerstation/{{weerstation.id}}/dashboard/luchtvochtigheid" routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: true }"
-        class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-700 bg-white border border-gray-700 hover:text-white dark:hover:text-white hover:bg-wbRed-400 focus:ring-4 focus:ring-wbRed-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-gray-50 dark:text-dark dark:border-wbRed-500 dark:hover:bg-wbRed-400 dark:hover:border-wbRed-500 dark:focus:ring-wbRed-500">
+        class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-700 bg-white border border-gray-700 transition-colors duration-700 transform hover:bg-wbRed-400 hover:text-white dark:hover:text-white focus:ring-4 focus:ring-wbRed-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-gray-50 dark:text-dark dark:border-wbRed-500 dark:hover:bg-wbRed-400 dark:hover:border-wbRed-500 dark:focus:ring-wbRed-500">
         <i class="mr-2 fas fa-tint"></i>
         Dashboard luchtvochtigheid
     </button>
     <button routerLink="/weerstation/{{weerstation.id}}/dashboard/licht" routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: true }"
-        class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-700 bg-white border border-gray-700 hover:text-white dark:hover:text-white hover:bg-wbRed-400 focus:ring-4 focus:ring-wbRed-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-gray-50 dark:text-dark dark:border-wbRed-500 dark:hover:bg-wbRed-400 dark:hover:border-wbRed-500 dark:focus:ring-wbRed-500">
+        class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-700 bg-white border border-gray-700 transition-colors duration-700 transform hover:bg-wbRed-400 hover:text-white dark:hover:text-white focus:ring-4 focus:ring-wbRed-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-gray-50 dark:text-dark dark:border-wbRed-500 dark:hover:bg-wbRed-400 dark:hover:border-wbRed-500 dark:focus:ring-wbRed-500">
         <i class="mr-2  fas fa-lightbulb"></i>
         Dashboard licht
     </button>
     <button routerLink="/weerstation/{{weerstation.id}}/dashboard/batterij" routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: true }"
-        class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-700 bg-white border border-gray-700 hover:text-white dark:hover:text-white hover:bg-wbRed-400 focus:ring-4 focus:ring-wbRed-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-gray-50 dark:text-dark dark:border-wbRed-500 dark:hover:bg-wbRed-400 dark:hover:border-wbRed-500 dark:focus:ring-wbRed-500">
+        class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-700 bg-white border border-gray-700 transition-colors duration-700 transform hover:bg-wbRed-400 hover:text-white dark:hover:text-white focus:ring-4 focus:ring-wbRed-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-gray-50 dark:text-dark dark:border-wbRed-500 dark:hover:bg-wbRed-400 dark:hover:border-wbRed-500 dark:focus:ring-wbRed-500">
         <i class="mr-2 fas fa-battery-three-quarters"></i>
         Dashboard batterij
     </button>
+</div>
+
+<div class="text-3xl p-4 ml-7 mt-3">
+    {{weerstation.naam}}
 </div>
 
 <div class="container mx-auto w-full px-8 mb-32">
@@ -39,12 +43,13 @@
         <label class="p-4" for="eindDate">Eind datum:</label>
         <input [(ngModel)]="eind" id="eind" type="date" name="eind" value="{{eind}}" min="2016-01-01" max="2024-12-31">
         <button (click)="updateDate()" type="submit"
-            class="ml-5 text-gray-700 bg-white border border-gray-700 hover:text-white dark:hover:text-white hover:bg-wbRed-400 focus:ring-4 focus:ring-wbRed-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-gray-50 dark:text-dark dark:border-wbRed-500 dark:hover:bg-wbRed-400 dark:hover:border-wbRed-500 dark:focus:ring-wbRed-500">
+            class="ml-5 text-gray-700 bg-white border border-gray-700 transition-colors duration-700 transform hover:bg-wbRed-400 hover:text-white dark:hover:text-white focus:ring-4 focus:ring-wbRed-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-gray-50 dark:text-dark dark:border-wbRed-500 dark:hover:bg-wbRed-400 dark:hover:border-wbRed-500 dark:focus:ring-wbRed-500">
             Pas toe
         </button>
         <button routerLink="/weerstation/{{weerstation.id}}/locatie" routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: true }"
-            class="absolute top-0 right-0 mt-5 mr-4 text-gray-700 bg-white border border-gray-700 hover:text-white dark:hover:text-white hover:bg-wbRed-400 focus:ring-4 focus:ring-wbRed-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-gray-50 dark:text-dark dark:border-wbRed-500 dark:hover:bg-wbRed-400 dark:hover:border-wbRed-500 dark:focus:ring-wbRed-500">
+            class="absolute top-0 right-0 mt-5 mr-4  text-gray-700 bg-white border border-gray-700 transition-colors duration-700 transform hover:bg-wbRed-400 hover:text-white dark:hover:text-white focus:ring-4 focus:ring-wbRed-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-gray-50 dark:text-dark dark:border-wbRed-500 dark:hover:bg-wbRed-400 dark:hover:border-wbRed-500 dark:focus:ring-wbRed-500
+            ">
             <i class="mr-2 fas fa-map-marker-alt"></i>
             Location
         </button>
