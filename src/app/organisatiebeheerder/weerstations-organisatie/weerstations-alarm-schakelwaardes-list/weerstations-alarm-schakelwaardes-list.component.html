@@ -2,6 +2,11 @@
 <div class="text-3xl">
     {{weerstation.naam}}
 </div>
+<div class="cursor-pointer hover:-translate-x-2 duration-500 transition-all inline-block"
+    routerLink="../../weerstations" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+    <i class="fas fa-arrow-left mr-1"></i>
+    weerstations
+</div>
 
 <app-weerstations-alarm-schakelwaardes-form></app-weerstations-alarm-schakelwaardes-form>
 
