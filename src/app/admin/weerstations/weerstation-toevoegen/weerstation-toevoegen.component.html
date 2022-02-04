@@ -23,7 +23,7 @@
             <div>
               <label for="email" class="block font-medium text-gray-700">GSM nummer</label>
               <input type="text" name="gsmNummer" id="gsmNummer" [(ngModel)]="gsmNummer" #gsmNummerInput="ngModel" required placeholder="0032xxxxxxxxx" pattern="^(0032)[0-9]{9}"
-                class="mt-1 p-2 focus:ring-indigo-500 border focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                class="mt-1 p-2 focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 focus:border-wbRed-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
               <div *ngIf="gsmNummerInput.invalid && (gsmNummerInput.dirty || gsmNummerInput.touched)"
                 class="text-xs text-red-500 font-medium">
                 <span *ngIf="gsmNummerInput.errors?.['required']">

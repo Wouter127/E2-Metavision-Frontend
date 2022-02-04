@@ -38,7 +38,7 @@
                     <label for="voornaam" class="block font-medium text-gray-700">Voornaam</label>
                     <input type="text" name="voornaam" id="voornaam" [(ngModel)]="gebruiker.voornaam" #voornaam="ngModel" 
                         required minlength="2" maxlength="60"
-                        class="mt-1 p-2 focus:ring-indigo-500 border focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md invalid:border-red-500 invalid:ring-red-500">
+                        class="mt-1 p-2 focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 focus:border-wbRed-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md invalid:border-red-500 invalid:ring-red-500">
                     <div *ngIf="voornaam.invalid && (voornaam.dirty || voornaam.touched)" class="text-xs text-red-500 font-medium">
                         <span *ngIf="voornaam.errors?.['required']">
                             Voornaam is veplicht.
@@ -56,7 +56,7 @@
                     <label for="achternaam" class="block font-medium text-gray-700">Achternaam</label>
                     <input type="text" name="achternaam" id="achternaam" [(ngModel)]="gebruiker.achternaam" #achternaam="ngModel"
                         required minlength="2" maxlength="60"
-                        class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border-gray-300 focus:ring-indigo-500 border focus:border-indigo-500 invalid:border-red-500 invalid:ring-red-500">
+                        class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border-gray-300 focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 focus:border-wbRed-500 invalid:border-red-500 invalid:ring-red-500">
                     <div *ngIf="achternaam.invalid && (achternaam.dirty || achternaam.touched)"
                         class="text-xs text-red-500 font-medium">
                         <span *ngIf="achternaam.errors?.['required']">
@@ -75,7 +75,7 @@
                     <label for="wachtwoord" class="block font-medium text-gray-700">Wachtwoord</label>
                     <input type="password" name="wachtwoord" id="wachtwoord" [(ngModel)]="gebruiker.password" #wachtwoord="ngModel"
                         required minlength="8"
-                        class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 invalid:border-red-500 invalid:ring-red-500">
+                        class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 focus:border-wbRed-500 invalid:border-red-500 invalid:ring-red-500">
                     <div *ngIf="wachtwoord.invalid && (wachtwoord.dirty || wachtwoord.touched)"
                         class="text-xs text-red-500 font-medium">
                         <span *ngIf="wachtwoord.errors?.['required']">
@@ -90,7 +90,7 @@
                     <label for="wachtwoordConfig" class="block font-medium text-gray-700">Herhaal wachtwoord</label>
                     <input type="password" name="wachtwoordConfig" id="wachtwoordConfig" [(ngModel)]="wachtwoordConfirmation" #wachtwoordConfig="ngModel"
                         required minlength="8"
-                        class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 invalid:border-red-500 invalid:ring-red-500">
+                        class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 focus:border-wbRed-500 invalid:border-red-500 invalid:ring-red-500">
                     <div *ngIf="wachtwoordConfig.invalid && (wachtwoordConfig.dirty || wachtwoordConfig.touched)"
                         class="text-xs text-red-500 font-medium">
                         <span *ngIf="wachtwoordConfig.errors?.['required']">

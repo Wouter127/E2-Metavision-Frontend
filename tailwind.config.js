@@ -18,7 +18,7 @@ module.exports = {
           900: '#4c1017'
         },
         'wbDarkGreen': '#7e1b27',
-        'wbAccent': '##059296',
+        'wbAccent': '#059296',
         'wbGreen': {
           100: '#a4b29c',
           200: '#95a58c',

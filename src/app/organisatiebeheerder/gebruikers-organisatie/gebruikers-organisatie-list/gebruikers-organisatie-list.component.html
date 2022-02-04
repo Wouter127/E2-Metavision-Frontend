@@ -1,14 +1,20 @@
- <app-gebruikers-organisatie-form title="Wijzig gebruiker"></app-gebruikers-organisatie-form>
+<app-gebruikers-organisatie-form title="Wijzig gebruiker"></app-gebruikers-organisatie-form>
 <app-gebruikers-organisatie-toevoegen title="Organisatie gebruiker uitnodigen"></app-gebruikers-organisatie-toevoegen>
 
-<div class="flex row justify-end container mx-auto w-full px-8 pt-2">
-    <button (click)="toevoegenGebruiker()"
-        class="p-2 px-5 bg-transparent border-2 border-wbRed-500 text-wbRed-500 text-md font-bold rounded-lg transition-colors duration-700 transform hover:bg-wbRed-500 hover:text-white mb-2">
-        Organisatie gebruiker uitnodigen
-    </button>
-</div>
+<div class="flex flex-col container mx-auto w-full px-8 mb-32 mt-2">
+    <div *ngIf="loading">
+        <div class="w-6/12 md:w-4/12 bg-gray-300 h-12 rounded-xl animate-pulse my-1"></div>
+    </div>
+    <div class="flex flex-wrap" *ngIf="!loading">
+        <div class="md:text-3xl text-xl font-bold mb-2 grow">Gebruikers van {{organisatie.naam}}</div>
+        <div class="flex row justify-end">
+            <button (click)="toevoegenGebruiker()"
+                class="p-2 px-5 bg-transparent border-2 border-wbRed-500 text-wbRed-500 text-md font-bold rounded-lg transition-colors duration-700 transform hover:bg-wbRed-500 hover:text-white mb-2">
+                Organisatie gebruiker uitnodigen
+            </button>
+        </div>
+    </div>
 
-<div class="flex flex-col container mx-auto w-full px-8 mb-32">
     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
             <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
@@ -23,11 +29,14 @@
                                 class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Rol
                             </th>
-                            <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <th scope="col"
+                                class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Krijgt melding <i class="far fa-question-circle text-base"
-                                    tooltip="<p class='text-xs'>De gebruiker krijgt SMS-meldingen wanneer een ingestelde alarmwaarde wordt voldaan.</p>" [options]="{placement: 'top', hideDelay: 20}"></i>
+                                    tooltip="<p class='text-xs'>De gebruiker krijgt SMS-meldingen wanneer een ingestelde alarmwaarde wordt voldaan.</p>"
+                                    [options]="{placement: 'top', hideDelay: 20}"></i>
                             </th>
-                            <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <th scope="col"
+                                class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Acties
                             </th>
                         </tr>
@@ -60,9 +69,11 @@
                         <tr *ngFor="let gebruiker of organisatie.gebruikers">
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="text-sm font-medium text-gray-900">
-                                    <span *ngIf="!gebruiker.vervolledig_token; else showNietVervolledigd">{{ gebruiker.voornaam + ' ' + gebruiker.achternaam }}</span>
+                                    <span *ngIf="!gebruiker.vervolledig_token; else showNietVervolledigd">{{
+                                        gebruiker.voornaam + ' ' + gebruiker.achternaam }}</span>
                                     <ng-template #showNietVervolledigd>
-                                        <span class="inline-flex font-semibold rounded-full bg-orange-100 text-orange-800">
+                                        <span
+                                            class="inline-flex font-semibold rounded-full bg-orange-100 text-orange-800">
                                             Nog niet vervolledigd door gebruiker
                                         </span>
                                     </ng-template>
@@ -71,7 +82,7 @@
                                     {{ gebruiker.email}}
                                 </div>
                             </td>
-                           
+
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="flex justify-around">
                                     <span *ngIf="gebruiker.isOrganisatieBeheerder"
@@ -99,11 +110,13 @@
                                 </div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                              <div class="flex justify-around">
-                                  <a class="text-indigo-600 hover:text-indigo-900 cursor-pointer mr-1 xl:mr-0" (click)="wijzigGebruiker(gebruiker.id)">Wijzig</a>
-                                  <a class="text-indigo-600 hover:text-indigo-900 cursor-pointer ml-1 xl:ml-0" (click)="verwijderGebruiker(gebruiker.id)">Verwijder</a>
-                              </div>
-                          </td>
+                                <div class="flex justify-around">
+                                    <a class="text-indigo-600 hover:text-indigo-900 cursor-pointer mr-1 xl:mr-0"
+                                        (click)="wijzigGebruiker(gebruiker.id)">Wijzig</a>
+                                    <a class="text-indigo-600 hover:text-indigo-900 cursor-pointer ml-1 xl:ml-0"
+                                        (click)="verwijderGebruiker(gebruiker.id)">Verwijder</a>
+                                </div>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

@@ -74,7 +74,7 @@
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="voornaam" class="block font-medium text-gray-700">Voornaam</label>
                                 <input type="text" name="voornaam" id="voornaam" [(ngModel)]="gebruiker.voornaam" #voornaam="ngModel" required minlength="2"
-                                    class="mt-1 p-2 focus:ring-indigo-500 border focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md invalid:border-red-500 invalid:ring-red-500">
+                                    class="mt-1 p-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 focus:border-wbRed-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md invalid:border-red-500 invalid:ring-red-500">
                                 <div *ngIf="voornaam.invalid && (voornaam.dirty || voornaam.touched)" class="text-xs text-red-500 font-medium">
                                     <span *ngIf="voornaam.errors?.['required']">
                                         Voornaam is veplicht.
@@ -88,7 +88,7 @@
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="achternaam" class="block font-medium text-gray-700">Achternaam</label>
                                 <input type="text" name="achternaam" id="achternaam" [(ngModel)]="gebruiker.achternaam" #achternaam="ngModel" required minlength="2"
-                                    class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 invalid:border-red-500 invalid:ring-red-500">
+                                    class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 focus:border-wbRed-500 invalid:border-red-500 invalid:ring-red-500">
                                 <div *ngIf="achternaam.invalid && (achternaam.dirty || achternaam.touched)" class="text-xs text-red-500 font-medium">
                                     <span *ngIf="achternaam.errors?.['required']">
                                         Achternaam is veplicht.
@@ -103,7 +103,7 @@
                                 <label for="gsm" class="block font-medium text-gray-700">GSM nummer</label>
                                 <input type="text" name="gsm" id="gsm" [(ngModel)]="gebruiker.gsm" #gsm="ngModel"
                                     minlength="10" maxlength="10"
-                                    class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 invalid:border-red-500 invalid:ring-red-500">
+                                    class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 focus:border-wbRed-500 invalid:border-red-500 invalid:ring-red-500">
                                 <div *ngIf="gsm.invalid && (gsm.dirty || gsm.touched)"
                                     class="text-xs text-red-500 font-medium">
                                     <span *ngIf="gsm.errors?.['minlength'] || gsm.errors?.['maxlength']">
@@ -115,7 +115,7 @@
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="country" class="block font-medium text-gray-700">Organisatie</label>
                                 <select id="country" name="organisatieId" [(ngModel)]="gebruiker.organisatieId"
-                                    class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                    class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 focus:border-wbRed-500 sm:text-sm">
                                     <option value="0" >Geen organisatie</option>
                                     <option *ngFor="let organisatie of organisaties" value="{{ organisatie.id }}">{{ organisatie.naam }}</option>
                                 </select>
@@ -123,11 +123,11 @@
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label class="block font-medium text-gray-700" for="isOrganisatieBeheerder">Organisatie beheerder</label>
-                                <input class="ml-1 text-indigo-500" type="checkbox" role="switch" id="isOrganisatieBeheerder" [checked]="gebruiker.isOrganisatieBeheerder" (change)="gebruiker.isOrganisatieBeheerder ? gebruiker.isOrganisatieBeheerder = 0 : gebruiker.isOrganisatieBeheerder = 1">
+                                <input class="ml-1 text-wbGreen-500 focus:ring-2 focus:ring-offset-2 focus:ring-wbGreen-500" type="checkbox" role="switch" id="isOrganisatieBeheerder" [checked]="gebruiker.isOrganisatieBeheerder" (change)="gebruiker.isOrganisatieBeheerder ? gebruiker.isOrganisatieBeheerder = 0 : gebruiker.isOrganisatieBeheerder = 1">
                             </div>
                             <div class="col-span-6 sm:col-span-3">
                                 <label class="block font-medium text-gray-700" for="admin">Admin</label>
-                                <input class="ml-1 text-indigo-500" type="checkbox" role="switch" id="admin" [checked]="gebruiker.isAdmin" (change)="gebruiker.isAdmin ? gebruiker.isAdmin = 0 : gebruiker.isAdmin = 1">
+                                <input class="ml-1 text-wbGreen-500 focus:ring-2 focus:ring-offset-2 focus:ring-wbGreen-500" type="checkbox" role="switch" id="admin" [checked]="gebruiker.isAdmin" (change)="gebruiker.isAdmin ? gebruiker.isAdmin = 0 : gebruiker.isAdmin = 1">
                             </div>
                         </div>
                     </div>

@@ -1,45 +1,42 @@
-<!-- <form (ngSubmit)="onSubmit()">
-    <label for="email">email</label><br>
-    <input type="email" id="email" name="email" class="bg-gray-200" [(ngModel)]="email"><br>
-    <label for="pw">Wachtwoord</label><br>
-    <input type="password" id="password" name="password" class="bg-gray-200" [(ngModel)]="password"><br>
-    <button type="submit" class="bg-gray-500">Login</button>
-</form> -->
 <!-- component -->
 
-         <!-- component -->
+<div class="flex rounded-lg shadow-lg h-screen w-full bg-white sm:mx-0">
 
-      <div class="flex rounded-lg shadow-lg h-screen w-full bg-white sm:mx-0">
-        
-        <div class="bg-fixed md:block md:w-1/2 text-center content-center grid" style="background: url('assets/images/bg2.jpg'); background-size: cover; background-position: center;"></div>
+    <div class="bg-fixed md:block md:w-1/2 text-center content-center grid"
+        style="background: url('assets/images/bg2.jpg'); background-size: cover; background-position: center;"></div>
 
-          <div class="flex flex-col h-full w-full md:w-1/2">
-              <div class="flex flex-col flex-1 justify-center mb-8 ">
-                  <h1 class="text-4xl text-center font-thin">Inloggen</h1>
-                  <div class="w-full mt-4">
-                      <form class="form-horizontal w-3/4 mx-auto" (ngSubmit)="onSubmit()">
-                          <div class="flex flex-col mt-4">
-                            <input type="email" id="email" name="email" class="flex-grow h-8 px-2 border rounded border-grey-400" value="" required placeholder="Email" [(ngModel)]="email"><br>
-                          </div>
-                          <div class="flex flex-col mt-4">
-                            <input type="password" id="password" name="password" class="flex-grow h-8 px-2 rounded border border-grey-400" required placeholder="Wachtwoord" [(ngModel)]="password"><br>
-                          </div>
-                          <div class="flex flex-col mt-8">
-                              <button type="submit" class="bg-wbRed-500 hover:bg-wbRed-700 text-white text-sm font-semibold py-2 px-4 rounded">
-                                  Login
-                              </button>
-                              <div routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" 
-                              class="bg-wbRed-500 hover:bg-wbRed-700 text-white text-sm font-semibold py-2 px-4 rounded mt-4 text-center">
-                                Terug
-                              </div>
-                          </div>
-                      </form>
-                      <div class="text-center mt-4">
-                          <a class="no-underline hover:underline text-blue-dark text-xs" href="">
-                              Wachtwoord vergeten?
-                          </a>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
+    <div class="flex flex-col h-full w-full md:w-1/2">
+        <div class="flex flex-col flex-1 justify-center mb-8 ">
+            <h1 class="text-4xl text-center font-thin">Inloggen</h1>
+            <div class="w-full mt-4">
+                <form class="form-horizontal w-3/4 mx-auto" (ngSubmit)="onSubmit()">
+                    <div class="flex flex-col mt-4">
+                        <input type="email" id="email" name="email"
+                            class="flex-grow h-8 px-2 border rounded border-grey-400" value="" required
+                            placeholder="Email" [(ngModel)]="email"><br>
+                    </div>
+                    <div class="flex flex-col mt-4">
+                        <input type="password" id="password" name="password"
+                            class="flex-grow h-8 px-2 rounded border border-grey-400" required placeholder="Wachtwoord"
+                            [(ngModel)]="password"><br>
+                    </div>
+                    <div class="flex flex-col mt-8">
+                        <button type="submit"
+                            class="bg-wbRed-500 hover:bg-wbRed-700 text-white text-sm font-semibold py-2 px-4 rounded">
+                            Login
+                        </button>
+                        <div routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+                            class="bg-wbRed-500 hover:bg-wbRed-700 text-white text-sm font-semibold py-2 px-4 rounded mt-4 text-center">
+                            Terug
+                        </div>
+                    </div>
+                </form>
+                <div class="text-center mt-4">
+                    <a class="no-underline hover:underline text-blue-dark text-xs" href="">
+                        Wachtwoord vergeten?
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
