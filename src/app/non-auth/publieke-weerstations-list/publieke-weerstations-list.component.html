@@ -8,17 +8,17 @@
 </div> -->
 
 <ng-container *ngIf="!loading; else showLoading">
-        <div class="flex flex-col flex-wrap lg:flex-row container mx-auto w-full px-8">
+        <div class="flex flex-col flex-wrap lg:flex-row container mx-auto w-full px-8 mb-32">
             <!-- <div class="mt-4 lg:mt-0 lg:w-3/5">
                 <div>
                     <h2 class="text-xl md:text-2xl ml-2 lg:ml-0 lg:text-3xl font-bold text-gray-900 tracking-normal lg:w-11/12">
                         Weerstations van {{ organisatie.naam }}</h2>
                 </div>
             </div> -->
-            <div class="lg:w-2/5 flex mt-10 ml-2 lg:ml-0 lg:mt-0 lg:justify-end">
+            <div class="lg:w-full flex ml-0 mt-0 justify-end">
                 <div class="pt-2 relative text-gray-600">
                     <input
-                        class="focus:ring-indigo-500 border focus:border-indigo-500 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+                        class="focus:ring-indigo-500 border focus:border-indigo-500 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none mb-2"
                         type="search" name="search" placeholder="Search" />
                     <button type="submit"
                         class="focus:ring-2 focus:ring-offset-2 text-gray-600 focus:text-indigo-700 focus:rounded-full focus:bg-gray-100 focus:ring-indigo-700 bg-white focus:outline-none absolute right-0 top-0 mt-5 mr-4">
@@ -46,10 +46,7 @@
                     </div> -->
                     <!-- Info -->
                     <div class="p-5 rounded-md relative h-full w-full">
-                        <h3 class="pb-4 text-2xl font-semibold">{{ weerstation.naam }} <a href="organisatiebeheerder/waardes/{{weerstation.id}}"
-                          class="font-bold cursor-pointer flex text-wbRed-500 float-right">
-                          <i class="far fa-bell text-2xl"></i>
-                      </a></h3>
+                        <h3 class="pb-4 text-2xl font-semibold">{{ weerstation.naam }}</h3>
 
                         <div>
                             <span *ngIf="weerstation.isPubliekZichtbaar; else showNietZichtbaar"

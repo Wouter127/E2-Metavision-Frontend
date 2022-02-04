@@ -1,6 +1,6 @@
 <nav class="flex items-center justify-between flex-wrap bg-wbRed-500 fixed w-screen">
   <div class="flex flex-row p-6 w-full">
-    <button (click)="drawer.toggle()" *ngIf="gebruiker"
+    <button (click)="drawer.toggle()"
       class="flex items-center px-4 border rounded stone-300  border-white text-white hover:border-transparent hover:text-wbRed-500 hover:bg-white">
       <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
         <title>Menu</title>
@@ -55,39 +55,47 @@
   <div class="w-full block flex-grow">
     <mat-drawer-container class="example-container h-screen" [hasBackdrop]="true">
       <mat-drawer #drawer class="bg-wbRed-500 p-6">
-        <div *ngIf="gebruiker" class="text-sm">
+        <div class="text-sm">
           <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
             class="block mt-4 text-white mr-4" (click)="drawer.close()">
             Home
           </a>
-          <a *ngIf="gebruiker.isAdmin" routerLink="admin/gebruikers" routerLinkActive="active"
+          <a routerLink="weerstations/publiek" routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4" (click)="drawer.close()">
+            Publieke weerstations
+          </a>
+          <a routerLink="login" routerLinkActive="active" *ngIf="!gebruiker"
+            [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4" (click)="drawer.close()">
+            Login
+          </a>
+          <a *ngIf="gebruiker?.isAdmin" routerLink="admin/gebruikers" routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4" (click)="drawer.close()">
             Alle gebruikers
           </a>
-          <a *ngIf="gebruiker.isAdmin" routerLink="admin/weerstations" routerLinkActive="active"
+          <a *ngIf="gebruiker?.isAdmin" routerLink="admin/weerstations" routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4" (click)="drawer.close()">
             Alle weerstations
           </a>
-          <a *ngIf="gebruiker.isAdmin" routerLink="admin/organisaties" routerLinkActive="active"
+          <a *ngIf="gebruiker?.isAdmin" routerLink="admin/organisaties" routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4" (click)="drawer.close()">
             Alle organisaties
           </a>
-          <a *ngIf="gebruiker.isOrganisatieBeheerder" routerLink="organisatiebeheerder/weerstations"
+          <a *ngIf="gebruiker?.isOrganisatieBeheerder" routerLink="organisatiebeheerder/weerstations"
             routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4"
             (click)="drawer.close()">
             Mijn weerstations
           </a>
-          <a *ngIf="!gebruiker.isOrganisatieBeheerder && gebruiker.organisatieId" routerLink="auth/weerstations"
+          <a *ngIf="!gebruiker?.isOrganisatieBeheerder && gebruiker?.organisatieId" routerLink="auth/weerstations"
             routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4"
             (click)="drawer.close()">
             Mijn weerstations
           </a>
-          <a *ngIf="gebruiker.isOrganisatieBeheerder" routerLink="organisatiebeheerder/gebruikers"
+          <a *ngIf="gebruiker?.isOrganisatieBeheerder" routerLink="organisatiebeheerder/gebruikers"
             routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4"
             (click)="drawer.close()">
             Gebruikers
           </a>
-          <a *ngIf="gebruiker.isOrganisatieBeheerder" routerLink="organisatiebeheerder/organisatie"
+          <a *ngIf="gebruiker?.isOrganisatieBeheerder" routerLink="organisatiebeheerder/organisatie"
             routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4"
             (click)="drawer.close()">
             Organisatie info
