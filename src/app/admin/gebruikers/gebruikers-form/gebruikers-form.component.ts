@@ -15,7 +15,7 @@ export class GebruikersFormComponent implements OnInit {
   @Input() title!: string;
   @Output() output = new EventEmitter();
 
-  gebruiker: Gebruiker = { id: 0, organisatieId: 0, voornaam: '', achternaam: '', email: '', gsm: '', krijgtMelding: 0, password: '', isOrganisatieBeheerder: 0, isAdmin: 0, vervolledig_token: '' };
+  gebruiker: any = {};
   gebruiker$: Subscription = new Subscription();
 
   organisaties: Organisatie[] = [];
@@ -74,10 +74,18 @@ export class GebruikersFormComponent implements OnInit {
   }
 
   onSubmit() {
+
+    // if (this.gebruiker.organisatieId == 0) {
+    //   this.gebruiker.organisatieId = null;
+    //   console.log("submit", this.gebruiker);
+    // }
+    console.log("submit", this.gebruiker);
+
     this.putGebruiker$ = this.adminGebruikerService.putGebruiker(this.gebruiker.id, this.gebruiker).subscribe(
       result => {
         this.showModal = false;
-
+        console.log(result);
+        
         this.output.next(); // Send event to parent component.
       }
     );

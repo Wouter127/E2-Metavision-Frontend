@@ -55,7 +55,7 @@
                 <label for="naam" class="block font-medium text-gray-700">Naam</label>
                 <input type="text" name="naam" id="naam" [(ngModel)]="weerstation.naam" #naam="ngModel"
                   required minlength="2"
-                  class="mt-1 p-2 focus:ring-indigo-500 border focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md invalid:border-red-500 invalid:ring-red-500">
+                  class="mt-1 p-2 focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 focus:border-wbRed-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md invalid:border-red-500 invalid:ring-red-500">
                 <div *ngIf="naam.invalid && (naam.dirty || naam.touched)"
                   class="text-xs text-red-500 font-medium">
                   <span *ngIf="naam.errors?.['required']">
@@ -71,7 +71,7 @@
                 <label for="gsmNummer" class="block font-medium text-gray-700">GSM nummer</label>
                 <input type="text" name="gsmNummer" id="gsmNummer" [(ngModel)]="weerstation.gsmNummer"
                   #gsmNummer="ngModel" required placeholder="0032xxxxxxxxx" pattern="^(0032)[0-9]{9}"
-                  class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 invalid:border-red-500 invalid:ring-red-500">
+                  class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 focus:border-wbRed-500 invalid:border-red-500 invalid:ring-red-500">
                 <div *ngIf="gsmNummer.invalid && (gsmNummer.dirty || gsmNummer.touched)"
                   class="text-xs text-red-500 font-medium">
                   <span *ngIf="gsmNummer.errors?.['required']">
@@ -96,7 +96,7 @@
               <div class="col-span-6 sm:col-span-3">
                 <label for="country" class="block font-medium text-gray-700">Organisatie</label>
                 <select id="country" name="organisatieId" [(ngModel)]="weerstation.organisatieId"
-                  class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                  class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 focus:border-wbRed-500 sm:text-sm">
                   <option *ngFor="let organisatie of organisaties" value="{{ organisatie.id }}">{{ organisatie.naam }}
                   </option>
                 </select>

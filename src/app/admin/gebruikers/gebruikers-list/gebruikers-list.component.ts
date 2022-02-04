@@ -1,4 +1,3 @@
-import { trigger } from '@angular/animations';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DialogService } from '@ngneat/dialog';
 import { HotToastService } from '@ngneat/hot-toast';
@@ -31,7 +30,7 @@ export class GebruikersListComponent implements OnInit {
       ...this.toast.defaultConfig,
       reverseOrder: true
     }
-   }
+  }
 
   ngOnInit(): void {
     this.getGebruikers();

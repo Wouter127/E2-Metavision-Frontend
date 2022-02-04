@@ -161,7 +161,7 @@ export class WeerstationListComponent implements OnInit, OnDestroy {
     this.dialog
       .confirm({
         title: 'Weerstation verwijderen?',
-        body: 'Deze actie kan niet ongedaan gemaakt worden. Alle metingen en schakel- en alarmwaarden worden ook verwijderd!'
+        body: 'Deze actie kan niet ongedaan gemaakt worden. <br> Alle metingen en schakel- en alarmwaarden worden ook verwijderd!'
       })
       .afterClosed$.subscribe(confirmed => {
         if (confirmed) {

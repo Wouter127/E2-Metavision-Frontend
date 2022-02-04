@@ -1,4 +1,5 @@
 <app-organisatie-form title="Wijzig organisatie info"></app-organisatie-form>
+<div class="md:text-3xl text-xl font-bold my-2 ml-4 grow">Organisatie info</div>
 
 <div *ngIf="loading">
     <div class="p-4 border-2 m-4 border-gray-300 animate-pulse ">
@@ -35,8 +36,8 @@
                 </tr>
                 <tr>
                     <td>
-                        <span class="text-sm font-bold pr-4 cursor-pointer" routerLink="/organisatiebeheerder/gebruikers"
-                        routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"># Gebruikers</span>
+                        <div class="text-sm font-bold pr-4 cursor-pointer" routerLink="/organisatiebeheerder/gebruikers"
+                        routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"># Gebruikers</div>
                     </td>
                     <td>
                         <span class="text-sm">{{organisatie.gebruikers.length}} </span>

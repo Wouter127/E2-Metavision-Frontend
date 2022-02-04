@@ -1,6 +1,6 @@
 <div *ngIf="showModal"
     class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex mx-4">
-    <div class="relative w-auto my-6 mx-auto max-w-6xl w-11/12 sm:w-10/12">
+    <div class="relative w-auto my-6 mx-auto max-w-6xl sm:w-10/12">
         <!--content-->
         <div
             class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
@@ -66,7 +66,7 @@
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="voornaam" class="block font-medium text-gray-700">Voornaam</label>
                                 <input type="text" name="voornaam" id="voornaam" [(ngModel)]="gebruiker.voornaam" #voornaam="ngModel" required minlength="2"
-                                    class="mt-1 p-2 focus:ring-indigo-500 border focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md invalid:border-red-500 invalid:ring-red-500">
+                                    class="mt-1 p-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md invalid:border-red-500 focus:border-wbRed-500 invalid:ring-red-500">
                                 <div *ngIf="voornaam.invalid && (voornaam.dirty || voornaam.touched)" class="text-xs text-red-500 font-medium">
                                     <span *ngIf="voornaam.errors?.['required']">
                                         Voornaam is veplicht.
@@ -80,7 +80,7 @@
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="achternaam" class="block font-medium text-gray-700">Achternaam</label>
                                 <input type="text" name="achternaam" id="achternaam" [(ngModel)]="gebruiker.achternaam" #achternaam="ngModel" required minlength="2"
-                                    class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 invalid:border-red-500 invalid:ring-red-500">
+                                    class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 invalid:border-red-500 focus:border-wbRed-500 invalid:ring-red-500">
                                 <div *ngIf="achternaam.invalid && (achternaam.dirty || achternaam.touched)" class="text-xs text-red-500 font-medium">
                                     <span *ngIf="achternaam.errors?.['required']">
                                         Achternaam is veplicht.
@@ -98,14 +98,14 @@
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label class="block font-medium text-gray-700" for="isOrganisatieBeheerder">Organisatie beheerder</label>
-                                <input class="ml-1 text-indigo-500" type="checkbox" role="switch" id="isOrganisatieBeheerder" [checked]="gebruiker.isOrganisatieBeheerder" (change)="gebruiker.isOrganisatieBeheerder ? gebruiker.isOrganisatieBeheerder = 0 : gebruiker.isOrganisatieBeheerder = 1">
+                                <input class="ml-1 focus:outline-none text-wbGreen-500 focus:ring-2 focus:ring-offset-2 focus:ring-wbGreen-500" type="checkbox" role="switch" id="isOrganisatieBeheerder" [checked]="gebruiker.isOrganisatieBeheerder" (change)="gebruiker.isOrganisatieBeheerder ? gebruiker.isOrganisatieBeheerder = 0 : gebruiker.isOrganisatieBeheerder = 1">
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="gsm" class="block font-medium text-gray-700">GSM nummer</label>
                                 <input type="text" name="gsm" id="gsm" [(ngModel)]="gebruiker.gsm" #gsm="ngModel"
                                     minlength="10" maxlength="10" placeholder="04xxxxxxxx"
-                                    class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 invalid:border-red-500 invalid:ring-red-500">
+                                    class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500  focus:border-wbRed-500 invalid:border-red-500 invalid:ring-red-500">
                                 <div *ngIf="gsm.invalid && (gsm.dirty || gsm.touched)"
                                     class="text-xs text-red-500 font-medium">
                                     <span *ngIf="gsm.errors?.['minlength'] || gsm.errors?.['maxlength']">
@@ -116,7 +116,7 @@
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label class="block font-medium text-gray-700" for="krijgtMelding">Krijgt melding</label>
-                                <input class="ml-1 text-indigo-500" type="checkbox" role="switch" id="krijgtMelding"
+                                <input class="ml-1 text-wbGreen-500 focus:ring-2 focus:ring-offset-2 focus:ring-wbGreen-500" type="checkbox" role="switch" id="krijgtMelding"
                                     [checked]="gebruiker.krijgtMelding"
                                     (change)="gebruiker.krijgtMelding ? gebruiker.krijgtMelding = 0 : gebruiker.krijgtMelding = 1">
                             </div>
@@ -124,7 +124,7 @@
                     </div>
                     <div class="px-4 py-3 text-center sm:px-6">
                         <button type="submit" [disabled]="!gebruikerForm.form.valid"
-                            class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:bg-gray-400 disabled:cursor-not-allowed">
+                            class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md text-white bg-wbRed-500 hover:bg-wbRed-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 disabled:bg-gray-400 disabled:cursor-not-allowed">
                             Opslaan
                         </button>
                     </div>

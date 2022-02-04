@@ -87,7 +87,7 @@ export class GebruikerService {
   }
 
   getGebruikerInfo(): Observable<Gebruiker> {
-    return this.httpClient.get<Gebruiker>(`${environment.API_URI}/auth/account`)
+    return this.httpClient.get<Gebruiker>(`${environment.API_URI}/auth/accountenmeer`)
   }
 
   putGebruikerAlsAuth(id: number, gebruiker: Gebruiker): Observable<Gebruiker> {

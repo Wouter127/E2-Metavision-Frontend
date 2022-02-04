@@ -66,7 +66,7 @@
                             <div class="col-span-6 sm:col-span-6">
                                 <label for="naam" class="block font-medium text-gray-700">Organisatie naam</label>
                                 <input type="text" name="naam" id="naam" [(ngModel)]="organisatie.naam" #naam="ngModel" required minlength="2"
-                                    class="mt-1 p-2 focus:ring-indigo-500 border focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md invalid:border-red-500 invalid:ring-red-500">
+                                    class="mt-1 p-2 focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 focus:border-wbRed-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md invalid:border-red-500 invalid:ring-red-500">
                                 <div *ngIf="naam.invalid && (naam.dirty || naam.touched)" class="text-xs text-red-500 font-medium">
                                     <span *ngIf="naam.errors?.['required']">
                                         Organisatie naam is veplicht.
@@ -80,7 +80,7 @@
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="straat" class="block font-medium text-gray-700">Straat</label>
                                 <input type="text" name="straat" id="straat" [(ngModel)]="organisatie.straat" #straat="ngModel" required minlength="2"
-                                    class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 invalid:border-red-500 invalid:ring-red-500">
+                                    class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 focus:border-wbRed-500 invalid:border-red-500 invalid:ring-red-500">
                                 <div *ngIf="straat.invalid && (straat.dirty || straat.touched)" class="text-xs text-red-500 font-medium">
                                     <span *ngIf="straat.errors?.['required']">
                                         Straat is veplicht.
@@ -95,7 +95,7 @@
                                 <label for="huisnummer" class="block font-medium text-gray-700">Huisnummer</label>
                                 <input type="text" name="huisnummer" id="huisnummer" [(ngModel)]="organisatie.huisnummer" #huisnummer="ngModel"
                                 required
-                                    class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 invalid:border-red-500 invalid:ring-red-500">
+                                    class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 focus:border-wbRed-500 invalid:border-red-500 invalid:ring-red-500">
                                 <div *ngIf="huisnummer.invalid && (huisnummer.dirty || huisnummer.touched)"
                                     class="text-xs text-red-500 font-medium">
                                     <span *ngIf="huisnummer.errors?.['required']">
@@ -108,7 +108,7 @@
                                 <label for="postcode" class="block font-medium text-gray-700">Postcode</label>
                                 <input type="text" name="postcode" id="postcode" [(ngModel)]="organisatie.postcode" #postcode="ngModel"
                                     required minlength="4"
-                                    class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 invalid:border-red-500 invalid:ring-red-500">
+                                    class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 focus:border-wbRed-500 invalid:border-red-500 invalid:ring-red-500">
                                 <div *ngIf="postcode.invalid && (postcode.dirty || postcode.touched)"
                                     class="text-xs text-red-500 font-medium">
                                     <span *ngIf="postcode.errors?.['required']">
@@ -124,7 +124,7 @@
                                 <label for="stad" class="block font-medium text-gray-700">Stad</label>
                                 <input type="text" name="stad" id="stad" [(ngModel)]="organisatie.stad" #stad="ngModel"
                                     required minlength="2"
-                                    class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 invalid:border-red-500 invalid:ring-red-500">
+                                    class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 focus:border-wbRed-500 invalid:border-red-500 invalid:ring-red-500">
                                 <div *ngIf="stad.invalid && (stad.dirty || stad.touched)"
                                     class="text-xs text-red-500 font-medium">
                                     <span *ngIf="stad.errors?.['required']">
@@ -140,7 +140,7 @@
                                 <label for="land" class="block font-medium text-gray-700">Land</label>
                                 <input type="text" name="land" id="land" [(ngModel)]="organisatie.land" #land="ngModel"
                                     required minlength="2"
-                                    class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 invalid:border-red-500 invalid:ring-red-500">
+                                    class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 focus:border-wbRed-500 invalid:border-red-500 invalid:ring-red-500">
                                 <div *ngIf="land.invalid && (land.dirty || land.touched)"
                                     class="text-xs text-red-500 font-medium">
                                     <span *ngIf="land.errors?.['required']">
@@ -157,7 +157,7 @@
                     </div>
                     <div class="px-4 py-3 text-center sm:px-6">
                         <button type="submit" [disabled]="!organisatieForm.form.valid"
-                            class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:bg-gray-400 disabled:cursor-not-allowed">
+                            class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md text-white bg-wbRed-500 hover:bg-wbRed-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 disabled:bg-gray-400 disabled:cursor-not-allowed">
                             Opslaan
                         </button>
                     </div>

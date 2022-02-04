@@ -2,14 +2,16 @@
 <app-gebruikers-form-organisatiebeheerder title="Organisatie beheerder uitnodigen">
 </app-gebruikers-form-organisatiebeheerder>
 
-<div class="flex row justify-end container mx-auto w-full px-8 pt-2">
+<div class="flex flex-col container mx-auto w-full px-8 mb-32">
+<div class="flex flex-wrap pt-2">
+    <div class="md:text-3xl text-xl font-bold mb-2 grow">Alle gebruikers</div>
+<div class="flex row justify-end">
     <button (click)="toevoegenGebruiker()"
         class="p-2 px-5 bg-transparent border-2 border-wbRed-500 text-wbRed-500 text-md font-bold rounded-lg transition-colors duration-700 transform hover:bg-wbRed-500 hover:text-white mb-2">
         Organisatie beheerder uitnodigen
     </button>
-</div>
+</div></div>
 
-<div class="flex flex-col container mx-auto w-full px-8 mb-32">
     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
             <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
