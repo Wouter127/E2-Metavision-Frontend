@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { Meting } from 'src/app/interfaces/Meting';
 import { Weerstation } from 'src/app/interfaces/Weerstation';
 import { WeerstationService } from 'src/app/services/weerstation.service';
-import { preChartOptionsBatterij, chartOptionsColor } from '../weerstation-dashboard/chart-options';
+import { preChartOptionsBatterij } from '../weerstation-dashboard/chart-options';
 import { WeerstationDashboardLocationComponent } from '../weerstation-dashboard-location/weerstation-dashboard-location.component';
 import { HotToastService } from '@ngneat/hot-toast';
 
@@ -20,69 +20,15 @@ export class WeerstationDashboardBatterijComponent implements OnInit {
   @ViewChild(WeerstationDashboardLocationComponent, { static: true }) weerstationdashboardlocationComponent!: WeerstationDashboardLocationComponent;
   public prechartOptionsBatterij!: preChartOptionsBatterij;
 
-  public chartOptionsBatterijPercentage: chartOptionsColor = {
-    series: [
-      {
-        name: "Batterijpercentage",
-        data: []
-      }
-    ],
-    chart: {
-      type: "area",
-      height: 350,
-      zoom: {
-        enabled: true
-      }
-    },
-    dataLabels: {
-      enabled: false
-    },
-    stroke: {
-      width: 3,
-      curve: "smooth"
-    },
-    colors: ['#13D8AA'],
-    fill: {
-      type: "gradient",
-      gradient: {
-        shade: "dark",
-        gradientToColors: ["#A300D6"],
-        shadeIntensity: 1,
-        type: "horizontal",
-        opacityFrom: 0.9,
-        opacityTo: 0.7,
-        stops: [0, 100, 100]
-      }
-    },
-
-    title: {
-      text: "Batterijpercentage"
-    },
-    xaxis: {
-      type: "datetime",
-      title: {
-        text: 'Per datum/uur'
-      }
-    },
-    yaxis: {
-      title: {
-        text: 'Batterijpercentage'
-      }
-    },
-    noData: {
-      text: 'Laden...'
-    }
-  };
-
   //batterijwaardes
   bavArray: { y: number; x: Date }[] = [];
   bapArray: { y: number; x: Date }[] = [];
-  
+
   // Chosen dates
-  eindDate = new Date();  
+  eindDate = new Date();
   beginDate = new Date();
-  
-  begin: string;  
+
+  begin: string;
   eind: string;
 
   weerstation!: Weerstation;
@@ -103,7 +49,7 @@ export class WeerstationDashboardBatterijComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getData(this.begin, this.eind);   
+    this.getData(this.begin, this.eind);
   }
 
 
@@ -112,7 +58,7 @@ export class WeerstationDashboardBatterijComponent implements OnInit {
     //array batterij
     this.bavArray = [];
     this.bapArray = [];
-    
+
     this.routeParams$ = this.route.params.subscribe(
       params => {
         this.weerstation$ = this.authWeerstationService.getDataBetweenDates(params['id'], begin, eind).subscribe(
@@ -137,44 +83,47 @@ export class WeerstationDashboardBatterijComponent implements OnInit {
             });
 
             this.prechartOptionsBatterij = {
-              series: [],
+              series: [{
+                name: "Batterijspanning",
+                data: this.bavArray
+              }],
               chart: {
                 height: 350,
-                type: 'line'
+                type: 'bar'
               },
               dataLabels: {
                 enabled: false
               },
               title: {
-                text: 'Graph generator batterij metingen',
+                text: 'Batterijspanning',
               },
               noData: {
-                text: 'Selecteer een categorie om jouw grafiek te genereren'
+                text: 'Geen data om weer te geven.'
               },
               fill: {
-                type: "solid",
-                colors: ['#FFFFFF']
+                type: "gradient",
+                gradient: {
+                  shade: "dark",
+                  gradientToColors: ["#F00"],
+                  shadeIntensity: 1,
+                  type: "horizontal",
+                  opacityFrom: 1,
+                  opacityTo: 1,
+                  stops: [0, 100, 100, 100]
+                }
               },
               xaxis: {
+                type: "datetime",
                 title: {
                   text: "Per datum/uur"
                 }
               },
               yaxis: {
                 title: {
-                  text: "Batterij metingen"
+                  text: "Batterijspanning"
                 }
               }
             };
-
-
-            this.chartOptionsBatterijPercentage.series = [{
-              data: this.bapArray
-            }];
-            this.chartOptionsBatterijPercentage.noData = {
-              text: 'Geen data om weer te geven.'
-            }
-
           },
           error => {
             console.log('Error getting metings:', error);

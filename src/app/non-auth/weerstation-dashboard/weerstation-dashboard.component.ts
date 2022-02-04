@@ -6,7 +6,6 @@ import { Meting } from 'src/app/interfaces/Meting';
 import { Weerstation } from 'src/app/interfaces/Weerstation';
 import { WeerstationService } from 'src/app/services/weerstation.service';
 import { chartOptionsColor } from './chart-options';
-import { WeerstationDashboardLocationComponent } from '../weerstation-dashboard-location/weerstation-dashboard-location.component';
 import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
@@ -17,6 +16,7 @@ import { HotToastService } from '@ngneat/hot-toast';
 
 export class WeerstationDashboardComponent implements OnInit {
   @ViewChild('chart', { static: false }) chart: ChartComponent = new ChartComponent();
+
 
   public chartOptionsT1: chartOptionsColor = {
     series: [
@@ -64,7 +64,7 @@ export class WeerstationDashboardComponent implements OnInit {
       }
     },
     noData: {
-      text: 'Laden...'
+      text: 'Geen data om weer te geven.'
     }
   }
   public chartOptionsT2: chartOptionsColor = {
@@ -116,7 +116,7 @@ export class WeerstationDashboardComponent implements OnInit {
       }
     },
     noData: {
-      text: 'Laden...'
+      text: 'Geen data om weer te geven.'
     }
   };
   public chartOptionsLuchtvochtigheid: chartOptionsColor = {
@@ -167,13 +167,13 @@ export class WeerstationDashboardComponent implements OnInit {
       }
     },
     noData: {
-      text: 'Laden...'
+      text: 'Geen data om weer te geven.'
     }
   };
   public chartOptionsBatterijPercentage: chartOptionsColor = {
     series: [
       {
-        name: "Batterijpercentage",
+        name: "Batterijpercentage (%)",
         data: []
       }
     ],
@@ -216,11 +216,11 @@ export class WeerstationDashboardComponent implements OnInit {
     },
     yaxis: {
       title: {
-        text: 'Batterijpercentage'
+        text: 'Batterijpercentage (%)'
       }
     },
     noData: {
-      text: 'Laden...'
+      text: 'Geen data om weer te geven.'
     }
   };
 
@@ -245,7 +245,7 @@ export class WeerstationDashboardComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private authWeerstationService: WeerstationService, private toast: HotToastService) {
     this.beginDate.setDate(this.eindDate.getDate() - 2);
-    this.begin = this.beginDate.toISOString().split('T')[0]
+    this.begin = this.beginDate.toISOString().split('T')[0];
     this.eind = this.eindDate.toISOString().split('T')[0];
 
     // Reverse the order of which the toasts are displayed
@@ -305,8 +305,8 @@ export class WeerstationDashboardComponent implements OnInit {
 
 
             // Update charts
-
             this.chartOptionsT1.series = [{
+              name: 'T1 sensor (buitentemperatuur)',
               data: this.tempArray
             }];
             this.chartOptionsT1.noData = {
@@ -314,6 +314,7 @@ export class WeerstationDashboardComponent implements OnInit {
             }
             
             this.chartOptionsT2.series = [{
+              name: 'T2 sensor (binnen de isolatie)',
               data: this.temp2Array
             }];
             this.chartOptionsT2.noData = {
@@ -321,6 +322,7 @@ export class WeerstationDashboardComponent implements OnInit {
             }
 
             this.chartOptionsLuchtvochtigheid.series = [{
+              name: 'RH waardes (luchtvochtigheid)',
               data: this.rhArray
             }];
             this.chartOptionsT2.noData = {
@@ -328,6 +330,7 @@ export class WeerstationDashboardComponent implements OnInit {
             }
 
             this.chartOptionsBatterijPercentage.series = [{
+              name: 'Batterijpercentage (%)',
               data: this.bapArray
             }];
             this.chartOptionsBatterijPercentage.noData = {
