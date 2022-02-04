@@ -110,8 +110,8 @@ export class WeerstationService {
 
   getDataBetweenDates(
     weerstation_id: number,
-    begin: string,
-    eind: string
+    begin?: string,
+    eind?: string
   ): Observable<Weerstation> {
     let parameters: string = '';
     let parameterCount = 0;

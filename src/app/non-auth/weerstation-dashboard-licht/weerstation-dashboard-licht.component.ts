@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { Meting } from 'src/app/interfaces/Meting';
 import { Weerstation } from 'src/app/interfaces/Weerstation';
 import { WeerstationService } from 'src/app/services/weerstation.service';
-import { preChartOptionsLicht, chartOptionsColor } from '../weerstation-dashboard/chart-options';
+import { preChartOptionsLicht } from '../weerstation-dashboard/chart-options';
 import { WeerstationDashboardLocationComponent } from '../weerstation-dashboard-location/weerstation-dashboard-location.component';
 import { HotToastService } from '@ngneat/hot-toast';
 
@@ -88,25 +88,30 @@ export class WeerstationDashboardLichtComponent implements OnInit {
 
             // Update charts
             this.prechartOptionsLicht = {
-              series: [],
+              series: [{
+                name: "Infrarood licht",
+                data: this.IrlArray
+              }],
               chart: {
                 height: 350,
-                type: 'line'
+                type: 'area'
               },
               dataLabels: {
                 enabled: false
               },
               title: {
-                text: 'Graph generator licht sensoren',
+                text: 'Infrarood licht',
               },
               noData: {
-                text: 'Selecteer een categorie om jouw grafiek te genereren'
+                text: 'Geen data om weer te geven.'
               },
               fill: {
                 type: "solid",
-                colors: ['#FFFFFF']
+                colors: ["#F00"],
+                opacity: 0.5
               },
               xaxis: {
+                type: "datetime",
                 title: {
                   text: "Per datum/uur"
                 }
@@ -153,7 +158,7 @@ export class WeerstationDashboardLichtComponent implements OnInit {
       this.prechartOptionsLicht.xaxis = {
         type: "datetime",
         title: {
-          text: "Per meting"
+          text: "Per datum/uur"
         }
       };
     this.prechartOptionsLicht.yaxis = {

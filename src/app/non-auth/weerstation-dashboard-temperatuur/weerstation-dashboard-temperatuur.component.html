@@ -50,24 +50,7 @@
         </button>
     </div>
 
-
-    <div class="grid grid-cols-2 gap-2 mt-3">
-        <div class="ml-3 p-4 mb-4 text-sm text-gray-700 bg-gray-50 rounded-lg dark:bg-gray-50 dark:text-gray-300">
-            <apx-chart [series]="chartOptionsT1.series" [chart]="chartOptionsT1.chart" [noData]="chartOptionsT1.noData"
-                [dataLabels]="chartOptionsT1.dataLabels" [xaxis]="chartOptionsT1.xaxis" [yaxis]="chartOptionsT1.yaxis"
-                [title]="chartOptionsT1.title" [fill]="chartOptionsT1.fill" [stroke]="chartOptionsT1.stroke"
-                [colors]="chartOptionsT1.colors"></apx-chart>
-        </div>
-        <div class="mr-3 p-4 mb-4 text-sm text-gray-700 bg-gray-50 rounded-lg dark:bg-gray-50 dark:text-gray-300">
-            <apx-chart [series]="chartOptionsT2.series" [chart]="chartOptionsT2.chart" [noData]="chartOptionsT2.noData"
-                [dataLabels]="chartOptionsT2.dataLabels" [xaxis]="chartOptionsT2.xaxis" [yaxis]="chartOptionsT2.yaxis"
-                [title]="chartOptionsT2.title" [stroke]="chartOptionsT2.stroke" [fill]="chartOptionsT2.fill"
-                [colors]="chartOptionsT2.colors"></apx-chart>
-        </div>
-    </div>
-
-
-    <div class="text-center">
+    <div class="text-center mt-3">
         <button (click)="updateT1()"
             class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-dark focus:ring-4 focus:ring-pink-200 dark:focus:ring-pink-800">
             <span
