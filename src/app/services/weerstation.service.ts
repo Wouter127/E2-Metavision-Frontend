@@ -61,6 +61,9 @@ export class WeerstationService {
     return this.httpClient.get<Weerstation>(environment.API_URI + "/admin/weerstations/" + id);
   }
 
+  getWeerstationByIdAsOrganisatiebeheerder(id: number): Observable<Weerstation> {
+    return this.httpClient.get<Weerstation>(environment.API_URI + "/organisatiebeheerder/weerstations/" + id);
+  }
 
   postWeerstation(gsmNummer: string): Observable<any> {
     let headers = new HttpHeaders();

@@ -17,7 +17,8 @@ import { WeerstationsOrganisatieFormComponent } from '../weerstations-organisati
   styleUrls: ['./weerstations-organisatie-list.component.scss']
 })
 export class WeerstationsOrganisatieListComponent implements OnInit {
-  @ViewChild(WeerstationsActiverenComponent, { static: true }) weerstationActiverenComponent!: WeerstationsActiverenComponent;
+  @ViewChild(WeerstationsActiverenComponent, { static: true }) weerstationsActiverenComponent!: WeerstationsActiverenComponent;
+  @ViewChild(WeerstationsOrganisatieFormComponent, {static: true}) weerstationsOrganisatieFormComponent!: WeerstationsOrganisatieFormComponent;
 
   loading: boolean = true;
 
@@ -28,7 +29,7 @@ export class WeerstationsOrganisatieListComponent implements OnInit {
   getLaatsteMeting$: Subscription = new Subscription();
   getReverseGeocoding$: Subscription = new Subscription();
 
-  constructor(private authService: AuthService, private authStateService: AuthStateService, private organisatieService: OrganisatieService, private weerstationService: WeerstationService, private locationService: LocationService, private toast: HotToastService, private weerstationsOrganisatieFormComponent: WeerstationsOrganisatieFormComponent) {
+  constructor(private authService: AuthService, private authStateService: AuthStateService, private organisatieService: OrganisatieService, private weerstationService: WeerstationService, private locationService: LocationService, private toast: HotToastService) {
     // Reverse the order of which the toasts are displayed
     this.toast.defaultConfig = {
       ...this.toast.defaultConfig,
@@ -40,11 +41,25 @@ export class WeerstationsOrganisatieListComponent implements OnInit {
     this.getOrganisatie();
   }
 
+  
+  wijzigWeerstation(id: number): void {
+    console.log(this.weerstationsOrganisatieFormComponent);
+    
+    this.weerstationsOrganisatieFormComponent.openModal(id);
+
+    // When the gebruiker is edited successfully, refresh the list of gebruikers.
+    this.weerstationsOrganisatieFormComponent.output.subscribe(() => {
+      this.getOrganisatie();
+    });
+  }
+
   weerstationActiveren(): void {
-    this.weerstationActiverenComponent.openModal();
+    console.log(this.weerstationsActiverenComponent);
+    
+    this.weerstationsActiverenComponent.openModal();
 
     // When the weerstation is added successfully, refresh the list of weerstations.
-    this.weerstationActiverenComponent.output.subscribe(() => {
+    this.weerstationsActiverenComponent.output.subscribe(() => {
       this.ngOnInit();
     });
   }
@@ -126,15 +141,6 @@ export class WeerstationsOrganisatieListComponent implements OnInit {
         }
       }
     );
-  }
-
-  wijzigGebruiker(id: number): void {
-    this.weerstationsOrganisatieFormComponent.openModal(id);
-
-    // When the gebruiker is edited successfully, refresh the list of gebruikers.
-    this.weerstationsOrganisatieFormComponent.output.subscribe(() => {
-      this.getOrganisatie();
-    });
   }
 
   addLocation(id: number, latitude: string, longitude: string): void {
