@@ -42,11 +42,15 @@
                     </div>
                     <!-- Info -->
                     <div class="p-5 rounded-md relative h-full w-full">
-                        <h3 class="pb-4 text-2xl font-semibold">{{ weerstation.naam }} <a href="organisatiebeheerder/waardes/{{weerstation.id}}"
-                          class="font-bold cursor-pointer flex text-wbRed-500 float-right">
-                          <i class="far fa-bell text-2xl"></i>
-                      </a></h3>
-
+                        <div class="flex flex-wrap pb-4">
+                            <div class="text-2xl font-semibold grow mr-4">{{ weerstation.naam }}</div>
+                            <a (click)="wijzigWeerstation(weerstation.id)" class="font-bold cursor-pointer flex text-wbRed-500">
+                                <i class="far fa-edit text-2xl mr-2"></i>
+                            </a>
+                            <a href="organisatiebeheerder/waardes/{{weerstation.id}}" class="font-bold cursor-pointer flex text-wbRed-500">
+                                <i class="far fa-bell text-2xl ml-2"></i>
+                            </a>
+                        </div>
                         <div>
                             <span *ngIf="weerstation.isPubliekZichtbaar; else showNietZichtbaar"
                                 tooltip="<p>De metingen van het weerstation zijn raadpleegbaar voor iedereen.</p>"

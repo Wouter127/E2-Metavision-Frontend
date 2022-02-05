@@ -9,6 +9,7 @@ import { LocationService } from 'src/app/services/location.service';
 import { OrganisatieService } from 'src/app/services/organisatie.service';
 import { WeerstationService } from 'src/app/services/weerstation.service';
 import { WeerstationsActiverenComponent } from '../weerstations-activeren/weerstations-activeren.component';
+import { WeerstationsOrganisatieFormComponent } from '../weerstations-organisatie-form/weerstations-organisatie-form.component';
 
 @Component({
   selector: 'app-weerstations-organisatie-list',
@@ -27,7 +28,7 @@ export class WeerstationsOrganisatieListComponent implements OnInit {
   getLaatsteMeting$: Subscription = new Subscription();
   getReverseGeocoding$: Subscription = new Subscription();
 
-  constructor(private authService: AuthService, private authStateService: AuthStateService, private organisatieService: OrganisatieService, private weerstationService: WeerstationService, private locationService: LocationService, private toast: HotToastService) {
+  constructor(private authService: AuthService, private authStateService: AuthStateService, private organisatieService: OrganisatieService, private weerstationService: WeerstationService, private locationService: LocationService, private toast: HotToastService, private weerstationsOrganisatieFormComponent: WeerstationsOrganisatieFormComponent) {
     // Reverse the order of which the toasts are displayed
     this.toast.defaultConfig = {
       ...this.toast.defaultConfig,
@@ -125,6 +126,15 @@ export class WeerstationsOrganisatieListComponent implements OnInit {
         }
       }
     );
+  }
+
+  wijzigGebruiker(id: number): void {
+    this.weerstationsOrganisatieFormComponent.openModal(id);
+
+    // When the gebruiker is edited successfully, refresh the list of gebruikers.
+    this.weerstationsOrganisatieFormComponent.output.subscribe(() => {
+      this.getOrganisatie();
+    });
   }
 
   addLocation(id: number, latitude: string, longitude: string): void {
