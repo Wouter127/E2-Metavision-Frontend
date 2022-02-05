@@ -42,9 +42,7 @@ export class WeerstationsOrganisatieListComponent implements OnInit {
   }
 
   
-  wijzigWeerstation(id: number): void {
-    console.log(this.weerstationsOrganisatieFormComponent);
-    
+  wijzigWeerstation(id: number): void {    
     this.weerstationsOrganisatieFormComponent.openModal(id);
 
     // When the gebruiker is edited successfully, refresh the list of gebruikers.
@@ -53,9 +51,7 @@ export class WeerstationsOrganisatieListComponent implements OnInit {
     });
   }
 
-  weerstationActiveren(): void {
-    console.log(this.weerstationsActiverenComponent);
-    
+  weerstationActiveren(): void {    
     this.weerstationsActiverenComponent.openModal();
 
     // When the weerstation is added successfully, refresh the list of weerstations.

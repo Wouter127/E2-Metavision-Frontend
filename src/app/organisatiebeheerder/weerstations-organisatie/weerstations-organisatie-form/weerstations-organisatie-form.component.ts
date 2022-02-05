@@ -43,10 +43,8 @@ export class WeerstationsOrganisatieFormComponent implements OnInit {
     this.loading = true;
     this.weerstation$ = this.weerstationService.getWeerstationByIdAsOrganisatiebeheerder(id).subscribe(
       result => {
-        this.weerstation = result;
-        console.log(result);
+        this.weerstation = result;     
         
-
         this.loading = false;
       },
       error => {
