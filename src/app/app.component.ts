@@ -42,7 +42,7 @@ export class AppComponent {
               this.gebruiker = gebruiker;
             },
             error => {
-              this.toast.warning("Gelieven opnieuw in te loggen.", { position: 'bottom-right', dismissible: true });
+              this.toast.warning("Gelieve opnieuw in te loggen.", { position: 'bottom-right', dismissible: true });
               
               this.authService.logout();
             }

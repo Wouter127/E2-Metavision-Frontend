@@ -8,8 +8,8 @@ import { AuthService } from 'src/app/security/auth.service';
 import { LocationService } from 'src/app/services/location.service';
 import { OrganisatieService } from 'src/app/services/organisatie.service';
 import { WeerstationService } from 'src/app/services/weerstation.service';
-import { WeerstationsActiverenComponent } from '../weerstations-activeren/weerstations-activeren.component';
 import { WeerstationsOrganisatieFormComponent } from '../weerstations-organisatie-form/weerstations-organisatie-form.component';
+import { WeerstationsActiverenComponent } from '../weerstations-activeren/weerstations-activeren.component';
 
 @Component({
   selector: 'app-weerstations-organisatie-list',

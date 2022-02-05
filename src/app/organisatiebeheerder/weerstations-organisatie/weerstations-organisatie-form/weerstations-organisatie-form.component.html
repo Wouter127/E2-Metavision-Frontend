@@ -24,22 +24,11 @@
             <div class="grid grid-cols-6 gap-6">
               <div class="col-span-6 sm:col-span-3">
                 <label class="block font-medium text-gray-700">Naam</label>
-                <div class="w-12/12 mt-1 bg-gray-300 h-8 rounded-md animate-pulse"></div>
+                <div class="w-12/12 mt-1 bg-gray-300 h-8 rounded-lg animate-pulse"></div>
               </div>
-
-              <div class="col-span-6 sm:col-span-3">
-                <label class="block font-medium text-gray-700">GSM nummer</label>
-                <div class="w-12/12 mt-1 bg-gray-300 h-8 rounded-md animate-pulse"></div>
-              </div>
-
               <div class="col-span-6 sm:col-span-3">
                 <label class="block font-medium text-gray-700">Publiek zichtbaar</label>
-                <div class="w-6/12 bg-gray-300 h-4 rounded-full animate-pulse"></div>
-              </div>
-
-              <div class="col-span-6 sm:col-span-3">
-                <label class="block font-medium text-gray-700">Organisatie</label>
-                <div class="w-12/12 mt-1 bg-gray-300 h-8 rounded-md animate-pulse"></div>
+                <div class="w-2/12 bg-gray-300 h-4 rounded-full animate-pulse"></div>
               </div>
             </div>
             <div class="px-4 py-3">
@@ -48,7 +37,44 @@
           </div>
         </form>
         <!-- Done loading, show form -->
-        
+        <form *ngIf="!loading" (ngSubmit)="onSubmit()" #weerstationForm="ngForm">
+          <div class="bg-white">
+            <div class="grid grid-cols-6 gap-6">
+              <div class="col-span-6 sm:col-span-3">
+                <label for="naam" class="block font-medium text-gray-700">Naam</label>
+                <input type="text" name="naam" id="naam" [(ngModel)]="weerstation.naam" #naam="ngModel"
+                  required minlength="2"
+                  class="mt-1 p-2 focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 focus:border-wbRed-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md invalid:border-red-500 invalid:ring-red-500">
+                <div *ngIf="naam.invalid && (naam.dirty || naam.touched)"
+                  class="text-xs text-red-500 font-medium">
+                  <span *ngIf="naam.errors?.['required']">
+                    Naam is veplicht.
+                  </span>
+                  <span *ngIf="naam.errors?.['minlength']">
+                    Naam moet minstens 2 karakters bevatten.
+                  </span>
+                </div>
+              </div>
+
+              <div class="col-span-6 sm:col-span-3">
+                <label class="block font-medium text-gray-700">Publiek zichtbaar</label>
+                <ng-toggle [value]="weerstation.isPubliekZichtbaar == 1 ? true : false"
+                  [color]="{ unchecked: '#DDDEE3', checked: '#7e1b27'}" (change)="changeZichtbaarheid(weerstation)" class="w-2">
+                </ng-toggle>
+                <div class="inline">
+                  {{weerstation.isPubliekZichtbaar == 1 ? "Zichtbaar" : "Niet zichtbaar"}}
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="px-4 py-3 text-center sm:px-6">
+            <button type="submit" [disabled]="!weerstationForm.form.valid"
+              class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md text-white bg-wbRed-500 hover:bg-wbRed-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 disabled:bg-gray-400 disabled:cursor-not-allowed">
+              Opslaan
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

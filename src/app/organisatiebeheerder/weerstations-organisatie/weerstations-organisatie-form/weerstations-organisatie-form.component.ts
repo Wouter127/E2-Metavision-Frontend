@@ -12,7 +12,6 @@ import { WeerstationService } from 'src/app/services/weerstation.service';
   styleUrls: ['./weerstations-organisatie-form.component.scss']
 })
 export class WeerstationsOrganisatieFormComponent implements OnInit {
-
   @Input() title!: string;
   @Output() output = new EventEmitter();
 
@@ -45,6 +44,8 @@ export class WeerstationsOrganisatieFormComponent implements OnInit {
     this.weerstation$ = this.weerstationService.getWeerstationByIdAsOrganisatiebeheerder(id).subscribe(
       result => {
         this.weerstation = result;
+        console.log(result);
+        
 
         this.loading = false;
       },
