@@ -20,20 +20,12 @@ export class AlarmWaardeService {
   postAlarmwaarde(alarmwaarde: any): Observable<AlarmWaarde> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
-
-    console.log("post alarmwaarde");
-
-
     return this.httpClient.post<AlarmWaarde>(`${environment.API_URI}/organisatiebeheerder/alarmwaardes`, alarmwaarde, { headers: headers });
   }
 
   putAlarmwaarde(id: any, alarmwaarde: any): Observable<AlarmWaarde> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
-
-    console.log(alarmwaarde);
-
-
     return this.httpClient.put<AlarmWaarde>(`${environment.API_URI}/organisatiebeheerder/alarmwaardes/${id}`, alarmwaarde, { headers: headers });
   }
 

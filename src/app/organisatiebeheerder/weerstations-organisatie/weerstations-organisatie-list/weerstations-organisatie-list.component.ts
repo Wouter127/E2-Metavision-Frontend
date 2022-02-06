@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/security/auth.service';
 import { LocationService } from 'src/app/services/location.service';
 import { OrganisatieService } from 'src/app/services/organisatie.service';
 import { WeerstationService } from 'src/app/services/weerstation.service';
+import { WeerstationsOrganisatieFormComponent } from '../weerstations-organisatie-form/weerstations-organisatie-form.component';
 import { WeerstationsActiverenComponent } from '../weerstations-activeren/weerstations-activeren.component';
 
 @Component({
@@ -16,7 +17,8 @@ import { WeerstationsActiverenComponent } from '../weerstations-activeren/weerst
   styleUrls: ['./weerstations-organisatie-list.component.scss']
 })
 export class WeerstationsOrganisatieListComponent implements OnInit {
-  @ViewChild(WeerstationsActiverenComponent, { static: true }) weerstationActiverenComponent!: WeerstationsActiverenComponent;
+  @ViewChild(WeerstationsActiverenComponent, { static: true }) weerstationsActiverenComponent!: WeerstationsActiverenComponent;
+  @ViewChild(WeerstationsOrganisatieFormComponent, {static: true}) weerstationsOrganisatieFormComponent!: WeerstationsOrganisatieFormComponent;
 
   loading: boolean = true;
 
@@ -39,20 +41,27 @@ export class WeerstationsOrganisatieListComponent implements OnInit {
     this.getOrganisatie();
   }
 
-  weerstationActiveren(): void {
-    this.weerstationActiverenComponent.openModal();
+  
+  wijzigWeerstation(id: number): void {    
+    this.weerstationsOrganisatieFormComponent.openModal(id);
+
+    // When the gebruiker is edited successfully, refresh the list of gebruikers.
+    this.weerstationsOrganisatieFormComponent.output.subscribe(() => {
+      this.getOrganisatie();
+    });
+  }
+
+  weerstationActiveren(): void {    
+    this.weerstationsActiverenComponent.openModal();
 
     // When the weerstation is added successfully, refresh the list of weerstations.
-    this.weerstationActiverenComponent.output.subscribe(() => {
+    this.weerstationsActiverenComponent.output.subscribe(() => {
       this.ngOnInit();
     });
   }
 
   toggleRelais(weerstation_id: number): void {
-    console.log('toggle clicked');
-
     let weerstation: Weerstation|undefined = this.organisatie.weerstations.find((w:any) => w.id === weerstation_id);
-
     if (weerstation) {
       weerstation.isRelaisManueelAan = weerstation.isRelaisManueelAan ? 0 : 1;
       this.weerstationService.putWeerstationOrganisatieBeheerder(weerstation_id, weerstation).pipe(
@@ -74,8 +83,6 @@ export class WeerstationsOrganisatieListComponent implements OnInit {
         })
       ).subscribe(
         result => {
-          console.log(result);
-
         }
       );
     }
@@ -138,8 +145,6 @@ export class WeerstationsOrganisatieListComponent implements OnInit {
         this.organisatie.weerstations.find((w: any) => w.id === id).laatsteMeting.location = result.address.country + (result.address.town ? ", " + result.address.town : '');
       },
       error => {
-        console.log(error);
-
         // TODO: eventueel error weg laten?
         this.toast.error("Er ging iets mis.  De locatie van het weerstation kon niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false });
       }

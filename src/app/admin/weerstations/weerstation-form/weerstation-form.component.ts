@@ -60,7 +60,7 @@ export class WeerstationFormComponent implements OnInit {
         this.loading = false;
       },
       error => {
-        this.toast.error("Er ging iets mis.  De weerstation kan niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false });
+        this.toast.error("Er ging iets mis.  Het weerstation kan niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false });
       }
     );
 

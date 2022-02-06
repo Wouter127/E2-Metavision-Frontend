@@ -53,7 +53,6 @@ export class GebruikersOrganisatieListComponent implements OnInit {
   }
 
   wijzigGebruiker(id: number): void {
-    console.log(id)
     this.gebruikersOrganisatieFormComponent.openModal(id);
 
     // When the gebruiker is edited successfully, refresh the list of gebruikers.
@@ -91,9 +90,7 @@ export class GebruikersOrganisatieListComponent implements OnInit {
             result => {
               this.getOrganisatie();
             },
-            error => {
-              console.log(error);
-              
+            error => {             
             }
           );
         }

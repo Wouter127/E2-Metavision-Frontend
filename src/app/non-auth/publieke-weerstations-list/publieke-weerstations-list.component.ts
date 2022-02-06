@@ -34,7 +34,6 @@ export class PubliekeWeerstationsListComponent implements OnInit {
       result => {
         this.loading=false;
         this.weerstations = result;
-        console.log(this.weerstations);
       },  error => {
         this.toast.error("Er ging iets mis. De weerstations kunnen niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false });
       }

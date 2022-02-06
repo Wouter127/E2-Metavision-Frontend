@@ -339,7 +339,6 @@ export class WeerstationDashboardComponent implements OnInit {
 
           },
           error => {
-            console.log('Error getting metings:', error);
           }
         );
       }

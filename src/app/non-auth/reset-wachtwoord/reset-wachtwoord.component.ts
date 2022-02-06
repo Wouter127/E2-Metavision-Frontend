@@ -25,13 +25,10 @@ export class ResetWachtwoordComponent implements OnInit {
   onSubmit() {
     this.reset.stuurPasswoordResetLink(this.form).subscribe(
       data => this.handleResponse(data),
-      error => console.log(error.error.error) 
     );
   }
 
   handleResponse(res: any) {
-
-    console.log(res);
     this.form.email = null;
   }
 }

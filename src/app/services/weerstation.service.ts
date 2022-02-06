@@ -61,6 +61,9 @@ export class WeerstationService {
     return this.httpClient.get<Weerstation>(environment.API_URI + "/admin/weerstations/" + id);
   }
 
+  getWeerstationByIdAsOrganisatiebeheerder(id: number): Observable<Weerstation> {
+    return this.httpClient.get<Weerstation>(environment.API_URI + "/organisatiebeheerder/weerstations/" + id);
+  }
 
   postWeerstation(gsmNummer: string): Observable<any> {
     let headers = new HttpHeaders();
@@ -135,9 +138,7 @@ export class WeerstationService {
         parameters += '&eind=' + eind;
         parameterCount++;
       }
-    }
-    console.log(`${environment.API_URI}/weerstations/${weerstation_id}/metingen${parameters}`);
-    
+    }    
     return this.httpClient.get<Weerstation>(`${environment.API_URI}/weerstations/${weerstation_id}/metingen${parameters}`);
 
   }
@@ -181,8 +182,6 @@ export class WeerstationService {
 
     formData.append('weerstationIds', weerstationIdsString);
     
-    console.log(weerstationIdsString);
-
     return this.httpClient.post<any>(environment.API_URI + "/admin/weerstations/otaplannen", formData, { headers: headers });
   }
 

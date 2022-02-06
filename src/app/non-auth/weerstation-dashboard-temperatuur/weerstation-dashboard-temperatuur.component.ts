@@ -127,7 +127,6 @@ export class WeerstationDashboardTemperatuurComponent implements OnInit {
 
           },
           error => {
-            console.log('Error getting metings:', error);
           }
         );
       }

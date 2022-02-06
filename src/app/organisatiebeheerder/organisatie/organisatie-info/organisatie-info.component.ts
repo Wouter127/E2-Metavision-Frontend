@@ -52,13 +52,9 @@ export class OrganisatieInfoComponent implements OnInit {
     this.organisatie$ = this.organisatiesService.getOrganisatieInfo().subscribe(
       result => {
         this.organisatie = result;
-        this.loading = false;
-        console.log(result);
-        
+        this.loading = false;       
       },
-      error => {
-        console.log(error);
-        
+      error => {        
         this.toast.error("Er ging iets mis.  De organisaties kunnen niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false });
       }
     );

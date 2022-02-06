@@ -70,22 +70,12 @@ export class GebruikersFormComponent implements OnInit {
   }
 
   onChange() {
-    console.log(this.gebruiker.isAdmin);
   }
 
   onSubmit() {
-
-    // if (this.gebruiker.organisatieId == 0) {
-    //   this.gebruiker.organisatieId = null;
-    //   console.log("submit", this.gebruiker);
-    // }
-    console.log("submit", this.gebruiker);
-
     this.putGebruiker$ = this.adminGebruikerService.putGebruiker(this.gebruiker.id, this.gebruiker).subscribe(
       result => {
-        this.showModal = false;
-        console.log(result);
-        
+        this.showModal = false;        
         this.output.next(); // Send event to parent component.
       }
     );

@@ -34,7 +34,6 @@ export class GebruikersOrganisatieFormComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    console.log("test")
   }
 
   ngOnDestroy(): void {
@@ -42,7 +41,6 @@ export class GebruikersOrganisatieFormComponent implements OnInit {
   }
 
   openModal(id: number) {
-    console.log("test")
     this.loading = true;
     this.gebruiker$ = this.gebruikerService.getGebruikerByIdAlsOrganisatieBeheerder(id).subscribe(
       result => {
@@ -60,10 +58,6 @@ export class GebruikersOrganisatieFormComponent implements OnInit {
 
   closeModal() {
     this.showModal = false;
-  }
-
-  onChange() {
-    console.log(this.gebruiker.isAdmin);
   }
 
   onSubmit() {

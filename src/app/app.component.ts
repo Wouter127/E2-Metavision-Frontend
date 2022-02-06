@@ -40,10 +40,9 @@ export class AppComponent {
           this.authService.getGebruiker().subscribe(
             gebruiker => {
               this.gebruiker = gebruiker;
-              console.log(gebruiker);
             },
             error => {
-              this.toast.warning("Gelieven opnieuw in te loggen.", { position: 'bottom-right', dismissible: true });
+              this.toast.warning("Gelieve opnieuw in te loggen.", { position: 'bottom-right', dismissible: true });
               
               this.authService.logout();
             }

@@ -87,11 +87,6 @@ export class WeerstationsAlarmSchakelwaardesFormComponent implements OnInit {
     this.alarmwaarde$ = this.alarmwaardeService.getAlarmwaardeById(id).subscribe(
       result => {
         this.alarmwaarde = result;
-
-
-        console.log('Je edit de alarmwaarde:', result);
-        
-
         this.loading = false;
       },
       error => {
@@ -175,9 +170,7 @@ export class WeerstationsAlarmSchakelwaardesFormComponent implements OnInit {
 
   getSensoren() {
     this.sensoren$ = this.sensorService.getSensoren().subscribe(result => {
-      this.sensoren = result;
-      console.log('Alle sensoren:', result);
-      
+      this.sensoren = result;      
     });
   }
 
@@ -188,10 +181,6 @@ export class WeerstationsAlarmSchakelwaardesFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('Submitting alarm:', this.alarmwaarde);
-    console.log('Submitting schakel:', this.schakelwaarde);
-    
-
     if (this.isEdit && this.isAlarm) {
       this.putAlarmwaarde$ = this.alarmwaardeService.putAlarmwaarde(this.alarmwaarde.id, { weerstationId: this.alarmwaarde.weerstationId, waarde: this.alarmwaarde.waarde, switchLogicId: this.alarmwaarde.switchLogicId, sensorId: this.alarmwaarde.sensorId }).pipe(
         this.toast.observe({
@@ -244,7 +233,6 @@ export class WeerstationsAlarmSchakelwaardesFormComponent implements OnInit {
         })
       ).subscribe(
         result => {
-          console.log('result:', result)
           this.showModal = false;
           this.isEdit = false;
           this.isAdd = false;
@@ -306,9 +294,7 @@ export class WeerstationsAlarmSchakelwaardesFormComponent implements OnInit {
           },
         })
       ).subscribe(
-        result => {
-          console.log(result);
-          
+        result => {         
           this.showModal = false;
           this.isEdit = false;
           this.isAdd = false;
