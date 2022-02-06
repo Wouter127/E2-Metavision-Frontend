@@ -206,6 +206,6 @@ export class WeerstationListComponent implements OnInit, OnDestroy {
       error => {
         this.toast.error("Er ging iets mis.  De weerstations zonder organisatie kunnen niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false });
       }
-    )
+    );
   }
 }

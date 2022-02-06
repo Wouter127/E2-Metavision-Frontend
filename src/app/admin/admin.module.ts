@@ -16,6 +16,8 @@ import { OrganisatieFormComponent } from './organisaties/organisatie-form/organi
 import { OrganisatieListComponent } from './organisaties/organisatie-list/organisatie-list.component';
 import { AdminRoutingModule } from './admin-routing.module';
 import { OtaComponent } from './ota/ota.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { OtaComponent } from './ota/ota.component';
     NgToggleModule,
     ReactiveFormsModule,
     NgApexchartsModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    MatExpansionModule,
+    MatCheckboxModule
   ],
   exports: [
     WeerstationFormComponent,
