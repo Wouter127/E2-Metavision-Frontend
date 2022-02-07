@@ -68,22 +68,7 @@
             [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4" (click)="drawer.close()">
             Login
           </a>
-          <a *ngIf="gebruiker?.isAdmin" routerLink="admin/gebruikers" routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4" (click)="drawer.close()">
-            Alle gebruikers
-          </a>
-          <a *ngIf="gebruiker?.isAdmin" routerLink="admin/weerstations" routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4" (click)="drawer.close()">
-            Alle weerstations
-          </a>
-          <a *ngIf="gebruiker?.isAdmin" routerLink="admin/organisaties" routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4" (click)="drawer.close()">
-            Alle organisaties
-          </a>
-          <a *ngIf="gebruiker?.isAdmin" routerLink="admin/ota" routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4" (click)="drawer.close()">
-            OTA update plannen
-          </a>
+          <hr *ngIf="gebruiker?.isOrganisatieBeheerder" class="mt-4 rounded-lg">
           <a *ngIf="gebruiker?.isOrganisatieBeheerder" routerLink="organisatiebeheerder/weerstations"
             routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4"
             (click)="drawer.close()">
@@ -104,7 +89,23 @@
             (click)="drawer.close()">
             Organisatie info
           </a>
-          
+          <hr *ngIf="gebruiker?.isAdmin" class="mt-4 rounded-lg">
+          <a *ngIf="gebruiker?.isAdmin" routerLink="admin/gebruikers" routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4" (click)="drawer.close()">
+            Alle gebruikers
+          </a>
+          <a *ngIf="gebruiker?.isAdmin" routerLink="admin/weerstations" routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4" (click)="drawer.close()">
+            Alle weerstations
+          </a>
+          <a *ngIf="gebruiker?.isAdmin" routerLink="admin/organisaties" routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4" (click)="drawer.close()">
+            Alle organisaties
+          </a>
+          <a *ngIf="gebruiker?.isAdmin" routerLink="admin/ota" routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4" (click)="drawer.close()">
+            OTA update plannen
+          </a>
         </div>
         <div class="relative text-left float-right hidden">
           <div>
