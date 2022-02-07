@@ -44,11 +44,13 @@
                     <div class="p-5 rounded-md relative h-full w-full">
                         <div class="flex flex-wrap pb-4">
                             <div class="text-2xl font-semibold grow mr-4">{{ weerstation.naam }}</div>
-                            <a (click)="wijzigWeerstation(weerstation.id)" class="font-bold cursor-pointer flex text-wbRed-500">
-                                <i class="far fa-edit text-2xl mr-2"></i>
+                            <a href="organisatiebeheerder/waardes/{{weerstation.id}}" class="font-bold cursor-pointer flex text-wbRed-500"
+                                tooltip="<p class='text-sm'>Alarm- & schakelwaardes instellen</p>" [options]="{placement: 'top', hideDelay: 20}">
+                                <i class="far fa-bell text-2xl mr-2"></i>
                             </a>
-                            <a href="organisatiebeheerder/waardes/{{weerstation.id}}" class="font-bold cursor-pointer flex text-wbRed-500">
-                                <i class="far fa-bell text-2xl ml-2"></i>
+                            <a (click)="wijzigWeerstation(weerstation.id)" class="font-bold cursor-pointer flex text-wbRed-500"
+                                tooltip="<p class='text-sm'>Weerstation aanpassen</p>" [options]="{placement: 'top', hideDelay: 20}">
+                                <i class="far fa-edit text-2xl ml-2"></i>
                             </a>
                         </div>
                         <div>
