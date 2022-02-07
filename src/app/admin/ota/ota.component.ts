@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { DialogService } from '@ngneat/dialog';
 import { HotToastService } from '@ngneat/hot-toast';
 import { Subscription } from 'rxjs';
-import { Organisatie } from 'src/app/interfaces/Organisatie';
 import { OrganisatieService } from 'src/app/services/organisatie.service';
 import { WeerstationService } from 'src/app/services/weerstation.service';
 
@@ -33,7 +33,7 @@ export class OtaComponent implements OnInit {
 
   formData: FormData = new FormData();
 
-  constructor(private weerstationService: WeerstationService, private organisatieService: OrganisatieService, private toast: HotToastService) { 
+  constructor(private weerstationService: WeerstationService, private organisatieService: OrganisatieService, private toast: HotToastService, private dialog: DialogService) { 
     this.vanafDatum = this.vandaag.toISOString().split('T')[0];
     this.vanafTijd = this.vandaag.toLocaleTimeString().substring(0,5);
 
@@ -148,36 +148,45 @@ export class OtaComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const otaVanaf = this.vanafDatum + ' ' + this.vanafTijd + ':00';
-
-    // Maak lijst van weerstationIds die aangevikt staan
-    let weerstationIds: number[] = [];
-    this.organisaties.map((o: any) => o.weerstations.map((w: any) => {if (w.isChecked === true) {weerstationIds.push(w.id)}}));
-    this.weerstationsZonderOrganisatie.map((w: any) => { if (w.isChecked === true) { weerstationIds.push(w.id) }});
-
-    this.planOta$ = this.weerstationService.planOta(1, this.file, otaVanaf, weerstationIds).pipe(
-      this.toast.observe({
-        loading: { content: 'OTA update aan het plannen...', position: 'bottom-right' },
-        success: { content: 'OTA update gepland!', position: 'bottom-right', dismissible: true },
-        error: {
-          content: (e) => {
-            let msg = '<ul>';
-            msg += `<li><b>Er ging iets mis!</b></li>`;
-            for (let key in e.error.errors) {
-              msg += `<li>${e.error.errors[key]}</li>`;
-            }
-            msg += '</ul>';
-
-            return msg;
-          }, position: 'bottom-right', dismissible: true, duration: 5000
-        },
+    this.dialog
+      .confirm({
+        title: 'OTA update plannen?',
+        body: 'Gelieven er rekening mee te houden van zodra de update datum is bereikt alle weerstations deze update zullen uitvoeren. Controleer ook zeker dat de connectie met de API correct is en of het ophalen van een OTA update werkt in deze update.'
       })
-    ).subscribe(
-      result => {
-      },
-      error => {
-      }
-    );
+      .afterClosed$.subscribe(confirmed => {
+        if (confirmed) {
+          const otaVanaf = this.vanafDatum + ' ' + this.vanafTijd + ':00';
+
+          // Maak lijst van weerstationIds die aangevikt staan
+          let weerstationIds: number[] = [];
+          this.organisaties.map((o: any) => o.weerstations.map((w: any) => { if (w.isChecked === true) { weerstationIds.push(w.id) } }));
+          this.weerstationsZonderOrganisatie.map((w: any) => { if (w.isChecked === true) { weerstationIds.push(w.id) } });
+
+          this.planOta$ = this.weerstationService.planOta(1, this.file, otaVanaf, weerstationIds).pipe(
+            this.toast.observe({
+              loading: { content: 'OTA update aan het plannen...', position: 'bottom-right' },
+              success: { content: 'OTA update gepland!', position: 'bottom-right', dismissible: true },
+              error: {
+                content: (e) => {
+                  let msg = '<ul>';
+                  msg += `<li><b>Er ging iets mis!</b></li>`;
+                  for (let key in e.error.errors) {
+                    msg += `<li>${e.error.errors[key]}</li>`;
+                  }
+                  msg += '</ul>';
+
+                  return msg;
+                }, position: 'bottom-right', dismissible: true, duration: 5000
+              },
+            })
+          ).subscribe(
+            result => {
+            },
+            error => {
+            }
+          );
+        }
+      });
   }
 
   getWeerstationsWithOrganisatie(): void {
