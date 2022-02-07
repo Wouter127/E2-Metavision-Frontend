@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
 import { Subscription } from 'rxjs';
+import { Sensor } from 'src/app/interfaces/Sensor';
 import { AlarmWaardeService } from 'src/app/services/alarm-waarde.service';
 import { SchakelWaardeService } from 'src/app/services/schakel-waarde.service';
 import { SensorService } from 'src/app/services/sensor.service';
@@ -15,6 +16,8 @@ import { SwitchLogicService } from 'src/app/services/switch-logic.service';
 export class WeerstationsAlarmSchakelwaardesFormComponent implements OnInit {
 
   @Output() output = new EventEmitter();
+
+  gekozenSensor!: Sensor | undefined;
 
   alarmwaarde: any = {};
   alarmwaarde$: Subscription = new Subscription();
@@ -46,7 +49,9 @@ export class WeerstationsAlarmSchakelwaardesFormComponent implements OnInit {
     private toast: HotToastService,
     private route: ActivatedRoute,
     private sensorService: SensorService,
-    private switchLogicService: SwitchLogicService) {
+    private switchLogicService: SwitchLogicService
+  ) 
+  {
     // Reverse the order of which the toasts are displayed
     this.toast.defaultConfig = {
       ...this.toast.defaultConfig,
@@ -67,7 +72,8 @@ export class WeerstationsAlarmSchakelwaardesFormComponent implements OnInit {
   openAddAlarmWaardeModal() {
     this.isAdd = true;
     this.isAlarm = true;
-    this.title = "Alarmwaarde toevoegen"
+    this.title = "Alarmwaarde toevoegen";
+    this.gekozenSensor = undefined;
 
     this.getSensoren();
     this.switches$ = this.switchLogicService.getSwitches().subscribe(result => {
@@ -80,7 +86,8 @@ export class WeerstationsAlarmSchakelwaardesFormComponent implements OnInit {
   openEditAlarmWaardeModal(id: number) {
     this.isEdit = true;
     this.isAlarm = true;
-    this.title = "Alarmwaarde aanpassen"
+    this.title = "Alarmwaarde aanpassen";
+    this.gekozenSensor = undefined;
     this.getSensoren();
     this.getSwitches();
 
@@ -88,6 +95,8 @@ export class WeerstationsAlarmSchakelwaardesFormComponent implements OnInit {
       result => {
         this.alarmwaarde = result;
         this.loading = false;
+
+        this.gekozenSensor = this.sensoren.find((s: any) => s.id == result.sensorId);
       },
       error => {
         this.toast.error("Er ging iets mis.  De alarmwaarde kan niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false })
@@ -101,6 +110,7 @@ export class WeerstationsAlarmSchakelwaardesFormComponent implements OnInit {
     this.isAdd = true;
     this.isSchakel = true;
     this.title = "Schakelwaarde toevoegen"
+    this.gekozenSensor = undefined;
 
     this.getSensoren();
     this.switches$ = this.switchLogicService.getSwitches().subscribe(result => {
@@ -113,15 +123,17 @@ export class WeerstationsAlarmSchakelwaardesFormComponent implements OnInit {
   openEditSchakelWaardeModal(id: number) {
     this.isEdit = true;
     this.isSchakel = true;
-    this.title = "Schakelwaarde aanpassen"
+    this.title = "Schakelwaarde aanpassen";
+    this.gekozenSensor = undefined;
     this.getSensoren();
     this.getSwitches();
 
     this.schakelwaarde$ = this.schakelwaardeService.getSchakelwaardeById(id).subscribe(
       result => {
         this.schakelwaarde = result;
-
         this.loading = false;
+
+        this.gekozenSensor = this.sensoren.find((s: any) => s.id == result.sensorId);
       },
       error => {
         this.toast.error("Er ging iets mis.  De schakelwaarde kan niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false })
@@ -157,6 +169,8 @@ export class WeerstationsAlarmSchakelwaardesFormComponent implements OnInit {
     if (this.isSchakel) {
       this.schakelwaarde.sensorId = parseInt(event.target.value);
     }
+
+    this.gekozenSensor = this.sensoren.find((s: any) => s.id == event.target.value);
   }
 
   waardeChangeHandler(event: any) {
@@ -170,7 +184,7 @@ export class WeerstationsAlarmSchakelwaardesFormComponent implements OnInit {
 
   getSensoren() {
     this.sensoren$ = this.sensorService.getSensoren().subscribe(result => {
-      this.sensoren = result;      
+      this.sensoren = result;  
     });
   }
 

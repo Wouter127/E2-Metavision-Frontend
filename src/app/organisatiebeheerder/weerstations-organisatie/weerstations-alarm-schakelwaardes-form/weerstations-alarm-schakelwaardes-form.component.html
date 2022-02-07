@@ -2,8 +2,7 @@
     class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex mx-4">
     <div class="relative my-6 mx-auto max-w-6xl w-11/12 sm:w-10/12">
         <!--content-->
-        <div
-            class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+        <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
             <!--header-->
             <div class="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
                 <h3 class="text-3xl font-semibold">
@@ -39,19 +38,21 @@
                                 <div class="w-12/12 mt-1 bg-gray-300 h-8 rounded-md animate-pulse"></div>
                             </div>
                         </div>
-                        <div class="px-4 py-3 bg-gray-50">
+                        <div class="px-4 py-3 bg-white">
                             <div class="w-32 mx-auto mt-1 bg-gray-300 h-10 rounded-md animate-pulse"></div>
                         </div>
                     </div>
                 </form>
-                <!-- alarmwaarde form -->
+                <!-- Not loading, show form -->
                 <form *ngIf="!loading" (ngSubmit)="onSubmit()" #alarmWaardeForm="ngForm">
                     <div class="bg-white">
                         <div class="grid grid-cols-6 gap-6">
                             <div class="col-span-6 sm:col-span-2">
+
                                 <div *ngIf="isEdit && isAlarm">
                                     <label for="sensor" class="block font-medium text-gray-700">Sensor</label>
-                                    <select id="sensor" name="sensor" [(ngModel)]="alarmwaarde.sensorId"
+                                    <select id="sensor" name="sensor" [(ngModel)]="alarmwaarde.sensorId" 
+                                        (change)="selectSensorChangeHandler($event)"
                                         class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 focus:border-wbRed-500 sm:text-sm">
                                         <option *ngFor="let sensor of sensoren" [value]="sensor.id">{{ sensor.naam }}</option>
                                     </select>
@@ -77,8 +78,7 @@
                                     <select id="sensor" name="sensor" (change)="selectSensorChangeHandler($event)"
                                         class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 focus:border-wbRed-500 sm:text-sm">
                                         <option selected disabled value="">Selecteer sensor</option>
-                                        <option *ngFor="let sensor of sensoren" value="{{ sensor.id }}">{{ sensor.naam
-                                            }}</option>
+                                        <option *ngFor="let sensor of sensoren" value="{{ sensor.id }}">{{ sensor.naam }}</option>
                                     </select>
                                 </div>
                             </div>
@@ -89,8 +89,7 @@
                                     <select id="operator" name="operator" [(ngModel)]="alarmwaarde.switch_logic.id"
                                         (change)="selectSwitchChangeHandler($event)"
                                         class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 focus:border-wbRed-500 sm:text-sm">
-                                        <option *ngFor="let switch of switches" value="{{ switch.id }}">{{ switch.type
-                                            }}</option>
+                                        <option *ngFor="let switch of switches" value="{{ switch.id }}">{{ switch.type }}</option>
                                     </select>
                                 </div>
                                 <div *ngIf="isAdd && isAlarm">
@@ -98,8 +97,7 @@
                                     <select id="operator" name="operator" (change)="selectSwitchChangeHandler($event)"
                                         class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 focus:border-wbRed-500 sm:text-sm">
                                         <option selected disabled value="">Selecteer operator</option>
-                                        <option *ngFor="let switch of switches" value="{{ switch.id }}">{{ switch.type
-                                            }}</option>
+                                        <option *ngFor="let switch of switches" value="{{ switch.id }}">{{ switch.type }}</option>
                                     </select>
                                 </div>
                                 <div *ngIf="isEdit && isSchakel">
@@ -107,8 +105,7 @@
                                     <select id="operator" name="operator" [(ngModel)]="schakelwaarde.switch_logic.id"
                                         (change)="selectSwitchChangeHandler($event)"
                                         class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 focus:border-wbRed-500 sm:text-sm">
-                                        <option *ngFor="let switch of switches" value="{{ switch.id }}">{{ switch.type
-                                            }}</option>
+                                        <option *ngFor="let switch of switches" value="{{ switch.id }}">{{ switch.type }}</option>
                                     </select>
                                 </div>
                                 <div *ngIf="isAdd && isSchakel">
@@ -116,8 +113,7 @@
                                     <select id="operator" name="operator" (change)="selectSwitchChangeHandler($event)"
                                         class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 focus:border-wbRed-500 sm:text-sm">
                                         <option selected disabled value="">Selecteer operator</option>
-                                        <option *ngFor="let switch of switches" value="{{ switch.id }}">{{ switch.type
-                                            }}</option>
+                                        <option *ngFor="let switch of switches" value="{{ switch.id }}">{{ switch.type }}</option>
                                     </select>
                                 </div>
                             </div>
@@ -148,9 +144,10 @@
                                         class="mt-1 p-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 focus:border-wbRed-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                 </div>
                             </div>
+
                         </div>
                     </div>
-                    <div class="px-4 py-3 bg-gray-50 text-center sm:px-6">
+                    <div class="px-4 py-3 text-center sm:px-6 bg-white">
                         <div *ngIf="isEdit">
                             <button type="submit"
                                 class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md text-white bg-wbRed-500 hover:bg-wbRed-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 focus:border-wbRed-500">
@@ -165,6 +162,12 @@
                         </div>
                     </div>
                 </form>
+
+                <div *ngIf="gekozenSensor" class="m-2 text-sm">
+                    <h4 class="text-base font-semibold">{{ gekozenSensor.naam }}</h4>
+                    <p><u>Omschrijving:</u> {{ gekozenSensor.omschrijving }}</p>
+                </div>
+
             </div>
         </div>
     </div>
