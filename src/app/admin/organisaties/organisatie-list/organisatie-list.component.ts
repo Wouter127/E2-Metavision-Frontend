@@ -83,8 +83,6 @@ export class OrganisatieListComponent implements OnInit {
   }
 
   getOrganisaties() {
-    // TODO: if logged in user in admin get all users
-    // TODO: if logged in user is organisatie beheerder get users of organisation
     this.organisaties$ = this.organisatiesService.getOrganisaties().subscribe(
       result => {
         this.organisaties = result;
