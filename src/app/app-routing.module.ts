@@ -20,12 +20,13 @@ import { WeerstationDashboardBatterijComponent } from './non-auth/weerstation-da
 import { WeerstationDashboardLocationComponent } from './non-auth/weerstation-dashboard-location/weerstation-dashboard-location.component';
 import { ResetWachtwoordComponent } from './non-auth/reset-wachtwoord/reset-wachtwoord.component';
 import { NieuwWachtwoordComponent } from './non-auth/nieuw-wachtwoord/nieuw-wachtwoord.component';
+import { LoginGuard } from './login.guard';
 
 
 const routes: Routes = [
   // Non-auth
   { path: '', component: HomeComponent,data: { animation: 'isLeft' } },
-  { path: 'login', component: LoginComponent, data: { animation: 'isRight'} },
+  { path: 'login', component: LoginComponent, data: { animation: 'isRight'}, canActivate: [LoginGuard] },
 
   { path: 'vervolledig', component: VervolledigOrganisatieBeheerderComponent },
   { path: 'vervolledigGebruiker', component: VervolledigGebruikerComponent },
