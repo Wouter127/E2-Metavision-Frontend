@@ -20,6 +20,7 @@ export class WeerstationDashboardTemperatuurComponent implements OnInit {
   @ViewChild(WeerstationDashboardLocationComponent, { static: true }) weerstationdashboardlocationComponent!: WeerstationDashboardLocationComponent;
   public prechartOptionsTemperatuur!: preChartOptionsTemperatuur;
 
+  loading: boolean = true
   //temperatuur
   tempArray: { y: number; x: Date }[] = [];
   temp2Array: { y: number; x: Date }[] = [];
@@ -125,6 +126,7 @@ export class WeerstationDashboardTemperatuurComponent implements OnInit {
               }
             };
 
+            this.loading = false;
           },
           error => {
           }

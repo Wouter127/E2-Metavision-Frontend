@@ -20,6 +20,8 @@ export class WeerstationDashboardBatterijComponent implements OnInit {
   @ViewChild(WeerstationDashboardLocationComponent, { static: true }) weerstationdashboardlocationComponent!: WeerstationDashboardLocationComponent;
   public prechartOptionsBatterij!: preChartOptionsBatterij;
 
+  loading: boolean = true
+
   //batterijwaardes
   bavArray: { y: number; x: Date }[] = [];
   bapArray: { y: number; x: Date }[] = [];
@@ -124,6 +126,8 @@ export class WeerstationDashboardBatterijComponent implements OnInit {
                 }
               }
             };
+
+            this.loading = false
           },
           error => {
           }

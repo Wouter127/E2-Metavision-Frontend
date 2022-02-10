@@ -17,6 +17,7 @@ import { HotToastService } from '@ngneat/hot-toast';
 export class WeerstationDashboardComponent implements OnInit {
   @ViewChild('chart', { static: false }) chart: ChartComponent = new ChartComponent();
 
+  loading: boolean = true
 
   public chartOptionsT1: chartOptionsColor = {
     series: [
@@ -336,6 +337,8 @@ export class WeerstationDashboardComponent implements OnInit {
             this.chartOptionsBatterijPercentage.noData = {
               text: 'Geen data om weer te geven.'
             }
+
+            this.loading = false
 
           },
           error => {
