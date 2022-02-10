@@ -17,11 +17,12 @@ export class WeerstationDashboardLocationComponent implements OnInit {
 
   map: any;
   loading: boolean = true;
+  id: number = 0
 
   icon = {
     icon: L.icon({
-      iconSize: [ 25, 41 ],
-      iconAnchor: [ 12, 41 ],
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
       iconUrl: 'assets/leaflet/marker-icon.png',
       shadowUrl: 'assets/leaflet/marker-shadow.png'
     })
@@ -29,11 +30,11 @@ export class WeerstationDashboardLocationComponent implements OnInit {
 
   coordinatesArray: number[] = [];
 
-  meting!: any;
+  meting: any = {}
   getLaatsteMeting$: Subscription = new Subscription();
   routeParams$: Subscription = new Subscription();
 
-  constructor(private route: ActivatedRoute, private authWeerstationService: WeerstationService) {}
+  constructor(private route: ActivatedRoute, private authWeerstationService: WeerstationService) { }
 
   ngOnInit(): void {
     this.getCoordinates();
@@ -42,28 +43,32 @@ export class WeerstationDashboardLocationComponent implements OnInit {
   getCoordinates() {
     this.routeParams$ = this.route.params.subscribe(
       params => {
-        this.getLaatsteMeting$= this.authWeerstationService.getLaatsteMeting(params['id']).subscribe(
-          (result: any) => {            
+        this.getLaatsteMeting$ = this.authWeerstationService.getLaatsteMeting(params['id']).subscribe(
+          (result: any) => {
+            this.id = params['id'];            
             this.meting = result;
-            this.loading = false; 
+            this.loading = false;
             this.initMap(result);
-                      
           }
         );
       }
     );
   }
-  
+
   private initMap(result: any): void {
-    //const map = L.map("map").setView([this.coordinatesArray], 15);
-    const map = L.map("map").setView([result.gla, result.glo], 15);
-    //const map = L.map("map").setView([50, 4.98917], 15);
+    if (result != null) {
+      //const map = L.map("map").setView([this.coordinatesArray], 15);
+      const map = L.map("map").setView([result.gla, result.glo], 15);
+      //const map = L.map("map").setView([50, 4.98917], 15);
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
+      }).addTo(map);
 
-    const marker = L.marker([result.gla, result.glo], this.icon).addTo(map);
-    marker.bindPopup("" + result.weerstation.naam);    
+      const marker = L.marker([result.gla, result.glo], this.icon).addTo(map);
+      marker.bindPopup("" + result.weerstation.naam);
+    } else {
+      this.meting = null
+    }
   }
 }
