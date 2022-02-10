@@ -21,7 +21,7 @@ export class WeerstationDashboardLuchtvochtigheidComponent implements OnInit {
   @ViewChild(WeerstationDashboardLocationComponent, { static: true }) weerstationdashboardlocationComponent!: WeerstationDashboardLocationComponent;
   public prechartOptionsLuchtvochtigheid!: preChartOptionsLuchtvochtigheid;
 
-
+  loading: boolean = true
   //luchtvochtigheid
   rhArray: { y: number; x: Date }[] = [];
   lw1Array: { y: boolean; x: Date }[] = [];
@@ -127,6 +127,7 @@ export class WeerstationDashboardLuchtvochtigheidComponent implements OnInit {
               }
             };
 
+            this.loading = false;
           },
           error => {
           }

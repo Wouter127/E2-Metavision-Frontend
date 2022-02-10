@@ -19,6 +19,7 @@ export class WeerstationDashboardLichtComponent implements OnInit {
   @ViewChild(WeerstationDashboardLocationComponent, { static: true }) weerstationdashboardlocationComponent!: WeerstationDashboardLocationComponent;
   public prechartOptionsLicht!: preChartOptionsLicht;
 
+  loading: boolean = true
   //lichtwaardes
   IrlArray: { y: number; x: Date }[] = [];
   VilArray: { y: number; x: Date }[] = [];
@@ -123,6 +124,7 @@ export class WeerstationDashboardLichtComponent implements OnInit {
               }
             };
 
+            this.loading = false;
           },
           error => {
           }

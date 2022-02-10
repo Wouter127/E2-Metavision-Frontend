@@ -66,8 +66,8 @@ export class WeerstationsOrganisatieListComponent implements OnInit {
       weerstation.isRelaisManueelAan = weerstation.isRelaisManueelAan ? 0 : 1;
       this.weerstationService.putWeerstationOrganisatieBeheerder(weerstation_id, weerstation).pipe(
         this.toast.observe({
-          loading: { content: 'Schakelen...', position: 'bottom-right' },
-          success: { content: 'Relais geschakeld! Het duurt maximaal 1 minuut voordat de configuratie is doorgevoerd.', position: 'bottom-right', dismissible: true },
+          loading: { content: 'Schakelen...', position: 'bottom-right'},
+          success: { content: 'Relais geschakeld! Het duurt maximaal 1 minuut voordat de configuratie is doorgevoerd.', position: 'bottom-right', dismissible: true},
           error: {
             content: (e) => {
               let msg = '<ul>';
