@@ -51,7 +51,7 @@
 
                                 <div *ngIf="isEdit && isAlarm">
                                     <label for="sensor" class="block font-medium text-gray-700">Sensor</label>
-                                    <select id="sensor" name="sensor" [(ngModel)]="alarmwaarde.sensorId" 
+                                    <select id="sensor" name="sensor" [(ngModel)]="alarmwaarde.sensorId"
                                         (change)="selectSensorChangeHandler($event)"
                                         class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 focus:border-wbRed-500 sm:text-sm">
                                         <option *ngFor="let sensor of sensoren" [value]="sensor.id">{{ sensor.naam }}</option>
@@ -64,6 +64,11 @@
                                         <option selected disabled value="">Selecteer sensor</option>
                                         <option *ngFor="let sensor of sensoren" value="{{ sensor.id }}">{{ sensor.naam }}</option>
                                     </select>
+                                    <div class="text-xs font-medium">
+                                        <span *ngIf="!this.gekozenSensor">
+                                            Selecteer een sensor om meer informatie te verkrijgen.
+                                        </span>
+                                    </div>
                                 </div>
                                 <div *ngIf="isEdit && isSchakel">
                                     <label for="sensor" class="block font-medium text-gray-700">Sensor</label>
@@ -80,6 +85,11 @@
                                         <option selected disabled value="">Selecteer sensor</option>
                                         <option *ngFor="let sensor of sensoren" value="{{ sensor.id }}">{{ sensor.naam }}</option>
                                     </select>
+                                    <div class="text-xs font-medium">
+                                        <span *ngIf="!this.gekozenSensor">
+                                            Selecteer een sensor om meer informatie te verkrijgen.
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
 
