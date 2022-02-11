@@ -5,13 +5,15 @@ import { WeerstationListComponent } from './weerstations/weerstation-list/weerst
 import { OrganisatieListComponent } from './organisaties/organisatie-list/organisatie-list.component';
 import { WeerstationsAlarmSchakelwaardesListComponent } from '../organisatiebeheerder/weerstations-organisatie/weerstations-alarm-schakelwaardes-list/weerstations-alarm-schakelwaardes-list.component';
 import { OtaComponent } from './ota/ota.component';
+import { SensorListComponent } from './sensors/sensor-list/sensor-list.component';
 
 const routes: Routes = [
     { path: 'gebruikers', component: GebruikersListComponent },
     { path: 'weerstations', component: WeerstationListComponent },
-    { path: 'organisaties', component: OrganisatieListComponent }, // TODO: crud maken
+    { path: 'organisaties', component: OrganisatieListComponent },
     { path: 'waardes/:id', component: WeerstationsAlarmSchakelwaardesListComponent },
     { path: 'ota', component: OtaComponent },
+    { path: 'sensoren', component: SensorListComponent }
 ];
 
 @NgModule({

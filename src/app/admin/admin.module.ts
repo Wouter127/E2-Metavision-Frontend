@@ -18,6 +18,8 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { OtaComponent } from './ota/ota.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { SensorListComponent } from './sensors/sensor-list/sensor-list.component';
+import { SensorFormComponent } from './sensors/sensor-form/sensor-form.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     GebruikersFormOrganisatiebeheerderComponent,
     OrganisatieFormComponent,
     OrganisatieListComponent,
-    OtaComponent
+    OtaComponent,
+    SensorListComponent,
+    SensorFormComponent
   ],
   imports: [
     CommonModule,
