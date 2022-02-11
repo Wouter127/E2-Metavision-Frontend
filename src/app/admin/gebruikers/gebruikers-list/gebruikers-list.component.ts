@@ -72,7 +72,18 @@ export class GebruikersListComponent implements OnInit {
             this.toast.observe({
               loading: { content: 'Verwijderen...', position: 'bottom-right' },
               success: { content: 'Gebruiker verwijderd!', position: 'bottom-right', dismissible: true },
-              error: { content: 'Er ging iets mis.', position: 'bottom-right', dismissible: true },
+              error: {
+                content: (e) => {
+                  let msg = '<ul>';
+                  msg += `<li><b>Er ging iets mis!</b></li>`;
+                  for (let key in e.error.errors) {
+                    msg += `<li>${e.error.errors[key]}</li>`;
+                  }
+                  msg += '</ul>';
+
+                  return msg;
+                }, position: 'bottom-right', dismissible: true, duration: 5000
+              },
             })
           ).subscribe(
             result => {
