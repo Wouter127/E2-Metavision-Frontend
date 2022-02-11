@@ -25,6 +25,8 @@
         </div>
     </div>
 
+    <p class="mb-2">Wanneer een ingestelde waarde aan de voorwaarde voldoet wordt er een SMS-bericht gestuurd naar de gebruikers binnen de organisatie waarvan <a class="text-blue-500" routerLink="/organisatiebeheerder/gebruikers" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">'krijgt melding'</a> aanstaat.</p>
+
     <div class="flex flex-col">
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8 mb-2">
@@ -126,7 +128,7 @@
 
 
     <!-- SCHAKELWAARDES -->
-    <div class="flex flex-wrap">
+    <div class="flex flex-wrap mt-8">
         <div class="md:text-2xl text-lg font-bold my-2 grow">Schakelwaardes</div>
         <div class="flex row justify-end">
             <button (click)="toevoegenSchakelwaarde()"
@@ -135,6 +137,9 @@
             </button>
         </div>
     </div>
+
+    <p class="mb-2">Wanneer een ingestelde waarde aan de voorwaarde voldoet wordt de relais van het weerstation geschakeld. Hou er rekening mee dat dit enkel gebeurt in 'automatische' modus.</p>
+
     <div class="flex flex-col">
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">

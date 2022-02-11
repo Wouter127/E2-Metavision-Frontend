@@ -5,3 +5,29 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+// Styling options for dialogservice
+ngneat-dialog {
+  .ngneat-dialog-backdrop {
+    .ngneat-dialog-content {
+      p {
+          font-size: medium !important;
+      }
+      
+      .ngneat-dialog-primary-btn {
+        background-color: #7e1b27;
+      }
+      .ngneat-dialog-secondary-btn {
+        color: #7e1b27;
+        font-weight: bold;
+      }
+
+      .ngneat-dialog-primary-btn,
+      .ngneat-dialog-secondary-btn {
+        border-color: #7e1b27;
+      }
+    }
+  }
+}
