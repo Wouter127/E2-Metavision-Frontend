@@ -5,7 +5,6 @@ export interface Sensor {
   naam: string;
   omschrijving: string;
   code: string;
-  omschrijving: string;
   alarmWaarde: AlarmWaarde[];
   schakelWaarde: SchakelWaarde[];
 }
