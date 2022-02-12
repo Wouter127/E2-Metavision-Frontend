@@ -13,14 +13,14 @@ import { ClipboardModule } from 'ngx-clipboard';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { VervolledigOrganisatieBeheerderComponent } from './vervolledig-organisatie-beheerder/vervolledig-organisatie-beheerder.component';
 import { PubliekeWeerstationsListComponent } from './publieke-weerstations-list/publieke-weerstations-list.component';
-import { WeerstationDashboardComponent } from './weerstation-dashboard/weerstation-dashboard.component';
+import { WeerstationDashboardComponent } from './dashboard/weerstation-dashboard/weerstation-dashboard.component';
 import { HomeComponent } from './home/home.component';
 import { VervolledigGebruikerComponent } from './vervolledig-gebruiker/vervolledig-gebruiker.component';
-import { WeerstationDashboardLocationComponent } from './weerstation-dashboard-location/weerstation-dashboard-location.component';
-import { WeerstationDashboardTemperatuurComponent } from './weerstation-dashboard-temperatuur/weerstation-dashboard-temperatuur.component';
-import { WeerstationDashboardLuchtvochtigheidComponent } from './weerstation-dashboard-luchtvochtigheid/weerstation-dashboard-luchtvochtigheid.component';
-import { WeerstationDashboardLichtComponent } from './weerstation-dashboard-licht/weerstation-dashboard-licht.component';
-import { WeerstationDashboardBatterijComponent } from './weerstation-dashboard-batterij/weerstation-dashboard-batterij.component';
+import { WeerstationDashboardLocationComponent } from './dashboard/weerstation-dashboard-location/weerstation-dashboard-location.component';
+import { WeerstationDashboardTemperatuurComponent } from './dashboard/weerstation-dashboard-temperatuur/weerstation-dashboard-temperatuur.component';
+import { WeerstationDashboardLuchtvochtigheidComponent } from './dashboard/weerstation-dashboard-luchtvochtigheid/weerstation-dashboard-luchtvochtigheid.component';
+import { WeerstationDashboardLichtComponent } from './dashboard/weerstation-dashboard-licht/weerstation-dashboard-licht.component';
+import { WeerstationDashboardBatterijComponent } from './dashboard/weerstation-dashboard-batterij/weerstation-dashboard-batterij.component';
 import { NieuwWachtwoordComponent } from './nieuw-wachtwoord/nieuw-wachtwoord.component';
 
 
@@ -39,7 +39,6 @@ import { NieuwWachtwoordComponent } from './nieuw-wachtwoord/nieuw-wachtwoord.co
     WeerstationDashboardLichtComponent,
     WeerstationDashboardBatterijComponent,
     NieuwWachtwoordComponent,
-
   ],
   imports: [
     BrowserModule,
