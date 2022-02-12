@@ -38,7 +38,7 @@ export class SensorFormComponent implements OnInit {
   }
 
   openEditModal(id: number) {
-    this.title = "Organisatie aanpassen"
+    this.title = "Sensor aanpassen"
 
     this.sensor$ = this.sensorService.getSensorById(id).subscribe(
       result => {

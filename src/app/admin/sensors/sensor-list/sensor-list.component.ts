@@ -51,7 +51,7 @@ export class SensorListComponent implements OnInit {
         this.loading = false;
       },
       error => {
-        this.toast.error("Er ging iets mis.  De organisaties kunnen niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false });
+        this.toast.error("Er ging iets mis.  De sensoren kunnen niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false });
       }
     );
   }
