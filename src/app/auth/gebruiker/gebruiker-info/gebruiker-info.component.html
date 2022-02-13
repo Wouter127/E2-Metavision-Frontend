@@ -1,83 +1,61 @@
 <app-gebruiker-form title="Wijzig account info"></app-gebruiker-form>
 
-<div class="md:text-3xl text-xl font-bold my-2 ml-4 grow">Account info</div>
-<div *ngIf="loading">
-    <div class="p-4 border-2 m-4 border-gray-300 animate-pulse ">
-        <div class="bg-gray-300 animate-pulse h-8 md:w-3/12 w-8/12 rounded-md my-2"></div>
-        <div class="px-4 py-2">
-            <div class="bg-gray-300 animate-pulse h-6 md:w-2/12 w-9/12 rounded-md mb-1"></div>
-            <div class="bg-gray-300 animate-pulse h-4 md:w-2/12 w-10/12 rounded-md mb-1"></div>
-            <div class="bg-gray-300 animate-pulse h-4 md:w-1/12 w-5/12 rounded-md mb-1"></div>
-            <div class="bg-gray-300 animate-pulse h-4 md:w-1/12 w-7/12 rounded-md mb-1"></div>
-            <div class="bg-gray-300 animate-pulse h-3 md:w-2/12 w-11/12 rounded-md"></div>
-        </div>
-        <div class="bg-gray-300 animate-pulse h-8 md:w-3/12 w-8/12 rounded-md my-2"></div>
-        <div class="px-4 py-2">
 
+<div class="container mx-auto w-full px-8 pt-2 mb-32 lg:w-2/3">
+    <h2 class="md:text-2xl font-bold mb-2 text-xl">Account</h2>
 
-            <div class="bg-gray-300 animate-pulse h-6 md:w-2/12 w-5/12 rounded-md mb-1"></div>
-            <div class="bg-gray-300 animate-pulse h-4 md:w-2/12 w-4/12 rounded-md mb-1"></div>
-            <div class="bg-gray-300 animate-pulse h-4 md:w-1/12 w-2/12 rounded-md mb-2"></div>
-            <div class="bg-gray-300 animate-pulse h-4 md:w-2/12 w-6/12 rounded-md mb-2"></div>
-            <div class="bg-gray-300 animate-pulse h-4 md:w-1/12 w-6/12 rounded-md"></div>
-        </div>
-    </div>
-    <div class="m-4 md:w-2/12 w-6/12 h-10 bg-gray-300 rounded-lg animate-pulse"></div>
-</div>
-
-<div *ngIf="!loading" class="mb-32">        
-    <div class="p-4 border-2 m-4">
-        <div class="text-xl font-bold">{{gebruiker.voornaam + ' ' + gebruiker.achternaam}}</div>
-        <div class="px-4 py-2">
-            <div class="text-md" *ngIf="gebruiker.organisatie != null">{{gebruiker.isOrganisatieGebruiker ?
-                'organisatiebeeherder van ' + gebruiker.organisatie.naam : 'lid van ' + gebruiker.organisatie.naam}}
+    <div class="p-4 border-2 rounded-md">
+        <div *ngIf="loading" class="grid grid-cols-2 gap-4">
+            <div class="col-span-2 lg:col-span-1">
+                <h3 class="md:text-xl font-bold mb-2 text-lg">Gebruiker</h3>
+                <div class="bg-gray-300 animate-pulse h-4 md:w-7/12 w-7/12 rounded-md my-2"></div>
+                <div class="bg-gray-300 animate-pulse h-4 md:w-10/12 w-9/12 rounded-md my-2"></div>
+                <div class="bg-gray-300 animate-pulse h-4 md:w-6/12 w-4/12 rounded-md my-2"></div>
+                <div class="bg-gray-300 animate-pulse h-4 md:w-8/12 w-4/12 rounded-md my-2"></div>
+                <div class="flex flex-row justify-around flex-wrap">
+                    <div class="m-2">
+                        <div class="bg-gray-300 animate-pulse h-4 w-40 rounded-md my-2"></div>
+                    </div>
+                    <div class="m-2">
+                        <div class="bg-gray-300 animate-pulse h-4 w-40 rounded-md my-2"></div>
+                    </div>
+                </div>
             </div>
-            <div *ngIf="gebruiker.email; else noEmail" class="text-sm">Email: {{gebruiker.email}}</div>
-            <ng-template #noEmail>
-                <div class="inline-flex text-sm">
-                    Email: Geen email opgegeven
-                </div>
-            </ng-template>
-            <div *ngIf="gebruiker.gsm; else noGsm" class="text-sm">Tel: {{gebruiker.gsm}}</div>
-            <ng-template #noGsm>
-                <div class="inline-flex text-sm">
-                    Tel: Geen gsm nummer opgegeven
-                </div>
-            </ng-template>
-            <div class="text-sm">Ontvang medldingen: {{gebruiker.krijgtMelding ? 'Ja' : 'Nee'}}</div>
-            <div class="text-xs">Wachtwoord vergeten? <span class="underline text-xs hover:text-blue-700 cursor-pointer">stel nieuw wachtwoord in</span>
+            <div class="col-span-2 lg:col-span-1">
+                <h3 class="md:text-xl font-bold mb-2 text-lg">Organisatie</h3>
+                <div class="bg-gray-300 animate-pulse h-4 md:w-7/12 w-7/12 rounded-md my-2"></div>
+                <div class="bg-gray-300 animate-pulse h-4 md:w-11/12 w-11/12 rounded-md my-2"></div>
+                <div class="bg-gray-300 animate-pulse h-4 md:w-8/12 w-5/12 rounded-md my-2"></div>
+                <div class="bg-gray-300 animate-pulse h-4 md:w-6/12 w-4/12 rounded-md my-2"></div>
             </div>
         </div>
-        <div *ngIf="gebruiker.organisatie">
-            <div class="text-xl font-bold">{{gebruiker.organisatie.naam}}</div>
-            <div class="px-4 py-2">
-                <div class="text-sm">{{gebruiker.organisatie.straat + ' ' + gebruiker.organisatie.huisnummer}}{{gebruiker.organisatie.extra ? gebruiker.organisatie.extra : ''}}</div>
-                <div class="text-sm">{{gebruiker.organisatie.postcode + ' ' + gebruiker.organisatie.stad}}</div>
-                <div class="text-sm">{{gebruiker.organisatie.land}}</div>
-                <table>
-                    <tr>
-                        <td>
-                            <span class="text-sm font-bold pr-4 underline"># Weerstations</span>
-                        </td>
-                        <td>
-                            <span class="text-sm">{{gebruiker.organisatie.weerstations.length}} </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="text-sm font-bold pr-4 underline"># Gebruikers</span>
-                        </td>
-                        <td>
-                            <span class="text-sm">{{gebruiker.organisatie.gebruikers.length}} </span>
-                        </td>
-                    </tr>
-                </table>
+        <div *ngIf="!loading" class="grid grid-cols-2 gap-4">
+            <div class="col-span-2 lg:col-span-1">
+                <h3 class="md:text-xl font-bold mb-2 text-lg">Gebruiker</h3>
+                <p><span class="font-medium mr-1">Naam:</span>{{gebruiker.voornaam + ' ' + gebruiker.achternaam}}</p>
+                <p><span class="font-medium mr-1">Email:</span>{{gebruiker.email}}</p>
+                <p><span class="font-medium mr-1">GSM:</span>{{gebruiker.gsm}}</p>
+                <p><span class="font-medium mr-1">Ontvang meldingen:</span>{{gebruiker.krijgtMelding ? 'Ja' : 'Nee'}}</p>
+                <div class="flex flex-row justify-around flex-wrap">
+                    <div class="m-2">
+                        <a (click)="editGebruikerInfo()" class="text-wbRed-500 font-bold cursor-pointer">
+                            Gegevens aanpassen
+                        </a>
+                    </div>
+                    <div class="m-2">
+                        <a routerLink='/requestWachtwoordReset' class="text-wbRed-500 font-bold cursor-pointer">
+                            Wachtwoord aanpassen
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div  class="col-span-2 lg:col-span-1">
+                <h3 class="md:text-xl font-bold mb-2 text-lg">Organisatie</h3>
+                <p><span class="font-medium mr-1">Naam:</span>{{gebruiker.organisatie.naam}}</p>
+                <p><span class="font-medium mr-1">Adres:</span>{{gebruiker.organisatie.straat + ' ' + gebruiker.organisatie.huisnummer}}{{gebruiker.organisatie.extra ? gebruiker.organisatie.extra : ''}}, {{gebruiker.organisatie.postcode + ' ' + gebruiker.organisatie.stad}}, {{gebruiker.organisatie.land}}</p>
+                <p><span class="font-medium mr-1">#Weerstations:</span>{{gebruiker.organisatie.weerstations.length}}</p>
+                <p><span class="font-medium mr-1">#Gebruikers:</span>{{gebruiker.organisatie.gebruikers.length}}</p>
             </div>
         </div>
     </div>
-
-    <button (click)="editGebruikerInfo()"
-        class="mx-4 p-2 px-5 bg-transparent border-2 border-wbRed-500 text-wbRed-500 text-sm font-bold rounded-lg transition-colors duration-700 transform hover:bg-wbRed-500 hover:text-white">
-        account info aanpassen
-    </button>
 </div>
