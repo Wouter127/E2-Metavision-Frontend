@@ -20,6 +20,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { SensorListComponent } from './sensors/sensor-list/sensor-list.component';
 import { SensorFormComponent } from './sensors/sensor-form/sensor-form.component';
+import { EmailListComponent } from './email/email-list/email-list.component';
+import { EmailFormComponent } from './email/email-form/email-form.component';
+import { EmailConfigFormComponent } from './email/email-config-form/email-config-form.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,10 @@ import { SensorFormComponent } from './sensors/sensor-form/sensor-form.component
     OrganisatieListComponent,
     OtaComponent,
     SensorListComponent,
-    SensorFormComponent
+    SensorFormComponent,
+    EmailListComponent,
+    EmailFormComponent,
+    EmailConfigFormComponent
   ],
   imports: [
     CommonModule,
