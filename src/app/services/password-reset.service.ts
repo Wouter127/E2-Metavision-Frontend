@@ -11,11 +11,17 @@ export class PasswordResetService {
 
 
 stuurPasswoordResetLink(data: any) {
-  return this.httpClient.post(`${environment.API_URI}/stuurPasswordResetLink`, data)
+  let headers = new HttpHeaders();
+  headers = headers.set('Content-Type', 'application/json; charset=utf-8');
+  
+  return this.httpClient.post(`${environment.API_URI}/stuurPasswordResetLink`, data, {headers: headers})
 }
 
 veranderPassword(data: any) {
-  return this.httpClient.post(`${environment.API_URI}/veranderPassword`, data)
+  let headers = new HttpHeaders();
+  headers = headers.set('Content-Type', 'application/json; charset=utf-8');
+  
+  return this.httpClient.post(`${environment.API_URI}/veranderPassword`, data, {headers: headers})
 
 }
 
