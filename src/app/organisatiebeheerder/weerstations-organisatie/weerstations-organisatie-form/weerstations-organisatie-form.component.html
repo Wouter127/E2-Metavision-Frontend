@@ -27,7 +27,11 @@
                 <div class="w-12/12 mt-1 bg-gray-300 h-8 rounded-lg animate-pulse"></div>
               </div>
               <div class="col-span-6 sm:col-span-3">
-                <label class="block font-medium text-gray-700">Publiek zichtbaar</label>
+                <label class="block font-medium text-gray-700">Publiek zichtbaar
+                    <i class="far fa-question-circle text-base"
+                      tooltip="<p class='text-xs'>Geeft aan of de metingen van het weerstation raadpleegbaar zijn voor iedereen.</p>"
+                      [options]="{placement: 'top', hideDelay: 20}"></i>
+                </label>
                 <div class="w-2/12 bg-gray-300 h-4 rounded-full animate-pulse"></div>
               </div>
             </div>
@@ -57,7 +61,11 @@
               </div>
 
               <div class="col-span-6 sm:col-span-3">
-                <label class="block font-medium text-gray-700">Publiek zichtbaar</label>
+                <label class="block font-medium text-gray-700">Publiek zichtbaar
+                    <i class="far fa-question-circle text-base"
+                      tooltip="<p class='text-xs'>Geeft aan of de metingen van het weerstation raadpleegbaar zijn voor iedereen.</p>"
+                      [options]="{placement: 'top', hideDelay: 20}"></i>
+                </label>
                 <ng-toggle [value]="weerstation.isPubliekZichtbaar == 1 ? true : false"
                   [color]="{ unchecked: '#DDDEE3', checked: '#7e1b27'}" (change)="changeZichtbaarheid(weerstation)" class="w-2">
                 </ng-toggle>
