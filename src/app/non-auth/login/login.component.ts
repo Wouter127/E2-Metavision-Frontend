@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
             else {
               let msg = '<ul>';
               msg += `<li><b>Er ging iets mis!</b></li>`;
-              if (e.name === "HttpErrorResponse") {
+              if (e.statusText === "Unknown Error") {
                 msg += `<li>Kan geen verbinding maken met de database.</li>`;
               }
               else {
