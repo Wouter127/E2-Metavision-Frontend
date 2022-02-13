@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
 import { PasswordResetService } from 'src/app/services/password-reset.service';
 
@@ -11,7 +12,7 @@ export class ResetWachtwoordComponent implements OnInit {
   public form  = {
     email: null
   };
-  constructor(private reset: PasswordResetService, private toast: HotToastService) {
+  constructor(private router: Router, private reset: PasswordResetService, private toast: HotToastService) {
     // Reverse the order of which the toasts are displayed
     this.toast.defaultConfig = {
       ...this.toast.defaultConfig,
@@ -23,12 +24,32 @@ export class ResetWachtwoordComponent implements OnInit {
   }
 
   onSubmit() {
-    this.reset.stuurPasswoordResetLink(this.form).subscribe(
-      data => this.handleResponse(data),
-    );
-  }
+    this.reset.stuurPasswoordResetLink(this.form).pipe(
+      this.toast.observe({
+        loading: { content: 'Versturen...', position: 'bottom-right' },
+        success: { content: 'Email verstuurd! Controleer uw inbox.', position: 'bottom-right', dismissible: true },
+        error: {
+          content: (e) => {
+            let msg = '<ul>';
+            msg += `<li><b>Er ging iets mis!</b></li>`;
+            if (e.statusText === "Internal Server Error") {
+              msg += `<li>Controleer of u al een email heeft ontvangen.</li>`;
+            }
+            else {
+              for (let key in e.error.errors) {
+                msg += `<li>${e.error.errors[key]}</li>`;
+              }
+            }
+            msg += '</ul>';
 
-  handleResponse(res: any) {
-    this.form.email = null;
+            return msg;
+          }, position: 'bottom-right', dismissible: true, duration: 5000
+        },
+      })
+    ).subscribe(
+      result => {
+        this.router.navigate(['/']);
+      }
+    );
   }
 }

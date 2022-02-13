@@ -1,13 +1,50 @@
-<form #NieuwPaswoordForm=ngForm (ngSubmit)="onSubmit()">
-    <label for="email">email</label><br>
-    <input type="email" id="email" name="email" class="bg-gray-200" [(ngModel)]="form.email"><br>
+<div class="container mx-auto w-full px-8 pt-2 mb-32 lg:w-1/2">
+    <h2 class="md:text-2xl font-bold mb-2 text-lg">Wachtwoord aanpassen</h2>
 
-    <label for="password">Wachtwoord</label><br>
-    <input type="password" id="password" name="password" class="bg-gray-200" [(ngModel)]="form.password"><br>
-
-    <label for="password_confirmation">Herhaal wachtwoord</label><br>
-    <input type="password" id="password_confirmation" name="password_confirmation" class="bg-gray-200" [(ngModel)]="form.password_confirmation"><br>
-
-    <button type="submit" class="bg-gray-500" >Verander wachtwoord</button>
-
-</form>
+    <form #nieuwWachtwoordForm="ngForm" class="bg-white border-2 rounded-md p-4" (ngSubmit)="onSubmit()">
+        <div class="grid gap-4">
+            <div>
+                <label for="email" class="block font-medium text-gray-700">Email</label>
+                <input type="text" name="email" id="email" [(ngModel)]="form.email" #email="ngModel" required
+                    class="mt-1 p-2 focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 focus:border-wbRed-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-xs text-red-500 font-medium">
+                    <span *ngIf="email.errors?.['required']">
+                        Email is veplicht.
+                    </span>
+                </div>
+            </div>
+            <div>
+                <label for="password" class="block font-medium text-gray-700">Wachtwoord</label>
+                <input type="password" name="password" id="password" [(ngModel)]="form.password" #password="ngModel" required minlength="8"
+                    class="mt-1 p-2 focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 focus:border-wbRed-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-xs text-red-500 font-medium">
+                    <span *ngIf="password.errors?.['required']">
+                        Wachtwoord is veplicht.
+                    </span>
+                    <span *ngIf="password.errors?.['minlength']">
+                        Wachtwoord moet minstens 8 karakters bevatten.
+                    </span>
+                </div>
+            </div>
+            <div>
+                <label for="password_confirmation" class="block font-medium text-gray-700">Herhaal wachtwoord</label>
+                <input type="password" name="password_confirmation" id="password_confirmation" [(ngModel)]="form.password_confirmation" #password_confirmation="ngModel" required minlength="8"
+                    class="mt-1 p-2 focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 focus:border-wbRed-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                <div *ngIf="password_confirmation.invalid && (password_confirmation.dirty || password_confirmation.touched)" class="text-xs text-red-500 font-medium">
+                    <span *ngIf="password_confirmation.errors?.['required']">
+                        Herhaal wachtwoord is veplicht.
+                    </span>
+                    <span *ngIf="password_confirmation.errors?.['minlength']">
+                        Wachtwoord moet minstens 8 karakters bevatten.
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="px-4 py-3 text-center sm:px-6">
+            <button type="submit" [disabled]="!nieuwWachtwoordForm.form.valid"
+                class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md text-white bg-wbRed-500 hover:bg-wbRed-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 disabled:bg-gray-400 disabled:cursor-not-allowed">
+                Verander wachtwoord
+            </button>
+        </div>
+    </form>
+</div>
