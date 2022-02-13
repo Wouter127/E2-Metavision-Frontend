@@ -109,7 +109,11 @@
             [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4" (click)="drawer.close()">
             Emails beheren
           </a>
-          <a *ngIf="gebruiker?.isAdmin" routerLink="admin/ota" routerLinkActive="active"
+          <a *ngIf="gebruiker?.isAdmin" routerLink="admin/ota-list" routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4" (click)="drawer.close()">
+            OTA updates
+          </a>
+          <a *ngIf="gebruiker?.isAdmin" routerLink="admin/ota-plannen" routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4" (click)="drawer.close()">
             OTA update plannen
           </a>
