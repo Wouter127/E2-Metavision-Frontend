@@ -20,6 +20,7 @@ export class WeerstationsOrganisatieListComponent implements OnInit {
   @ViewChild(WeerstationsActiverenComponent, { static: true }) weerstationsActiverenComponent!: WeerstationsActiverenComponent;
   @ViewChild(WeerstationsOrganisatieFormComponent, {static: true}) weerstationsOrganisatieFormComponent!: WeerstationsOrganisatieFormComponent;
 
+  math = Math;
   loading: boolean = true;
 
   gebruiker!: Gebruiker | undefined;
@@ -63,7 +64,7 @@ export class WeerstationsOrganisatieListComponent implements OnInit {
   toggleRelais(weerstation_id: number): void {
     let weerstation: Weerstation|undefined = this.organisatie.weerstations.find((w:any) => w.id === weerstation_id);
     if (weerstation) {
-      weerstation.isRelaisManueelAan = weerstation.isRelaisManueelAan ? 0 : 1;
+      weerstation.isRelaisManueelAan = weerstation.isRelaisManueelAan ? 0 : 1;   
       this.weerstationService.putWeerstationOrganisatieBeheerder(weerstation_id, weerstation).pipe(
         this.toast.observe({
           loading: { content: 'Schakelen...', position: 'bottom-right'},
