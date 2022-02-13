@@ -1,0 +1,142 @@
+<app-email-form title="Email tekst aanpassen"></app-email-form>
+<app-email-config-form title="Email configuratie aanpassen"></app-email-config-form>
+
+<div class="flex flex-col container mx-auto w-full px-8 pt-2 mb-32">
+    <div class="md:text-3xl text-xl font-bold mb-2 grow">Email beheren</div>
+    <div class="grid grid-cols-4 gap-8">
+        <div class="col-span-4 xl:col-span-3">
+            <h3 class="md:text-2xl text-lg font-medium mb-2 grow">Email configuratie</h3>
+            <div *ngIf="!emailConfig" class="grid grid-cols-2 gap-4">
+                <div class="col-span-2 lg:col-span-1">
+                    <span class="font-medium mr-1">Logo URL:</span>
+                    <span>
+                        <div class="w-6/12 bg-gray-300 h-4 rounded-full animate-pulse"></div>
+                    </span>
+                </div>
+                <div class="col-span-2 lg:col-span-1">
+                    <span class="font-medium mr-1">Website URL:</span>
+                    <span>
+                        <div class="w-6/12 bg-gray-300 h-4 rounded-full animate-pulse"></div>
+                    </span>
+                </div>
+                <div class="col-span-2">
+                    <span class="font-medium mr-1">Contact email:</span>
+                    <span>
+                        <div class="w-6/12 bg-gray-300 h-4 rounded-full animate-pulse"></div>
+                    </span>
+                </div>
+                <div class="col-span-2 mb-4 flex justify-center">
+                    <div class="w-40 mx-auto mt-1 bg-gray-300 h-10 rounded-md animate-pulse"></div>
+                </div>
+            </div>
+            <div *ngIf="emailConfig" class="grid grid-cols-2 gap-4">
+                <div class="col-span-2 md:col-span-1">
+                    <span class="font-medium mr-1">Logo URL
+                        <span class="fa-stack small text-center">
+                            <i class="far fa-circle fa-stack-2x"></i>
+                            <i class="fa-solid fa-1 align-baseline"></i>
+                        </span>
+                    :</span>
+                    <span>{{ emailConfig.logoUrl }}</span>
+                </div>
+                <div class="col-span-2 md:col-span-1">
+                    <span class="font-medium mr-1">Website URL 
+                        <span class="fa-stack small text-center">
+                            <i class="far fa-circle fa-stack-2x"></i>
+                            <i class="fa-solid fa-2 align-baseline"></i>
+                        </span>
+                    :</span>
+                    <span>{{ emailConfig.websiteUrl }}</span>
+                </div>
+                <div class="col-span-2">
+                    <span class="font-medium mr-1">Contact email 
+                        <span class="fa-stack small text-center">
+                            <i class="far fa-circle fa-stack-2x"></i>
+                            <i class="fa-solid fa-3 align-baseline"></i>
+                        </span>
+                    :</span>
+                    <span>{{ emailConfig.contactEmail }}</span>
+                </div>
+                <div class="col-span-2 mb-4 flex justify-center">
+                    <button (click)="wijzigEmailConfig()"
+                        class="py-2 px-4 border-2 border-wbRed-500 shadow-sm font-medium rounded-md text-wbRed-500 hover:text-white hover:bg-wbRed-500">
+                        Configuratie aanpassen
+                    </button>
+                </div>
+            </div>
+            
+            
+            <h3 class="md:text-2xl text-lg font-medium mb-2 grow">Email teksten 
+                <span class="fa-stack small text-center">
+                    <i class="far fa-circle fa-stack-2x"></i>
+                    <i class="fa-solid fa-4 align-baseline"></i>
+                </span>
+            </h3>
+            <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                    <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                        <table class="min-w-full divide-y divide-gray-200 table-fixed">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th scope="col"
+                                        class="w-3/12 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Email
+                                    </th>
+                                    <th scope="col"
+                                        class="w-8/12 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Tekst
+                                    </th>
+                                    <th scope="col"
+                                        class="w-1/12 px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Acties
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody *ngIf="loading">
+                                <tr *ngFor="let n of [1, 2, 3]">
+                                    <td class="px-6 py-4">
+                                        <div class="w-7/12 bg-gray-300 h-4 rounded-full animate-pulse"></div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="w-9/12 bg-gray-300 h-4 rounded-full animate-pulse"></div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex justify-around">
+                                            <div class="w-10/12 bg-gray-300 h-4 rounded-full animate-pulse"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tbody *ngIf="!loading" class="bg-white divide-y divide-gray-200">
+                                <tr *ngFor="let email of emails">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm font-medium text-gray-900">
+                                            <div class="text-sm text-gray-900">
+                                                {{ email.naam }}
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="text-sm ">
+                                            {{ email.tekst }}
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                        <div class="flex justify-around">
+                                            <a class="text-indigo-600 hover:text-indigo-900 cursor-pointer mr-1 xl:mr-0"
+                                                (click)="wijzigEmail(email.id)">Wijzig</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-span-4 xl:col-span-1 flex justify-center">
+            <img src="assets/images/email.png" alt="">
+        </div>
+    </div>
+</div>

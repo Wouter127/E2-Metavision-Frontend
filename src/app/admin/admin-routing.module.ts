@@ -6,6 +6,7 @@ import { OrganisatieListComponent } from './organisaties/organisatie-list/organi
 import { WeerstationsAlarmSchakelwaardesListComponent } from '../organisatiebeheerder/weerstations-organisatie/weerstations-alarm-schakelwaardes-list/weerstations-alarm-schakelwaardes-list.component';
 import { OtaComponent } from './ota/ota.component';
 import { SensorListComponent } from './sensors/sensor-list/sensor-list.component';
+import { EmailListComponent } from './email/email-list/email-list.component';
 
 const routes: Routes = [
     { path: 'gebruikers', component: GebruikersListComponent },
@@ -13,7 +14,8 @@ const routes: Routes = [
     { path: 'organisaties', component: OrganisatieListComponent },
     { path: 'waardes/:id', component: WeerstationsAlarmSchakelwaardesListComponent },
     { path: 'ota', component: OtaComponent },
-    { path: 'sensoren', component: SensorListComponent }
+    { path: 'sensoren', component: SensorListComponent },
+    { path: 'email', component: EmailListComponent }
 ];
 
 @NgModule({
