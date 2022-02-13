@@ -73,7 +73,7 @@ export class WeerstationService {
   }
 
   getLaatsteMeting(weerstation_id: number): Observable<any> {
-    return this.httpClient.get<any[]>(`${environment.API_URI}/auth/meting/${weerstation_id}/laatsteMeting`);
+    return this.httpClient.get<any[]>(`${environment.API_URI}/meting/${weerstation_id}/laatsteMeting`);
   }
 
   getWeerstationWithMetingen(weerstation_id: number, begin?: string, eind?: string): Observable<Weerstation> {
