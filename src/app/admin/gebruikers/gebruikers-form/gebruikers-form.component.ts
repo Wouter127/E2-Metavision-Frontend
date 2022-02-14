@@ -46,6 +46,8 @@ export class GebruikersFormComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
+    this.gebruiker$.unsubscribe();
+    this.organisaties$.unsubscribe();
     this.putGebruiker$.unsubscribe();
   }
 
