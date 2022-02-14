@@ -15,6 +15,7 @@ import { WeerstationService } from 'src/app/services/weerstation.service';
   styleUrls: ['./weerstations.component.scss']
 })
 export class WeerstationsComponent implements OnInit {
+  math = Math;
   loading: boolean = true;
 
   gebruiker!: Gebruiker | undefined;
