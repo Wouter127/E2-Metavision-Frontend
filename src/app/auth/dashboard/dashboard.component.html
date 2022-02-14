@@ -5,10 +5,10 @@
                         <h1 class="xl:text-4xl text-3xl text-center text-gray-800 font-extrabold pb-6 sm:w-4/6 w-5/6 mx-auto">Welkom <span class="text-wbRed-500">{{gebruiker!.voornaam}}</span></h1>
                     </div>
                 </div>
-                <div class="w-full bg-gray-100 px-10 pt-10">
+                <div class="w-full px-10 pt-10">
                     <div class="container mx-auto">
                         <div role="list" aria-label="Behind the scenes People " class="lg:flex md:flex sm:flex items-center xl:justify-between flex-wrap md:justify-around sm:justify-around lg:justify-around">
-                            <div role="listitem" class="xl:w-1/3 sm:w-3/4 md:w-2/5 relative mt-16 mb-32 sm:mb-24 xl:max-w-sm lg:w-2/5">
+                            <div routerLink="/weerstations/publiek" role="listitem" class="xl:w-1/3 sm:w-3/4 md:w-2/5 relative mt-16 mb-32 sm:mb-24 xl:max-w-sm lg:w-2/5 cursor-pointer duration-700 ease-in-out hover:shadow-2xl hover:shadow-wbRed-500/60">
                                 <div class="rounded overflow-hidden shadow-md bg-white">
                                     <div class="absolute -mt-20 w-full flex justify-center">
                                         <div class="h-32 w-32">
@@ -17,9 +17,8 @@
                                     </div>
                                     <div class="px-6 mt-16">
                                         <h1 class="font-bold text-3xl text-center mb-1">Publieke weerstations</h1>
-                                        <a routerLink="/weerstations/publiek" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"><p class="text-wbRed-500 text-sm text-center font-bold hover:underline cursor-pointer">Ga<i class="ml-2 fas fa-arrow-right"></i></p></a>
-                                    
-                                        <p class="text-center text-gray-600 text-base pt-3 font-normal">Alle weerstations die organisaties publiek hebben gemaakt!</p>
+                                                                           
+                                        <p class="text-center text-gray-600 text-base pt-3 font-normal">Vergaar kennis door het bekijken van gegevens van publieke weerstations!</p>
                                         <div class="w-full flex justify-center pt-5 pb-5">
                                             
                                             <p class="mx-5">
@@ -41,7 +40,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div role="listitem" class="xl:w-1/3 lg:mx-3 sm:w-3/4 md:w-2/5 relative mt-16 mb-32 sm:mb-24 xl:max-w-sm lg:w-2/5">
+                            <div routerLink="/auth/help" role="listitem" class="xl:w-1/3 lg:mx-3 sm:w-3/4 md:w-2/5 relative mt-16 mb-32 sm:mb-24 xl:max-w-sm lg:w-2/5 cursor-pointer duration-700 ease-in-out hover:shadow-2xl hover:shadow-wbRed-500/60">
                                 <div class="rounded overflow-hidden shadow-md bg-white">
                                     <div class="absolute -mt-20 w-full flex justify-center">
                                         <div class="h-32 w-32">
@@ -50,7 +49,7 @@
                                     </div>
                                     <div class="px-6 mt-16">
                                         <h1 class="font-bold text-3xl text-center mb-1">Help</h1>
-                                        <a routerLink="/auth/help" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"><p class="text-wbRed-500 text-sm text-center font-bold hover:underline cursor-pointer">Ga<i class="ml-2 fas fa-arrow-right"></i></p></a>
+
                                         <p class="text-center text-gray-600 text-base pt-3 font-normal">Hulp nodig bij iets? Misschien vind je het wel tussen onze veel gestelde vragen!</p>
                                         <div class="w-full flex justify-center pt-5 pb-5">
                                             <p class="mx-5">
@@ -71,7 +70,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div role="listitem" class="xl:w-1/3 sm:w-3/4 md:w-2/5 relative mt-16 mb-32 sm:mb-24 xl:max-w-sm lg:w-2/5">
+                            <div routerLink="/auth/account" role="listitem" class="xl:w-1/3 sm:w-3/4 md:w-2/5 relative mt-16 mb-32 sm:mb-24 xl:max-w-sm lg:w-2/5 cursor-pointer duration-700 ease-in-out hover:shadow-2xl hover:shadow-wbRed-500/60">
                                 <div class="rounded overflow-hidden shadow-md bg-white">
                                     <div class="absolute -mt-20 w-full flex justify-center">
                                         <div class="h-32 w-32">
@@ -80,8 +79,8 @@
                                     </div>
                                     <div class="px-6 mt-16">
                                         <h1 class="font-bold text-3xl text-center mb-1">Mijn profiel</h1>
-                                        <a routerLink="/auth/account" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"><p class="text-wbRed-500 text-sm text-center font-bold hover:underline cursor-pointer">Ga<i class="ml-2 fas fa-arrow-right"></i></p></a>
-                                        <p class="text-center text-gray-600 text-base pt-3 font-normal">Bekijk uw organisatieinfo en verander uw profiel informatie!</p>
+
+                                        <p class="text-center text-gray-600 text-base pt-3 font-normal">Bekijk uw organisatie info en verander uw profiel informatie!</p>
                                         <div class="w-full flex justify-center pt-5 pb-5">
                                             <p class="mx-5">
                                                 <svg class="fill-current text-wbRed-500 rotate-12 h-8 w-8 mr-2 mb-2 mt-2" width="54"
