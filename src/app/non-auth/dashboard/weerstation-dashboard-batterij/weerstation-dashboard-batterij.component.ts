@@ -93,6 +93,10 @@ export class WeerstationDashboardBatterijComponent implements OnInit {
                 height: 350,
                 type: 'bar'
               },
+              stroke: {
+                width: 2,
+                curve: "smooth"
+              },
               dataLabels: {
                 enabled: false
               },
@@ -190,6 +194,10 @@ export class WeerstationDashboardBatterijComponent implements OnInit {
       this.prechartOptionsBatterij.chart = {
         type: 'line',
         height: 350
+      },
+      this.prechartOptionsBatterij.stroke = {
+        width: 2,
+        curve: "smooth",
       },
       this.prechartOptionsBatterij.fill = {
         type: "gradient",

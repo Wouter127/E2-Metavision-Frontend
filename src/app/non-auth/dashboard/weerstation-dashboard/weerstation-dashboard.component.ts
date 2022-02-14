@@ -31,7 +31,7 @@ export class WeerstationDashboardComponent implements OnInit {
       type: "line"
     },
     stroke: {
-      width: 5,
+      width: 2,
       curve: "smooth"
     },
     dataLabels: {
@@ -83,7 +83,7 @@ export class WeerstationDashboardComponent implements OnInit {
       }
     },
     stroke: {
-      width: 5,
+      width: 2,
       curve: "smooth"
     },
     dataLabels: {
@@ -138,7 +138,7 @@ export class WeerstationDashboardComponent implements OnInit {
       enabled: false
     },
     stroke: {
-      width: 6
+      width: 1
     },
     colors: ['#662E9B'],
     fill: {
@@ -189,7 +189,7 @@ export class WeerstationDashboardComponent implements OnInit {
       enabled: false
     },
     stroke: {
-      width: 3,
+      width: 2,
       curve: "smooth"
     },
     colors: ['#13D8AA'],
