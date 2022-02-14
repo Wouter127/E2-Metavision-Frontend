@@ -185,4 +185,11 @@ export class WeerstationService {
     return this.httpClient.post<any>(environment.API_URI + "/admin/weerstations/otaplannen", formData, { headers: headers });
   }
 
+  annuleerOta(id: number): Observable<Weerstation> {
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json; charset=utf-8');
+
+    return this.httpClient.put<Weerstation>(environment.API_URI + "/admin/weerstations/" + id + "/otaannuleren", { headers: headers });
+  }
+
 }
