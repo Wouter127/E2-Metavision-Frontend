@@ -52,8 +52,6 @@ export class VraagFormComponent implements OnInit {
       result => {
         this.vraag = result;
         this.loading = false;
-        console.log(result);
-        
       },
       error => {
         this.toast.error("Er ging iets mis.  De vraag kan niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false });       
