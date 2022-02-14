@@ -51,10 +51,15 @@
             </div>
             <div  class="col-span-2 lg:col-span-1">
                 <h3 class="md:text-xl font-bold mb-2 text-lg">Organisatie</h3>
-                <p><span class="font-medium mr-1">Naam:</span>{{gebruiker.organisatie.naam}}</p>
-                <p><span class="font-medium mr-1">Adres:</span>{{gebruiker.organisatie.straat + ' ' + gebruiker.organisatie.huisnummer}}{{gebruiker.organisatie.extra ? gebruiker.organisatie.extra : ''}}, {{gebruiker.organisatie.postcode + ' ' + gebruiker.organisatie.stad}}, {{gebruiker.organisatie.land}}</p>
-                <p><span class="font-medium mr-1">#Weerstations:</span>{{gebruiker.organisatie.weerstations.length}}</p>
-                <p><span class="font-medium mr-1">#Gebruikers:</span>{{gebruiker.organisatie.gebruikers.length}}</p>
+                <div *ngIf="gebruiker.organisatie">
+                    <p><span class="font-medium mr-1">Naam:</span>{{gebruiker.organisatie.naam}}</p>
+                    <p><span class="font-medium mr-1">Adres:</span>{{gebruiker.organisatie.straat + ' ' + gebruiker.organisatie.huisnummer}}{{gebruiker.organisatie.extra ? gebruiker.organisatie.extra : ''}}, {{gebruiker.organisatie.postcode + ' ' + gebruiker.organisatie.stad}}, {{gebruiker.organisatie.land}}</p>
+                    <p><span class="font-medium mr-1">#Weerstations:</span>{{gebruiker.organisatie.weerstations.length}}</p>
+                    <p><span class="font-medium mr-1">#Gebruikers:</span>{{gebruiker.organisatie.gebruikers.length}}</p>
+                </div>
+                <div *ngIf="gebruiker.organisatie == null">
+                    <p><span class="font-medium mr-1"></span>U bent geen lid van een organisatie</p>
+                </div>             
             </div>
         </div>
     </div>
