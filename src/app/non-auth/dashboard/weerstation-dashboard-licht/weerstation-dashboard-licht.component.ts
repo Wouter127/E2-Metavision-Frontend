@@ -100,6 +100,10 @@ export class WeerstationDashboardLichtComponent implements OnInit {
               dataLabels: {
                 enabled: false
               },
+              stroke: {
+                width: 2,
+                curve: "smooth"
+              },
               title: {
                 text: 'Infrarood licht',
               },

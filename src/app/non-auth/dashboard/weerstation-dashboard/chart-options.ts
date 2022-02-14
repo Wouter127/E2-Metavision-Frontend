@@ -29,6 +29,7 @@ export interface preChartOptionsTemperatuur {
 export interface preChartOptionsLicht {
     series: ApexAxisChartSeries;
     chart: ApexChart;
+    stroke: ApexStroke;
     dataLabels: ApexDataLabels;
     title: ApexTitleSubtitle;
     noData: ApexNoData;
@@ -40,6 +41,7 @@ export interface preChartOptionsLicht {
 export interface preChartOptionsBatterij {
     series: ApexAxisChartSeries;
     chart: ApexChart;
+    stroke: ApexStroke;
     dataLabels: ApexDataLabels;
     title: ApexTitleSubtitle;
     noData: ApexNoData;
