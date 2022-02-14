@@ -5,21 +5,21 @@
     <div class="relative py-16 bg-gradient-to-b from-wbRed-700 to-wbRed-300 flex justify-center items-center">
     <div>
         <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold leading-10 text-white">Hoe kunnen wij u helpen?</h1>
-        <div class="bg-wbRed-800 rounded relative mt-6 lg:mt-14 py-4 pl-4 flex items-center w-full">
-            <div>
-                <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/faq-3-svg1.svg" alt="search">
-            </div>
-            <input type="text"   placeholder="Zoek op kernwoorden"
-                class=" ml-4 w-full bg-transparent text-base leading-none border-none focus:border-none text-white placeholder-white outline-none">
-        </div>
+        
     </div>
 </div>
+
+<div class="flex row justify-end pt-4 pr-4">
+
+<button (click)="toevoegenVraag()"
+                class="p-2 px-5 bg-transparent border-2 border-wbRed-500 text-wbRed-500 text-md font-bold rounded-lg transition-colors duration-700 transform hover:bg-wbRed-500 hover:text-white mb-2">
+                Vraag toevoegen
+            </button>
+            </div>
 <mat-accordion>
-    <button (click)="toevoegenVraag()"
-    class="p-2 px-5 bg-transparent border-2 border-wbRed-500 text-wbRed-500 text-md font-bold rounded-lg transition-colors duration-700 transform hover:bg-wbRed-500 hover:text-white mb-2">
-    Vraag toevoegen
-</button>
+
     <div class="container mx-auto py-9 flex flex-col items-center justify-center">
+        
         <h3 class="text-4xl font-normal leading-normal mt-0 mb-2 text-wbRed-800">
             Bezoeker
         </h3>
@@ -27,8 +27,12 @@
             <div role="listitem" class="focus:outline-none mb-5" *ngIf="vraag.zichtbaarheid == 'Bezoeker'">
                 <mat-expansion-panel>
                     <mat-expansion-panel-header>
+                        <a class="text-wbRed-500 hover:text-wbRed-700 mt-3 cursor-pointer" (click)="verwijderVraag(vraag.id)"><i class="fa-solid fa-trash-can text-2xl mr-2"></i></a>
+                        <a class="text-wbRed-500 hover:text-wbRed-700 mt-3 cursor-pointer" (click)="wijzigVraag(vraag.id)"><i class="fa-solid fa-pen text-2xl mr-2"></i></a>
                         <mat-panel-title class="text-base font-medium leading-none text-gray-800">
+                            
                             <div class="flex ">
+                               
                                 <!-- Druif logo  -->
                                 <svg class="fill-current text-wbRed-800 rotate-12 h-8 w-8 mr-2 mb-2 mt-2" width="54"
                                     height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"
@@ -44,11 +48,8 @@
                                 </svg>
                                 <div class="ml-4 pb-2 pt-2 mt-2 text-lg">
                                     {{vraag.vraag}}
-                                </div>
-                                <a class="text-indigo-600 hover:text-indigo-900 cursor-pointer ml-1 xl:ml-0" (click)="verwijderVraag(vraag.id)">Verwijder</a>
-                                <a class="text-indigo-600 hover:text-indigo-900 cursor-pointer mr-1 xl:mr-0" (click)="wijzigVraag(vraag.id)">Wijzig</a>
-
-
+                                        
+                                     </div>
 
                             </div>
                         </mat-panel-title>
@@ -56,6 +57,7 @@
                     <p class="text-xs lg:text-sm xl:text-base lg:leading-normal text-gray-600 mt-2 2xl:w-7/12">
                         {{vraag.antwoord}}</p>
                 </mat-expansion-panel>
+
             </div>
 
         </div>
@@ -67,6 +69,8 @@
             <div role="listitem" class="focus:outline-none mb-5" *ngIf="vraag.zichtbaarheid == 'Gebruiker'">
                 <mat-expansion-panel>
                     <mat-expansion-panel-header>
+                        <a class="text-wbRed-500 hover:text-wbRed-700 mt-3 cursor-pointer" (click)="verwijderVraag(vraag.id)"><i class="fa-solid fa-trash-can text-2xl mr-2"></i></a>
+                        <a class="text-wbRed-500 hover:text-wbRed-700 mt-3 cursor-pointer" (click)="wijzigVraag(vraag.id)"><i class="fa-solid fa-pen text-2xl mr-2"></i></a>
                         <mat-panel-title class="text-base font-medium leading-none text-gray-800">
                             <div class="flex ">
                                 <!-- Druif logo  -->
@@ -84,7 +88,7 @@
                                 </svg>
                                 <div class="ml-4 pb-2 pt-2 mt-2 text-lg">
                                     {{vraag.vraag}}
-                                </div>
+                                     </div>
 
                             </div>
                         </mat-panel-title>
@@ -102,6 +106,8 @@
             <div role="listitem" class="focus:outline-none mb-5" *ngIf="vraag.zichtbaarheid == 'Organisatiebeheerder'">
                 <mat-expansion-panel>
                     <mat-expansion-panel-header>
+                        <a class="text-wbRed-500 hover:text-wbRed-700 mt-3 cursor-pointer" (click)="verwijderVraag(vraag.id)"><i class="fa-solid fa-trash-can text-2xl mr-2"></i></a>
+                        <a class="text-wbRed-500 hover:text-wbRed-700 mt-3 cursor-pointer" (click)="wijzigVraag(vraag.id)"><i class="fa-solid fa-pen text-2xl mr-2"></i></a>
                         <mat-panel-title class="text-base font-medium leading-none text-gray-800">
                             <div class="flex ">
                                 <!-- Druif logo  -->
@@ -119,7 +125,7 @@
                                 </svg>
                                 <div class="ml-4 pb-2 pt-2 mt-2 text-lg">
                                     {{vraag.vraag}}
-                                </div>
+                                     </div>
 
                             </div>
                         </mat-panel-title>
@@ -137,6 +143,8 @@
             <div role="listitem" class="focus:outline-none mb-5" *ngIf="vraag.zichtbaarheid == 'Admin'">
                 <mat-expansion-panel>
                     <mat-expansion-panel-header>
+                        <a class="text-wbRed-500 hover:text-wbRed-700 mt-3 cursor-pointer" (click)="verwijderVraag(vraag.id)"><i class="fa-solid fa-trash-can text-2xl mr-2"></i></a>
+                        <a class="text-wbRed-500 hover:text-wbRed-700 mt-3 cursor-pointer" (click)="wijzigVraag(vraag.id)"><i class="fa-solid fa-pen text-2xl mr-2"></i></a>
                         <mat-panel-title class="text-base font-medium leading-none text-gray-800">
                             <div class="flex ">
                                 <!-- Druif logo  -->
@@ -154,7 +162,7 @@
                                 </svg>
                                 <div class="ml-4 pb-2 pt-2 mt-2 text-lg">
                                     {{vraag.vraag}}
-                                </div>
+                                    </div>
 
                             </div>
                         </mat-panel-title>
