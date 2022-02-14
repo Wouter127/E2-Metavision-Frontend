@@ -95,15 +95,13 @@ export class GebruikersListComponent implements OnInit {
   }
 
   getGebruikers() {
-    // TODO: if logged in user in admin get all users
-    // TODO: if logged in user is organisatie beheerder get users of organisation
     this.gebruikers$ = this.adminGebruikerService.getGebruikers().subscribe(
       result => {
         this.gebruikers = result;
         this.loading = false;       
       },
       error => {
-        this.toast.error("Er ging iets mis.  De gebruiker kan niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false });
+        this.toast.error("Er ging iets mis.  De gebruikers kunnen niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false });
       }
     );
   }
