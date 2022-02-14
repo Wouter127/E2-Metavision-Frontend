@@ -1,3 +1,6 @@
+<app-vraag-form></app-vraag-form>
+
+
 <div class="mb-32">
     <div class="relative py-16 bg-gradient-to-b from-wbRed-700 to-wbRed-300 flex justify-center items-center">
     <div>
@@ -6,7 +9,7 @@
             <div>
                 <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/faq-3-svg1.svg" alt="search">
             </div>
-            <input type="text" [(ngModel)]="kernwoord" (input)='Search()' placeholder="Zoek op kernwoorden"
+            <input type="text"   placeholder="Zoek op kernwoorden"
                 class=" ml-4 w-full bg-transparent text-base leading-none border-none focus:border-none text-white placeholder-white outline-none">
         </div>
     </div>
@@ -17,8 +20,8 @@
         <h3 class="text-4xl font-normal leading-normal mt-0 mb-2 text-wbRed-800">
             Bezoeker
         </h3>
-        <div role="list" class="w-11/12 md:w-2/3 grid grid-cols-1 " *ngFor="let vraag of bezoeker_vragen">
-            <div role="listitem" class="focus:outline-none mb-5" *ngIf="vraag.auth == 'bezoeker'">
+        <div role="list" class="w-11/12 md:w-2/3 grid grid-cols-1 " *ngFor="let vraag of vragen">
+            <div role="listitem" class="focus:outline-none mb-5" *ngIf="vraag.zichtbaarheid == 'Bezoeker'">
                 <mat-expansion-panel>
                     <mat-expansion-panel-header>
                         <mat-panel-title class="text-base font-medium leading-none text-gray-800">
@@ -39,6 +42,10 @@
                                 <div class="ml-4 pb-2 pt-2 mt-2 text-lg">
                                     {{vraag.vraag}}
                                 </div>
+                                <a class="text-indigo-600 hover:text-indigo-900 cursor-pointer ml-1 xl:ml-0" (click)="verwijderVraag(vraag.id)">Verwijder</a>
+                                <a class="text-indigo-600 hover:text-indigo-900 cursor-pointer mr-1 xl:mr-0" (click)="wijzigVraag(vraag.id)">Wijzig</a>
+
+
 
                             </div>
                         </mat-panel-title>
@@ -53,8 +60,8 @@
         <h3 class="text-4xl font-normal leading-normal mt-0 mb-2 text-wbRed-800">
             Gebruiker
         </h3>
-        <div role="list" class="w-11/12 md:w-2/3 grid grid-cols-1" *ngFor="let vraag of bezoeker_vragen">
-            <div role="listitem" class="focus:outline-none mb-5" *ngIf="vraag.auth == 'gebruiker'">
+        <div role="list" class="w-11/12 md:w-2/3 grid grid-cols-1" *ngFor="let vraag of vragen">
+            <div role="listitem" class="focus:outline-none mb-5" *ngIf="vraag.zichtbaarheid == 'Gebruiker'">
                 <mat-expansion-panel>
                     <mat-expansion-panel-header>
                         <mat-panel-title class="text-base font-medium leading-none text-gray-800">
@@ -88,8 +95,8 @@
         <h3 class="text-4xl font-normal leading-normal mt-0 mb-2 text-wbRed-800">
             organisatiebeheerder
         </h3>
-        <div role="list" class="w-11/12 md:w-2/3 grid grid-cols-1" *ngFor="let vraag of bezoeker_vragen">
-            <div role="listitem" class="focus:outline-none mb-5" *ngIf="vraag.auth == 'organisatiebeheerder'">
+        <div role="list" class="w-11/12 md:w-2/3 grid grid-cols-1" *ngFor="let vraag of vragen">
+            <div role="listitem" class="focus:outline-none mb-5" *ngIf="vraag.zichtbaarheid == 'Organisatiebeheerder'">
                 <mat-expansion-panel>
                     <mat-expansion-panel-header>
                         <mat-panel-title class="text-base font-medium leading-none text-gray-800">
@@ -123,8 +130,8 @@
         <h3 class="text-4xl font-normal leading-normal mt-0 mb-2 text-wbRed-800">
             Super admin
         </h3>
-        <div role="list" class="w-11/12 md:w-2/3 grid grid-cols-1" *ngFor="let vraag of bezoeker_vragen">
-            <div role="listitem" class="focus:outline-none mb-5" *ngIf="vraag.auth == 'admin'">
+        <div role="list" class="w-11/12 md:w-2/3 grid grid-cols-1" *ngFor="let vraag of vragen">
+            <div role="listitem" class="focus:outline-none mb-5" *ngIf="vraag.zichtbaarheid == 'Admin'">
                 <mat-expansion-panel>
                     <mat-expansion-panel-header>
                         <mat-panel-title class="text-base font-medium leading-none text-gray-800">

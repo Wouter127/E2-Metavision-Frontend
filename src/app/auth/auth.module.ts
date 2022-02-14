@@ -10,6 +10,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { WeerstationsComponent } from './weerstations/weerstations.component';
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { NgToggleModule } from 'ng-toggle-button';
+import { VraagFormComponent } from './vraag-form/vraag-form.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { NgToggleModule } from 'ng-toggle-button';
     DashboardComponent,
     HelpComponent,
     WeerstationsComponent,
+    VraagFormComponent,
   ],
   imports: [
     CommonModule,
@@ -34,6 +36,7 @@ import { NgToggleModule } from 'ng-toggle-button';
     DashboardComponent,
     HelpComponent,
     WeerstationsComponent,
+    VraagFormComponent
   ]
 })
 export class AuthModule { }
