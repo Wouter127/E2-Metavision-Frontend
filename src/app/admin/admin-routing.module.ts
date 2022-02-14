@@ -16,7 +16,6 @@ const routes: Routes = [
     { path: 'waardes/:id', component: WeerstationsAlarmSchakelwaardesListComponent },
     { path: 'sensoren', component: SensorListComponent },
     { path: 'email', component: EmailListComponent },
-    { path: 'email', component: EmailListComponent },
     { path: 'ota-list', component: OtaListComponent },
     { path: 'ota-plannen', component: OtaPlannenComponent }
 ];
