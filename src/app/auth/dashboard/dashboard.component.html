@@ -1,1 +1,110 @@
-<p>dashboard works!</p>
+
+                <div class="container flex justify-center mx-auto pt-16">
+                    <div>
+                        <p class="text-gray-500 text-lg text-center font-normal pb-3">U kan direct aan de slag door op het menu linksboven te klikken</p>
+                        <h1 class="xl:text-4xl text-3xl text-center text-gray-800 font-extrabold pb-6 sm:w-4/6 w-5/6 mx-auto">Welkom <span class="text-wbRed-500">{{gebruiker!.voornaam}}</span></h1>
+                    </div>
+                </div>
+                <div class="w-full bg-gray-100 px-10 pt-10">
+                    <div class="container mx-auto">
+                        <div role="list" aria-label="Behind the scenes People " class="lg:flex md:flex sm:flex items-center xl:justify-between flex-wrap md:justify-around sm:justify-around lg:justify-around">
+                            <div role="listitem" class="xl:w-1/3 sm:w-3/4 md:w-2/5 relative mt-16 mb-32 sm:mb-24 xl:max-w-sm lg:w-2/5">
+                                <div class="rounded overflow-hidden shadow-md bg-white">
+                                    <div class="absolute -mt-20 w-full flex justify-center">
+                                        <div class="h-32 w-32">
+                                            <img src="assets/images/weerstation.png" alt="Display Picture of Andres Berlin" role="img" class="rounded-full object-cover h-full w-full shadow-md" />
+                                        </div>
+                                    </div>
+                                    <div class="px-6 mt-16">
+                                        <h1 class="font-bold text-3xl text-center mb-1">Publieke weerstations</h1>
+                                        <a routerLink="/weerstations/publiek" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"><p class="text-wbRed-500 text-sm text-center font-bold hover:underline cursor-pointer">Ga<i class="ml-2 fas fa-arrow-right"></i></p></a>
+                                    
+                                        <p class="text-center text-gray-600 text-base pt-3 font-normal">Alle weerstations die organisaties publiek hebben gemaakt!</p>
+                                        <div class="w-full flex justify-center pt-5 pb-5">
+                                            
+                                            <p class="mx-5">
+                                                    <svg class="fill-current text-wbRed-500 rotate-12 h-8 w-8 mr-2 mb-2 mt-2" width="54"
+                                                    height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 259.96 367">
+                                                    <circle cx="38.23" cy="152.92" r="38.23" />
+                                                    <circle cx="84.1" cy="240.84" r="38.23" />
+                                                    <circle cx="175.85" cy="240.84" r="38.23" />
+                                                    <circle cx="129.98" cy="328.77" r="38.23" />
+                                                    <circle cx="129.98" cy="152.92" r="38.23" />
+                                                    <circle cx="221.73" cy="152.92" r="38.23" />
+                                                    <path d="M192.33,116.4s0-72.64,99.4-99.4V30.91s-84.11,20.5-84.11,89.31Z"
+                                                        transform="translate(-70 -17)" />
+                                                </svg> 
+                                            </p>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="listitem" class="xl:w-1/3 lg:mx-3 sm:w-3/4 md:w-2/5 relative mt-16 mb-32 sm:mb-24 xl:max-w-sm lg:w-2/5">
+                                <div class="rounded overflow-hidden shadow-md bg-white">
+                                    <div class="absolute -mt-20 w-full flex justify-center">
+                                        <div class="h-32 w-32">
+                                            <img src="assets/images/help.png" alt="Display Picture of Silene Tokyo" role="img" class="rounded-full object-cover h-full w-full shadow-md" />
+                                        </div>
+                                    </div>
+                                    <div class="px-6 mt-16">
+                                        <h1 class="font-bold text-3xl text-center mb-1">Help</h1>
+                                        <a routerLink="/auth/help" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"><p class="text-wbRed-500 text-sm text-center font-bold hover:underline cursor-pointer">Ga<i class="ml-2 fas fa-arrow-right"></i></p></a>
+                                        <p class="text-center text-gray-600 text-base pt-3 font-normal">Hulp nodig bij iets? Misschien vind je het wel tussen onze veel gestelde vragen!</p>
+                                        <div class="w-full flex justify-center pt-5 pb-5">
+                                            <p class="mx-5">
+                                                <svg class="fill-current text-wbRed-500 rotate-12 h-8 w-8 mr-2 mb-2 mt-2" width="54"
+                                                height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 259.96 367">
+                                                <circle cx="38.23" cy="152.92" r="38.23" />
+                                                <circle cx="84.1" cy="240.84" r="38.23" />
+                                                <circle cx="175.85" cy="240.84" r="38.23" />
+                                                <circle cx="129.98" cy="328.77" r="38.23" />
+                                                <circle cx="129.98" cy="152.92" r="38.23" />
+                                                <circle cx="221.73" cy="152.92" r="38.23" />
+                                                <path d="M192.33,116.4s0-72.64,99.4-99.4V30.91s-84.11,20.5-84.11,89.31Z"
+                                                    transform="translate(-70 -17)" />
+                                            </svg> 
+                                        </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="listitem" class="xl:w-1/3 sm:w-3/4 md:w-2/5 relative mt-16 mb-32 sm:mb-24 xl:max-w-sm lg:w-2/5">
+                                <div class="rounded overflow-hidden shadow-md bg-white">
+                                    <div class="absolute -mt-20 w-full flex justify-center">
+                                        <div class="h-32 w-32">
+                                            <img src="assets/images/profiel.png" alt="Display Picture of Johnson Stone" role="img" class="rounded-full object-cover h-full w-full shadow-md" />
+                                        </div>
+                                    </div>
+                                    <div class="px-6 mt-16">
+                                        <h1 class="font-bold text-3xl text-center mb-1">Mijn profiel</h1>
+                                        <a routerLink="/auth/account" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"><p class="text-wbRed-500 text-sm text-center font-bold hover:underline cursor-pointer">Ga<i class="ml-2 fas fa-arrow-right"></i></p></a>
+                                        <p class="text-center text-gray-600 text-base pt-3 font-normal">Bekijk uw organisatieinfo en verander uw profiel informatie!</p>
+                                        <div class="w-full flex justify-center pt-5 pb-5">
+                                            <p class="mx-5">
+                                                <svg class="fill-current text-wbRed-500 rotate-12 h-8 w-8 mr-2 mb-2 mt-2" width="54"
+                                                height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 259.96 367">
+                                                <circle cx="38.23" cy="152.92" r="38.23" />
+                                                <circle cx="84.1" cy="240.84" r="38.23" />
+                                                <circle cx="175.85" cy="240.84" r="38.23" />
+                                                <circle cx="129.98" cy="328.77" r="38.23" />
+                                                <circle cx="129.98" cy="152.92" r="38.23" />
+                                                <circle cx="221.73" cy="152.92" r="38.23" />
+                                                <path d="M192.33,116.4s0-72.64,99.4-99.4V30.91s-84.11,20.5-84.11,89.31Z"
+                                                    transform="translate(-70 -17)" />
+                                            </svg> 
+                                        </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+            
