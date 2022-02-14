@@ -12,7 +12,7 @@ export class VraagFormComponent implements OnInit {
   @Input() title!: string;
   @Output() output = new EventEmitter();
 
-  vraag: any;
+  vraag: any = {};
   vraag$: Subscription = new Subscription();
 
   loading: boolean = true;
@@ -74,6 +74,16 @@ export class VraagFormComponent implements OnInit {
     this.isEdit = false;
   }
 
+  vraagChangeHandler(event: any) {
+      this.vraag.waarde = parseInt(event.target.value);
+      console.log(this.vraag);
+      
+  }
+
+  antwoordChangeHandler(event: any) {
+    this.vraag.antwoord = parseInt(event.target.value);
+}
+
   onSubmit() {
     if (this.isEdit) {
     this.putVraag$ = this.helpService.putVraag(this.vraag.id, this.vraag).pipe(
@@ -96,12 +106,15 @@ export class VraagFormComponent implements OnInit {
     ).subscribe(
       result => {
         this.showModal = false;
+        this.isEdit = false;
 
         this.output.next(); // Send event to parent component.
       }
     );
     }
     if (this.isAdd) {
+      console.log("vraag", this.vraag);
+      
       this.postVraag$ = this.helpService.postVraag(this.vraag).pipe(
         this.toast.observe({
           loading: { content: 'Nieuw...', position: 'bottom-right' },
@@ -122,6 +135,7 @@ export class VraagFormComponent implements OnInit {
       ).subscribe(
         result => {
           this.showModal = false;
+          this.isAdd = false;
   
           this.output.next(); // Send event to parent component.
         }
