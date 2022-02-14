@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthStateService } from 'src/app/security/auth-state.service';
-import { AuthService } from 'src/app/security/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +10,7 @@ export class HomeComponent implements OnInit {
 
   isLoggedIn: boolean = false;
 
-  constructor(private authService: AuthService, private authStateService: AuthStateService) { }
+  constructor(private authStateService: AuthStateService) { }
 
   ngOnInit(): void {
     this.authStateService.gebruikerAuthState.subscribe(
