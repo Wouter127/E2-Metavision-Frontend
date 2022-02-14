@@ -13,12 +13,12 @@
             </div>
         </div>
         <div class="flex justify-center">
-            <div class="rounded-lg py-5 px-12 mr-2 mb-2 bg-gray-300 animate-pulse"></div>
-            <div class="rounded-lg py-5 px-12 mr-2 mb-2 bg-gray-300 animate-pulse"></div>
-            <div class="rounded-lg py-5 px-12 mr-2 mb-2 bg-gray-300 animate-pulse"></div>
+            <div class="rounded-lg py-5 px-16 mr-2 mb-2 bg-gray-300 animate-pulse"></div>
+            <div class="rounded-lg py-5 px-16 mr-2 mb-2 bg-gray-300 animate-pulse"></div>
+            <div class="rounded-lg py-5 px-16 mr-2 mb-2 bg-gray-300 animate-pulse"></div>
         </div>
         <div class="mr-4 ml-4 p-4 mb-4 text-9xl border grid justify-items-center content-center">
-            <i class="fa-solid fa-chart-area fa-2x text-gray-300 animate-pulse m-auto p-auto"></i>
+            <i class="fa-solid fa-chart-column fa-2x text-gray-300 animate-pulse m-auto p-auto"></i>
         </div>
     </div>
     <div *ngIf="!loading">
@@ -36,9 +36,9 @@
                     <i class="mr-2 fas fa-thermometer-three-quarters"></i>
                     Dashboard temperatuur
                 </button>
-                <button routerLink="/weerstation/{{weerstation.id}}/dashboard/luchtvochtigheid"
-                    routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-                    class="flex-1 text-gray-700 bg-white border border-gray-700 transition-colors duration-700 transform hover:bg-wbRed-400 hover:text-white dark:hover:text-white focus:ring-4 focus:ring-wbRed-500 font-medium rounded-lg text-sm p-2.5 mr-2 mb-2 dark:bg-gray-50 dark:text-dark dark:border-wbRed-500 dark:hover:bg-wbRed-400 dark:hover:border-wbRed-500 dark:focus:ring-wbRed-500">
+                <button routerLink="/weerstation/{{weerstation.id}}/dashboard/luchtvochtigheid" routerLinkActive="active" 
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    class="flex-1 hover:text-gray-700 hover:bg-white border border-gray-700 transition-colors duration-700 transform bg-wbRed-400 text-white dark:text-white focus:ring-4 focus:ring-wbRed-500 font-medium rounded-lg text-sm p-2.5 mr-2 mb-2 dark:hover:bg-gray-50 dark:text-dark dark:hover:border-wbRed-500 dark:bg-wbRed-400 dark:border-wbRed-500 dark:focus:ring-wbRed-500">
                     <i class="mr-2 fas fa-tint"></i>
                     Dashboard luchtvochtigheid
                 </button>
@@ -46,7 +46,7 @@
             <div class="flex-1 flex flex-col sm:flex-row">
                 <button routerLink="/weerstation/{{weerstation.id}}/dashboard/licht" routerLinkActive="active"
                     [routerLinkActiveOptions]="{ exact: true }"
-                    class="flex-1 hover:text-gray-700 hover:bg-white border border-gray-700 transition-colors duration-700 transform bg-wbRed-400 text-white dark:text-white focus:ring-4 focus:ring-wbRed-500 font-medium rounded-lg text-sm p-2.5 mr-2 mb-2 dark:hover:bg-gray-50 dark:text-dark dark:hover:border-wbRed-500 dark:bg-wbRed-400 dark:border-wbRed-500 dark:focus:ring-wbRed-500">
+                    class="flex-1 text-gray-700 bg-white border border-gray-700 transition-colors duration-700 transform hover:bg-wbRed-400 hover:text-white dark:hover:text-white focus:ring-4 focus:ring-wbRed-500 font-medium rounded-lg text-sm p-2.5 mr-2 mb-2 dark:bg-gray-50 dark:text-dark dark:border-wbRed-500 dark:hover:bg-wbRed-400 dark:hover:border-wbRed-500 dark:focus:ring-wbRed-500">
                     <i class="mr-2  fas fa-lightbulb"></i>
                     Dashboard licht
                 </button>
@@ -67,48 +67,53 @@
         <div class="text-3xl">
             {{weerstation.naam}}
         </div>
-        <div class="mt-4">
-            <label class="p-4" for="beginDate">Start datum:</label>
-            <input [(ngModel)]="begin" type="date" id="begin" name="begin" value="{{begin}}" min="2016-01-01"
-                max="2024-12-31">
-            <label class="p-4" for="eindDate">Eind datum:</label>
-            <input [(ngModel)]="eind" id="eind" type="date" name="eind" value="{{eind}}" min="2016-01-01"
-                max="2024-12-31">
-            <button (click)="updateDate()" type="submit"
-                class="
-            ml-5 text-gray-700 bg-white border border-gray-700 transition-colors duration-700 transform hover:bg-wbRed-400 hover:text-white dark:hover:text-white focus:ring-4 focus:ring-wbRed-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-gray-50 dark:text-dark dark:border-wbRed-500 dark:hover:bg-wbRed-400 dark:hover:border-wbRed-500 dark:focus:ring-wbRed-500">
-                Pas toe
-            </button>
+        <div class="mt-4 flex flex-col lg:flex-row">
+            <div class="flex flex-col sm:flex-row">
+                <label class="sm:p-4" for="beginDate">Start datum:</label>
+                <input [(ngModel)]="begin" type="date" id="begin" name="begin" value="{{begin}}" min="2016-01-01" max="2024-12-31">
+            </div>
+            <div class="flex flex-col sm:flex-row">
+                <label class="sm:p-4" for="eindDate">Eind datum:</label>
+                <input [(ngModel)]="eind" id="eind" type="date" name="eind" value="{{eind}}" min="2016-01-01" max="2024-12-31" class="sm:ml-1">
+            </div>
+            <div class="flex justify-center sm:justify-start">
+                <button (click)="updateDate()" type="submit"
+                    class="w-fit m-2 ml-5 text-gray-700 bg-white border border-gray-700 transition-colors duration-700 transform hover:bg-wbRed-400 hover:text-white dark:hover:text-white focus:ring-4 focus:ring-wbRed-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-50 dark:text-dark dark:border-wbRed-500 dark:hover:bg-wbRed-400 dark:hover:border-wbRed-500 dark:focus:ring-wbRed-500">
+                    Pas datum toe
+                </button>
+            </div>
         </div>
-        <div class="text-center mt-5">
-            <button (click)="updateInfraroodlicht()"
-                class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-dark focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800">
+        <div class="text-center mt-3">
+            <button (click)="updateRh()"
+                class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-dark focus:ring-4 focus:ring-cyan-200 dark:focus:ring-cyan-800">
                 <span
                     class="relative px-5 py-2.5 transition-colors duration-700 transform bg-white dark:bg-gray-50 rounded-md group-hover:bg-opacity-0">
-                    Infrarood licht
+                    RH waardes (luchtvochtigheid)
                 </span>
             </button>
-            <button (click)="updateVisueellicht()"
-                class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-dark focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800">
+            <button (click)="updateLw1()"
+                class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-dark focus:ring-4 focus:ring-cyan-200 dark:focus:ring-cyan-800">
                 <span
                     class="relative px-5 py-2.5 transition-colors duration-700 transform bg-white dark:bg-gray-50 rounded-md group-hover:bg-opacity-0">
-                    Visueel licht
+                    LW1 bladnat data
                 </span>
             </button>
-            <button (click)="updateLuxwaardes()"
-                class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-dark focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800">
+            <button (click)="updateLw2()"
+                class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-dark focus:ring-4 focus:ring-cyan-200 dark:focus:ring-cyan-800">
                 <span
                     class="relative px-5 py-2.5 transition-colors duration-700 transform bg-white dark:bg-gray-50 rounded-md group-hover:bg-opacity-0">
-                    Lux waardes
+                    LW2 bladnat data
                 </span>
             </button>
         </div>
         <div class="mr-4 ml-4 p-4 mb-4 text-sm text-gray-700 bg-gray-50 rounded-lg dark:bg-gray-50 dark:text-gray-300">
             <div>
-                <apx-chart [series]="prechartOptionsLicht.series" [chart]="prechartOptionsLicht.chart"
-                    [dataLabels]="prechartOptionsLicht.dataLabels" [title]="prechartOptionsLicht.title"
-                    [noData]="prechartOptionsLicht.noData" [fill]="prechartOptionsLicht.fill"
-                    [xaxis]="prechartOptionsLicht.xaxis" [yaxis]="prechartOptionsLicht.yaxis"></apx-chart>
+                <apx-chart [series]="prechartOptionsLuchtvochtigheid.series"
+                    [chart]="prechartOptionsLuchtvochtigheid.chart"
+                    [dataLabels]="prechartOptionsLuchtvochtigheid.dataLabels"
+                    [title]="prechartOptionsLuchtvochtigheid.title" [noData]="prechartOptionsLuchtvochtigheid.noData"
+                    [fill]="prechartOptionsLuchtvochtigheid.fill" [xaxis]="prechartOptionsLuchtvochtigheid.xaxis"
+                    [yaxis]="prechartOptionsLuchtvochtigheid.yaxis"></apx-chart>
             </div>
         </div>
     </div>

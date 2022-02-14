@@ -11,7 +11,7 @@
       <button *ngIf="gebruiker" type="button" mat-icon-button [matMenuTriggerFor]="menu"
         class="inline-flex justify-center text-sm px-4 py-2 border rounded text-white border-white hover:border-transparent hover:text-wbRed-500 hover:bg-white"
         aria-expanded="true" aria-haspopup="true">{{gebruiker.voornaam}}
-        <ng-template [ngIf]="gebruiker.organisatieId != null">({{gebruiker.organisatie?.naam}})</ng-template>
+        <ng-template [ngIf]="gebruiker.organisatieId != null"><span class="hidden sm:block">({{gebruiker.organisatie?.naam}})</span></ng-template>
         <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
           aria-hidden="true">
           <path fill-rule="evenodd"
@@ -23,7 +23,6 @@
         <div mat-menu-item href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
           role="menuitem" routerLink="auth/account" routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }" (click)="drawer.close()">Account
-          info
         </div>
         <div mat-menu-item href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
 
@@ -102,7 +101,19 @@
             [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4" (click)="drawer.close()">
             Alle organisaties
           </a>
-          <a *ngIf="gebruiker?.isAdmin" routerLink="admin/ota" routerLinkActive="active"
+          <a *ngIf="gebruiker?.isAdmin" routerLink="admin/sensoren" routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4" (click)="drawer.close()">
+            Sensoren beheren
+          </a>
+          <a *ngIf="gebruiker?.isAdmin" routerLink="admin/email" routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4" (click)="drawer.close()">
+            Emails beheren
+          </a>
+          <a *ngIf="gebruiker?.isAdmin" routerLink="admin/ota-list" routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4" (click)="drawer.close()">
+            OTA updates beheren
+          </a>
+          <a *ngIf="gebruiker?.isAdmin" routerLink="admin/ota-plannen" routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4" (click)="drawer.close()">
             OTA update plannen
           </a>
@@ -124,7 +135,6 @@
               <div mat-menu-item href="#"
                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem"
                 routerLink="auth/account" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Account
-                info
               </div>
               <div mat-menu-item href="#"
                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem"

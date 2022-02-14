@@ -6,7 +6,7 @@
             class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
             <!--header-->
             <div class="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
-                <h3 class="text-2xl font-semibold">
+                <h3 class="text-3xl font-semibold">
                     {{ title }}
                 </h3>
                 <button
@@ -25,12 +25,7 @@
                     <div class="bg-white">
                         <div class="grid grid-cols-6 gap-6">
                             <div class="col-span-6">
-                                <label class="block font-medium text-gray-700">Naam</label>
-                                <div class="w-12/12 bg-gray-300 h-8 rounded-md animate-pulse"></div>
-                            </div>
-
-                            <div class="col-span-6">
-                                <label class="block font-medium text-gray-700">Omschrijving</label>
+                                <label class="block font-medium text-gray-700">Tekst</label>
                                 <div class="w-12/12 h-40 bg-gray-300 h-8 rounded-md animate-pulse"></div>
                             </div>
                         </div>
@@ -43,35 +38,20 @@
                 <form *ngIf="!loading" (ngSubmit)="onSubmit()" #sensorForm="ngForm">
                     <div class="bg-white">
                         <div class="grid grid-cols-6 gap-6">
-
                             <div class="col-span-6">
-                                <label for="naam" class="block font-medium text-gray-700">Naam</label>
-                                <input type="text" name="naam" id="naam" [(ngModel)]="sensor.naam" #naam="ngModel"
-                                    required minlength="2"
-                                    class="mt-1 p-2 focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 focus:border-wbRed-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md invalid:border-red-500 invalid:ring-red-500">
-                                <div *ngIf="naam.invalid && (naam.dirty || naam.touched)"
-                                    class="text-xs text-red-500 font-medium">
-                                    <span *ngIf="naam.errors?.['required']">
-                                        Naam is veplicht.
-                                    </span>
-                                    <span *ngIf="naam.errors?.['minlength']">
-                                        Naam moet minstens 2 karakters bevatten.
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div class="col-span-6">
-                                <label for="omschrijving" class="block font-medium text-gray-700">Omschrijving</label>
-                                <textarea rows="5" name="omschrijving" id="omschrijving" [(ngModel)]="sensor.omschrijving" placeholder="Omschrijving, Eenheid, Betekenis waarden, ..."
-                                    #omschrijving="ngModel" required minlength="2"
+                                <label for="tekst" class="block font-medium text-gray-700">Tekst</label>
+                                <textarea rows="5" name="tekst" id="tekst"
+                                    [(ngModel)]="email.tekst"
+                                    placeholder="Tekst die in de email voorkomt" #tekst="ngModel"
+                                    required minlength="10"
                                     class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 focus:border-wbRed-500 invalid:border-red-500 invalid:ring-red-500"></textarea>
-                                <div *ngIf="omschrijving.invalid && (omschrijving.dirty || omschrijving.touched)"
+                                <div *ngIf="tekst.invalid && (tekst.dirty || tekst.touched)"
                                     class="text-xs text-red-500 font-medium">
-                                    <span *ngIf="omschrijving.errors?.['required']">
-                                        Omschrijving is veplicht.
+                                    <span *ngIf="tekst.errors?.['required']">
+                                        Tekst is veplicht.
                                     </span>
-                                    <span *ngIf="omschrijving.errors?.['minlength']">
-                                        Omschrijving moet minstens 2 karakters bevatten.
+                                    <span *ngIf="tekst.errors?.['minlength']">
+                                        Tekst moet minstens 10 karakters bevatten.
                                     </span>
                                 </div>
                             </div>

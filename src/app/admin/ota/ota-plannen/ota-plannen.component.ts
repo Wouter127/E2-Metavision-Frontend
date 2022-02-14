@@ -6,11 +6,11 @@ import { OrganisatieService } from 'src/app/services/organisatie.service';
 import { WeerstationService } from 'src/app/services/weerstation.service';
 
 @Component({
-  selector: 'app-ota',
-  templateUrl: './ota.component.html',
-  styleUrls: ['./ota.component.scss']
+  selector: 'app-ota-plannen',
+  templateUrl: './ota-plannen.component.html',
+  styleUrls: ['./ota-plannen.component.scss']
 })
-export class OtaComponent implements OnInit {
+export class OtaPlannenComponent implements OnInit {
 
   loading: boolean = true;
 
@@ -20,7 +20,7 @@ export class OtaComponent implements OnInit {
   organisaties$: Subscription = new Subscription();
 
   weerstationsZonderOrganisatieCheckbox: boolean = false;
-  
+
   weerstationsZonderOrganisatie: any[] = [];
   weerstationsZonderOrganisatie$: Subscription = new Subscription();
 
@@ -28,14 +28,14 @@ export class OtaComponent implements OnInit {
 
   file: any;
   vandaag: Date = new Date();
-  vanafDatum: string;  
-  vanafTijd: any;  
+  vanafDatum: string;
+  vanafTijd: any;
 
   formData: FormData = new FormData();
 
-  constructor(private weerstationService: WeerstationService, private organisatieService: OrganisatieService, private toast: HotToastService, private dialog: DialogService) { 
+  constructor(private weerstationService: WeerstationService, private organisatieService: OrganisatieService, private toast: HotToastService, private dialog: DialogService) {
     this.vanafDatum = this.vandaag.toISOString().split('T')[0];
-    this.vanafTijd = this.vandaag.toLocaleTimeString().substring(0,5);
+    this.vanafTijd = this.vandaag.toLocaleTimeString().substring(0, 5);
 
     // Reverse the order of which the toasts are displayed
     this.toast.defaultConfig = {
@@ -61,7 +61,7 @@ export class OtaComponent implements OnInit {
 
   allWeerstations(event: any): void {
     let checked = event.target.checked;
-    
+
     this.organisaties.map((o: any) => { o.isChecked = checked; o.weerstations.map((w: any) => { w.isChecked = checked; }) });
     this.weerstationsZonderOrganisatieCheckbox = checked;
     this.weerstationsZonderOrganisatie.map((w: any) => { w.isChecked = checked; });
@@ -79,7 +79,7 @@ export class OtaComponent implements OnInit {
   organisatieListItem(event: any): void {
     let id = event.target.value;
     let checked = event.target.checked;
-    
+
     // Check / Uncheck all the weerstations of the selected organisation
     this.organisaties.find((o: any) => o.id == id).weerstations.map((w: any) => w.isChecked = checked);
 
@@ -114,7 +114,7 @@ export class OtaComponent implements OnInit {
 
     if (checked === false) {
       // Uncheck organisatie checkbox
-      this.organisaties.find((o: any) => o.id === organisatieId).isChecked = checked;  
+      this.organisaties.find((o: any) => o.id === organisatieId).isChecked = checked;
     }
 
     if (checked === true) {
@@ -122,8 +122,8 @@ export class OtaComponent implements OnInit {
       let totalWeerstations = this.organisaties.find((o: any) => o.id === organisatieId).weerstations.length;
       let counter1 = 0;
 
-      this.organisaties.find((o: any) => o.id === organisatieId).weerstations.map((w: any) => {if (w.isChecked === true) {counter1++;}});
-      
+      this.organisaties.find((o: any) => o.id === organisatieId).weerstations.map((w: any) => { if (w.isChecked === true) { counter1++; } });
+
       if (totalWeerstations === counter1) {
         this.organisaties.find((o: any) => o.id === organisatieId).isChecked = checked;
       }
@@ -214,7 +214,7 @@ export class OtaComponent implements OnInit {
         weerstationsMetExtraProp = weerstationsMetExtraProp.map(w => ({ ...w, isChecked: false }));
 
         this.weerstationsZonderOrganisatie = weerstationsMetExtraProp;
-        this.loading = false;        
+        this.loading = false;
       },
       error => {
         this.toast.error("Er ging iets mis.  De weerstations zonder organisatie kunnen niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false });
@@ -222,5 +222,4 @@ export class OtaComponent implements OnInit {
       }
     );
   }
-
 }

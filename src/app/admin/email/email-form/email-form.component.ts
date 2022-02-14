@@ -1,27 +1,27 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { HotToastService } from '@ngneat/hot-toast';
 import { Subscription } from 'rxjs';
-import { Sensor } from 'src/app/interfaces/Sensor';
-import { SensorService } from 'src/app/services/sensor.service';
+import { Email } from 'src/app/interfaces/Email';
+import { EmailService } from 'src/app/services/email.service';
 
 @Component({
-  selector: 'app-sensor-form',
-  templateUrl: './sensor-form.component.html',
-  styleUrls: ['./sensor-form.component.scss']
+  selector: 'app-email-form',
+  templateUrl: './email-form.component.html',
+  styleUrls: ['./email-form.component.scss']
 })
-export class SensorFormComponent implements OnInit {
+export class EmailFormComponent implements OnInit {
   @Input() title!: string;
   @Output() output = new EventEmitter();
 
   loading: boolean = true;
   showModal: boolean = false;
 
-  sensor!: Sensor;
-  sensor$: Subscription = new Subscription();
+  email!: Email;
+  email$: Subscription = new Subscription();
 
-  putSensor$: Subscription = new Subscription();
+  putEmail$: Subscription = new Subscription();
 
-  constructor(private sensorService: SensorService, private toast: HotToastService) {
+  constructor(private emailService: EmailService, private toast: HotToastService) {
     // Reverse the order of which the toasts are displayed
     this.toast.defaultConfig = {
       ...this.toast.defaultConfig,
@@ -30,7 +30,6 @@ export class SensorFormComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.sensor$.unsubscribe();
   }
 
   closeModal() {
@@ -38,25 +37,27 @@ export class SensorFormComponent implements OnInit {
   }
 
   openEditModal(id: number) {
-    this.title = "Sensor aanpassen"
+    this.title = "Email tekst aanpassen";
 
-    this.sensor$ = this.sensorService.getSensorById(id).subscribe(
+    this.email$ = this.emailService.getEmailById(id).subscribe(
       result => {
-        this.sensor = result;
+        this.email = result;   
         this.loading = false;
         this.showModal = true;
+
+        this.title = `'${result.naam}' tekst aanpassen`;
       },
       error => {
-        this.toast.error("Er ging iets mis. De sensor kan niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false });
+        this.toast.error("Er ging iets mis. De email kan niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false });
       }
     );
   }
 
   onSubmit() {
-    this.putSensor$ = this.sensorService.putSensor(this.sensor.id, this.sensor).pipe(
+    this.putEmail$ = this.emailService.putEmail(this.email.id, this.email).pipe(
       this.toast.observe({
         loading: { content: 'Aanpassen...', position: 'bottom-right' },
-        success: { content: 'Sensor aangepast!', position: 'bottom-right', dismissible: true },
+        success: { content: 'Email aangepast!', position: 'bottom-right', dismissible: true },
         error: {
           content: (e) => {
             let msg = '<ul>';

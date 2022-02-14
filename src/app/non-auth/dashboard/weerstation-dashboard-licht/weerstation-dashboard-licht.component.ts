@@ -2,12 +2,12 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ChartComponent } from 'ng-apexcharts';
 import { Subscription } from 'rxjs';
-import { HotToastService } from '@ngneat/hot-toast';
-import { WeerstationDashboardLocationComponent } from '../dashboard/weerstation-dashboard-location/weerstation-dashboard-location.component';
-import { preChartOptionsLicht } from '../dashboard/weerstation-dashboard/chart-options';
+import { Meting } from 'src/app/interfaces/Meting';
 import { Weerstation } from 'src/app/interfaces/Weerstation';
 import { WeerstationService } from 'src/app/services/weerstation.service';
-import { Meting } from 'src/app/interfaces/Meting';
+import { preChartOptionsLicht } from '../weerstation-dashboard/chart-options';
+import { WeerstationDashboardLocationComponent } from '../weerstation-dashboard-location/weerstation-dashboard-location.component';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'app-weerstation-dashboard-licht',
@@ -24,12 +24,12 @@ export class WeerstationDashboardLichtComponent implements OnInit {
   IrlArray: { y: number; x: Date }[] = [];
   VilArray: { y: number; x: Date }[] = [];
   LuxArray: { y: number; x: Date }[] = [];
-
+ 
   // Chosen dates
-  eindDate = new Date();
+  eindDate = new Date();  
   beginDate = new Date();
-
-  begin: string;
+  
+  begin: string;  
   eind: string;
 
   weerstation!: Weerstation;
@@ -50,7 +50,7 @@ export class WeerstationDashboardLichtComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getData(this.begin, this.eind);
+    this.getData(this.begin, this.eind);   
   }
 
 
@@ -60,7 +60,7 @@ export class WeerstationDashboardLichtComponent implements OnInit {
     this.IrlArray = [];
     this.VilArray = [];
     this.LuxArray = [];
-
+    
     this.routeParams$ = this.route.params.subscribe(
       params => {
         this.weerstation$ = this.authWeerstationService.getDataBetweenDates(params['id'], begin, eind).subscribe(
