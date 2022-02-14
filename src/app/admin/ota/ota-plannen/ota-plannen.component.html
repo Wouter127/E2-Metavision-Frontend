@@ -10,7 +10,9 @@
                     <p class="place-self-center font-semibold text-2xl ml-2">BIN bestand kiezen</p>
                 </div>
                 <div class="ml-4">
-                    <p class="text-md mb-2">Dit is het bestand dat op de geselecteerde weerstations wordt gezet. De naam van het bestand moet uniek zijn en mag dus niet dezelfde naam bevatten als een vorige versie. Het is aangeraden om de versie op te nemen in de naam (voorbeeld: v1.0.2.bin).</p>
+                    <p class="text-md mb-2">Dit is het bestand dat op de geselecteerde weerstations wordt gezet. De naam
+                        van het bestand moet uniek zijn en mag dus niet dezelfde naam bevatten als een vorige versie.
+                        Het is aangeraden om de versie op te nemen in de naam (voorbeeld: v1.0.2.bin).</p>
                     <input type="file" (change)="onFileSelect($event)" accept=".bin" required class="block w-full text-sm text-slate-500
                                     file:mr-4 file:py-2 file:px-4
                                     file:rounded-full file:border-0
@@ -20,7 +22,7 @@
                                     cursor-pointer
                                     ">
                 </div>
-    
+
                 <!-- 2 -->
                 <div class="flex row mt-8 mb-4">
                     <div class="font-bold border border-4 border-wbRed-500 rounded-full bg-white flex items-center justify-center font-mono"
@@ -29,12 +31,13 @@
                 </div>
                 <div class="ml-4">
                     <p class="text-md mb-2">Dit is de datum vanaf wanneer de update kan worden uitgevoerd op de
-                        geselecteerde weerstations. Wanneer de datum is gepasseerd zal het weerstation de volgende keer bij
+                        geselecteerde weerstations. Wanneer de datum is gepasseerd zal het weerstation de volgende keer
+                        bij
                         het ophalen van de configuratie zijn update doen.</p>
                     <input type="date" id="vanafDatum" name="vanafDatum" [(ngModel)]="vanafDatum" class="mr-2">
                     <input type="time" name="vanafTijd" [(ngModel)]="vanafTijd">
                 </div>
-    
+
                 <!-- 3 -->
                 <div class="flex row mt-8 mb-4">
                     <div class="font-bold border border-4 border-wbRed-500 rounded-full bg-white flex items-center justify-center font-mono"
@@ -42,10 +45,13 @@
                     <p class="place-self-center font-semibold text-2xl ml-2">Weerstations kiezen</p>
                 </div>
                 <div class="ml-4">
-                    <p class="text-md mb-2">Kies hier de weerstation die de gekozen BIN file vanaf de gekozen datum zullen updaten. U kunt alle weerstations kiezen, alle weerstations in een organisatie of een weerstation apart.</p>
+                    <p class="text-md mb-2">Kies hier de weerstation die de gekozen BIN file vanaf de gekozen datum
+                        zullen updaten. U kunt alle weerstations kiezen, alle weerstations in een organisatie of een
+                        weerstation apart.</p>
 
                     <div *ngIf="!loading">
-                        <div *ngIf="organisaties.length != 0 || weerstationsZonderOrganisatie.length != 0; else showGeenWeerstations">
+                        <div
+                            *ngIf="organisaties.length != 0 || weerstationsZonderOrganisatie.length != 0; else showGeenWeerstations">
                             <!-- Checkbox voor alle organisaties te selecteren -->
                             <div class="m-2">
                                 <label>
@@ -60,8 +66,13 @@
                             <div *ngIf="weerstationsZonderOrganisatie.length != 0" class="mb-4">
                                 <mat-expansion-panel>
                                     <mat-expansion-panel-header>
-                                        <label (click)="$event.stopPropagation()" (keydown)="$event.stopPropagation()" class="cursor-pointer">
-                                            <input type="checkbox" name="weerstationsZonderOrganisatieCheckbox" (change)="weerstationsZonderOrganisatieListItem($event)" [(ngModel)]="weerstationsZonderOrganisatieCheckbox" [ngModelOptions]="{standalone: true}" class="cursor-pointer accent-wbRed-500 text-wbRed-500 focus:ring-0">
+                                        <label (click)="$event.stopPropagation()" (keydown)="$event.stopPropagation()"
+                                            class="cursor-pointer">
+                                            <input type="checkbox" name="weerstationsZonderOrganisatieCheckbox"
+                                                (change)="weerstationsZonderOrganisatieListItem($event)"
+                                                [(ngModel)]="weerstationsZonderOrganisatieCheckbox"
+                                                [ngModelOptions]="{standalone: true}"
+                                                class="cursor-pointer accent-wbRed-500 text-wbRed-500 focus:ring-0">
                                             <span class="font-semibold ml-2">Weerstations zonder organisatie</span>
                                         </label>
                                     </mat-expansion-panel-header>
@@ -69,22 +80,27 @@
                                         <li *ngFor="let weerstation of weerstationsZonderOrganisatie">
                                             <label class="cursor-pointer">
                                                 <input type="checkbox" name="weerstation" value="{{ weerstation.id }}"
-                                                    (change)="weerstationZonderListItem($event)" [(ngModel)]="weerstation.isChecked" [ngModelOptions]="{standalone: true}"
+                                                    (change)="weerstationZonderListItem($event)"
+                                                    [(ngModel)]="weerstation.isChecked"
+                                                    [ngModelOptions]="{standalone: true}"
                                                     class="cursor-pointer accent-wbRed-500 text-wbRed-500 focus:ring-0">
-                                                <span class="ml-2">{{ weerstation.naam + ' (' + weerstation.gsmNummer + ')' }}</span>
+                                                <span class="ml-2">{{ weerstation.naam + ' (' + weerstation.gsmNummer +
+                                                    ')' }}</span>
                                             </label>
                                         </li>
                                     </ul>
                                 </mat-expansion-panel>
                             </div>
-                        
+
                             <!-- Organisaties met hun weerstations -->
                             <div class="mb-4" *ngFor="let organisatie of organisaties">
                                 <mat-expansion-panel>
                                     <mat-expansion-panel-header>
-                                        <label (click)="$event.stopPropagation()" (keydown)="$event.stopPropagation()" class="cursor-pointer">
+                                        <label (click)="$event.stopPropagation()" (keydown)="$event.stopPropagation()"
+                                            class="cursor-pointer">
                                             <input type="checkbox" name="organisatie" value="{{ organisatie.id }}"
-                                                (change)="organisatieListItem($event)" [(ngModel)]="organisatie.isChecked"
+                                                (change)="organisatieListItem($event)"
+                                                [(ngModel)]="organisatie.isChecked"
                                                 [ngModelOptions]="{standalone: true}"
                                                 class="cursor-pointer accent-wbRed-500 text-wbRed-500 focus:ring-0">
                                             <span class="font-semibold ml-2">{{ organisatie.naam }}</span>
@@ -94,10 +110,12 @@
                                         <li *ngFor="let weerstation of organisatie.weerstations">
                                             <label class="cursor-pointer">
                                                 <input type="checkbox" name="weerstation" value="{{ weerstation.id }}"
-                                                    (change)="weerstationListItem($event)" [(ngModel)]="weerstation.isChecked"
+                                                    (change)="weerstationListItem($event)"
+                                                    [(ngModel)]="weerstation.isChecked"
                                                     [ngModelOptions]="{standalone: true}"
                                                     class="cursor-pointer accent-wbRed-500 text-wbRed-500 focus:ring-0">
-                                                <span class="ml-2">{{ weerstation.naam + ' (' + weerstation.gsmNummer + ')' }}</span>
+                                                <span class="ml-2">{{ weerstation.naam + ' (' + weerstation.gsmNummer +
+                                                    ')' }}</span>
                                             </label>
                                         </li>
                                     </ul>
@@ -105,7 +123,8 @@
                             </div>
                         </div>
                         <ng-template #showGeenWeerstations>
-                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+                                role="alert">
                                 <strong class="font-bold">Geen weerstations gevonden</strong>
                             </div>
                         </ng-template>

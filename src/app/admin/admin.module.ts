@@ -15,7 +15,6 @@ import { GebruikersFormOrganisatiebeheerderComponent } from './gebruikers/gebrui
 import { OrganisatieFormComponent } from './organisaties/organisatie-form/organisatie-form.component';
 import { OrganisatieListComponent } from './organisaties/organisatie-list/organisatie-list.component';
 import { AdminRoutingModule } from './admin-routing.module';
-import { OtaComponent } from './ota/ota.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { SensorListComponent } from './sensors/sensor-list/sensor-list.component';
@@ -23,6 +22,8 @@ import { SensorFormComponent } from './sensors/sensor-form/sensor-form.component
 import { EmailListComponent } from './email/email-list/email-list.component';
 import { EmailFormComponent } from './email/email-form/email-form.component';
 import { EmailConfigFormComponent } from './email/email-config-form/email-config-form.component';
+import { OtaListComponent } from './ota/ota-list/ota-list.component';
+import { OtaPlannenComponent } from './ota/ota-plannen/ota-plannen.component';
 
 @NgModule({
   declarations: [
@@ -34,12 +35,13 @@ import { EmailConfigFormComponent } from './email/email-config-form/email-config
     GebruikersFormOrganisatiebeheerderComponent,
     OrganisatieFormComponent,
     OrganisatieListComponent,
-    OtaComponent,
     SensorListComponent,
     SensorFormComponent,
     EmailListComponent,
     EmailFormComponent,
-    EmailConfigFormComponent
+    EmailConfigFormComponent,
+    OtaListComponent,
+    OtaPlannenComponent
   ],
   imports: [
     CommonModule,
