@@ -12,17 +12,14 @@ export class VraagFormComponent implements OnInit {
   @Input() title!: string;
   @Output() output = new EventEmitter();
 
-  vraag: any = {}
+  vraag: any;
   vraag$: Subscription = new Subscription();
-
- 
 
   loading: boolean = true;
   showModal: boolean = false;
 
   putVraag$: Subscription = new Subscription();
   postVraag$: Subscription = new Subscription();
-
 
   isAdd: boolean = false;
   isEdit: boolean = false;
@@ -47,16 +44,16 @@ export class VraagFormComponent implements OnInit {
   }
 
   openEditModal(id: number) {
+    this.showModal = true;
     this.isEdit = true;
     this.loading = true;
-    this.showModal = true;
     this.title = "Vraag aanpassen"
     this.vraag$ = this.helpService.getVraagById(id).subscribe(
       result => {
         this.vraag = result;
         this.loading = false;
-        console.log(result)
-
+        console.log(result);
+        
       },
       error => {
         this.toast.error("Er ging iets mis.  De vraag kan niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false });       
