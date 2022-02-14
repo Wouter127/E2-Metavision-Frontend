@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { DialogService } from '@ngneat/dialog';
+import { HotToastService } from '@ngneat/hot-toast';
+import { Subscription } from 'rxjs';
+import { Vraag } from 'src/app/interfaces/Vraag';
+import { HelpService } from 'src/app/services/help.service';
+import { VraagFormComponent } from '../vraag-form/vraag-form.component';
 
 @Component({
   selector: 'app-help',
@@ -6,49 +12,85 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./help.component.scss']
 })
 export class HelpComponent implements OnInit {
-  kernwoord: string = "";
+  @ViewChild(VraagFormComponent, {static: true}) vraagFormComponent!: VraagFormComponent;
 
-  bezoeker_vragen : {id: number, vraag: string, antwoord: string, auth: string}[] = [];
- 
+  loading: boolean = true
 
-  Search() {
-      if(this.kernwoord != ""){
-        this.bezoeker_vragen = this.bezoeker_vragen.filter(res =>{
-        return res.vraag.toLocaleLowerCase().match(this.kernwoord.toLocaleLowerCase())
-    })
-      }else if(this.kernwoord == "") {
-        this.ngOnInit();
-      }
-      
+  vragen: Vraag[] = [];
+  vragen$: Subscription = new Subscription();
+
+  vraag!: Vraag;
+  vraag$: Subscription = new Subscription();
+
+  
+  constructor(private helpService: HelpService, private toast: HotToastService, private dialog: DialogService) { 
+    // Reverse the order of which the toasts are displayed
+    this.toast.defaultConfig = {
+      ...this.toast.defaultConfig,
+      reverseOrder: true
+    }
   }
-  constructor() { }
 
   ngOnInit(): void {
-    this.bezoeker_vragen = [ 
-      {"id":0, "vraag": "Wat is wijnbouwer.be?", "antwoord": "antwoord", "auth": "bezoeker"},
-      {"id":1, "vraag": "Hoe start ik?", "antwoord": "antwoord", "auth": "bezoeker"},
-      {"id":2, "vraag": "Hoe kom ik aan zo\'n futuristisch weerstation?", "antwoord": "antwoord", "auth": "bezoeker"},
-      {"id":3, "vraag": "Wat zijn publieke weerstations?", "antwoord": "antwoord", "auth": "bezoeker"},
-      {"id":4, "vraag": "Ik zie geen data verschijnen?", "antwoord": "antwoord", "auth": "bezoeker"},
-      {"id":5, "vraag": "Ik ben uitgenodigd, hoe accepteer ik dit?", "antwoord": "antwoord", "auth": "bezoeker"},
-      {"id":6, "vraag": "help, ik kan niet alles wat ik zou moeten kunnen!", "antwoord": "antwoord", "auth": "gebruiker"},
-      {"id":7, "vraag": "Hoe ontvang ik alarmen?", "antwoord": "antwoord", "auth": "gebruiker"},
-      {"id":8, "vraag": "Hoe word ik beheerder van een organisatie", "antwoord": "antwoord", "auth": "gebruiker"},
-      {"id":9, "vraag": "Hoe voeg ik iemand toe aan mijn organisatie?", "antwoord": "antwoord", "auth": "organisatiebeheerder"},
-      {"id":10, "vraag": "Hoe verwijder ik een organsatiebeheerder?", "antwoord": "antwoord", "auth": "organisatiebeheerder"},
-      {"id":11, "vraag": "Wat als ik een gebruiker verwijder?", "antwoord": "antwoord", "auth": "organisatiebeheerder"},
-      {"id":12, "vraag": "Wat als ik een gebruiker verwijder", "antwoord": "antwoord", "auth": "organisatiebeheerder"},
-      {"id":13, "vraag": "Hoe maak ik een weerstation publiek?", "antwoord": "antwoord", "auth": "organisatiebeheerder"},
-      {"id":14, "vraag": "Wat zijn alarmwaarden?", "antwoord": "antwoord", "auth": "organisatiebeheerder"},
-      {"id":15, "vraag": "Wat zijn schakelwaarden?", "antwoord": "antwoord", "auth": "organisatiebeheerder"},
-      {"id":16, "vraag": "Hoe activeer ik een weerstation?", "antwoord": "antwoord", "auth": "organisatiebeheerder"},
-      {"id":17, "vraag": "Ik ben mijn unieke code kwijt, wat nu?", "antwoord": "antwoord", "auth": "organisatiebeheerder"},
-      {"id":18, "vraag": "Wat is schakelen?", "antwoord": "antwoord", "auth": "organisatiebeheerder"},
-      {"id":19, "vraag": "Hoe schakel ik handmatig?", "antwoord": "antwoord", "auth": "organisatiebeheerder"},
-      {"id":20, "vraag": "Hoe voeg ik een organisatie toe?", "antwoord": "antwoord", "auth": "admin"},
-      {"id":21, "vraag": "Hoe voeg ik een organisatiebeheerder toe?", "antwoord": "antwoord", "auth": "admin"},
-  
-    ];
+    this.getVragen();
+  }
+
+  ngOnDestroy(): void {
+    this.vragen$.unsubscribe();
+    this.vraag$.unsubscribe();
+  }
+
+  toevoegenVraag(): void {
+    this.vraagFormComponent.openAddModal();
+
+    // When the vraag is added successfully, refresh the list of gebruikers.
+    this.vraagFormComponent.output.subscribe(() => {
+      this.getVragen();
+    });
+  }
+
+  wijzigVraag(id: number): void {
+    this.vraagFormComponent.openEditModal(id);
+    // When the vraag is edited successfully, refresh the list of vragen.
+    this.vraagFormComponent.output.subscribe(() => {
+      this.getVragen();
+    });
+  }
+
+  verwijderVraag(id: number): void {
+    this.dialog
+    .confirm({
+      title: 'Organisatie verwijderen?',
+      body: 'Deze actie kan niet ongedaan gemaakt worden.' 
+    })
+    .afterClosed$.subscribe(confirmed => {
+      if (confirmed) {
+        this.helpService.deleteVraag(id).pipe(
+          this.toast.observe({
+            loading: { content: 'Verwijderen...', position: 'bottom-right' },
+            success: { content: 'Vraag verwijderd!', position: 'bottom-right', dismissible: true },
+            error: { content: 'Er ging iets mis.', position: 'bottom-right', dismissible: true },
+          })
+        ).subscribe(
+          result => {
+            this.getVragen();
+          }
+        );
+      }
+    });
+  }
+
+  getVragen() {
+    this.vragen$ = this.helpService.getVragen().subscribe(
+      result => {
+        this.vragen = result;
+        this.loading = false;
+      },
+      error => {
+        this.toast.error("Er ging iets mis. De vragen kunnen niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false });
+
+      }
+    );
   }
   
 }

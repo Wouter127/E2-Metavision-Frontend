@@ -33,7 +33,7 @@ import { SensorFormComponent } from './sensors/sensor-form/sensor-form.component
     OrganisatieListComponent,
     OtaComponent,
     SensorListComponent,
-    SensorFormComponent
+    SensorFormComponent,
   ],
   imports: [
     CommonModule,
