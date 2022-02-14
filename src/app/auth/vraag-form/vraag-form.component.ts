@@ -47,6 +47,7 @@ export class VraagFormComponent implements OnInit {
     this.showModal = true;
     this.isEdit = true;
     this.loading = true;
+
     this.title = "Vraag aanpassen"
     this.vraag$ = this.helpService.getVraagById(id).subscribe(
       result => {

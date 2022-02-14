@@ -45,7 +45,7 @@
                         <div class="grid grid-cols-6 gap-6">
                             
                             <div class="col-span-6 sm:col-span-6">
-                                <label for="vraag" class="block font-medium text-gray-700">Vraag</label>
+                                <label for="vraag" class="block font-medium text-gray-700">Vraag</label>m
                                 <input type="text" name="vraag" id="vraag" [(ngModel)]="vraag.vraag" required minlength="2"
                                     class="mt-1 p-2 focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 focus:border-wbRed-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md invalid:border-red-500 invalid:ring-red-500">
                                 <div *ngIf="vraag.invalid && (vraag.dirty || vraag.touched)" class="text-xs text-red-500 font-medium">
