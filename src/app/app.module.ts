@@ -30,7 +30,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,

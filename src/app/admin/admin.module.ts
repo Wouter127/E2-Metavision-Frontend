@@ -42,6 +42,7 @@ import { OtaPlannenComponent } from './ota/ota-plannen/ota-plannen.component';
     EmailConfigFormComponent,
     OtaListComponent,
     OtaPlannenComponent
+
   ],
   imports: [
     CommonModule,
