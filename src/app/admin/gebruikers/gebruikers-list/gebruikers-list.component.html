@@ -85,7 +85,7 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="text-sm text-gray-900">
-                                    <div *ngIf="!gebruiker.vervolledig_token; else showNietVervolledigd">
+                                    <div *ngIf="!gebruiker.vervolledig_token || gebruiker.isOrganisatieBeheerder === 0; else showNietVervolledigd">
                                         <span *ngIf="gebruiker.organisatie?.naam; else geenOrganisatie">{{
                                             gebruiker.organisatie?.naam }}</span>
                                         <ng-template #geenOrganisatie>

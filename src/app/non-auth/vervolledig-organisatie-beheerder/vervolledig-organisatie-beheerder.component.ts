@@ -39,6 +39,11 @@ export class VervolledigOrganisatieBeheerderComponent implements OnInit {
     this.routeParams$ = this.route.queryParams.subscribe(params => {
       this.gebruiker$ = this.gebruikerService.checkToken(params.user_id, params.vervolledig_token).subscribe(
         result => {
+          if (result.isOrganisatieBeheerder === 0) {
+            this.toast.error("U heeft geen toegang tot deze pagina.", { position: 'bottom-right', dismissible: true, autoClose: false });
+            this.router.navigate(['/']); 
+          }
+
           this.loading = false;
           this.gebruiker = result;
  
