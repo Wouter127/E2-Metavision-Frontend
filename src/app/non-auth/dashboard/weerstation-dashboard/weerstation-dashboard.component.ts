@@ -138,7 +138,7 @@ export class WeerstationDashboardComponent implements OnInit {
       enabled: false
     },
     stroke: {
-      width: 1
+      width: 2
     },
     colors: ['#662E9B'],
     fill: {
