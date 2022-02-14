@@ -38,15 +38,13 @@ export class VervolledigGebruikerComponent implements OnInit {
     this.routeParams$ = this.route.queryParams.subscribe(params => {
       this.gebruiker$ = this.gebruikerService.checkToken(params.user_id, params.vervolledig_token).subscribe(
         result => {
+          if (result.isOrganisatieBeheerder === 1) {
+            this.toast.error("U heeft geen toegang tot deze pagina.", { position: 'bottom-right', dismissible: true, autoClose: false });
+            this.router.navigate(['/']);
+          }
+
           this.loading = false;
           this.gebruiker = result;
- 
-          // if (result.organisatie) {
-          //   if (result.organisatie.naam.substring(0, 18) === "Nieuwe organisatie") {
-          //     result.organisatie.naam = '';
-          //   }
-          //   this.organisatie = result.organisatie;
-          // }
         },
         error => {
           if (error.status === 403) {
