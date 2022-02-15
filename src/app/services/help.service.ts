@@ -23,7 +23,7 @@ export class HelpService {
   }
 
   getVragen(): Observable<Vraag[]> {
-    return this.httpClient.get<Vraag[]>(environment.API_URI + "/vragen/")
+    return this.httpClient.get<Vraag[]>(environment.API_URI + "/vragen")
   }
 
   getVraagById(id: number): Observable<Vraag> {
