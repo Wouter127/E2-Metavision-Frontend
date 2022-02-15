@@ -30,10 +30,10 @@
                     <div role="listitem" class="focus:outline-none mb-5" *ngIf="vraag.zichtbaarheid == 'Bezoeker'">
                         <mat-expansion-panel>
                             <mat-expansion-panel-header>
-                                <a *ngIf="gebruiker?.isAdmin" class="text-wbRed-500 hover:text-wbRed-700 mt-3 cursor-pointer"
+                                <a *ngIf="gebruiker?.isAdmin" class="text-wbRed-500 hover:text-wbRed-700 self-center cursor-pointer"
                                     (click)="wijzigVraag(vraag.id)" tooltip="<p class='text-xs'>Wijzig vraag.</p>"
                                     [options]="{placement: 'top', hideDelay: 20}"><i class="fa-solid fa-pen text-2xl mr-2"></i></a>
-                                <a *ngIf="gebruiker?.isAdmin" class="text-wbRed-500 hover:text-wbRed-700 mt-3 cursor-pointer"
+                                <a *ngIf="gebruiker?.isAdmin" class="text-wbRed-500 hover:text-wbRed-700 self-center cursor-pointer"
                                     (click)="verwijderVraag(vraag.id)" tooltip="<p class='text-xs'>Verwijder vraag.</p>"
                                     [options]="{placement: 'top', hideDelay: 20}"><i
                                         class="fa-solid fa-trash-can text-2xl mr-2"></i></a>
@@ -42,7 +42,7 @@
                                     <div class="flex ">
             
                                         <!-- Druif logo  -->
-                                        <svg class="fill-current text-wbRed-800 rotate-12 h-8 w-8 mr-2 mb-2 mt-2" width="54"
+                                        <svg class="self-center fill-current text-wbRed-800 rotate-12 h-8 w-8 mr-2 mb-2 mt-2" width="54"
                                             height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"
                                             viewBox="0 0 259.96 367">
                                             <circle cx="38.23" cy="152.92" r="38.23" />
@@ -77,17 +77,17 @@
                     <div role="listitem" class="focus:outline-none mb-5" *ngIf="vraag.zichtbaarheid == 'Gebruiker'">
                         <mat-expansion-panel>
                             <mat-expansion-panel-header>
-                                <a *ngIf="gebruiker?.isAdmin" class="text-wbRed-500 hover:text-wbRed-700 mt-3 cursor-pointer"
+                                <a *ngIf="gebruiker?.isAdmin" class="text-wbRed-500 hover:text-wbRed-700 self-center cursor-pointer"
                                     (click)="wijzigVraag(vraag.id)" tooltip="<p class='text-xs'>Wijzig vraag.</p>"
                                     [options]="{placement: 'top', hideDelay: 20}"><i class="fa-solid fa-pen text-2xl mr-2"></i></a>
-                                <a *ngIf="gebruiker?.isAdmin" class="text-wbRed-500 hover:text-wbRed-700 mt-3 cursor-pointer"
+                                <a *ngIf="gebruiker?.isAdmin" class="text-wbRed-500 hover:text-wbRed-700 self-center cursor-pointer"
                                     (click)="verwijderVraag(vraag.id)" tooltip="<p class='text-xs'>Verwijder vraag.</p>"
                                     [options]="{placement: 'top', hideDelay: 20}"><i
                                         class="fa-solid fa-trash-can text-2xl mr-2"></i></a>
                                 <mat-panel-title class="text-base font-medium leading-none text-gray-800">
                                     <div class="flex ">
                                         <!-- Druif logo  -->
-                                        <svg class="fill-current text-wbRed-800 rotate-12 h-8 w-8 mr-2 mb-2 mt-2" width="54"
+                                        <svg class="self-center fill-current text-wbRed-800 rotate-12 h-8 w-8 mr-2 mb-2 mt-2" width="54"
                                             height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"
                                             viewBox="0 0 259.96 367">
                                             <circle cx="38.23" cy="152.92" r="38.23" />
@@ -122,17 +122,17 @@
                     <div role="listitem" class="focus:outline-none mb-5" *ngIf="vraag.zichtbaarheid == 'Organisatiebeheerder'">
                         <mat-expansion-panel>
                             <mat-expansion-panel-header>
-                                <a *ngIf="gebruiker?.isAdmin" class="text-wbRed-500 hover:text-wbRed-700 mt-3 cursor-pointer"
+                                <a *ngIf="gebruiker?.isAdmin" class="text-wbRed-500 hover:text-wbRed-700 self-center cursor-pointer"
                                     (click)="wijzigVraag(vraag.id)" tooltip="<p class='text-xs'>Wijzig vraag.</p>"
                                     [options]="{placement: 'top', hideDelay: 20}"><i class="fa-solid fa-pen text-2xl mr-2"></i></a>
-                                <a *ngIf="gebruiker?.isAdmin" class="text-wbRed-500 hover:text-wbRed-700 mt-3 cursor-pointer"
+                                <a *ngIf="gebruiker?.isAdmin" class="text-wbRed-500 hover:text-wbRed-700 self-center cursor-pointer"
                                     (click)="verwijderVraag(vraag.id)" tooltip="<p class='text-xs'>Verwijder vraag.</p>"
                                     [options]="{placement: 'top', hideDelay: 20}"><i
                                         class="fa-solid fa-trash-can text-2xl mr-2"></i></a>
                                 <mat-panel-title class="text-base font-medium leading-none text-gray-800">
                                     <div class="flex ">
                                         <!-- Druif logo  -->
-                                        <svg class="fill-current text-wbRed-800 rotate-12 h-8 w-8 mr-2 mb-2 mt-2" width="54"
+                                        <svg class="self-center fill-current text-wbRed-800 rotate-12 h-8 w-8 mr-2 mb-2 mt-2" width="54"
                                             height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"
                                             viewBox="0 0 259.96 367">
                                             <circle cx="38.23" cy="152.92" r="38.23" />
@@ -166,17 +166,17 @@
                     <div role="listitem" class="focus:outline-none mb-5" *ngIf="vraag.zichtbaarheid == 'Admin'">
                         <mat-expansion-panel>
                             <mat-expansion-panel-header>
-                                <a *ngIf="gebruiker?.isAdmin" class="text-wbRed-500 hover:text-wbRed-700 mt-3 cursor-pointer"
+                                <a *ngIf="gebruiker?.isAdmin" class="text-wbRed-500 hover:text-wbRed-700 self-center cursor-pointer"
                                     (click)="wijzigVraag(vraag.id)" tooltip="<p class='text-xs'>Wijzig vraag.</p>"
                                     [options]="{placement: 'top', hideDelay: 20}"><i class="fa-solid fa-pen text-2xl mr-2"></i></a>
-                                <a *ngIf="gebruiker?.isAdmin" class="text-wbRed-500 hover:text-wbRed-700 mt-3 cursor-pointer"
+                                <a *ngIf="gebruiker?.isAdmin" class="text-wbRed-500 hover:text-wbRed-700 self-center cursor-pointer"
                                     (click)="verwijderVraag(vraag.id)" tooltip="<p class='text-xs'>Verwijder vraag.</p>"
                                     [options]="{placement: 'top', hideDelay: 20}"><i
                                         class="fa-solid fa-trash-can text-2xl mr-2"></i></a>
                                 <mat-panel-title class="text-base font-medium leading-none text-gray-800">
                                     <div class="flex ">
                                         <!-- Druif logo  -->
-                                        <svg class="fill-current text-wbRed-800 rotate-12 h-8 w-8 mr-2 mb-2 mt-2" width="54"
+                                        <svg class="self-center fill-current text-wbRed-800 rotate-12 h-8 w-8 mr-2 mb-2 mt-2" width="54"
                                             height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"
                                             viewBox="0 0 259.96 367">
                                             <circle cx="38.23" cy="152.92" r="38.23" />
