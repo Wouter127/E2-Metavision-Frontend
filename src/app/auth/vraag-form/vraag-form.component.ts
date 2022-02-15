@@ -76,8 +76,6 @@ export class VraagFormComponent implements OnInit {
 
   vraagChangeHandler(event: any) {
       this.vraag.waarde = parseInt(event.target.value);
-      console.log(this.vraag);
-      
   }
 
   antwoordChangeHandler(event: any) {
@@ -113,8 +111,6 @@ export class VraagFormComponent implements OnInit {
     );
     }
     if (this.isAdd) {
-      console.log("vraag", this.vraag);
-      
       this.postVraag$ = this.helpService.postVraag(this.vraag).pipe(
         this.toast.observe({
           loading: { content: 'Nieuw...', position: 'bottom-right' },
