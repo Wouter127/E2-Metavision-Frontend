@@ -151,7 +151,7 @@ export class OtaPlannenComponent implements OnInit {
     this.dialog
       .confirm({
         title: 'OTA update plannen?',
-        body: 'Gelieven er rekening mee te houden van zodra de update datum is bereikt alle weerstations deze update zullen uitvoeren. Controleer ook zeker dat de connectie met de API correct is en of het ophalen van een OTA update werkt in deze update.'
+        body: 'Gelieven er rekening mee te houden van zodra de update datum is bereikt alle weerstations deze update zullen uitvoeren. Controleer ook zeker dat proDebug op false staat, de connectie met de API correct is en of het ophalen van een OTA update werkt in deze update.'
       })
       .afterClosed$.subscribe(confirmed => {
         if (confirmed) {
