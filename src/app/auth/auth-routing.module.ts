@@ -6,9 +6,9 @@ import { HelpComponent } from './help/help.component';
 import { WeerstationsComponent } from './weerstations/weerstations.component';
 
 const routes: Routes = [
-    { path: 'account', component: GebruikerInfoComponent }, // TODO: crud maken
-    { path: 'dashboard', component: DashboardComponent,data: { animation: 'isBottom' } },//TODO: Dashboard maken
-    { path: 'help', component: HelpComponent}, // TODO: Dashboard maken
+    { path: 'account', component: GebruikerInfoComponent },
+    { path: 'dashboard', component: DashboardComponent,data: { animation: 'isBottom' } },
+    { path: 'help', component: HelpComponent},
     { path: 'weerstations', component: WeerstationsComponent}
 ];
 
