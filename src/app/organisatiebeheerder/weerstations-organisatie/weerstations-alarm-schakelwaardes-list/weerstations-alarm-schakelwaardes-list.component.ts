@@ -86,7 +86,7 @@ export class WeerstationsAlarmSchakelwaardesListComponent implements OnInit {
         this.alarmWaardeService.deleteAlarmwaarde(id).pipe(
           this.toast.observe({
             loading: { content: 'Verwijderen...', position: 'bottom-right' },
-            success: { content: 'Alarmwaarde verwijderd! <br> Deze wijzigingen worden binnen 15 minuten doorgevoerd.', position: 'bottom-right', dismissible: true },
+            success: { content: 'Alarmwaarde verwijderd! <br> Deze wijzigingen worden binnen 1 minuut doorgevoerd.', position: 'bottom-right', dismissible: true },
             error: { content: 'Er ging iets mis.', position: 'bottom-right', dismissible: true },
           })
         ).subscribe(
@@ -128,7 +128,7 @@ export class WeerstationsAlarmSchakelwaardesListComponent implements OnInit {
         this.schakelWaardeService.deleteSchakelwaarde(id).pipe(
           this.toast.observe({
             loading: { content: 'Verwijderen...', position: 'bottom-right' },
-            success: { content: 'schakelwaarde verwijderd! <br> Deze wijzigingen worden binnen 15 minuten doorgevoerd.', position: 'bottom-right', dismissible: true },
+            success: { content: 'schakelwaarde verwijderd! <br> Deze wijzigingen worden binnen 1 minuut doorgevoerd.', position: 'bottom-right', dismissible: true },
             error: { content: 'Er ging iets mis.', position: 'bottom-right', dismissible: true },
           })
         ).subscribe(
