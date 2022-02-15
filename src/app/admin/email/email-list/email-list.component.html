@@ -7,14 +7,14 @@
         <div class="col-span-4 xl:col-span-3">
             <h3 class="md:text-2xl text-lg font-medium mb-2 grow">Email configuratie</h3>
             <div *ngIf="!emailConfig" class="grid grid-cols-2 gap-4">
-                <div class="col-span-2 lg:col-span-1">
+                <div class="col-span-2 xl:col-span-1">
                     <span class="font-medium mr-1">Logo URL:</span>
                     <span>
                         <div class="w-6/12 bg-gray-300 h-4 rounded-full animate-pulse"></div>
                     </span>
                 </div>
-                <div class="col-span-2 lg:col-span-1">
-                    <span class="font-medium mr-1">Website URL :</span>
+                <div class="col-span-2 xl:col-span-1">
+                    <span class="font-medium mr-1">Website URL:</span>
                     <span>
                         <div class="w-6/12 bg-gray-300 h-4 rounded-full animate-pulse"></div>
                     </span>
@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div *ngIf="emailConfig" class="grid grid-cols-2 gap-4">
-                <div class="col-span-2 md:col-span-1">
+                <div class="col-span-2 xl:col-span-1">
                     <span class="font-medium mr-1">Logo URL
                         <span class="fa-stack small text-center">
                             <i class="far fa-circle fa-stack-2x"></i>
@@ -39,7 +39,7 @@
                     :</span>
                     <span>{{ emailConfig.logoUrl }}</span>
                 </div>
-                <div class="col-span-2 md:col-span-1">
+                <div class="col-span-2 xl:col-span-1">
                     <span class="font-medium mr-1">
                         <i class="far fa-question-circle text-base"
                             tooltip="<p class='text-xs'>Deze url moet naar de homepagina van de website verwijzen!</p>"
