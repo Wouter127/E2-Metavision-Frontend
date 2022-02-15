@@ -81,25 +81,11 @@
                             </tr>
                             <tr *ngFor="let alarmWaarde of weerstation.alarm_waardes">
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <!-- <div class="text-sm font-medium text-gray-900">
-                                    <span *ngIf="gebruiker.voornaam && gebruiker.achternaam; else showNietVervolledigd">{{ gebruiker.voornaam + ' ' + gebruiker.achternaam }}</span>
-                                    <ng-template #showNietVervolledigd>
-                                        <span class="inline-flex font-semibold rounded-full bg-orange-100 text-orange-800">
-                                            Nog niet vervolledigd door gebruiker
-                                        </span>
-                                    </ng-template>
-                                </div> -->
                                     <div class="text-sm text-gray-500">
                                         {{alarmWaarde.sensor.naam}}
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <!-- <div class="text-sm text-gray-900">
-                                    <span *ngIf="gebruiker.organisatie?.naam; else geenOrganisatie">{{ gebruiker.organisatie?.naam }}</span>
-                                    <ng-template #geenOrganisatie>
-                                        <span>TODO: icon</span>
-                                    </ng-template>
-                                </div> -->
                                     <div class="text-sm text-gray-500">
                                         {{alarmWaarde.switch_logic.type}}
                                     </div>
@@ -194,25 +180,11 @@
                             </tr>
                             <tr *ngFor="let schakelWaarde of weerstation.schakel_waardes">
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <!-- <div class="text-sm font-medium text-gray-900">
-                                    <span *ngIf="gebruiker.voornaam && gebruiker.achternaam; else showNietVervolledigd">{{ gebruiker.voornaam + ' ' + gebruiker.achternaam }}</span>
-                                    <ng-template #showNietVervolledigd>
-                                        <span class="inline-flex font-semibold rounded-full bg-orange-100 text-orange-800">
-                                            Nog niet vervolledigd door gebruiker
-                                        </span>
-                                    </ng-template>
-                                </div> -->
                                     <div class="text-sm text-gray-500">
                                         {{schakelWaarde.sensor.naam}}
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <!-- <div class="text-sm text-gray-900">
-                                    <span *ngIf="gebruiker.organisatie?.naam; else geenOrganisatie">{{ gebruiker.organisatie?.naam }}</span>
-                                    <ng-template #geenOrganisatie>
-                                        <span>TODO: icon</span>
-                                    </ng-template>
-                                </div> -->
                                     <div class="text-sm text-gray-500">
                                         {{schakelWaarde.switch_logic.type}}
                                     </div>

@@ -45,15 +45,13 @@ export class GebruikerInfoComponent implements OnInit {
   }
 
   getGebruikerInfo() {
-    // TODO: if logged in user in admin get all users
-    // TODO: if logged in user is organisatie beheerder get users of organisation
     this.gebruiker$ = this.gebruikerService.getGebruikerInfo().subscribe(
       result => {
         this.gebruiker = result;
         this.loading = false;
       },
       error => {  
-        this.toast.error("Er ging iets mis.  Uw acoount info kan niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false });
+        this.toast.error("Er ging iets mis.  Uw account info kan niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false });
       }
     );
   }

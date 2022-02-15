@@ -10,166 +10,196 @@
 </div>
 
 <div class="flex row justify-end pt-4 pr-4">
-
-<button (click)="toevoegenVraag()"
-                class="p-2 px-5 bg-transparent border-2 border-wbRed-500 text-wbRed-500 text-md font-bold rounded-lg transition-colors duration-700 transform hover:bg-wbRed-500 hover:text-white mb-2">
-                Vraag toevoegen
-            </button>
-            </div>
+    <button *ngIf="gebruiker?.isAdmin" (click)="toevoegenVraag()"
+                    class="p-2 px-5 bg-transparent border-2 border-wbRed-500 text-wbRed-500 text-md font-bold rounded-lg transition-colors duration-700 transform hover:bg-wbRed-500 hover:text-white mb-2">
+                    Vraag toevoegen
+    </button>
+</div>
 <mat-accordion>
 
     <div class="container mx-auto py-9 flex flex-col items-center justify-center">
-        
-        <h3 class="text-4xl font-normal leading-normal mt-0 mb-2 text-wbRed-800">
-            Bezoeker
-        </h3>
-        <div role="list" class="w-11/12 md:w-2/3 grid grid-cols-1 " *ngFor="let vraag of vragen">
-            <div role="listitem" class="focus:outline-none mb-5" *ngIf="vraag.zichtbaarheid == 'Bezoeker'">
-                <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                        <a class="text-wbRed-500 hover:text-wbRed-700 mt-3 cursor-pointer" (click)="verwijderVraag(vraag.id)"><i class="fa-solid fa-trash-can text-2xl mr-2"></i></a>
-                        <a class="text-wbRed-500 hover:text-wbRed-700 mt-3 cursor-pointer" (click)="wijzigVraag(vraag.id)"><i class="fa-solid fa-pen text-2xl mr-2"></i></a>
-                        <mat-panel-title class="text-base font-medium leading-none text-gray-800">
-                            
-                            <div class="flex ">
-                               
-                                <!-- Druif logo  -->
-                                <svg class="fill-current text-wbRed-800 rotate-12 h-8 w-8 mr-2 mb-2 mt-2" width="54"
-                                    height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 259.96 367">
-                                    <circle cx="38.23" cy="152.92" r="38.23" />
-                                    <circle cx="84.1" cy="240.84" r="38.23" />
-                                    <circle cx="175.85" cy="240.84" r="38.23" />
-                                    <circle cx="129.98" cy="328.77" r="38.23" />
-                                    <circle cx="129.98" cy="152.92" r="38.23" />
-                                    <circle cx="221.73" cy="152.92" r="38.23" />
-                                    <path d="M192.33,116.4s0-72.64,99.4-99.4V30.91s-84.11,20.5-84.11,89.31Z"
-                                        transform="translate(-70 -17)" />
-                                </svg>
-                                <div class="ml-4 pb-2 pt-2 mt-2 text-lg">
-                                    {{vraag.vraag}}
-                                        
-                                     </div>
-
-                            </div>
-                        </mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <p class="text-xs lg:text-sm xl:text-base lg:leading-normal text-gray-600 mt-2 2xl:w-7/12">
-                        {{vraag.antwoord}}</p>
-                </mat-expansion-panel>
-
-            </div>
-
-        </div>
-
-        <h3 class="text-4xl font-normal leading-normal mt-0 mb-2 text-wbRed-800">
-            Gebruiker
-        </h3>
-        <div role="list" class="w-11/12 md:w-2/3 grid grid-cols-1" *ngFor="let vraag of vragen">
-            <div role="listitem" class="focus:outline-none mb-5" *ngIf="vraag.zichtbaarheid == 'Gebruiker'">
-                <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                        <a class="text-wbRed-500 hover:text-wbRed-700 mt-3 cursor-pointer" (click)="verwijderVraag(vraag.id)"><i class="fa-solid fa-trash-can text-2xl mr-2"></i></a>
-                        <a class="text-wbRed-500 hover:text-wbRed-700 mt-3 cursor-pointer" (click)="wijzigVraag(vraag.id)"><i class="fa-solid fa-pen text-2xl mr-2"></i></a>
-                        <mat-panel-title class="text-base font-medium leading-none text-gray-800">
-                            <div class="flex ">
-                                <!-- Druif logo  -->
-                                <svg class="fill-current text-wbRed-800 rotate-12 h-8 w-8 mr-2 mb-2 mt-2" width="54"
-                                    height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 259.96 367">
-                                    <circle cx="38.23" cy="152.92" r="38.23" />
-                                    <circle cx="84.1" cy="240.84" r="38.23" />
-                                    <circle cx="175.85" cy="240.84" r="38.23" />
-                                    <circle cx="129.98" cy="328.77" r="38.23" />
-                                    <circle cx="129.98" cy="152.92" r="38.23" />
-                                    <circle cx="221.73" cy="152.92" r="38.23" />
-                                    <path d="M192.33,116.4s0-72.64,99.4-99.4V30.91s-84.11,20.5-84.11,89.31Z"
-                                        transform="translate(-70 -17)" />
-                                </svg>
-                                <div class="ml-4 pb-2 pt-2 mt-2 text-lg">
-                                    {{vraag.vraag}}
-                                     </div>
-
-                            </div>
-                        </mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <p class="text-xs lg:text-sm xl:text-base lg:leading-normal text-gray-600 mt-2 2xl:w-7/12">
-                        {{vraag.antwoord}}</p>
-                </mat-expansion-panel>
-            </div>
-        </div>
-
-        <h3 class="text-4xl font-normal leading-normal mt-0 mb-2 text-wbRed-800">
-            organisatiebeheerder
-        </h3>
-        <div role="list" class="w-11/12 md:w-2/3 grid grid-cols-1" *ngFor="let vraag of vragen">
-            <div role="listitem" class="focus:outline-none mb-5" *ngIf="vraag.zichtbaarheid == 'Organisatiebeheerder'">
-                <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                        <a class="text-wbRed-500 hover:text-wbRed-700 mt-3 cursor-pointer" (click)="verwijderVraag(vraag.id)"><i class="fa-solid fa-trash-can text-2xl mr-2"></i></a>
-                        <a class="text-wbRed-500 hover:text-wbRed-700 mt-3 cursor-pointer" (click)="wijzigVraag(vraag.id)"><i class="fa-solid fa-pen text-2xl mr-2"></i></a>
-                        <mat-panel-title class="text-base font-medium leading-none text-gray-800">
-                            <div class="flex ">
-                                <!-- Druif logo  -->
-                                <svg class="fill-current text-wbRed-800 rotate-12 h-8 w-8 mr-2 mb-2 mt-2" width="54"
-                                    height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 259.96 367">
-                                    <circle cx="38.23" cy="152.92" r="38.23" />
-                                    <circle cx="84.1" cy="240.84" r="38.23" />
-                                    <circle cx="175.85" cy="240.84" r="38.23" />
-                                    <circle cx="129.98" cy="328.77" r="38.23" />
-                                    <circle cx="129.98" cy="152.92" r="38.23" />
-                                    <circle cx="221.73" cy="152.92" r="38.23" />
-                                    <path d="M192.33,116.4s0-72.64,99.4-99.4V30.91s-84.11,20.5-84.11,89.31Z"
-                                        transform="translate(-70 -17)" />
-                                </svg>
-                                <div class="ml-4 pb-2 pt-2 mt-2 text-lg">
-                                    {{vraag.vraag}}
-                                     </div>
-
-                            </div>
-                        </mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <p class="text-xs lg:text-sm xl:text-base lg:leading-normal text-gray-600 mt-2 2xl:w-7/12">
-                        {{vraag.antwoord}}</p>
-                </mat-expansion-panel>
-            </div>
-        </div>
-
-        <h3 class="text-4xl font-normal leading-normal mt-0 mb-2 text-wbRed-800">
-            Super admin
-        </h3>
-        <div role="list" class="w-11/12 md:w-2/3 grid grid-cols-1" *ngFor="let vraag of vragen">
-            <div role="listitem" class="focus:outline-none mb-5" *ngIf="vraag.zichtbaarheid == 'Admin'">
-                <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                        <a class="text-wbRed-500 hover:text-wbRed-700 mt-3 cursor-pointer" (click)="verwijderVraag(vraag.id)"><i class="fa-solid fa-trash-can text-2xl mr-2"></i></a>
-                        <a class="text-wbRed-500 hover:text-wbRed-700 mt-3 cursor-pointer" (click)="wijzigVraag(vraag.id)"><i class="fa-solid fa-pen text-2xl mr-2"></i></a>
-                        <mat-panel-title class="text-base font-medium leading-none text-gray-800">
-                            <div class="flex ">
-                                <!-- Druif logo  -->
-                                <svg class="fill-current text-wbRed-800 rotate-12 h-8 w-8 mr-2 mb-2 mt-2" width="54"
-                                    height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 259.96 367">
-                                    <circle cx="38.23" cy="152.92" r="38.23" />
-                                    <circle cx="84.1" cy="240.84" r="38.23" />
-                                    <circle cx="175.85" cy="240.84" r="38.23" />
-                                    <circle cx="129.98" cy="328.77" r="38.23" />
-                                    <circle cx="129.98" cy="152.92" r="38.23" />
-                                    <circle cx="221.73" cy="152.92" r="38.23" />
-                                    <path d="M192.33,116.4s0-72.64,99.4-99.4V30.91s-84.11,20.5-84.11,89.31Z"
-                                        transform="translate(-70 -17)" />
-                                </svg>
-                                <div class="ml-4 pb-2 pt-2 mt-2 text-lg">
-                                    {{vraag.vraag}}
+        <div *ngIf="loading" class="w-11/12 md:w-2/3 w-full bg-gray-300 h-10 rounded-md animate-pulse mb-1"></div>
+        <div *ngIf="loading" class="w-11/12 md:w-2/3 w-full bg-gray-300 h-10 rounded-md animate-pulse mb-1"></div>
+        <div *ngIf="loading" class="w-11/12 md:w-2/3 w-full bg-gray-300 h-10 rounded-md animate-pulse mb-1"></div>
+        <div *ngIf="!loading">
+            <div class="flex flex-col items-center w-full">
+                <h3 class="text-4xl font-normal leading-normal mt-0 mb-2 text-wbRed-800">
+                    Bezoeker
+                </h3>
+                <div role="list" class="w-11/12 md:w-2/3 grid grid-cols-1 " *ngFor="let vraag of vragen">
+                    <div role="listitem" class="focus:outline-none mb-5" *ngIf="vraag.zichtbaarheid == 'Bezoeker'">
+                        <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                                <a *ngIf="gebruiker?.isAdmin" class="text-wbRed-500 hover:text-wbRed-700 mt-3 cursor-pointer"
+                                    (click)="wijzigVraag(vraag.id)" tooltip="<p class='text-xs'>Wijzig vraag.</p>"
+                                    [options]="{placement: 'top', hideDelay: 20}"><i class="fa-solid fa-pen text-2xl mr-2"></i></a>
+                                <a *ngIf="gebruiker?.isAdmin" class="text-wbRed-500 hover:text-wbRed-700 mt-3 cursor-pointer"
+                                    (click)="verwijderVraag(vraag.id)" tooltip="<p class='text-xs'>Verwijder vraag.</p>"
+                                    [options]="{placement: 'top', hideDelay: 20}"><i
+                                        class="fa-solid fa-trash-can text-2xl mr-2"></i></a>
+                                <mat-panel-title class="text-base font-medium leading-none text-gray-800">
+            
+                                    <div class="flex ">
+            
+                                        <!-- Druif logo  -->
+                                        <svg class="fill-current text-wbRed-800 rotate-12 h-8 w-8 mr-2 mb-2 mt-2" width="54"
+                                            height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 259.96 367">
+                                            <circle cx="38.23" cy="152.92" r="38.23" />
+                                            <circle cx="84.1" cy="240.84" r="38.23" />
+                                            <circle cx="175.85" cy="240.84" r="38.23" />
+                                            <circle cx="129.98" cy="328.77" r="38.23" />
+                                            <circle cx="129.98" cy="152.92" r="38.23" />
+                                            <circle cx="221.73" cy="152.92" r="38.23" />
+                                            <path d="M192.33,116.4s0-72.64,99.4-99.4V30.91s-84.11,20.5-84.11,89.31Z"
+                                                transform="translate(-70 -17)" />
+                                        </svg>
+                                        <div class="ml-4 pb-2 pt-2 mt-2 text-base md:text-lg">
+                                            {{vraag.vraag}}
+                                        </div>
+            
                                     </div>
-
-                            </div>
-                        </mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <p class="text-xs lg:text-sm xl:text-base lg:leading-normal text-gray-600 mt-2 2xl:w-7/12">
-                        {{vraag.antwoord}}</p>
-                </mat-expansion-panel>
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <p class="text-xs lg:text-sm xl:text-base lg:leading-normal text-gray-600 mt-2 2xl:w-7/12">
+                                {{vraag.antwoord}}</p>
+                        </mat-expansion-panel>
+            
+                    </div>
+                </div>
+            </div>
+            
+            <div *ngIf="gebruiker" class="flex flex-col items-center w-full">
+                <h3 class="text-4xl font-normal leading-normal mt-0 mb-2 text-wbRed-800">
+                    Gebruiker
+                </h3>
+                <div role="list" class="w-11/12 md:w-2/3 grid grid-cols-1" *ngFor="let vraag of vragen">
+                    <div role="listitem" class="focus:outline-none mb-5" *ngIf="vraag.zichtbaarheid == 'Gebruiker'">
+                        <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                                <a *ngIf="gebruiker?.isAdmin" class="text-wbRed-500 hover:text-wbRed-700 mt-3 cursor-pointer"
+                                    (click)="wijzigVraag(vraag.id)" tooltip="<p class='text-xs'>Wijzig vraag.</p>"
+                                    [options]="{placement: 'top', hideDelay: 20}"><i class="fa-solid fa-pen text-2xl mr-2"></i></a>
+                                <a *ngIf="gebruiker?.isAdmin" class="text-wbRed-500 hover:text-wbRed-700 mt-3 cursor-pointer"
+                                    (click)="verwijderVraag(vraag.id)" tooltip="<p class='text-xs'>Verwijder vraag.</p>"
+                                    [options]="{placement: 'top', hideDelay: 20}"><i
+                                        class="fa-solid fa-trash-can text-2xl mr-2"></i></a>
+                                <mat-panel-title class="text-base font-medium leading-none text-gray-800">
+                                    <div class="flex ">
+                                        <!-- Druif logo  -->
+                                        <svg class="fill-current text-wbRed-800 rotate-12 h-8 w-8 mr-2 mb-2 mt-2" width="54"
+                                            height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 259.96 367">
+                                            <circle cx="38.23" cy="152.92" r="38.23" />
+                                            <circle cx="84.1" cy="240.84" r="38.23" />
+                                            <circle cx="175.85" cy="240.84" r="38.23" />
+                                            <circle cx="129.98" cy="328.77" r="38.23" />
+                                            <circle cx="129.98" cy="152.92" r="38.23" />
+                                            <circle cx="221.73" cy="152.92" r="38.23" />
+                                            <path d="M192.33,116.4s0-72.64,99.4-99.4V30.91s-84.11,20.5-84.11,89.31Z"
+                                                transform="translate(-70 -17)" />
+                                        </svg>
+                                        <div class="ml-4 pb-2 pt-2 mt-2 text-base md:text-lg">
+                                            {{vraag.vraag}}
+                                        </div>
+            
+                                    </div>
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <p class="text-xs lg:text-sm xl:text-base lg:leading-normal text-gray-600 mt-2 2xl:w-7/12">
+                                {{vraag.antwoord}}</p>
+                        </mat-expansion-panel>
+                    </div>
+                </div>
+            </div>
+            
+            <div *ngIf="gebruiker?.isOrganisatieBeheerder === 1 || gebruiker?.isAdmin === 1"
+                class="flex flex-col items-center w-full">
+                <h3 class="text-4xl font-normal leading-normal mt-0 mb-2 text-wbRed-800">
+                    Organisatiebeheerder
+                </h3>
+                <div role="list" class="w-11/12 md:w-2/3 grid grid-cols-1" *ngFor="let vraag of vragen">
+                    <div role="listitem" class="focus:outline-none mb-5" *ngIf="vraag.zichtbaarheid == 'Organisatiebeheerder'">
+                        <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                                <a *ngIf="gebruiker?.isAdmin" class="text-wbRed-500 hover:text-wbRed-700 mt-3 cursor-pointer"
+                                    (click)="wijzigVraag(vraag.id)" tooltip="<p class='text-xs'>Wijzig vraag.</p>"
+                                    [options]="{placement: 'top', hideDelay: 20}"><i class="fa-solid fa-pen text-2xl mr-2"></i></a>
+                                <a *ngIf="gebruiker?.isAdmin" class="text-wbRed-500 hover:text-wbRed-700 mt-3 cursor-pointer"
+                                    (click)="verwijderVraag(vraag.id)" tooltip="<p class='text-xs'>Verwijder vraag.</p>"
+                                    [options]="{placement: 'top', hideDelay: 20}"><i
+                                        class="fa-solid fa-trash-can text-2xl mr-2"></i></a>
+                                <mat-panel-title class="text-base font-medium leading-none text-gray-800">
+                                    <div class="flex ">
+                                        <!-- Druif logo  -->
+                                        <svg class="fill-current text-wbRed-800 rotate-12 h-8 w-8 mr-2 mb-2 mt-2" width="54"
+                                            height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 259.96 367">
+                                            <circle cx="38.23" cy="152.92" r="38.23" />
+                                            <circle cx="84.1" cy="240.84" r="38.23" />
+                                            <circle cx="175.85" cy="240.84" r="38.23" />
+                                            <circle cx="129.98" cy="328.77" r="38.23" />
+                                            <circle cx="129.98" cy="152.92" r="38.23" />
+                                            <circle cx="221.73" cy="152.92" r="38.23" />
+                                            <path d="M192.33,116.4s0-72.64,99.4-99.4V30.91s-84.11,20.5-84.11,89.31Z"
+                                                transform="translate(-70 -17)" />
+                                        </svg>
+                                        <div class="ml-4 pb-2 pt-2 mt-2 text-base md:text-lg">
+                                            {{vraag.vraag}}
+                                        </div>
+            
+                                    </div>
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <p class="text-xs lg:text-sm xl:text-base lg:leading-normal text-gray-600 mt-2 2xl:w-7/12">
+                                {{vraag.antwoord}}</p>
+                        </mat-expansion-panel>
+                    </div>
+                </div>
+            </div>
+            
+            <div *ngIf="gebruiker?.isAdmin === 1" class="flex flex-col items-center w-full">
+                <h3 class="text-4xl font-normal leading-normal mt-0 mb-2 text-wbRed-800">
+                    Admin
+                </h3>
+                <div role="list" class="w-11/12 md:w-2/3 grid grid-cols-1" *ngFor="let vraag of vragen">
+                    <div role="listitem" class="focus:outline-none mb-5" *ngIf="vraag.zichtbaarheid == 'Admin'">
+                        <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                                <a *ngIf="gebruiker?.isAdmin" class="text-wbRed-500 hover:text-wbRed-700 mt-3 cursor-pointer"
+                                    (click)="wijzigVraag(vraag.id)" tooltip="<p class='text-xs'>Wijzig vraag.</p>"
+                                    [options]="{placement: 'top', hideDelay: 20}"><i class="fa-solid fa-pen text-2xl mr-2"></i></a>
+                                <a *ngIf="gebruiker?.isAdmin" class="text-wbRed-500 hover:text-wbRed-700 mt-3 cursor-pointer"
+                                    (click)="verwijderVraag(vraag.id)" tooltip="<p class='text-xs'>Verwijder vraag.</p>"
+                                    [options]="{placement: 'top', hideDelay: 20}"><i
+                                        class="fa-solid fa-trash-can text-2xl mr-2"></i></a>
+                                <mat-panel-title class="text-base font-medium leading-none text-gray-800">
+                                    <div class="flex ">
+                                        <!-- Druif logo  -->
+                                        <svg class="fill-current text-wbRed-800 rotate-12 h-8 w-8 mr-2 mb-2 mt-2" width="54"
+                                            height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 259.96 367">
+                                            <circle cx="38.23" cy="152.92" r="38.23" />
+                                            <circle cx="84.1" cy="240.84" r="38.23" />
+                                            <circle cx="175.85" cy="240.84" r="38.23" />
+                                            <circle cx="129.98" cy="328.77" r="38.23" />
+                                            <circle cx="129.98" cy="152.92" r="38.23" />
+                                            <circle cx="221.73" cy="152.92" r="38.23" />
+                                            <path d="M192.33,116.4s0-72.64,99.4-99.4V30.91s-84.11,20.5-84.11,89.31Z"
+                                                transform="translate(-70 -17)" />
+                                        </svg>
+                                        <div class="ml-4 pb-2 pt-2 mt-2 text-base md:text-lg">
+                                            {{vraag.vraag}}
+                                        </div>
+            
+                                    </div>
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <p class="text-xs lg:text-sm xl:text-base lg:leading-normal text-gray-600 mt-2 2xl:w-7/12">
+                                {{vraag.antwoord}}</p>
+                        </mat-expansion-panel>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

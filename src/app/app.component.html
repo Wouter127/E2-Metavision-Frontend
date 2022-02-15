@@ -26,7 +26,7 @@
         </div>
         <div mat-menu-item href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
 
-          role="menuitem" routerLink="/auth/help" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="drawer.close()">Help
+          role="menuitem" routerLink="/help" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="drawer.close()">Help
         </div>
         <div mat-menu-item href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
           role="menuitem" (click)="onLogout()" (click)="drawer.close()">Log out</div>
@@ -58,6 +58,10 @@
           <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
             class="block mt-4 text-white mr-4" (click)="drawer.close()">
             Home
+          </a>
+          <a routerLink="/help" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+            class="block mt-4 text-white mr-4" (click)="drawer.close()">
+            Veelgestelde vragen
           </a>
           <a routerLink="weerstations/publiek" routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: true }" class="block mt-4 text-white mr-4" (click)="drawer.close()">
@@ -138,7 +142,7 @@
               </div>
               <div mat-menu-item href="#"
                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem"
-                routerLink="/auth/help" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Help
+                routerLink="/help" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Help
               </div>
               <div mat-menu-item href="#"
                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem"

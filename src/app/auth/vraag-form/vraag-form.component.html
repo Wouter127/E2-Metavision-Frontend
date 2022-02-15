@@ -22,9 +22,8 @@
                         <div class="grid grid-cols-6 gap-6">
                             <div class="col-span-6">
                                 <label class="block font-medium text-gray-700">Vraag</label>
-                                <div class="w-12/12 sm:w-4/12 bg-gray-300 h-8 rounded-md animate-pulse"></div>
+                                <div class="w-12/12 bg-gray-300 h-8 rounded-md animate-pulse"></div>
                             </div>
-
                             <div class="col-span-6 sm:col-span-3">
                                 <label class="block font-medium text-gray-700">Antwoord</label>
                                 <div class="w-12/12 mt-1 bg-gray-300 h-8 rounded-md animate-pulse"></div>
@@ -46,32 +45,14 @@
                             <div class="col-span-6 sm:col-span-6">
                                 <label for="vraag" class="block font-medium text-gray-700">Vraag</label>
                                 <input type="text" name="vraag" id="vraag" [(ngModel)]="vraag.vraag" required minlength="2"
-                                    class="mt-1 p-2 focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 focus:border-wbRed-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md invalid:border-red-500 invalid:ring-red-500">
-                                <!-- <div *ngIf="vraag.vraag.invalid && (vraag.vraag.dirty || vraag.vraag.touched)"
-                                    class="text-xs text-red-500 font-medium">
-                                    <span *ngIf="vraag.vraag.errors?.['required']">
-                                        Vraag is veplicht.
-                                    </span>
-                                    <span *ngIf="vraag.vraag.errors?.['minlength']">
-                                        Vraag moet minstens 2 karakters bevatten.
-                                    </span>
-                                </div> -->
+                                    class="mt-1 p-2 focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 focus:border-wbRed-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="antwoord" class="block font-medium text-gray-700">Antwoord</label>
                                 <input type="text" name="antwoord" id="antwoord" [(ngModel)]="vraag.antwoord"
                                     #antwoord="ngModel" required minlength="2"
-                                    class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 focus:border-wbRed-500 invalid:border-red-500 invalid:ring-red-500">
-                                <!-- <div *ngIf="vraag.antwoord.invalid && (vraag.antwoord.dirty || vraag.antwoord.touched)"
-                                    class="text-xs text-red-500 font-medium">
-                                    <span *ngIf="vraag.antwoord.errors?.['required']">
-                                        antwoord is veplicht.
-                                    </span>
-                                    <span *ngIf="vraag.antwoord.errors?.['minlength']">
-                                        antwoord moet minstens 2 karakters bevatten.
-                                    </span>
-                                </div> -->
+                                    class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 focus:border-wbRed-500">
                             </div>
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="zichtbaarheid" class="block font-medium text-gray-700">Zichtbaarheid</label>
