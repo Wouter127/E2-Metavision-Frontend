@@ -220,7 +220,11 @@ export class WeerstationDashboardBatterijComponent implements OnInit {
     this.prechartOptionsBatterij.yaxis = {
       title: {
         text: "Batterij percentage (%)"
-      }
+      },
+      min: 0,
+      max: 100,
+      forceNiceScale: false,
+      tickAmount: 4
     }
   }
 

@@ -218,7 +218,9 @@ export class WeerstationDashboardComponent implements OnInit {
     yaxis: {
       title: {
         text: 'Batterijpercentage (%)'
-      }
+      },
+      min: 0,
+      max: 100
     },
     noData: {
       text: 'Geen data om weer te geven.'
@@ -336,6 +338,12 @@ export class WeerstationDashboardComponent implements OnInit {
             }];
             this.chartOptionsBatterijPercentage.noData = {
               text: 'Geen data om weer te geven.'
+            }
+            this.chartOptionsBatterijPercentage.yaxis = {
+              min: 0,
+              max: 100,
+              forceNiceScale: false,
+              tickAmount: 4
             }
 
             this.loading = false
