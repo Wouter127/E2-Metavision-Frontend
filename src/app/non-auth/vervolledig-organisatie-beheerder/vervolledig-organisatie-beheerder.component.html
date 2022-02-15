@@ -251,8 +251,11 @@
                         </div>
                     </div>
                     <div class="col-span-full xl:col-span-1">
-                        <!-- TODO: vraagteken met popup zetten -->
-                        <label for="extra" class="block font-medium text-gray-700">Extra</label>
+                        <label for="extra" class="block font-medium text-gray-700">Extra
+                            <i class="far fa-question-circle text-base"
+                            tooltip="<p class='text-xs'>Eventuele toevoeging: bus, kamernummer, ...</p>"
+                            [options]="{placement: 'top', hideDelay: 20}"></i>
+                        </label>
                         <input type="text" name="extra" id="extra" [(ngModel)]="organisatie.extra" #extra="ngModel"
                             class="mt-1 p-2 block w-full shadow-sm sm:text-sm rounded-md border border-gray-300 focus:ring-2 focus:ring-offset-2 focus:ring-wbRed-500 focus:border-wbRed-500">
                     </div>

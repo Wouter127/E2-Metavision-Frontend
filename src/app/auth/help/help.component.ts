@@ -3,6 +3,8 @@ import { DialogService } from '@ngneat/dialog';
 import { HotToastService } from '@ngneat/hot-toast';
 import { Subscription } from 'rxjs';
 import { Vraag } from 'src/app/interfaces/Vraag';
+import { AuthStateService } from 'src/app/security/auth-state.service';
+import { GebruikerService } from 'src/app/services/gebruiker.service';
 import { HelpService } from 'src/app/services/help.service';
 import { VraagFormComponent } from '../vraag-form/vraag-form.component';
 
@@ -16,6 +18,9 @@ export class HelpComponent implements OnInit {
 
   loading: boolean = true
 
+  gebruiker!: any;
+  gebruiker$: Subscription = new Subscription();
+
   vragen: Vraag[] = [];
   vragen$: Subscription = new Subscription();
 
@@ -23,7 +28,7 @@ export class HelpComponent implements OnInit {
   vraag$: Subscription = new Subscription();
 
   
-  constructor(private helpService: HelpService, private toast: HotToastService, private dialog: DialogService) { 
+  constructor(private gebruikerService: GebruikerService, private authStateService: AuthStateService, private helpService: HelpService, private toast: HotToastService, private dialog: DialogService) { 
     // Reverse the order of which the toasts are displayed
     this.toast.defaultConfig = {
       ...this.toast.defaultConfig,
@@ -32,12 +37,14 @@ export class HelpComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getGebruikerInfo();
     this.getVragen();
   }
 
   ngOnDestroy(): void {
     this.vragen$.unsubscribe();
     this.vraag$.unsubscribe();
+    this.gebruiker$.unsubscribe();
   }
 
   toevoegenVraag(): void {
@@ -89,6 +96,29 @@ export class HelpComponent implements OnInit {
       error => {
         this.toast.error("Er ging iets mis. De vragen kunnen niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false });
 
+      }
+    );
+  }
+
+  getGebruikerInfo() {
+    this.authStateService.gebruikerAuthState.subscribe(
+      isLoggedIn => {
+        if (isLoggedIn) {
+          this.gebruiker$ = this.gebruikerService.getGebruikerInfo().subscribe(
+            result => {
+              console.log(result);
+              
+              this.gebruiker = result;
+              this.loading = false;
+            },
+            error => {
+              this.toast.error("Er ging iets mis.  Uw account info kan niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false });
+            }
+          );
+        }
+        else {
+          this.gebruiker = undefined;
+        }
       }
     );
   }
