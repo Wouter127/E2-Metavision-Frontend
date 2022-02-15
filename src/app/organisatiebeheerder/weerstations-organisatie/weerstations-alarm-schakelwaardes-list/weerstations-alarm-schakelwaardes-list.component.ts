@@ -50,8 +50,6 @@ export class WeerstationsAlarmSchakelwaardesListComponent implements OnInit {
       result => {
         this.weerstation = result;
         this.loading = false;
-        console.log(result);
-        
       },
       error => {
         this.toast.error("Er ging iets mis.  De alarm- en schakelwaarden kunnen niet worden opgehaald.", { position: 'bottom-right', dismissible: true, autoClose: false })
