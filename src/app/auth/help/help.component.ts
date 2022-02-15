@@ -106,8 +106,6 @@ export class HelpComponent implements OnInit {
         if (isLoggedIn) {
           this.gebruiker$ = this.gebruikerService.getGebruikerInfo().subscribe(
             result => {
-              console.log(result);
-              
               this.gebruiker = result;
               this.loading = false;
             },
